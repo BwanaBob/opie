@@ -12,7 +12,7 @@ const client = new Discord.Client({
 const gifexpr = new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)")
 
 const gifusers = {}
-const gifDelay = 60 * 1000
+const gifDelay = 60
 
 client.on("ready", () => {
     console.log(`Logged in as: ${client.user.tag}`)
@@ -27,17 +27,18 @@ client.on("messageCreate", (message) => {
 //        console.log(`Author: ${ThisAuth} (${message.author.username}-${message.author.discriminator})`)
 
         if(gifusers[ThisAuth] == undefined){
-            console.log(`GIF: ${ThisAuth} (${message.author.username}-${message.author.discriminator}) - not found`)
+            console.log(`GIF: ${message.guild.name} (${message.author.username}-${message.author.discriminator})-First GIF`)
 //            message.react('✅')
             gifusers[ThisAuth] = message.createdTimestamp
         } else {
-//            console.log(`Author: ${ThisAuth} (${message.author.username}-${message.author.discriminator}) - ${gifusers[ThisAuth]}-${message.createdTimestamp}`)
-            if(gifusers[ThisAuth] + gifDelay > message.createdTimestamp) {
-                console.log(`GIF: ${ThisAuth} (${message.author.username}-${message.author.discriminator}) - ${gifusers[ThisAuth]}-${message.createdTimestamp}=BAD`)
+            let elapsed = Math.trunc((message.createdTimestamp - gifusers[ThisAuth]) /1000)
+            if(elapsed < gifDelay) {
+                console.log(`GIF: ${message.guild.name} (${message.author.username}-${message.author.discriminator})-${elapsed}=BAD`)
 //                message.react('❎')
                 message.delete()
+                message.author.send(`Sorry, the server "${message.guild.name}" has limited the posting of gifs to once every ${gifDelay} seconds.`)
             } else {
-                console.log(`GIF: ${ThisAuth} (${message.author.username}-${message.author.discriminator}) - ${gifusers[ThisAuth]}-${message.createdTimestamp}=OK`)
+                console.log(`GIF: ${message.guild.name} (${message.author.username}-${message.author.discriminator})-${elapsed}=OK`)
                 gifusers[ThisAuth] = message.createdTimestamp
 //                message.react('✅')
             }
