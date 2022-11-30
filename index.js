@@ -10,7 +10,6 @@ const client = new Discord.Client({
 })
 
 const gifexpr = new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)")
-
 const gifusers = {}
 const gifDelay = 60
 
@@ -19,16 +18,12 @@ client.on("ready", () => {
 })
 
 client.on("messageCreate", (message) => {
-//    console.log(`Message: ${message.content}`)
 
     if(gifexpr.test(message.content)){
         ThisAuth = `${message.author.id}-${message.guildId}`
-//        message.reply("I am not a robot")
-//        console.log(`Author: ${ThisAuth} (${message.author.username}-${message.author.discriminator})`)
 
         if(gifusers[ThisAuth] == undefined){
             console.log(`GIF: ${message.guild.name} (${message.author.username}-${message.author.discriminator})-First GIF`)
-//            message.react('✅')
             gifusers[ThisAuth] = message.createdTimestamp
         } else {
             let elapsed = Math.trunc((message.createdTimestamp - gifusers[ThisAuth]) /1000)
