@@ -31,7 +31,18 @@ client.on("messageCreate", (message) => {
                 console.log(`GIF: ${message.guild.name} (${message.author.username}-${message.author.discriminator})-${elapsed}=BAD`)
 //                message.react('❎')
                 message.delete()
+
+                // send notice to user
                 message.author.send(`Sorry, the server "${message.guild.name}" has limited the posting of gifs to once every ${gifDelay} seconds.`)
+                // send notice to servers notice channel
+                client.channels.cache.get(message.guild.publicUpdatesChannelId).send(
+                    `>>> **Rule violated**: GIF Timer\n**User**: ${message.author.username}#${message.author.discriminator}\n**Channel**: ${message.channel.name}\n**Time**: <t:${Math.round(message.createdTimestamp /1000)}>`
+                    )
+                // also send everything to bot's notice channel
+                client.channels.cache.get("1045327770592497694").send(
+                    `>>> **Server**: ${message.guild.name} - ${message.guildId}\n**Rule violated**: GIF Timer\n**User**: ${message.author.username}#${message.author.discriminator}\n**Channel**: ${message.channel.name}\n**Notice Channel**: ${message.guild.publicUpdatesChannelId}\n**Time**: <t:${Math.round(message.createdTimestamp /1000)}>`
+                    )
+
             } else {
                 console.log(`GIF: ${message.guild.name} (${message.author.username}-${message.author.discriminator})-${elapsed}=OK`)
                 gifusers[ThisAuth] = message.createdTimestamp
@@ -42,6 +53,8 @@ client.on("messageCreate", (message) => {
 
     if(message.content == "opie"){
         message.react('👋')
+//        let chans = message.guild.publicUpdatesChannelId
+//        console.log(chans)
     }
 })
 
