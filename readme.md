@@ -12,4 +12,4 @@ or the sister Reddit sub:
 https://www.reddit.com/r/OnPatrolLive/
 
 Discuss this bot on it's Discord server:
-https://discord.gg/PQzE7DcDqh
+https://discord.gg/z75ZZzEn6b
