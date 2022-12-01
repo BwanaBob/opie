@@ -1,6 +1,5 @@
 const { GatewayIntentBits } = require("discord.js")
 const Discord = require("discord.js")
-require("dotenv").config()
 const client = new Discord.Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -8,11 +7,11 @@ const client = new Discord.Client({
         GatewayIntentBits.MessageContent
     ]
 })
+require("dotenv").config()
 
 const gifexpr = new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)")
 const gifusers = {}
 const gifDelay = 60
-const BackTicks = "```"
 
 client.on("ready", () => {
     console.log(`Logged in as: ${client.user.tag}`)
@@ -36,15 +35,25 @@ client.on("messageCreate", (message) => {
                 // send notice to user
                 // message.author.send(`Sorry, the server "${message.guild.name}" has limited the posting of gifs to once every ${gifDelay} seconds.`)
                 message.author.send(
-                    `${BackTicks}ansi\nSorry, the server \u001b[1;37m${message.guild.name}\u001b[0m has limited the posting of gifs to once every \u001b[1;37m${gifDelay}\u001b[0m seconds.${BackTicks}`
+                    `\`\`\`ansi\n`+
+                    `The server \u001b[1;37m${message.guild.name}\u001b[0m has limited the posting of gifs to once every \u001b[1;37m${gifDelay}\u001b[0m seconds.\`\`\``
                     )
                 // send notice to servers notice channel
+                // publicUpdatesChannel = Community Updates
+                // systemChannel = System Messages (New users)
                 client.channels.cache.get(message.guild.publicUpdatesChannelId).send(
-                    `${BackTicks}ansi\nRule violated: \u001b[1;37mGIF Timer\u001b[0m\nUser: \u001b[1;37m${message.author.username}#${message.author.discriminator} (${message.member.displayName})\u001b[0m\nChannel: \u001b[1;37m${message.channel.name}\u001b[0m\n${BackTicks}`
+                    `\`\`\`ansi\n`+
+                    `Rule violated: \u001b[1;37mGIF Timer\u001b[0m\n`+
+                    `User: \u001b[1;37m${message.author.username}#${message.author.discriminator} (${message.member.displayName})\u001b[0m\n`+
+                    `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
                     )
                 // also send everything to bot's notice channel
                 client.channels.cache.get("1045327770592497694").send(
-                    `${BackTicks}ansi\nServer: \u001b[1;37m${message.guild.name}\u001b[0m\nRule violated: \u001b[1;37mGIF Timer\u001b[0m\nUser: \u001b[1;37m${message.author.username}#${message.author.discriminator} (${message.member.displayName})\u001b[0m\nChannel: \u001b[1;37m${message.channel.name}\u001b[0m${BackTicks}`
+                    `\`\`\`ansi\n` +
+                    `Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
+                    `Rule violated: \u001b[1;37mGIF Timer\u001b[0m\n` +
+                    `User: \u001b[1;37m${message.author.username}#${message.author.discriminator} (${message.member.displayName})\u001b[0m\n` + 
+                    `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
                     )
                 // "<t:${Math.round(message.createdTimestamp /1000)}>"
             } else {
@@ -57,8 +66,10 @@ client.on("messageCreate", (message) => {
 
     if(message.content == "opie"){
         message.react('👋')
-//        let chans = message.guild.publicUpdatesChannelId
-//        console.log(chans)
+        let chans = message.guild.publicUpdatesChannel.name
+        let chans2 = message.guild.systemChannel.name
+        console.log(`Public updates: ${chans}`)
+        console.log(`System channel: ${chans2}`)
     }
 })
 
