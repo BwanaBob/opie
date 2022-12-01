@@ -12,6 +12,7 @@ const client = new Discord.Client({
 const gifexpr = new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)")
 const gifusers = {}
 const gifDelay = 60
+const BackTicks = "```"
 
 client.on("ready", () => {
     console.log(`Logged in as: ${client.user.tag}`)
@@ -33,16 +34,19 @@ client.on("messageCreate", (message) => {
                 message.delete()
 
                 // send notice to user
-                message.author.send(`Sorry, the server "${message.guild.name}" has limited the posting of gifs to once every ${gifDelay} seconds.`)
+                // message.author.send(`Sorry, the server "${message.guild.name}" has limited the posting of gifs to once every ${gifDelay} seconds.`)
+                message.author.send(
+                    `${BackTicks}ansi\nSorry, the server \u001b[1;37m${message.guild.name}\u001b[0m has limited the posting of gifs to once every \u001b[1;37m${gifDelay}\u001b[0m seconds.${BackTicks}`
+                    )
                 // send notice to servers notice channel
                 client.channels.cache.get(message.guild.publicUpdatesChannelId).send(
-                    `>>> **Rule violated**: GIF Timer\n**User**: ${message.author.username}#${message.author.discriminator}\n**Channel**: ${message.channel.name}\n**Time**: <t:${Math.round(message.createdTimestamp /1000)}>`
+                    `${BackTicks}ansi\nRule violated: \u001b[1;37mGIF Timer\u001b[0m\nUser: \u001b[1;37m${message.author.username}#${message.author.discriminator}\u001b[0m\nChannel: \u001b[1;37m${message.channel.name}\u001b[0m\n${BackTicks}`
                     )
                 // also send everything to bot's notice channel
                 client.channels.cache.get("1045327770592497694").send(
-                    `>>> **Server**: ${message.guild.name} - ${message.guildId}\n**Rule violated**: GIF Timer\n**User**: ${message.author.username}#${message.author.discriminator}\n**Channel**: ${message.channel.name}\n**Notice Channel**: ${message.guild.publicUpdatesChannelId}\n**Time**: <t:${Math.round(message.createdTimestamp /1000)}>`
+                    `${BackTicks}ansi\nServer: \u001b[1;37m${message.guild.name}\u001b[0m - ${message.guildId}\nRule violated: \u001b[1;37mGIF Timer\u001b[0m\nUser: \u001b[1;37m${message.author.username}#${message.author.discriminator}\u001b[0m\nChannel: \u001b[1;37m${message.channel.name}\u001b[0m\nNotice Channel: \u001b[1;37m${message.guild.publicUpdatesChannelId}\u001b[0m${BackTicks}`
                     )
-
+                // "<t:${Math.round(message.createdTimestamp /1000)}>"
             } else {
                 console.log(`GIF: ${message.guild.name} (${message.author.username}-${message.author.discriminator})-${elapsed}=OK`)
                 gifusers[ThisAuth] = message.createdTimestamp
