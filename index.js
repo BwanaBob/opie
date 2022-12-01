@@ -40,11 +40,11 @@ client.on("messageCreate", (message) => {
                     )
                 // send notice to servers notice channel
                 client.channels.cache.get(message.guild.publicUpdatesChannelId).send(
-                    `${BackTicks}ansi\nRule violated: \u001b[1;37mGIF Timer\u001b[0m\nUser: \u001b[1;37m${message.author.username}#${message.author.discriminator}\u001b[0m\nChannel: \u001b[1;37m${message.channel.name}\u001b[0m\n${BackTicks}`
+                    `${BackTicks}ansi\nRule violated: \u001b[1;37mGIF Timer\u001b[0m\nUser: \u001b[1;37m${message.author.username}#${message.author.discriminator} (${message.member.displayName})\u001b[0m\nChannel: \u001b[1;37m${message.channel.name}\u001b[0m\n${BackTicks}`
                     )
                 // also send everything to bot's notice channel
                 client.channels.cache.get("1045327770592497694").send(
-                    `${BackTicks}ansi\nServer: \u001b[1;37m${message.guild.name}\u001b[0m - ${message.guildId}\nRule violated: \u001b[1;37mGIF Timer\u001b[0m\nUser: \u001b[1;37m${message.author.username}#${message.author.discriminator}\u001b[0m\nChannel: \u001b[1;37m${message.channel.name}\u001b[0m\nNotice Channel: \u001b[1;37m${message.guild.publicUpdatesChannelId}\u001b[0m${BackTicks}`
+                    `${BackTicks}ansi\nServer: \u001b[1;37m${message.guild.name}\u001b[0m\nRule violated: \u001b[1;37mGIF Timer\u001b[0m\nUser: \u001b[1;37m${message.author.username}#${message.author.discriminator} (${message.member.displayName})\u001b[0m\nChannel: \u001b[1;37m${message.channel.name}\u001b[0m${BackTicks}`
                     )
                 // "<t:${Math.round(message.createdTimestamp /1000)}>"
             } else {
