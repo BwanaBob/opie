@@ -1,4 +1,4 @@
-const { Client, Events, GatewayIntentBits } = require('discord.js');
+const { Client, ActivityType, Events, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
@@ -11,13 +11,14 @@ const gifexpr = new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)")
 const gifusers = {}
 const gifDelay = 60
 
-client.on("ready", () => {
-    console.log(`Logged in as: ${client.user.username} (${client.user.tag})`)
+client.once(Events.ClientReady, c => {
+    console.log(`Logged in as: ${c.user.username} (${c.user.tag})`)
     console.log(`Member of:`)
-    client.guilds.cache.forEach(guild => {
+    c.guilds.cache.forEach(guild => {
         console.log(`  ${guild.id} - ${guild.name}`)
     })
-})
+    c.user.setActivity('you', { type: ActivityType.Watching });
+});
 
 client.on("messageCreate", (message) => {
 
