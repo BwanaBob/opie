@@ -8,15 +8,11 @@ Rather than preventing those things, the desire was to limit the frequency of th
 Currently the bot is developed and hosted on a homelab server.
 A production environment has been acquired on Akamai infrastructure and will be utilized in future releases (once slash commands are implemented)
 
-Join the On Patrol Live Discord server at:
-
+Join the On Patrol Live Discord server at:<br>
 https://discord.gg/jAA87dd9qv
 
-or the sister Reddit sub:
-
+or the sister Reddit sub:<br>
 https://www.reddit.com/r/OnPatrolLive/
 
-
-Discuss this bot on it's Discord server:
-
+Discuss this bot on it's Discord server:<br>
 https://discord.gg/z75ZZzEn6b
