@@ -17,21 +17,20 @@ client.once(Events.ClientReady, c => {
     c.guilds.cache.forEach(guild => {
         console.log(`  ${guild.id} - ${guild.name}`)
     })
-    c.user.setActivity('you', { type: ActivityType.Watching });
+    c.user.setActivity('with yarn', { type: ActivityType.Playing });
 });
 
 client.on("messageCreate", (message) => {
-
-    if(gifexpr.test(message.content)){
+    // 343568731793915904  - exempt mod role id
+    if(gifexpr.test(message.content) && !message.member.roles.cache.has('343568731793915904')){
         ThisAuth = `${message.author.id}-${message.guildId}`
-
         if(gifusers[ThisAuth] == undefined){
-            console.log(`GIF: ${message.guild.name} ${message.member.displayName} (${message.author.tag}) First GIF`)
+            console.log(`GIF | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First GIF`)
             gifusers[ThisAuth] = message.createdTimestamp
         } else {
             let elapsed = Math.trunc((message.createdTimestamp - gifusers[ThisAuth]) /1000)
             if(elapsed < gifDelay) {
-                console.log(`GIF: ${message.guild.name} ${message.member.displayName} (${message.author.tag}) ${elapsed}=BAD`)
+                console.log(`GIF | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed} = BAD`)
 //                message.react('❎')
                 message.delete()
 
@@ -60,22 +59,20 @@ client.on("messageCreate", (message) => {
                     )
                 // "<t:${Math.round(message.createdTimestamp /1000)}>"
             } else {
-                console.log(`GIF: ${message.guild.name} ${message.member.displayName} (${message.author.tag}) ${elapsed}=OK`)
+                console.log(`GIF | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed} = OK`)
                 gifusers[ThisAuth] = message.createdTimestamp
 //                message.react('✅')
             }
         }
     }
 
-    if(message.content == "opie"){
+    // Bot user is 1041050338775539732
+    // Bot role is 1046068702396825674
+    if(message.content.match(/\b(opie|1041050338775539732|1046068702396825674)\b/gi)){
         message.react('👋')
-        let chans = message.guild.publicUpdatesChannel.name
-        let chans2 = message.guild.systemChannel.name
-        console.log(`Public updates: ${chans}`)
-        console.log(`System channel: ${chans2}`)
-
-//        console.log(`Server Owner: ${message.guild.ownerId}`)
+        console.log(`OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`)
     }
+
 })
 
 client.login(process.env.TOKEN)
