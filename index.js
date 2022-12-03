@@ -70,6 +70,7 @@ client.on("messageCreate", (message) => {
     // Bot role is 1046068702396825674
     if(message.content.match(/\b(opie|1041050338775539732|1046068702396825674)\b/gi)){
         message.react('👋')
+        client.user.setActivity('with yarn', { type: ActivityType.Playing });
         console.log(`OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`)
     }
 
