@@ -1,6 +1,6 @@
 # OPie
 
-A node.js Discord bot that is currently used by the On Patrol Live Discord server.
+XXX A node.js Discord bot that is currently used by the On Patrol Live Discord server.
 
 The initial impetus for the bot was the rampant overuse of GIFs and changing of usernames on the server.
 Rather than preventing those things, the desire was to limit the frequency of those activities.

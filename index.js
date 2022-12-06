@@ -1,25 +1,53 @@
-const { Client, ActivityType, Events, GatewayIntentBits } = require('discord.js');
+require("dotenv").config()
+const fs = require('node:fs');
+const path = require('node:path');
+
+const { Client, Collection, ActivityType, Events, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent
 ] });
 
-require("dotenv").config()
-
 const gifexpr = new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)")
 const gifusers = {}
 const gifDelay = 60
 
-client.once(Events.ClientReady, c => {
-    console.log(`Logged in as: ${c.user.username} (${c.user.tag})`)
-    console.log(`Member of:`)
-    c.guilds.cache.forEach(guild => {
-        console.log(`  ${guild.id} - ${guild.name}`)
-    })
-    c.user.setActivity('with yarn', { type: ActivityType.Playing });
-});
+client.commands = new Collection();
 
+const commandsPath = path.join(__dirname, 'commands');
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+
+// Slash command Collection setup
+for (const file of commandFiles) {
+	const filePath = path.join(commandsPath, file);
+	const command = require(filePath);
+	// Set a new item in the Collection with the key as the command name and the value as the exported module
+	if ('data' in command && 'execute' in command) {
+		client.commands.set(command.data.name, command);
+	} else {
+		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+	}
+}
+
+
+//events handler
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+
+for (const file of eventFiles) {
+	const filePath = path.join(eventsPath, file);
+	const event = require(filePath);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
+
+//process rules
+//major overhaul to do here
 client.on("messageCreate", (message) => {
     // 343568731793915904  - exempt mod role id
     if(gifexpr.test(message.content) && !message.member.roles.cache.has('343568731793915904')){
@@ -65,37 +93,6 @@ client.on("messageCreate", (message) => {
             }
         }
     }
-
-    // Bot user is 1041050338775539732
-    // Bot role is 1046068702396825674
-    if(message.content.match(/\b(opie|1041050338775539732|1046068702396825674)\b/gi)){
-        message.react('👋')
-        client.user.setActivity('with yarn', { type: ActivityType.Playing });
-        console.log(`OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`)
-    }
-    if(message.content.match(/\b(another|many|more)\W.*?\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\b/gi)){
-        message.react('😠')
-        
-        console.log(`ADS | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`)
-
-        // send notice to servers notice channel
-        client.channels.cache.get(message.guild.publicUpdatesChannelId).send(
-            `\`\`\`ansi\n`+
-            `Rule violated: \u001b[1;37mMore Ads\u001b[0m\n`+
-            `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` + 
-            `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
-        )
-
-        // also send everything to bot's notice channel
-        client.channels.cache.get("1045327770592497694").send(
-            `\`\`\`ansi\n` +
-            `Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
-            `Rule violated: \u001b[1;37mMore Ads\u001b[0m\n` +
-            `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` + 
-            `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
-       )
-    }
-
 })
 
 client.login(process.env.TOKEN)
