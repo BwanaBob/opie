@@ -31,13 +31,5 @@ module.exports = {
                 `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
             )
         }
-
-
-
-    
-
-
-
-
     },
 };
