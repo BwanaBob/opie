@@ -42,6 +42,7 @@ module.exports = {
                     console.log(`GIF | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed} = OK`)
                     message.client.timers.set(message.member.id, message.createdTimestamp)
                 }
+            }
         }
 
         if(message.content.match(/\b(opie|1041050338775539732|1046068702396825674)\b/gi)){
@@ -73,5 +74,5 @@ module.exports = {
             )
         }
     }
-}
+
 };
