@@ -8,7 +8,8 @@ const oplRuleMessage3 = `1048680902923915264`
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('rules')
-		.setDescription('Replies with Rules.'),
+		.setDescription('Replies with Rules.')
+		.setDMPermission(false),
 	async execute(interaction) {
 		await interaction.reply({ content: oplRules, ephemeral: true });
 	},

@@ -9,17 +9,12 @@ const client = new Client({ intents: [
     GatewayIntentBits.MessageContent
 ] });
 
-// const gifexpr = new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)")
-// const gifusers = {}
-// const gifDelay = 60
-
-client.commands = new Collection();
-
 client.timers = new Collection();
 client.rules = new Collection();
 client.rules.set("gifexpr", new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)"))
 client.rules.set("gifdelay", 60)
 
+client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
@@ -34,7 +29,6 @@ for (const file of commandFiles) {
 		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 	}
 }
-
 
 //events handler
 const eventsPath = path.join(__dirname, 'events');
