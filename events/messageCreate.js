@@ -1,4 +1,4 @@
-const { Events } = require('discord.js');
+const { Events, SlashCommandStringOption } = require('discord.js');
 
 module.exports = {
 	name: Events.MessageCreate,
@@ -47,6 +47,8 @@ module.exports = {
 
         if(message.content.match(/\b(opie|1041050338775539732|1046068702396825674)\b/gi)){
             message.react('👋')
+            var uniDate = Date(message.createdTimestamp)
+            console.log(`${uniDate.toLocaleString()}`)
             //client.user.setActivity('with yarn', { type: ActivityType.Playing });
             console.log(`OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`)
         }

@@ -5,6 +5,7 @@ module.exports = {
 	once: true,
 	execute(client) {
         var startDate = new Date();
+        console.log(`${startDate}`)
         console.log(`[${startDate.toLocaleString()}]  Logged in as: ${client.user.username} (${client.user.tag})`)
         console.log(`Member of:`)
         client.guilds.cache.forEach(guild => {
