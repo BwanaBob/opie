@@ -11,6 +11,6 @@ module.exports = {
         client.guilds.cache.forEach(guild => {
             console.log(`  ${guild.id} - ${guild.name}`)
         })
-        client.user.setActivity('with yarn', { type: ActivityType.Playing });
+        client.user.setActivity('with catnip', { type: ActivityType.Playing });
     },
 };

@@ -11,10 +11,12 @@ module.exports = {
 			console.error(`No command matching ${interaction.commandName} was found.`);
 			return;
 		}
+
+        const uniDate = new Date(interaction.createdTimestamp).toLocaleString()
 		if (!interaction.guild){
-			console.log(`CMD | Private Message | ${interaction.user.tag} | ${interaction.commandName}`)
+			console.log(`[${uniDate}] CMD | Private Message | ${interaction.user.tag} | ${interaction.commandName}`)
 		} else {
-			console.log(`CMD | ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}`)
+			console.log(`[${uniDate}] CMD | ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}`)
 		}
 
 		try {

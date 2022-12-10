@@ -19,7 +19,7 @@ module.exports = {
                     // send notice to user
                     message.author.send(
                         `\`\`\`ansi\n`+
-                        `The server \u001b[1;37m${message.guild.name}\u001b[0m has limited the posting of embeded content to once every \u001b[1;37m${gifDelay}\u001b[0m seconds.\`\`\``
+                        `The server \u001b[1;37m${message.guild.name}\u001b[0m has limited the posting of embedded content to once every \u001b[1;37m${gifDelay}\u001b[0m seconds.\`\`\``
                         )
                     // send notice to servers notice channel
                     // publicUpdatesChannel = Community Updates
@@ -54,7 +54,7 @@ module.exports = {
             console.log(`[${uniDate}] OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`)
         }
 
-        if(message.content.match(/\b(another|many|more)\W.*?\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\b/gi)){
+        if(message.content.match(/\b(another|many|more|extra)\W.*?\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\b/gi)){
             const uniDate = new Date(message.createdTimestamp).toLocaleString()
             message.react('😠')
             console.log(`[${uniDate}] ADS | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`)
