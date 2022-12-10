@@ -11,6 +11,11 @@ module.exports = {
 			console.error(`No command matching ${interaction.commandName} was found.`);
 			return;
 		}
+		if (!interaction.guild){
+			console.log(`CMD | Private Message | ${interaction.user.tag} | ${interaction.commandName}`)
+		} else {
+			console.log(`CMD | ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}`)
+		}
 
 		try {
 			await command.execute(interaction);
