@@ -1,9 +1,23 @@
-const { Events, SlashCommandStringOption } = require('discord.js');
+const { Events, SlashCommandStringOption, PermissionsBitField } = require('discord.js');
 
 module.exports = {
 	name: Events.MessageCreate,
 	async execute(message) {
-        if(( message.attachments.size !== 0  || message.embeds.length !== 0 ) && !message.member.roles.cache.has('343568731793915904')){
+        if(message.content.match(/\b(opie|1041050338775539732|1046068702396825674)\b/gi)){
+            message.react('👋')
+            const uniDate = new Date(message.createdTimestamp).toLocaleString()
+            //console.log(`${uniDate}`)
+            //client.user.setActivity('with yarn', { type: ActivityType.Playing });
+            console.log(`[${uniDate}] OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`)
+        }
+
+        if( message.author.bot ||
+            message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) ||
+            message.channel.name == "notifications" ||
+            message.channel.name == "art-corner"
+          ) { return };
+
+          if( message.attachments.size !== 0  || message.embeds.length !== 0 ){
             const uniDate = new Date(message.createdTimestamp).toLocaleString()
             const lastTime = message.client.timers.get(message.member.id)
             const gifDelay = message.client.rules.get("gifdelay")
@@ -44,14 +58,6 @@ module.exports = {
                     message.client.timers.set(message.member.id, message.createdTimestamp)
                 }
             }
-        }
-
-        if(message.content.match(/\b(opie|1041050338775539732|1046068702396825674)\b/gi)){
-            message.react('👋')
-            const uniDate = new Date(message.createdTimestamp).toLocaleString()
-            //console.log(`${uniDate}`)
-            //client.user.setActivity('with yarn', { type: ActivityType.Playing });
-            console.log(`[${uniDate}] OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`)
         }
 
         if(message.content.match(/\b(another|many|more|extra)\W.*?\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\b/gi)){
