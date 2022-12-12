@@ -63,7 +63,7 @@ module.exports = {
             .get(message.guild.publicUpdatesChannelId)
             .send(
               `\`\`\`ansi\n` +
-                `Rule violated: \u001b[1;37mEmbed Timer\u001b[0m\n` +
+                `Rule: \u001b[1;37mEmbed Timer\u001b[0m\n` +
                 `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
                 `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
             );
@@ -73,7 +73,7 @@ module.exports = {
             .send(
               `\`\`\`ansi\n` +
                 `Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
-                `Rule violated: \u001b[1;37mEmbed Timer\u001b[0m\n` +
+                `Rule: \u001b[1;37mEmbed Timer\u001b[0m\n` +
                 `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
                 `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
             );
@@ -106,7 +106,7 @@ module.exports = {
         .get(message.guild.publicUpdatesChannelId)
         .send(
           `\`\`\`ansi\n` +
-            `Rule violated: \u001b[1;37mMore Ads\u001b[0m\n` +
+            `Rule: \u001b[1;37mMore Ads\u001b[0m\n` +
             `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
             `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
         );
@@ -117,7 +117,7 @@ module.exports = {
         .send(
           `\`\`\`ansi\n` +
             `Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
-            `Rule violated: \u001b[1;37mMore Ads\u001b[0m\n` +
+            `Rule: \u001b[1;37mMore Ads\u001b[0m\n` +
             `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
             `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
         );
