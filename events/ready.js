@@ -5,14 +5,14 @@ module.exports = {
   once: true,
   execute(client) {
     var startDate = new Date();
-    console.log(`______________________________________________________`);
+    console.log(`____________________________________________________`);
     console.log(
-      `[${startDate.toLocaleString()}] ${client.user.username} (${
+      `[${startDate.toLocaleString()}] 🤖 START | ${client.user.username} (${
         client.user.tag
-      }) Logged in`
+      })`
     );
     client.guilds.cache.forEach((guild) => {
-      console.log(`                         ${guild.name}`);
+      console.log(`[${startDate.toLocaleString()}] 🖥️  GUILD | ${guild.name}`);
     });
     client.user.setActivity("a lizard outside", {
       type: ActivityType.Watching,

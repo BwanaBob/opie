@@ -17,7 +17,7 @@ module.exports = {
       //console.log(`${uniDate}`)
       //client.user.setActivity('with yarn', { type: ActivityType.Playing });
       console.log(
-        `[${uniDate}] OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`
+        `[${uniDate}] ✅ OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`
       );
     }
 
@@ -38,7 +38,7 @@ module.exports = {
       const gifDelay = message.client.rules.get("gifdelay");
       if (lastTime == undefined) {
         console.log(
-          `[${uniDate}] EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Embed`
+          `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Embed`
         );
         message.client.timers.set(message.member.id, message.createdTimestamp);
       } else {
@@ -47,7 +47,7 @@ module.exports = {
         );
         if (elapsed < gifDelay) {
           console.log(
-            `[${uniDate}] EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec BAD`
+            `[${uniDate}] ⛔ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec BAD`
           );
           message.delete();
 
@@ -63,24 +63,24 @@ module.exports = {
             .get(message.guild.publicUpdatesChannelId)
             .send(
               `\`\`\`ansi\n` +
-                `Rule: \u001b[1;37mEmbed Timer\u001b[0m\n` +
-                `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
-                `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
+                `⛔ Rule: \u001b[1;37mEmbed Timer\u001b[0m\n` +
+                `⛔ User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
+                `⛔ Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
             );
           // also send everything to bot's notice channel
           message.client.channels.cache
             .get("1045327770592497694")
             .send(
               `\`\`\`ansi\n` +
-                `Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
-                `Rule: \u001b[1;37mEmbed Timer\u001b[0m\n` +
-                `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
-                `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
+                `⛔ Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
+                `⛔ Rule: \u001b[1;37mEmbed Timer\u001b[0m\n` +
+                `⛔ User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
+                `⛔ Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
             );
           // "<t:${Math.round(message.createdTimestamp /1000)}>"
         } else {
           console.log(
-            `[${uniDate}] EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed} = OK`
+            `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed} = OK`
           );
           message.client.timers.set(
             message.member.id,
@@ -98,7 +98,7 @@ module.exports = {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       message.react("😠");
       console.log(
-        `[${uniDate}] ADS | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        `[${uniDate}] 😠 ADS | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
       );
 
       // send notice to servers notice channel
@@ -106,9 +106,9 @@ module.exports = {
         .get(message.guild.publicUpdatesChannelId)
         .send(
           `\`\`\`ansi\n` +
-            `Rule: \u001b[1;37mMore Ads\u001b[0m\n` +
-            `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
-            `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
+            `😠 Rule: \u001b[1;37mMore Ads\u001b[0m\n` +
+            `😠 User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
+            `😠 Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
         );
 
       // also send everything to bot's notice channel
@@ -116,10 +116,10 @@ module.exports = {
         .get("1045327770592497694")
         .send(
           `\`\`\`ansi\n` +
-            `Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
-            `Rule: \u001b[1;37mMore Ads\u001b[0m\n` +
-            `User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
-            `Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
+            `😠 Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
+            `😠 Rule: \u001b[1;37mMore Ads\u001b[0m\n` +
+            `😠 User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
+            `😠 Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
         );
     }
   },
