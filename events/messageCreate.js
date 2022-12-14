@@ -80,7 +80,7 @@ module.exports = {
           // "<t:${Math.round(message.createdTimestamp /1000)}>"
         } else {
           console.log(
-            `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed} = OK`
+            `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec OK`
           );
           message.client.timers.set(
             message.member.id,
