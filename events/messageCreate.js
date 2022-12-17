@@ -92,7 +92,7 @@ module.exports = {
 
     if (
       message.content.match(
-        /\b(another|many|more|extra)\W.*?\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\b/gi
+        /\b(another|many|more|lots of|we just had|damn|extra|commercial)\W.*?\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\b/gi
       )
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
