@@ -14,8 +14,15 @@ module.exports = {
     client.guilds.cache.forEach((guild) => {
       console.log(`[${startDate.toLocaleString()}] 🖥️  GUILD | ${guild.name}`);
     });
-    client.user.setActivity("a lizard outside", {
-      type: ActivityType.Watching,
+
+    client.user.setPresence({
+      status: "online",
+      activities: [
+        {
+          type: ActivityType.Watching,
+          name: "Puss in Boots",
+        },
+      ],
     });
   },
 };
