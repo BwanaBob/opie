@@ -20,7 +20,7 @@ module.exports = {
       activities: [
         {
           type: ActivityType.Watching,
-          name: "Puss in Boots",
+          name: "Animal Planet",
         },
       ],
     });
