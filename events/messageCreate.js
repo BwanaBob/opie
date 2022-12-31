@@ -7,18 +7,45 @@ const {
 module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
+    //this has a flaw. member id is the same as user id. emojis from a particular server will fail on other servers
     if (
       message.content.match(
         /\b(opie|1041050338775539732|1046068702396825674)\b/gi
       )
     ) {
-      message.react("👋");
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      //console.log(`${uniDate}`)
       //client.user.setActivity('with yarn', { type: ActivityType.Playing });
       console.log(
         `[${uniDate}] ✅ OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`
       );
+
+      var reaction = "👋";
+      if (message.guild.id == "325206992413130753") {
+        const reactions = {
+          default: "👋",
+          member: {
+            "348629137080057878": `<:arctic_fox:1057115452553314354>`, // bwana
+            "629681401918390312": [
+              `<a:purple_heart_beating:1038193897337270352>`,
+              `<a:sloth_animated:1038514444289978479>`,
+            ], // barre
+            "511074631239598080": `<a:waving_hand_wave:1038212554515816518>`, // ferret
+            "342487311860367362": "🔨", // wub
+            "440328038337478657": `<:sausage_thumbs_up:1039959562553401445>`, // saucy
+            "475145905117593623": `<:suspicious_fry:1027310519910154330>`, // china
+            "368797989554356224": `<:cowheart:705960794101383258>`, // cow
+          },
+        };
+        const memberReaction =
+          reactions.member[message.member.id] || reactions.default;
+        if (Array.isArray(memberReaction)) {
+          reaction =
+            memberReaction[Math.floor(Math.random() * memberReaction.length)];
+        } else {
+          reaction = memberReaction;
+        }
+      }
+      message.react(reaction);
     }
 
     if (
