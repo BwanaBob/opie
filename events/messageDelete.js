@@ -1,4 +1,4 @@
-const { Events, EmbedBuilder } = require("discord.js");
+const { Events, EmbedBuilder, PermissionsBitField } = require("discord.js");
 
 module.exports = {
   name: Events.MessageDelete,
@@ -6,10 +6,17 @@ module.exports = {
     //    console.log("Message Deleted");
     const uniDate = new Date(message.createdTimestamp).toLocaleString();
     console.log(
-        `[${uniDate}] ⛔ DEL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
-      );
+      `[${uniDate}] ⛔ DEL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
+    );
 
-    // if (message.bot) {return}
+    if(
+      message.author.bot ||
+      message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) ||
+      message.channel.name == "notifications" ||
+      message.channel.name == "art-corner"
+    ) {
+      return;
+    }
 
     const noticeEmbed = new EmbedBuilder()
       .setColor(0x9900ff)

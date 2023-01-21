@@ -19,8 +19,8 @@ module.exports = {
       status: "online",
       activities: [
         {
-          type: ActivityType.Playing,
-          name: "With packing peanuts",
+          type: ActivityType.Watching,
+          name: "REELZ",
         },
       ],
     });
