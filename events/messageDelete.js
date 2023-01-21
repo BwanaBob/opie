@@ -4,10 +4,12 @@ module.exports = {
   name: Events.MessageDelete,
   async execute(message) {
     //    console.log("Message Deleted");
+    const uniDate = new Date(message.createdTimestamp).toLocaleString();
+    console.log(
+        `[${uniDate}] ⛔ DEL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
+      );
 
-    // if (message.bot) {
-    //   return;
-    // }
+    // if (message.bot) {return}
 
     const noticeEmbed = new EmbedBuilder()
       .setColor(0x9900ff)
