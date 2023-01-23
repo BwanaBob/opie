@@ -2,6 +2,7 @@ const {
   Events,
   SlashCommandStringOption,
   PermissionsBitField,
+  EmbedBuilder,
 } = require("discord.js");
 
 module.exports = {
@@ -108,31 +109,59 @@ module.exports = {
           message.delete();
 
           // send notice to user
-          message.author.send(
-            `\`\`\`ansi\n` +
-              `The server \u001b[1;37m${message.guild.name}\u001b[0m has limited the posting of embedded content to once every \u001b[1;37m${gifDelay}\u001b[0m seconds.\`\`\``
-          );
+          const userReplyEmbed = new EmbedBuilder()
+            .setColor(0xff9900)
+            .setTitle("Embed Timer Violated")
+            .setDescription(
+              `This server has limited the posting of embedded content to once every ${gifDelay} seconds.`
+            )
+            .setThumbnail(
+              "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/lg/307/timer-clock_23f2-fe0f.png"
+            )
+            .addFields({
+              name: "Server",
+              value: `${message.guild.name}`,
+              inline: true,
+            })
+            .addFields({
+              name: "Channel",
+              value: `${message.channel.name}`,
+              inline: true,
+            });
+          message.author.send({ embeds: [userReplyEmbed] });
+
           // send notice to servers notice channel
           // publicUpdatesChannel = Community Updates
           // systemChannel = System Messages (New users)
+          const notificationEmbed = new EmbedBuilder()
+            .setColor(0xff9900)
+            .setTitle("Embed Timer Violated")
+            .setAuthor({
+              name: `${message.member.displayName} (${message.author.tag})`,
+              iconURL: `${message.member.displayAvatarURL()}`,
+            })
+            .setThumbnail(
+              "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/lg/307/timer-clock_23f2-fe0f.png"
+            )
+            .addFields({
+              name: "Channel",
+              value: `${message.channel.name}`,
+              inline: true,
+            })
+            .addFields({
+              name: "Server",
+              value: `${message.guild.name}`,
+              inline: true,
+            });
+
           message.client.channels.cache
             .get(message.guild.publicUpdatesChannelId)
-            .send(
-              `\`\`\`ansi\n` +
-                `⛔ Rule: \u001b[1;37mEmbed Timer\u001b[0m\n` +
-                `⛔ User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
-                `⛔ Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
-            );
+            .send({ embeds: [notificationEmbed] });
+
           // also send everything to bot's notice channel
           message.client.channels.cache
             .get("1045327770592497694")
-            .send(
-              `\`\`\`ansi\n` +
-                `⛔ Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
-                `⛔ Rule: \u001b[1;37mEmbed Timer\u001b[0m\n` +
-                `⛔ User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
-                `⛔ Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
-            );
+            .send({ embeds: [notificationEmbed] });
           // "<t:${Math.round(message.createdTimestamp /1000)}>"
         } else {
           console.log(
@@ -158,25 +187,35 @@ module.exports = {
       );
 
       // send notice to servers notice channel
+      const advertsEmbed = new EmbedBuilder()
+        .setColor(0x00ff99)
+        .setAuthor({
+          name: `${message.member.displayName} (${message.author.tag})`,
+          iconURL: `${message.member.displayAvatarURL()}`,
+        })
+        .setTitle("Advertising Complaint")
+        .setDescription(`${message.content}`)
+        .setThumbnail(
+          "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/samsung/349/television_1f4fa.png"
+        )
+        .addFields({
+          name: "Channel",
+          value: `${message.channel.name}`,
+          inline: true,
+        })
+        .addFields({
+          name: "Server",
+          value: `${message.guild.name}`,
+          inline: true,
+        });
       message.client.channels.cache
         .get(message.guild.publicUpdatesChannelId)
-        .send(
-          `\`\`\`ansi\n` +
-            `😠 Rule: \u001b[1;37mMore Ads\u001b[0m\n` +
-            `😠 User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
-            `😠 Channel: \u001b[1;37m${message.channel.name}\u001b[0m\n\`\`\``
-        );
+        .send({ embeds: [advertsEmbed] });
 
       // also send everything to bot's notice channel
       message.client.channels.cache
         .get("1045327770592497694")
-        .send(
-          `\`\`\`ansi\n` +
-            `😠 Server: \u001b[1;37m${message.guild.name}\u001b[0m\n` +
-            `😠 Rule: \u001b[1;37mMore Ads\u001b[0m\n` +
-            `😠 User: \u001b[1;37m${message.member.displayName} (${message.author.tag})\u001b[0m\n` +
-            `😠 Channel: \u001b[1;37m${message.channel.name}\u001b[0m\`\`\``
-        );
+        .send({ embeds: [advertsEmbed] });
     }
   },
 };

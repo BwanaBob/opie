@@ -9,9 +9,11 @@ module.exports = {
       `[${uniDate}] ⛔ DEL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
     );
 
-    if(
+    if (
       message.author.bot ||
-      message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) ||
+      message.member.permissions.has(
+        PermissionsBitField.Flags.ManageMessages
+      ) ||
       message.channel.name == "notifications" ||
       message.channel.name == "art-corner"
     ) {
@@ -20,19 +22,15 @@ module.exports = {
 
     const noticeEmbed = new EmbedBuilder()
       .setColor(0x9900ff)
-      .setTitle("Had a Message Deleted")
+      .setTitle("Had a message deleted")
       //  .setURL("https://discord.js.org/")
       .setAuthor({
         name: `${message.member.displayName} (${message.author.tag})`,
         iconURL: `${message.member.displayAvatarURL()}`,
       })
-      //      	.setThumbnail('https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/319/no-entry_26d4.png')
-      .setTimestamp()
-      .setFooter({
-        text: "Audit Log knows who deleted it",
-        iconURL:
-          "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/319/no-entry_26d4.png",
-      });
+      .setThumbnail(
+        "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/samsung/349/no-entry_26d4.png"
+      );
 
     if (message.content) {
       noticeEmbed.addFields({
@@ -53,7 +51,12 @@ module.exports = {
     noticeEmbed.addFields({
       name: "Channel",
       value: `${message.channel.name}`,
-      inline: false,
+      inline: true,
+    });
+    noticeEmbed.addFields({
+      name: "Server",
+      value: `${message.guild.name}`,
+      inline: true,
     });
 
     message.client.channels.cache
