@@ -78,6 +78,23 @@ module.exports = {
       );
     }
 
+    // POOPF
+    if (
+      message.content.match(
+        /\b(pooph)\b/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      if(message.guild.id == "325206992413130753"){
+        message.react(`<a:poop_and_flowers:1070396796385361992>`);
+      } else {
+        message.react(`💩`);
+      }
+      console.log(
+        `[${uniDate}] 💩 POO | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+      );
+    }
+
     if (
       message.author.bot ||
       message.member.permissions.has(
@@ -217,5 +234,6 @@ module.exports = {
         .get("1045327770592497694")
         .send({ embeds: [advertsEmbed] });
     }
+
   },
 };
