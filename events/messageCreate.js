@@ -86,7 +86,7 @@ module.exports = {
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       if(message.guild.id == "325206992413130753"){
-        message.react(`<a:poop_and_flowers:1070396796385361992>`);
+        message.react(`<:poop_and_flowers:1070396627887603874>`);
       } else {
         message.react(`💩`);
       }
