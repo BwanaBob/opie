@@ -8,10 +8,6 @@ module.exports = {
       console.log(
         `[${uniDate}] 😐 NAME| ${oldMember.guild.name} | ${oldMember.user.tag} | ${oldMember.nickname} -> ${newMember.nickname}`
       );
-
-
-
-
       const nameChangeEmbed = new EmbedBuilder()
       .setColor(0x00aaaa)
       .setTitle("Server Alias Changed")

@@ -78,10 +78,10 @@ module.exports = {
       );
     }
 
-    // POOPF
+    // POOPH
     if (
       message.content.match(
-        /\b(pooph)\b/gi
+        /(pooph|poopf)/gi
       )
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
@@ -94,6 +94,24 @@ module.exports = {
         `[${uniDate}] 💩 POO | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
       );
     }
+
+    // POOP Flowers
+    if (
+      message.content.match(
+        /(poop\W.*flowers)/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      if(message.guild.id == "325206992413130753"){
+        message.react(`<:pooph:1073752699914420244>`);
+      } else {
+        message.react(`👃`);
+      }
+      console.log(
+        `[${uniDate}] 👃 P&F | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+      );
+    }
+
 
     if (
       message.author.bot ||
