@@ -98,7 +98,7 @@ module.exports = {
     // POOP Flowers
     if (
       message.content.match(
-        /(poop\W.*flowers)/gi
+        /(poop(\W|_).*flowers)/gi
       )
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
