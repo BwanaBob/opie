@@ -27,7 +27,7 @@ module.exports = {
       });
 
       member.client.channels.cache
-      .get(oldMember.guild.publicUpdatesChannelId)
+      .get(member.guild.publicUpdatesChannelId)
       .send({ embeds: [removeEmbed] });
 
     // also send everything to bot's notice channel

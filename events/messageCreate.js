@@ -113,6 +113,83 @@ module.exports = {
     }
 
 
+
+
+
+    // Emoji Lock
+    // Temp holder for future command
+    if (message.content.match(/(emojilock)/gi)) {
+      if (
+        !message.member.permissions.has(
+          PermissionsBitField.Flags.ManageEmojisAndStickers
+        )
+      ) {
+        return
+      }
+      let emoji1 = message.guild.emojis.cache.find(emoji => emoji.name === "confirm_check_ball") || false
+      let emoji2 = message.guild.emojis.cache.find(emoji => emoji.name === "reject_cross_ball") || false
+      let role = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
+
+      if (emoji1 && emoji2 && role) {
+        try {
+          emoji1.roles.add(role.id)
+          emoji2.roles.add(role.id)
+          //emoji1.roles.set([])
+          //emoji2.roles.set([])
+          message.react(`✅`);
+      }
+        catch (error) {
+          message.react(`⛔`);
+        }
+      } else {
+        message.react(`🤓`);
+      }
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🤓 TST | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${emoji1.name} | ${emoji2.name}`
+      );
+    }
+
+    // Emoji unLock
+    // Temp holder for future command
+    if (message.content.match(/(emojiunlock)/gi)) {
+      if (
+        !message.member.permissions.has(
+          PermissionsBitField.Flags.ManageEmojisAndStickers
+        )
+      ) {
+        return
+      }
+      let emoji1 = message.guild.emojis.cache.find(emoji => emoji.name === "confirm_check_ball") || false
+      let emoji2 = message.guild.emojis.cache.find(emoji => emoji.name === "reject_cross_ball") || false
+      let role = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
+
+      if (emoji1 && emoji2 && role) {
+        try {
+          //emoji1.roles.add(role.id)
+          //emoji2.roles.add(role.id)
+          emoji1.roles.set([])
+          emoji2.roles.set([])
+          message.react(`✅`);
+      }
+        catch (error) {
+          message.react(`⛔`);
+        }
+      } else {
+        message.react(`🤓`);
+      }
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🤓 TST | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${emoji1.name} | ${emoji2.name}`
+      );
+    }
+
+
+
+
+
+
+
     if (
       message.author.bot ||
       message.member.permissions.has(
@@ -193,11 +270,11 @@ module.exports = {
             .get(message.guild.publicUpdatesChannelId)
             .send({ embeds: [notificationEmbed] });
 
-          // also send everything to bot's notice channel
-          message.client.channels.cache
-            .get("1045327770592497694")
-            .send({ embeds: [notificationEmbed] });
-          // "<t:${Math.round(message.createdTimestamp /1000)}>"
+          //// also send everything to bot's notice channel
+          // message.client.channels.cache
+          //   .get("1045327770592497694")
+          //   .send({ embeds: [notificationEmbed] });
+          //// "<t:${Math.round(message.createdTimestamp /1000)}>"
         } else {
           console.log(
             `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec OK`
@@ -248,9 +325,9 @@ module.exports = {
         .send({ embeds: [advertsEmbed] });
 
       // also send everything to bot's notice channel
-      message.client.channels.cache
-        .get("1045327770592497694")
-        .send({ embeds: [advertsEmbed] });
+      // message.client.channels.cache
+      //   .get("1045327770592497694")
+      //   .send({ embeds: [advertsEmbed] });
     }
 
   },
