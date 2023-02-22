@@ -5,8 +5,7 @@ A node.js Discord bot that is currently used by the On Patrol Live Discord serve
 The initial impetus for the bot was the rampant overuse of GIFs and changing of usernames on the server.
 Rather than preventing those things, the desire was to limit the frequency of those activities.
 
-Currently the bot is developed and hosted on a homelab server.
-A production environment has been acquired on Akamai infrastructure and may be utilized in future releases.
+Currently the bot is developed on a homelab server and hosted on Akamai infrastructure.
 
 Join the On Patrol Live Discord server at:<br>
 https://discord.gg/jAA87dd9qv
