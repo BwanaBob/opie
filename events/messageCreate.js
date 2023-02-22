@@ -126,6 +126,7 @@ module.exports = {
       ) {
         return
       }
+      message.guild.emojis.fetch();
       let emoji1 = message.guild.emojis.cache.find(emoji => emoji.name === "confirm_check_ball") || false
       let emoji2 = message.guild.emojis.cache.find(emoji => emoji.name === "reject_cross_ball") || false
       let role = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
@@ -160,11 +161,15 @@ module.exports = {
       ) {
         return
       }
+      message.guild.emojis.fetch();
       let emoji1 = message.guild.emojis.cache.find(emoji => emoji.name === "confirm_check_ball") || false
+//      console.log(emoji1)
       let emoji2 = message.guild.emojis.cache.find(emoji => emoji.name === "reject_cross_ball") || false
-      let role = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
+//      console.log(emoji2)
+//      let role = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
+//      console.log(role)
 
-      if (emoji1 && emoji2 && role) {
+      if (emoji1 && emoji2) {
         try {
           //emoji1.roles.add(role.id)
           //emoji2.roles.add(role.id)
