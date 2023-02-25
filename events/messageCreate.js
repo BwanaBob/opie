@@ -78,6 +78,48 @@ module.exports = {
       );
     }
 
+    // Good Bot
+    if (
+      message.content.match(
+        /(Good Bot)/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      message.react(`🥰`);
+      console.log(
+        `[${uniDate}] 🥰 BOT | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Good Bot`
+      );
+    }
+
+    // Bad Bot
+    if (
+      message.content.match(
+        /(Bad Bot)/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      message.react(`😢`);
+      console.log(
+        `[${uniDate}] 😢 BAD | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bad Bot`
+      );
+    }
+
+
+
+    // Taser
+    if (
+      message.content.match(
+        /(taser|tased)/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      message.react(`⚡`);
+      console.log(
+        `[${uniDate}] ⚡ ZAP | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Taser`
+      );
+    }
+
+
     // POOPH
     if (
       message.content.match(

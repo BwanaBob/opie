@@ -20,7 +20,7 @@ module.exports = {
       activities: [
         {
           type: ActivityType.Watching,
-          name: "REELZ",
+          name: "On Patrol: Live",
         },
       ],
     });
