@@ -36,7 +36,7 @@ module.exports = {
             ], // ferret
             "342487311860367362": "🔨", // wub
             "440328038337478657": `<:sausage_thumbs_up:1039959562553401445>`, // saucy
-            "475145905117593623": `<:suspicious_fry:1027310519910154330>`, // china
+            "475145905117593623": [`<:suspicious_fry:1027310519910154330>`, `🏹`, `❤️`], // china
             "368797989554356224": `<:cowheart:705960794101383258>`, // cow
           },
         };
@@ -116,6 +116,35 @@ module.exports = {
       );
     }
 
+    // here we go
+    if (
+      message.content.match(
+        /(here we go)/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      message.react(`🚨`);
+      console.log(
+        `[${uniDate}] 🚨 GO  | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | We Go`
+      );
+    }
+
+    // 2 beers
+    if (
+      message.content.match(
+        /(2 beer|two beer)/gi
+      )
+    ) {
+      if ( message.guild.id == "325206992413130753" ){
+        message.react(`<a:two_beer_mugs:1038932370352521406>`);
+      } else {
+        message.react(`🍻`);
+      }
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🍻 ALE | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | 2 Beers`
+      );
+    }
 
     // POOPH
     if (
