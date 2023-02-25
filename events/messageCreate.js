@@ -30,7 +30,10 @@ module.exports = {
               `<a:purple_heart_beating:1038193897337270352>`,
               `<a:sloth_animated:1038514444289978479>`,
             ], // barre
-            "511074631239598080": `<a:waving_hand_wave:1038212554515816518>`, // ferret
+            "511074631239598080": [
+              `<:ferret:1079139863544201224>`,
+              `<a:blue_heart_beating:1040127801879179354>`,
+            ], // ferret
             "342487311860367362": "🔨", // wub
             "440328038337478657": `<:sausage_thumbs_up:1039959562553401445>`, // saucy
             "475145905117593623": `<:suspicious_fry:1027310519910154330>`, // china
@@ -80,9 +83,7 @@ module.exports = {
 
     // Good Bot
     if (
-      message.content.match(
-        /(Good Bot)/gi
-      )
+      message.content.match(/(Good Bot)/gi)
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       message.react(`🥰`);
@@ -93,9 +94,7 @@ module.exports = {
 
     // Bad Bot
     if (
-      message.content.match(
-        /(Bad Bot)/gi
-      )
+      message.content.match(/(Bad Bot)/gi)
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       message.react(`😢`);
@@ -103,8 +102,6 @@ module.exports = {
         `[${uniDate}] 😢 BAD | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bad Bot`
       );
     }
-
-
 
     // Taser
     if (
@@ -154,9 +151,19 @@ module.exports = {
       );
     }
 
-
-
-
+    // Buff out
+    if (
+      message.content.match(
+        /(Buff Out)/gi
+      ) && message.author.tag == "Sausageslinger11#3264"
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      //message.react(`⚡`); 
+      message.channel.send(`🚗 Come on down to ${message.member}'s car repair shop! Everything can be buffed out! 🚗`);
+      console.log(
+        `[${uniDate}] 🚗 BUF | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Buff Out`
+      );
+    }
 
     // Emoji Lock
     // Temp holder for future command
@@ -230,12 +237,6 @@ module.exports = {
         `[${uniDate}] 🤓 TST | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${emoji1.name} | ${emoji2.name}`
       );
     }
-
-
-
-
-
-
 
     if (
       message.author.bot ||
