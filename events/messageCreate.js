@@ -207,7 +207,7 @@ module.exports = {
       message.guild.emojis.fetch();
       let emoji1 = message.guild.emojis.cache.find(emoji => emoji.name === "confirm_check_ball") || false
       let emoji2 = message.guild.emojis.cache.find(emoji => emoji.name === "reject_cross_ball") || false
-      let role = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
+      let role = message.guild.roles.cache.find(role => role.name === "Discord Moderator") || false
 
       if (emoji1 && emoji2 && role) {
         try {
