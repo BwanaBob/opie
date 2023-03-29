@@ -3,9 +3,9 @@ const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("disc
 const postReply = `Posted`;
 const kidsEmbed = new EmbedBuilder()
 .setColor(0xffce07)
-.setTitle("Content Reminder")
+.setTitle("Explicit Content Warning")
 .setDescription(
-  "Please keep in mind, younger viewers join us."
+  "Please keep in mind that viewers under 18 years old join us."
 )
 .setThumbnail(
     "https://i.imgur.com/yunluXs.png"
