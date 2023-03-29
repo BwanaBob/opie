@@ -25,13 +25,25 @@ module.exports = {
             option.setName('text')
             .setDescription('Status text')
             .setRequired(true)
+        )
+        .addStringOption(option =>
+            option.setName('status')
+            .setDescription('Online Status')
+            .setRequired(false)
+            .addChoices(
+                { name: 'Online',         value: 'online'    },
+                { name: 'Idle',           value: 'idle'      },
+                { name: 'Do not disturb', value: 'dnd'       },
+                { name: 'Invisible',      value: 'invisible' },
+            )  
         ),
         async execute(interaction) {
-        const activityType = interaction.options.getString('activity') ?? 'status_watching';
-        const activityText = interaction.options.getString('text') ?? 'Nothing';
-        var parsedType = ActivityType.Custom;
+        const presenceType = interaction.options.getString('activity') ?? 'status_watching';
+        const presenceText = interaction.options.getString('text') ?? 'Nothing';
+        const presenceStatus = interaction.options.getString('status') ?? 'online';
+        var parsedType = ActivityType.Watching;
 
-        switch (activityType) {
+        switch (presenceType) {
             case 'status_watching':
                 parsedType = ActivityType.Watching;
                 break;
@@ -49,10 +61,10 @@ module.exports = {
           }
 
         let newStatus = {
-            status: "online",
+            status: presenceStatus,
             activities: [
               {
-                name: activityText,
+                name: presenceText,
                 type: parsedType,
               },
             ],
