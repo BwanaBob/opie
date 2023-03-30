@@ -73,4 +73,3 @@ module.exports = {
         await interaction.reply({ content: statusReply, ephemeral: true });
     },
 };
-

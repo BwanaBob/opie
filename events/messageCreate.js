@@ -3,6 +3,7 @@ const {
   SlashCommandStringOption,
   PermissionsBitField,
   EmbedBuilder,
+  AttachmentBuilder,
 } = require("discord.js");
 
 module.exports = {
@@ -213,9 +214,11 @@ module.exports = {
         /(Buff Out)/gi
       ) && message.author.tag == "Sausageslinger11#3264"
     ) {
+      // message.channel.send(`🚗 Come on down to ${message.member}'s car repair shop! Everything can be buffed out! 🚗`);
+      const image = new AttachmentBuilder('https://i.imgur.com/gF0aNsT.png');
+      message.reply({ files : [image] })
+
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      //message.react(`⚡`); 
-      message.channel.send(`🚗 Come on down to ${message.member}'s car repair shop! Everything can be buffed out! 🚗`);
       console.log(
         `[${uniDate}] 🚗 BUF | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Buff Out`
       );
