@@ -135,7 +135,7 @@ module.exports = {
         /(2 beer|two beer)/gi
       )
     ) {
-      if ( message.guild.id == "325206992413130753" ){
+      if (message.guild.id == "325206992413130753") {
         message.react(`<a:two_beer_mugs:1038932370352521406>`);
       } else {
         message.react(`🍻`);
@@ -153,13 +153,40 @@ module.exports = {
       )
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      if(message.guild.id == "325206992413130753"){
+      if (message.guild.id == "325206992413130753") {
         message.react(`<:poop_and_flowers:1070396627887603874>`);
       } else {
         message.react(`💩`);
       }
       console.log(
         `[${uniDate}] 💩 POO | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+      );
+    }
+
+    // How do I play Bingo?
+    if (
+      message.content.match(
+        /(how|where).*(find|play|get).*(bingo|card)/gmi
+      )
+    ) {
+      const bingoEmbed = new EmbedBuilder()
+        .setColor(0xff0000)
+        .setTitle("Bingo")
+        .setDescription("Get your bingo cards and play with us live!")
+        .addFields({
+          name: "Website",
+          value: `[thatsabingo.com](https://www.thatsabingo.com/)`,
+          inline: true,
+        })
+        .setURL('https://www.thatsabingo.com/')
+        .setThumbnail(
+          "https://i.imgur.com/dJP9d8L.png"
+        );
+
+      message.reply({ embeds: [bingoEmbed] });
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🤘 HOW | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag} | Bingo`
       );
     }
 
@@ -170,7 +197,7 @@ module.exports = {
       )
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      if(message.guild.id == "325206992413130753"){
+      if (message.guild.id == "325206992413130753") {
         message.react(`<:pooph:1073752699914420244>`);
       } else {
         message.react(`👃`);
@@ -216,7 +243,7 @@ module.exports = {
           //emoji1.roles.set([])
           //emoji2.roles.set([])
           message.react(`✅`);
-      }
+        }
         catch (error) {
           message.react(`⛔`);
         }
@@ -241,11 +268,11 @@ module.exports = {
       }
       message.guild.emojis.fetch();
       let emoji1 = message.guild.emojis.cache.find(emoji => emoji.name === "confirm_check_ball") || false
-//      console.log(emoji1)
+      //      console.log(emoji1)
       let emoji2 = message.guild.emojis.cache.find(emoji => emoji.name === "reject_cross_ball") || false
-//      console.log(emoji2)
-//      let role = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
-//      console.log(role)
+      //      console.log(emoji2)
+      //      let role = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
+      //      console.log(role)
 
       if (emoji1 && emoji2) {
         try {
@@ -254,7 +281,7 @@ module.exports = {
           emoji1.roles.set([])
           emoji2.roles.set([])
           message.react(`✅`);
-      }
+        }
         catch (error) {
           message.react(`⛔`);
         }

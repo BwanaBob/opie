@@ -1,6 +1,18 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
-const bingoMessage = `Come play Bingo with us at [thatsabingo.com](https://www.thatsabingo.com)`;
+const bingoEmbed = new EmbedBuilder()
+.setColor(0xff0000)
+.setTitle("Bingo")
+.setDescription("Get your bingo cards and play with us live!")
+.addFields({
+  name: "Website",
+  value: `[thatsabingo.com](https://www.thatsabingo.com/)`,
+  inline: true,
+})
+.setURL('https://www.thatsabingo.com/')
+.setThumbnail(
+    "https://i.imgur.com/dJP9d8L.png"
+);
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -8,6 +20,7 @@ module.exports = {
     .setDescription("How do I play Bingo?")
     .setDMPermission(true),
   async execute(interaction) {
-    await interaction.reply({ content: bingoMessage, ephemeral: true });
+    // await interaction.reply({ content: bingoMessage, ephemeral: true });
+    const messageId = await interaction.reply({ embeds: [ bingoEmbed ] });
   },
 };
