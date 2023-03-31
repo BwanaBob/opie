@@ -335,7 +335,7 @@ module.exports = {
               `This server has limited the posting of embedded content to once every ${gifDelay} seconds.`
             )
             .setThumbnail(
-              "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/lg/307/timer-clock_23f2-fe0f.png"
+              "https://i.imgur.com/TgSIaZD.png"
             )
             .addFields({
               name: "Server",
@@ -360,7 +360,7 @@ module.exports = {
               iconURL: `${message.member.displayAvatarURL()}`,
             })
             .setThumbnail(
-              "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/lg/307/timer-clock_23f2-fe0f.png"
+              "https://i.imgur.com/TgSIaZD.png"
             )
             .addFields({
               name: "Channel",
@@ -415,7 +415,7 @@ module.exports = {
         .setTitle("Advertising Complaint")
         .setDescription(`${message.content}`)
         .setThumbnail(
-          "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/samsung/349/television_1f4fa.png"
+          "https://i.imgur.com/3FNiHMX.png"
         )
         .addFields({
           name: "Channel",

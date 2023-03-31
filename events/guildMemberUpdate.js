@@ -17,7 +17,7 @@ module.exports = {
             iconURL: `${newMember.displayAvatarURL()}`,
           })
           .setThumbnail(
-            "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/htc/37/name-badge_1f4db.png"
+            "https://i.imgur.com/lSTK0Iq.png"
           )
           .addFields({
             name: "Previous Alias",

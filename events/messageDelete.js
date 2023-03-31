@@ -29,7 +29,7 @@ module.exports = {
         iconURL: `${message.member.displayAvatarURL()}`,
       })
       .setThumbnail(
-        "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/samsung/349/no-entry_26d4.png"
+        "https://i.imgur.com/n8c7Qde.png"
       );
 
     if (message.content) {
