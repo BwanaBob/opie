@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
 
 const postReply = `Posted`;
+
 const kidsEmbed = new EmbedBuilder()
 .setColor(0xffce07)
 .setTitle("Explicit Content Warning")
@@ -9,6 +10,16 @@ const kidsEmbed = new EmbedBuilder()
 )
 .setThumbnail(
     "https://i.imgur.com/yunluXs.png"
+);
+
+const ferretEmbed = new EmbedBuilder()
+.setColor(0xFF69B4)
+.setTitle("Ferret Warning")
+.setDescription(
+  "Please keep in mind that delicate ferrets are watching!"
+)
+.setThumbnail(
+    "https://i.imgur.com/E9dE4eM.png"
 );
 
 const bingoEmbed = new EmbedBuilder()
@@ -23,6 +34,20 @@ const bingoEmbed = new EmbedBuilder()
 .setURL('https://www.thatsabingo.com/')
 .setThumbnail(
     "https://i.imgur.com/dJP9d8L.png"
+);
+
+const redditEmbed = new EmbedBuilder()
+.setColor(0xff4500)
+.setTitle("Reddit")
+.setDescription("Join the discussion on Reddit at r/OnPatrolLive")
+.addFields({
+  name: "Link",
+  value: `[reddit.com](https://www.reddit.com/r/OnPatrolLive/)`,
+  inline: true,
+})
+.setURL('https://www.reddit.com/r/OnPatrolLive/')
+.setThumbnail(
+    "https://i.imgur.com/sd2bsMa.png"
 );
 
 const showtimeEmbed = new EmbedBuilder()
@@ -60,6 +85,8 @@ module.exports = {
           { name: 'kids',     value: 'post_kids'     },
           { name: 'bingo',    value: 'post_bingo'    },
           { name: 'showtime', value: 'post_showtime' },
+          { name: 'ferret',   value: 'post_ferret'   },
+          { name: 'reddit',   value: 'post_reddit'   },
         ))
       // .addChannelOption(option =>
       //   option.setName('channel')
@@ -78,8 +105,16 @@ module.exports = {
           postEmbed = bingoEmbed;
         }
         break;
+        case "post_reddit" : {
+          postEmbed = redditEmbed;
+        }
+        break;
         case "post_showtime" : {
           postEmbed = showtimeEmbed;
+        }
+        break;
+        case "post_ferret" : {
+          postEmbed = ferretEmbed;
         }
         break;
       }
