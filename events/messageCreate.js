@@ -9,36 +9,6 @@ const {
 module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
-
-    // Server Boosted Message Detection
-    console.log(`${message.type}`)
-    const messageTypes = [8, 9, 10, 11]; // Server boosted message types
-    if (messageTypes.includes(message.type)) {
-      const boostedEmbed = new EmbedBuilder()
-        .setColor(0xe655d4)
-        .setAuthor({
-          name: `${message.member.displayName} (${message.author.tag})`,
-          iconURL: `${message.member.displayAvatarURL()}`,
-        })
-        .setTitle("Boosted the server!")
-        .setDescription(`${message.member.displayName} has just boosted the server. Please thank them for their awesome support of our community!`)
-        .addFields({
-          name: "Server Level",
-          value: `${message.guild.premiumTier}`,
-          inline: true,
-        })
-        .addFields({
-          name: "Boosts",
-          value: `${message.guild.premiumSubscriptionCount}`,
-          inline: true,
-        })
-        .setThumbnail(
-          "https://i.imgur.com/RNBLHif.png"
-        );
-      const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
-      postChannel.send({ embeds: [boostedEmbed] });
-    }
-
     if (
       message.content.match(
         /\b(opie|1041050338775539732|1046068702396825674)\b/gi
@@ -323,6 +293,34 @@ module.exports = {
       console.log(
         `[${uniDate}] 🤓 TST | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${emoji1.name} | ${emoji2.name}`
       );
+    }
+
+    // Server Boosted Message Detection
+    const messageTypes = [8, 9, 10, 11]; // Server boosted message types
+    if (messageTypes.includes(message.type)) {
+      const boostedEmbed = new EmbedBuilder()
+        .setColor(0xe655d4)
+        .setAuthor({
+          name: `${message.member.displayName} (${message.author.tag})`,
+          iconURL: `${message.member.displayAvatarURL()}`,
+        })
+        .setTitle("Boosted the server!")
+        .setDescription(`${message.member.displayName} has just boosted the server. Please thank them for their awesome support of our community!`)
+        .addFields({
+          name: "Server Level",
+          value: `${message.guild.premiumTier}`,
+          inline: true,
+        })
+        .addFields({
+          name: "Boosts",
+          value: `${message.guild.premiumSubscriptionCount}`,
+          inline: true,
+        })
+        .setThumbnail(
+          "https://i.imgur.com/RNBLHif.png"
+        );
+      const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
+      postChannel.send({ embeds: [boostedEmbed] });
     }
 
     if (
