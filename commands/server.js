@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -6,9 +6,35 @@ module.exports = {
     .setDescription("Provides information about the server.")
     .setDMPermission(false),
   async execute(interaction) {
-    // interaction.guild is the object representing the Guild in which the command was run
+    const serverEmbed = new EmbedBuilder()
+    .setColor(0x55e6d4)
+    .setTitle("Server Information")
+    //.setDescription(`This server is ${interaction.guild.name}`)
+    .addFields({
+      name: "Name",
+      value: `${interaction.guild.name}`,
+      inline: false,
+    })
+    .addFields({
+      name: "Members",
+      value: `${interaction.guild.memberCount}`,
+      inline: true,
+    })
+    .addFields({
+      name: "Boost Level",
+      value: `${interaction.guild.premiumTier}`,
+      inline: true,
+    })
+    .addFields({
+      name: "Boosts",
+      value: `${interaction.guild.premiumSubscriptionCount}`,
+      inline: true,
+    })
+    .setThumbnail(interaction.guild.iconURL())
+    .setFooter({ text: `Established: ${interaction.guild.createdAt}`});
+
     await interaction.reply({
-      content: `This server is ${interaction.guild.name} and has ${interaction.guild.memberCount} members.`,
+      embeds: [serverEmbed],
       ephemeral: true,
     });
   },
