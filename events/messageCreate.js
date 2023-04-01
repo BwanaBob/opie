@@ -301,11 +301,11 @@ module.exports = {
       const boostedEmbed = new EmbedBuilder()
         .setColor(0xe655d4)
         .setAuthor({
-          name: `${message.member.displayName} (${message.author.tag})`,
+          name: `${message.member.displayName}`,
           iconURL: `${message.member.displayAvatarURL()}`,
         })
         .setTitle("Boosted the server!")
-        .setDescription(`${message.member.displayName} has just boosted the server. Please thank them for their awesome support of our community!`)
+        .setDescription(`<@${message.member.id}> has just boosted the server. Please thank them for their awesome support of our community!`)
         .addFields({
           name: "Server Level",
           value: `${message.guild.premiumTier}`,
@@ -321,8 +321,10 @@ module.exports = {
         );
       const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
       postChannel.send({ embeds: [boostedEmbed] });
+      postChannel.send(`Thank you, <@${message.author.id}>!`)
     }
 
+    // exempt mods from the following restrictions
     if (
       message.author.bot ||
       message.member.permissions.has(
@@ -334,6 +336,7 @@ module.exports = {
       return;
     }
 
+    // Embed Timer: 
     if (message.attachments.size !== 0 || message.embeds.length !== 0) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       const lastTime = message.client.timers.get(message.member.id);

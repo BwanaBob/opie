@@ -21,7 +21,7 @@ const client = new Client({
 client.timers = new Collection();
 client.rules = new Collection();
 //client.rules.set("gifexpr", new RegExp("(http|https|ftp):\/\/.*(.gif|-gif-|.png)"))
-client.rules.set("gifdelay", 60);
+client.rules.set("gifdelay", 90);
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, "commands");
