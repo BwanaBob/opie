@@ -322,6 +322,11 @@ module.exports = {
       const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
       postChannel.send({ embeds: [boostedEmbed] });
       postChannel.send(`Thank you, <@${message.author.id}>!`)
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🚀 BST | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | BOOSTED!`
+      );
+
     }
 
     // exempt mods from the following restrictions
