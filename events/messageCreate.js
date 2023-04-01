@@ -12,7 +12,7 @@ module.exports = {
 
     // Server Boosted Message Detection
     console.log(`${message.type}`)
-    const messageTypes = [19, 8, 9, 10, 11]; // Server boosted message types
+    const messageTypes = [8, 9, 10, 11]; // Server boosted message types
     if (messageTypes.includes(message.type)) {
       const boostedEmbed = new EmbedBuilder()
         .setColor(0xe655d4)
