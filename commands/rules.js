@@ -1,9 +1,14 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
-const oplRules = `Rules can be found in the <#1000869946215120987> channel`;
-const oplRuleMessage1 = `1048680902923915264`;
-const oplRuleMessage2 = `1048680902923915264`;
-const oplRuleMessage3 = `1048680902923915264`;
+const rulesEmbed = new EmbedBuilder()
+.setColor(0xD45231)
+.setTitle("Rules")
+.setDescription(`Visit the #rules channel to read our complete list of server rules.`)
+.addFields({
+  name: "Channel",
+  value: `<#1000869946215120987>`,
+  inline: true,
+});
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -11,6 +16,6 @@ module.exports = {
     .setDescription("Replies with Rules.")
     .setDMPermission(false),
   async execute(interaction) {
-    await interaction.reply({ content: oplRules, ephemeral: true });
+    await interaction.reply({ embeds: [rulesEmbed], ephemeral: true });
   },
 };
