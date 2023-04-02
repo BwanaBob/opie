@@ -7,12 +7,20 @@ module.exports = {
     var startDate = new Date();
     console.log(`____________________________________________________`);
     console.log(
-      `[${startDate.toLocaleString()}] 🤖 START | ${client.user.username} (${
-        client.user.tag
-      })`
+      `[${startDate.toLocaleString()}] 🤖 START | ${client.user.username} (${client.user.tag})`
     );
+
+    function milestone(members) {
+      const membersString = String(members);
+      const membersExponent = membersString.length - 1;
+      const firstChar = membersString[0];
+      const nextMilestone = (Number(firstChar) + 1) * (10 ** membersExponent)
+      return nextMilestone;
+    }
+
     client.guilds.cache.forEach((guild) => {
-      console.log(`[${startDate.toLocaleString()}] 🖥️  GUILD | ${guild.name}`);
+      guild.nextUserCount = milestone(guild.memberCount);
+      console.log(`[${startDate.toLocaleString()}] 🖥️  GUILD | ${guild.name} (${guild.memberCount}/${guild.nextUserCount})`);
     });
 
     client.user.setPresence({

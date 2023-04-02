@@ -326,7 +326,6 @@ module.exports = {
       console.log(
         `[${uniDate}] 🚀 BST | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | BOOSTED!`
       );
-
     }
 
     // exempt mods from the following restrictions
@@ -347,9 +346,9 @@ module.exports = {
       const lastTime = message.client.timers.get(message.member.id);
       const gifDelay = message.client.rules.get("gifdelay");
       if (lastTime == undefined) {
-        console.log(
-          `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Embed`
-        );
+        // console.log(
+        //   `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Embed`
+        // );
         message.client.timers.set(message.member.id, message.createdTimestamp);
       } else {
         const elapsed = Math.trunc(
