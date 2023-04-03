@@ -6,6 +6,14 @@ const {
   AttachmentBuilder,
 } = require("discord.js");
 
+function milestone(members) {
+  const membersString = String(members);
+  const membersExponent = membersString.length - 1;
+  const firstChar = membersString[0];
+  const nextMilestone = (Number(firstChar) + 1) * (10 ** membersExponent)
+  return nextMilestone;
+}
+
 module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
@@ -295,9 +303,40 @@ module.exports = {
       );
     }
 
+    // Member Added Message Detection
+    if ((message.type == 7 && message.guild.memberCount >= message.guild.nextUserCount)
+     || (message.content == "test milestone" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) )
+     ){
+      message.guild.nextUserCount = milestone(message.guild.memberCount);
+      const milestoneEmbed = new EmbedBuilder()
+        .setColor(0xe655d4)
+        .setTitle(`${message.guild.memberCount} Members!`)
+        .setDescription(`${message.guild.name} has just reached a new milestone.\nThank you all for building such a lively community!`)
+        .addFields({
+          name: "Members",
+          value: `${message.guild.memberCount}`,
+          inline: true,
+        })
+        .addFields({
+          name: "Next Milestone",
+          value: `${message.guild.nextUserCount}`,
+          inline: true,
+        })
+      .setThumbnail(message.guild.iconURL());
+      //.setImage("https://i.imgur.com/OyZvh4R.jpg");
+      const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
+      postChannel.send({ embeds: [milestoneEmbed] });
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🏆 MILE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Milestone!`
+      );
+    }
+      
     // Server Boosted Message Detection
     const messageTypes = [8, 9, 10, 11]; // Server boosted message types
-    if (messageTypes.includes(message.type)) {
+    if ((messageTypes.includes(message.type))
+      || (message.content == "test boosted" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) )
+    ){
       const boostedEmbed = new EmbedBuilder()
         .setColor(0xe655d4)
         .setAuthor({
