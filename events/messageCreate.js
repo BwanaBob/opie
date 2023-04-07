@@ -170,6 +170,57 @@ module.exports = {
       );
     }
 
+    // BINGO
+    if (
+      message.content.match(
+        /(bingo)/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      if (message.guild.id == "325206992413130753") {
+        message.react(`<:bingo:1066838689814163466>`);
+      } else {
+        message.react(`🎱`);
+      }
+      console.log(
+        `[${uniDate}] 🎱 BNGO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+      );
+    }
+
+    // Jaws of Life
+    if (
+      message.content.match(
+        /(jaws of life)/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      if (message.guild.id == "325206992413130753") {
+        message.react(`<:jaws_of_life:1093940607732416623>`);
+      } else {
+        message.react(`✂️`);
+      }
+      console.log(
+        `[${uniDate}] ✂️ JoL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+      );
+    }
+
+    // Jaws (not of Life)
+    if (
+      message.content.match(
+        /jaws(?! of life)/gi
+      )
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      if (message.guild.id == "325206992413130753") {
+        message.react(`<:jaws:1093958471394791617>`);
+      } else {
+        message.react(`🦈`);
+      }
+      console.log(
+        `[${uniDate}] 🦈 Jaws| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+      );
+    }
+    
     // How do I play Bingo?
     if (
       message.content.match(

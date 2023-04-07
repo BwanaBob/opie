@@ -6,7 +6,7 @@ module.exports = {
     //    console.log("Message Deleted");
     const uniDate = new Date(message.createdTimestamp).toLocaleString();
     console.log(
-      `[${uniDate}] ⛔ DEL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
+      `[${uniDate}] 🗑️ DEL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
     );
 
     if (
@@ -29,7 +29,7 @@ module.exports = {
         iconURL: `${message.member.displayAvatarURL()}`,
       })
       .setThumbnail(
-        "https://i.imgur.com/n8c7Qde.png"
+        "https://i.imgur.com/tr9aVAA.png"
       );
 
     if (message.content) {
