@@ -197,10 +197,10 @@ module.exports = {
       if (message.guild.id == "325206992413130753") {
         message.react(`<:jaws_of_life:1093940607732416623>`);
       } else {
-        message.react(`✂️`);
+        message.react(`🔧`);
       }
       console.log(
-        `[${uniDate}] ✂️ JoL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        `[${uniDate}] 🔧 JoL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
       );
     }
 
