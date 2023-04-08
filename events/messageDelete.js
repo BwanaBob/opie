@@ -6,7 +6,7 @@ module.exports = {
     //    console.log("Message Deleted");
     const uniDate = new Date(message.createdTimestamp).toLocaleString();
     console.log(
-      `[${uniDate}] 🗑️ DEL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
+      `[${uniDate}] 🗑️  DEL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
     );
 
     if (

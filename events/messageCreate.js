@@ -81,10 +81,53 @@ module.exports = {
       const reaction = reactions[Math.floor(Math.random() * reactions.length)];
       message.react(reaction);
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      //console.log(`${uniDate}`)
-      //client.user.setActivity('with yarn', { type: ActivityType.Playing });
       console.log(
         `[${uniDate}] ✅ NYE | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | New Year`
+      );
+    }
+
+    // Cow
+    if (
+      message.guild.id == "325206992413130753" &&
+      message.content.match(/\b(cow)\b/gi)
+    ) {
+      const reactions = [
+        '<:cowcop:705958276210360391>',
+        '<:cowcowboypensive:705961325695729754>',
+        '<:cowheart:705960794101383258>',
+        '<:cowmad:705961134930526289>',
+        '<:cowsad:705960912732946492>',
+        '<a:cowsiren:705958068361625611>',
+        '<:cowsleep:705961477877530715>',
+        '<:cowwink:705961033298346004>',
+      ];
+      const reaction = reactions[Math.floor(Math.random() * reactions.length)];
+      message.react(reaction);
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🐮 COW | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Cow`
+      );
+    }
+
+    // Easter
+    if (
+      message.content.match(/(happy).(easter)/gi)
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      message.react(`🐰`);
+      console.log(
+        `[${uniDate}] 🐰 ESTR| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Easter`
+      );
+    }
+
+    // Good Kitty
+    if (
+      message.content.match(/(good|great|best|wonderful|pretty).(kitty|cat|kitten|feline)/gi)
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      message.react(`😻`);
+      console.log(
+        `[${uniDate}] 😻 CAT | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Good Kitty`
       );
     }
 
@@ -120,6 +163,23 @@ module.exports = {
       message.react(`⚡`);
       console.log(
         `[${uniDate}] ⚡ ZAP | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Taser`
+      );
+    }
+
+    // Peacock
+    if (
+      message.content.match(
+        /(peacock)/gi
+      )
+    ) {
+      if (message.guild.id == "325206992413130753") {
+        message.react(`<:NBC_peacock:1086865895709753404>`);
+      } else {
+        message.react(`🦚`);
+      }
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🦚 PCOK| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Peacock`
       );
     }
 
@@ -166,7 +226,7 @@ module.exports = {
         message.react(`💩`);
       }
       console.log(
-        `[${uniDate}] 💩 POO | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        `[${uniDate}] 💩 POO | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Pooph`
       );
     }
 
@@ -183,7 +243,7 @@ module.exports = {
         message.react(`🎱`);
       }
       console.log(
-        `[${uniDate}] 🎱 BNGO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        `[${uniDate}] 🎱 BNGO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bingo`
       );
     }
 
@@ -200,7 +260,7 @@ module.exports = {
         message.react(`🔧`);
       }
       console.log(
-        `[${uniDate}] 🔧 JoL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        `[${uniDate}] 🔧 JoL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Jaws of Life`
       );
     }
 
@@ -217,7 +277,7 @@ module.exports = {
         message.react(`🦈`);
       }
       console.log(
-        `[${uniDate}] 🦈 Jaws| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        `[${uniDate}] 🦈 Jaws| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Jaws`
       );
     }
     
@@ -244,7 +304,7 @@ module.exports = {
       message.reply({ embeds: [bingoEmbed] });
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
-        `[${uniDate}] 🤘 HOW | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag} | Bingo`
+        `[${uniDate}] 🤘 HOW | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bingo`
       );
     }
 
@@ -294,7 +354,7 @@ module.exports = {
       message.guild.emojis.fetch();
       let emoji1 = message.guild.emojis.cache.find(emoji => emoji.name === "confirm_check_ball") || false
       let emoji2 = message.guild.emojis.cache.find(emoji => emoji.name === "reject_cross_ball") || false
-      let role = message.guild.roles.cache.find(role => role.name === "Discord Moderator") || false
+      let role = message.guild.roles.cache.find(role => role.name === "Moderator") || false
 
       if (emoji1 && emoji2 && role) {
         try {
