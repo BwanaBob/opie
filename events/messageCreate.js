@@ -89,7 +89,7 @@ module.exports = {
     // Cow
     if (
       message.guild.id == "325206992413130753" &&
-      message.content.match(/\b(cow|368797989554356224)\b/gi)
+      message.content.match(/\b(cow|cows|368797989554356224)\b/gi)
     ) {
       const reactions = [
         '<:cowcop:705958276210360391>',
@@ -109,6 +109,17 @@ module.exports = {
       );
     }
 
+    // Dinosaur
+    if (
+      message.content.match(/\b(dino|dinos|dinosaur|dinosaurs)\b/gi)
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      message.react(`🦕`);
+      console.log(
+        `[${uniDate}] 🦕 DINO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Dinosaur`
+      );
+    }  
+    
     // Easter
     if (
       message.content.match(/(happy).(easter)/gi)
