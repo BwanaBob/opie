@@ -89,7 +89,7 @@ module.exports = {
     // Cow
     if (
       message.guild.id == "325206992413130753" &&
-      message.content.match(/\b(cow)\b/gi)
+      message.content.match(/\b(cow|368797989554356224)\b/gi)
     ) {
       const reactions = [
         '<:cowcop:705958276210360391>',
