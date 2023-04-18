@@ -6,6 +6,8 @@ const {
   AttachmentBuilder,
 } = require("discord.js");
 
+const { OpenAIApi } = require("openai");
+
 function milestone(members) {
   const membersString = String(members);
   const membersExponent = membersString.length - 1;
@@ -17,6 +19,26 @@ function milestone(members) {
 module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
+    if (message.author.bot) { return; }
+
+    // AI command
+    if (message.content.match(
+      /^(opie,)/gi
+    ) && message.client.rules.get("chatGPTEnabled") == "true"
+    ) {
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🤖 AI  | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+      );
+
+      const openai = require('../modules/openai.js');
+      const aiReply = await openai(message);
+      if (!aiReply.undefined) {
+        message.reply(aiReply);
+      }
+      return;
+    }
+
     if (
       message.content.match(
         /\b(opie|1041050338775539732|1046068702396825674)\b/gi
@@ -118,8 +140,8 @@ module.exports = {
       console.log(
         `[${uniDate}] 🦕 DINO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Dinosaur`
       );
-    }  
-    
+    }
+
     // Easter
     if (
       message.content.match(/(happy).(easter)/gi)
@@ -291,7 +313,7 @@ module.exports = {
         `[${uniDate}] 🦈 Jaws| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Jaws`
       );
     }
-    
+
     // How do I play Bingo?
     if (
       message.content.match(
@@ -387,6 +409,44 @@ module.exports = {
       );
     }
 
+    // AI disable
+    // Temp holder for future command
+    if (message.content.match(/(aidisable)/gi)) {
+      if (
+        !message.member.permissions.has(
+          PermissionsBitField.Flags.ManageMessages
+        )
+      ) {
+        return
+      }
+      message.client.rules.set("chatGPTEnabled", "false");
+      message.react(`✅`);
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🤖 AI- | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | AI Disable`
+      );
+    }
+
+    // AI enable
+    // Temp holder for future command
+    if (message.content.match(/(aienable)/gi)) {
+      if (
+        !message.member.permissions.has(
+          PermissionsBitField.Flags.ManageMessages
+        )
+      ) {
+        return
+      }
+      message.client.rules.set("chatGPTEnabled", "true");
+      message.react(`✅`);
+      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      console.log(
+        `[${uniDate}] 🤖 AI+ | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | AI Enable`
+      );
+    }
+
+
+
     // Emoji unLock
     // Temp holder for future command
     if (message.content.match(/(emojiunlock)/gi)) {
@@ -427,8 +487,8 @@ module.exports = {
 
     // Member Added Message Detection
     if ((message.type == 7 && message.guild.memberCount >= message.guild.nextUserCount)
-     || (message.content == "test milestone" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) )
-     ){
+      || (message.content == "test milestone" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
+    ) {
       message.guild.nextUserCount = milestone(message.guild.memberCount);
       const milestoneEmbed = new EmbedBuilder()
         .setColor(0xe655d4)
@@ -444,7 +504,7 @@ module.exports = {
           value: `${message.guild.nextUserCount}`,
           inline: true,
         })
-      .setThumbnail(message.guild.iconURL());
+        .setThumbnail(message.guild.iconURL());
       //.setImage("https://i.imgur.com/OyZvh4R.jpg");
       const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
       postChannel.send({ embeds: [milestoneEmbed] });
@@ -453,12 +513,12 @@ module.exports = {
         `[${uniDate}] 🏆 MILE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Milestone!`
       );
     }
-      
+
     // Server Boosted Message Detection
     const messageTypes = [8, 9, 10, 11]; // Server boosted message types
     if ((messageTypes.includes(message.type))
-      || (message.content == "test boosted" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) )
-    ){
+      || (message.content == "test boosted" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
+    ) {
       const boostedEmbed = new EmbedBuilder()
         .setColor(0xe655d4)
         .setAuthor({
