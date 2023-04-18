@@ -1,6 +1,5 @@
 const {
   Events,
-  SlashCommandStringOption,
   PermissionsBitField,
   EmbedBuilder,
   AttachmentBuilder,
@@ -23,7 +22,7 @@ module.exports = {
 
     // AI command
     if (message.content.match(
-      /^(opie,)/gi
+      /^(opie,\W)/gi
     ) && message.client.rules.get("chatGPTEnabled") == "true"
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
@@ -33,9 +32,9 @@ module.exports = {
 
       const openai = require('../modules/openai.js');
       const aiReply = await openai(message);
-      if (!aiReply.undefined) {
+      if (!aiReply.undefined && aiReply !== 'ERR') {
         message.reply(aiReply);
-      }
+      } else { message.reply("Sorry, my AI brain is a bit glitchy at the moment.") }
       return;
     }
 

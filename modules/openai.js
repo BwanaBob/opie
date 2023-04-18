@@ -8,7 +8,7 @@ const openai = new OpenAIApi(configuration);
 module.exports = async function (message) {
   // try {
     await message.channel.sendTyping();
-    let conversationLog = [{ role: 'system', content: 'Answer as a friendly, concise, chatbot kitten named OPie.' }];
+    let conversationLog = [{ role: 'system', content: 'Respond like a friendly, snarky, chatbot kitten named OPie' }];
     let prevMessages = await message.channel.messages.fetch({ limit: 15 });
     let userCount = 0;
     let botCount = 0;
@@ -27,15 +27,15 @@ module.exports = async function (message) {
             break;
           }
         case message.author.id:
-          if (userCount < 3 && message.content.match(/^(opie,)/gi)) {
+          if (userCount < 3 && message.content.match(/^(opie,\W)/gi)) {
             userCount++;
             conversationLog.push({
               role: 'user',
-              content: msg.content,
+              content: msg.content.substr(6),
               name: msg.member.displayName,
             });
             // console.log(`User : ${msg.member.displayName}`);
-            // console.log(`User: ${msg.content}`);
+            //console.log(`User: ${msg.content.substr(6)}`);
             break;
           }
       }
