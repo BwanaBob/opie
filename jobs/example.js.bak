@@ -1,0 +1,21 @@
+const CronJob = require('cron').CronJob;
+
+module.exports = {
+    execute(client) {
+        const uniDate1 = new Date().toLocaleString();
+        console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Example`
+        );
+        var jobExample = new CronJob(
+            '*/10 * * * * *', () => {
+                client.channels.cache.get("392120898909634561").send("Scheuled message test")
+                const uniDate = new Date().toLocaleString();
+                console.log(
+                    `[${uniDate}] ⌛ CRON| Scheduled test event fired`
+                );
+            },
+            null,
+            true,
+            'America/Chicago'
+        );
+    },
+};

@@ -1,4 +1,6 @@
 const { Events, ActivityType } = require("discord.js");
+const fs = require("node:fs");
+const path = require("node:path");
 
 module.exports = {
   name: Events.ClientReady,
@@ -7,7 +9,7 @@ module.exports = {
     var startDate = new Date();
     console.log(`____________________________________________________`);
     console.log(
-      `[${startDate.toLocaleString()}] 🤖 START | ${client.user.username} (${client.user.tag})`
+      `[${startDate.toLocaleString()}] 🤖 START | Bot Logged In | ${client.user.username} (${client.user.tag})`
     );
 
     function milestone(members) {
@@ -20,8 +22,19 @@ module.exports = {
 
     client.guilds.cache.forEach((guild) => {
       guild.nextUserCount = milestone(guild.memberCount);
-      console.log(`[${startDate.toLocaleString()}] 🖥️  GUILD | ${guild.name} (${guild.memberCount}/${guild.nextUserCount})`);
+      console.log(`[${startDate.toLocaleString()}] 🖥️  GUILD | Guild Joined  | ${guild.name} (${guild.memberCount}/${guild.nextUserCount})`);
     });
+
+    //jobs handler
+    const jobsPath = path.join(__dirname, "../jobs");
+    const jobsFiles = fs
+      .readdirSync(jobsPath)
+      .filter((file) => file.endsWith(".js"));
+    for (const file of jobsFiles) {
+      const filePath = path.join(jobsPath, file);
+      const job = require(filePath);
+      job.execute(client);
+    }
 
     client.user.setPresence({
       status: "online",
@@ -32,5 +45,6 @@ module.exports = {
         },
       ],
     });
+    console.log(`____________________________________________________`);
   },
 };
