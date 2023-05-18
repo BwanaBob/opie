@@ -1,17 +1,17 @@
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, ActivityType } = require("discord.js");
 const CronJob = require('cron').CronJob;
 
 module.exports = {
     execute(client) {
         const bingoChannel = client.channels.cache.get("392157063502888962") || client.channels.cache.get("392093299890061312") || client.channels.cache.get("392093299890061312"); // OPL #bingo or Bingo #lobby or 
         const talkChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #epdis or OPie #General
-        const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694") ; // OPL or OPie #notifications
-        const guildIcon =  client.guilds.cache.get('391821567241224192').iconURL() || "https://i.imgur.com/fJ12AKT.png";
+        const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
+        const guildIcon = client.guilds.cache.get('391821567241224192').iconURL() || "https://i.imgur.com/fJ12AKT.png";
         const uniDate1 = new Date().toLocaleString();
         console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Showtime`);
         var jobShowtime = new CronJob(
-            //'00 00 20 * * FRI,SAT', () => {
-            '00 05 00 * * *', () => {
+            '00 00 20 * * FRI,SAT', () => {
+            //'*/15 * * * * *', () => {
                 const showtimeEmbed = new EmbedBuilder()
                     .setColor(0x0000ff)
                     .setTitle("Showtime")
@@ -54,7 +54,15 @@ module.exports = {
                 noticeChannel.send("On Patrol: Live is starting now!")
                 talkChannel.send({ embeds: [showtimeEmbed] });
                 bingoChannel.send({ embeds: [bingoEmbed] });
-
+                client.user.setPresence({
+                    status: "online",
+                    activities: [
+                        {
+                            type: ActivityType.Playing,
+                            name: "Bingo",
+                        },
+                    ],
+                });
                 const uniDate = new Date().toLocaleString();
                 console.log(`[${uniDate}] ⌛ CRON| Job Executed  | Showtime`);
             },

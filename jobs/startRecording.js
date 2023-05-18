@@ -8,7 +8,7 @@ module.exports = {
         console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Start Recording`);
         var jobStartRecording = new CronJob(
             '00 45 18 * * FRI,SAT', () => {
-                //'00 35 00 * * *', () => {
+                //'*/15 * * * * *', () => {
                 noticeChannel.send("<@348629137080057878> Start recording First Shift!")
                 const uniDate = new Date().toLocaleString();
                 console.log(`[${uniDate}] ⌛ CRON| Job Executed  | Start Recording`);
