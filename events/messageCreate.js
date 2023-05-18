@@ -23,7 +23,7 @@ module.exports = {
     // AI command
     if (message.content.match(
       /^(opie,\W)/gi
-    ) && message.client.rules.get("chatGPTEnabled") == "true"
+    ) && message.client.params.get("chatGPTEnabled") == "true"
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
@@ -418,7 +418,7 @@ module.exports = {
       ) {
         return
       }
-      message.client.rules.set("chatGPTEnabled", "false");
+      message.client.params.set("chatGPTEnabled", "false");
       message.react(`✅`);
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
@@ -436,7 +436,7 @@ module.exports = {
       ) {
         return
       }
-      message.client.rules.set("chatGPTEnabled", "true");
+      message.client.params.set("chatGPTEnabled", "true");
       message.react(`✅`);
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
@@ -564,7 +564,7 @@ module.exports = {
     if (message.attachments.size !== 0 || message.embeds.length !== 0) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       const lastTime = message.client.timers.get(message.member.id);
-      const gifDelay = message.client.rules.get("gifdelay");
+      const gifDelay = message.client.params.get("gifdelay");
       if (lastTime == undefined) {
         // console.log(
         //   `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Embed`

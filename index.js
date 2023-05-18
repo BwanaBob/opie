@@ -15,20 +15,22 @@ const client = new Client({
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
-	  GatewayIntentBits.GuildMembers
+    GatewayIntentBits.GuildMembers
   ],
 });
 
 client.timers = new Collection();
-client.rules = new Collection();
-client.rules.set("gifdelay", process.env.GIF_DELAY);
-client.rules.set("chatGPTEnabled", process.env.CHATGPT_ENABLED);
+client.params = new Collection();
+client.params.set("gifdelay", process.env.EMBED_DELAY);
+client.params.set("chatGPTEnabled", process.env.CHATGPT_ENABLED);
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs
   .readdirSync(commandsPath)
   .filter((file) => file.endsWith(".js"));
+
+console.log(`____________________________________________________`);
 
 // Slash command Collection setup
 for (const file of commandFiles) {
@@ -37,6 +39,8 @@ for (const file of commandFiles) {
   // Set a new item in the Collection with the key as the command name and the value as the exported module
   if ("data" in command && "execute" in command) {
     client.commands.set(command.data.name, command);
+    const uniDate1 = new Date().toLocaleString();
+    console.log(`[${uniDate1}] ⌛ CMD   | Command Loaded| ${command.data.name}`)
   } else {
     console.log(
       `⛔ [WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`

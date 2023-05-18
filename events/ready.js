@@ -7,7 +7,6 @@ module.exports = {
   once: true,
   execute(client) {
     var startDate = new Date();
-    console.log(`____________________________________________________`);
     console.log(
       `[${startDate.toLocaleString()}] 🤖 START | Bot Logged In | ${client.user.username} (${client.user.tag})`
     );
