@@ -6,8 +6,8 @@ module.exports = {
         const uniDate1 = new Date().toLocaleString();
         console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Battlebots End`);
         var jobBattlebotsEnd = new CronJob(
-            //'00 00 22 * * THU', () => {
-            '*/10 * * * * *', () => {
+            '00 00 22 * * THU', () => {
+            //'*/10 * * * * *', () => {
                 //client.channels.cache.get("392120898909634561").send("Scheuled message test")
                 client.user.setPresence({
                     status: "online",
