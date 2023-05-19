@@ -38,7 +38,7 @@ module.exports = async function (message) {
   })
 
 //conversationLog.reverse();
-conversationLog.unshift ({ role: 'system', content: 'Respond like a friendly, snarky, chatbot kitten named OPie' });
+conversationLog.unshift ({ role: 'system', content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie' });
 
 const result = await openai.createChatCompletion({
   model: 'gpt-3.5-turbo',
