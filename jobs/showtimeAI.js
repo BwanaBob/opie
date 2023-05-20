@@ -18,7 +18,7 @@ module.exports = {
                         role: 'user',
                         content: 'Write an opening comment welcoming our wonderful discord users to their watch party for the television show On Patrol: Live.'
                     }],
-                    max_tokens: 192, // limit token usage (length of response)
+                    max_tokens: 256, // limit token usage (length of response)
                 };
 
                 const airesponse = await ai(aicommand);
