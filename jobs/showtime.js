@@ -51,7 +51,7 @@ module.exports = {
                         "https://i.imgur.com/dJP9d8L.png"
                     );
 
-                noticeChannel.send("On Patrol: Live is starting now!")
+                // noticeChannel.send("On Patrol: Live is starting now!")
                 talkChannel.send({ embeds: [showtimeEmbed] });
                 bingoChannel.send({ embeds: [bingoEmbed] });
                 client.user.setPresence({

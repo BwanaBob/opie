@@ -1,4 +1,4 @@
-const ai = require('../modules/ai.js')
+const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
 
 module.exports = {
@@ -8,13 +8,13 @@ module.exports = {
         console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | First Shift AI`);
         var jobFirstShiftAI = new CronJob(
             '00 00 19 * * FRI,SAT', async () => {
-            //'*/15 * * * * *', async () => {
+                //'*/15 * * * * *', async () => {
                 const aicommand = {
                     model: 'gpt-3.5-turbo',
                     messages: [{
                         role: 'system',
                         content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
-                    },{
+                    }, {
                         role: 'system',
                         content: '"First Shift" is a live tv segment that previews and leads into the upcoming show "On Patrol: Live. "First Shift" introduces the law enforcement agencies which will be appearing on "On Patrol: Live" this evening. "First Shift" also provides updates on events from previous episodes of "On Patrol: Live". "First Shift" is hosted by Dan Abrams, Sean "Sticks" Larkin, and Curtis Wilson',
                     }, {
@@ -24,12 +24,15 @@ module.exports = {
                     max_tokens: 256, // limit token usage (length of response)
                 };
 
-                const airesponse = await ai(aicommand);
-                if (!airesponse.undefined && airesponse !== 'ERR') {
-                    talkChannel.send(airesponse)
-                } else {
-                    console.log(` ⌛ CRON| Job Failed  | First Shift AI`);
+                if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
+                    const airesponse = await ai(aicommand);
+                    if (!airesponse.undefined && airesponse !== 'ERR') {
+                        talkChannel.send(airesponse)
+                    } else {
+                        console.log(` ⌛ CRON| Job Failed  | First Shift AI`);
+                    }
                 }
+
                 const uniDate = new Date().toLocaleString();
                 console.log(`[${uniDate1}] ⌛ CRON| Job Executed  | First Shift AI`);
             },

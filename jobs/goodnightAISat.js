@@ -1,4 +1,4 @@
-const ai = require('../modules/ai.js')
+const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
         console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Goodnight AI Saturday`);
         var jobGoodnightAISat = new CronJob(
             '00 00 23 * * SAT', async () => {
-            //'*/10 * * * * *', async () => {
+                //'*/10 * * * * *', async () => {
                 const aicommand = {
                     model: 'gpt-3.5-turbo',
                     messages: [{
@@ -21,12 +21,15 @@ module.exports = {
                     max_tokens: 256, // limit token usage (length of response)
                 };
 
-                const airesponse = await ai(aicommand);
-                if (!airesponse.undefined && airesponse !== 'ERR') {
-                    talkChannel.send(airesponse)
-                } else {
-                    console.log(` ⌛ CRON| Job Failed  | Goodnight AI Saturday`);
+                if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
+                    const airesponse = await ai(aicommand);
+                    if (!airesponse.undefined && airesponse !== 'ERR') {
+                        talkChannel.send(airesponse)
+                    } else {
+                        console.log(` ⌛ CRON| Job Failed  | Goodnight AI Saturday`);
+                    }
                 }
+
                 const uniDate = new Date().toLocaleString();
                 console.log(`[${uniDate1}] ⌛ CRON| Job Executed  | Goodnight AI Saturday`);
             },

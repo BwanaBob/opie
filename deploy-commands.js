@@ -3,9 +3,9 @@ const fs = require("node:fs");
 require("dotenv").config();
 
 //const { clientId, guildId, token } = require('./config.json');
-const token = process.env.TOKEN;
-//const guildId = process.env.GUILD_ID
-const clientId = process.env.CLIENT_ID;
+const token = process.env.DISCORD_TOKEN;
+//const guildId = process.env.DISCORD_COMMAND_GUILD_ID;
+const clientId = process.env.DISCORD_CLIENT_ID;
 
 const commands = [];
 // Grab all the command files from the commands directory you created earlier

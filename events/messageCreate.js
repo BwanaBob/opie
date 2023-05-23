@@ -30,7 +30,7 @@ module.exports = {
         `[${uniDate}] 🤖 AI  | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
       );
 
-      const openai = require('../modules/openai.js');
+      const openai = require('../modules/openaiChat.js');
       const aiReply = await openai(message);
       if (!aiReply.undefined && aiReply !== 'ERR') {
         message.reply(aiReply);
@@ -408,44 +408,6 @@ module.exports = {
       );
     }
 
-    // AI disable
-    // Temp holder for future command
-    if (message.content.match(/(aidisable)/gi)) {
-      if (
-        !message.member.permissions.has(
-          PermissionsBitField.Flags.ManageMessages
-        )
-      ) {
-        return
-      }
-      message.client.params.set("chatGPTEnabled", "false");
-      message.react(`✅`);
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] 🤖 AI- | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | AI Disable`
-      );
-    }
-
-    // AI enable
-    // Temp holder for future command
-    if (message.content.match(/(aienable)/gi)) {
-      if (
-        !message.member.permissions.has(
-          PermissionsBitField.Flags.ManageMessages
-        )
-      ) {
-        return
-      }
-      message.client.params.set("chatGPTEnabled", "true");
-      message.react(`✅`);
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] 🤖 AI+ | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | AI Enable`
-      );
-    }
-
-
-
     // Emoji unLock
     // Temp holder for future command
     if (message.content.match(/(emojiunlock)/gi)) {
@@ -564,7 +526,7 @@ module.exports = {
     if (message.attachments.size !== 0 || message.embeds.length !== 0) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       const lastTime = message.client.timers.get(message.member.id);
-      const gifDelay = message.client.params.get("gifdelay");
+      const attachmentDelay = message.client.params.get("attachmentDelay");
       if (lastTime == undefined) {
         // console.log(
         //   `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Embed`
@@ -574,7 +536,7 @@ module.exports = {
         const elapsed = Math.trunc(
           (message.createdTimestamp - lastTime) / 1000
         );
-        if (elapsed < gifDelay) {
+        if (elapsed < attachmentDelay) {
           console.log(
             `[${uniDate}] ⛔ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec BAD`
           );
@@ -585,7 +547,7 @@ module.exports = {
             .setColor(0xff9900)
             .setTitle("Embed Timer Violated")
             .setDescription(
-              `This server has limited the posting of embedded content to once every ${gifDelay} seconds.`
+              `This server has limited the posting of embedded content to once every ${attachmentDelay} seconds.`
             )
             .setThumbnail(
               "https://i.imgur.com/TgSIaZD.png"
