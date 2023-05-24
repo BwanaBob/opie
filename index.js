@@ -35,7 +35,7 @@ async function getTweetStream() {
   const stream = await exportTweetStream();
   // console.log(stream);
   const uniDate2 = new Date().toLocaleString();
-  if (stream === undefined || stream === "Failed") {
+  if ((stream === undefined) || (stream === "Failed")) {
     console.log(`[${uniDate2}] 🐦 TWIT  | Failed to connect`)
     return;
   } else {

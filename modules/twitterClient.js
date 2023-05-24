@@ -1,5 +1,5 @@
 const { TwitterApi } = require("twitter-api-v2");
-const { stream } = require("undici");
+// const { stream } = require("undici");
 require("dotenv").config();
 
 // This module defines the twitter client, stream and search parameters
@@ -26,9 +26,9 @@ async function exportTweetStream() {
       }, {
         value: '(Friday or Saturday) Cable Originals from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote',
         tag: 'ratings'
-        // }, {
-        //   value: '#Fursuit lang:en -is:retweet -is:reply -is:quote has:images',
-        //   tag: 'furry'
+      // }, {
+      //   value: '#Fursuit lang:en -is:retweet -is:reply -is:quote has:images',
+      //   tag: 'furry'
       }],
     });
 
@@ -43,15 +43,16 @@ async function exportTweetStream() {
 
     //stream.on(ETwitterStreamEvent.Connected, () => console.log('Stream is started.'));
     // console.log('Waiting for stream')
-  } catch (error) {
-    console.error('Error:', error.data.detail);
+
+  if (!(stream === undefined)) {
+    return stream;
+  } else {
+    // console.log(stream);
+    return "Failed";
   }
 
-  if (!stream == undefined) {
-    return stream;
-
-  } else {
-    return "Failed";
+  } catch (error) {
+    console.error('Error:', error.data.detail);
   }
 }
 
