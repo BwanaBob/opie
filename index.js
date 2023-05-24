@@ -33,10 +33,12 @@ const exportTweetStream = require('./modules/twitterClient.js');
 async function getTweetStream() {
   const stream = await exportTweetStream();
   // console.log(stream);
+if (stream === undefined || stream === "Failed"){ return;}
+
   stream.on(ETwitterStreamEvent.Data, async tweet => {
     const tweetChannel = client.channels.cache.get("1074313334217789460") || client.channels.cache.get("392093299890061312"); // OPL #mod-chat or OPie #general 
     const tweetURL = `https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}` || 'Unknown'
-  
+
     const uniDate1 = new Date().toLocaleString();
     console.log(`[${uniDate1}] 🐦 TWIT| ${tweetURL}`)
 
@@ -44,9 +46,14 @@ async function getTweetStream() {
       tweetChannel.send(tweetURL);
       // const tweetAttachment = new AttachmentBuilder(`${tweetURL}`);
       // tweetChannel.send({ files: [tweetAttachment] });
-  }
+    }
   });
-  return stream;
+
+  stream.on('error', error => {
+    console.error('Error:', error);
+  });
+
+  return stream ?? "Failed";
 }
 const dummyVal = getTweetStream();
 
