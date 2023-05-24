@@ -7,6 +7,7 @@ const {
 
 const { OpenAIApi } = require("openai");
 
+
 function milestone(members) {
   const membersString = String(members);
   const membersExponent = membersString.length - 1;
@@ -18,12 +19,13 @@ function milestone(members) {
 module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
+    const messageReactionsEnabled = message.client.params.get("messageReactionsEnabled") ?? "Undefined";
     if (message.author.bot) { return; }
 
     // AI command
     if (message.content.match(
       /^(opie,\W)/gi
-    ) && message.client.params.get("chatGPTEnabled") == "true"
+    ) && message.client.params.get("chatGPTEnabled") === "true"
     ) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
@@ -38,340 +40,394 @@ module.exports = {
       return;
     }
 
-    if (
-      message.content.match(
-        /\b(opie|1041050338775539732|1046068702396825674)\b/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] ✅ OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`
-      );
-
-      var reaction = "👋";
-      if (message.guild.id == "325206992413130753") {
-        const reactions = {
-          default: "👋",
-          member: {
-            "348629137080057878": `<:arctic_fox:1057115452553314354>`, // bwana
-            "629681401918390312": [
-              `<a:purple_heart_beating:1038193897337270352>`,
-              `<a:sloth_animated:1038514444289978479>`,
-            ], // barre
-            "511074631239598080": [
-              `<:ferret:1079139863544201224>`,
-              `<a:blue_heart_beating:1040127801879179354>`,
-            ], // ferret
-            "342487311860367362": "🔨", // wub
-            "440328038337478657": `<:sausage_thumbs_up:1039959562553401445>`, // saucy
-            "475145905117593623": [`<:suspicious_fry:1027310519910154330>`, `🏹`, `❤️`], // china
-            "368797989554356224": `<:cowheart:705960794101383258>`, // cow
-          },
-        };
-        const memberReaction =
-          reactions.member[message.member.id] || reactions.default;
-        if (Array.isArray(memberReaction)) {
-          reaction =
-            memberReaction[Math.floor(Math.random() * memberReaction.length)];
-        } else {
-          reaction = memberReaction;
-        }
-      }
-      message.react(reaction);
-    }
-
-    if (
-      message.guild.id == "325206992413130753" &&
-      message.content.match(/\b(happy\Wnew\Wyear)\b/gi)
-    ) {
-      const reactions = [
-        "🥳",
-        "🎉",
-        "🥂",
-        "🎆",
-        "🎇",
-        "🎊",
-        `<a:partying:1040138276692033556>`,
-        `<a:party_blob:1038194657848463370>`,
-        `<a:party_popper:1038207072485003274>`,
-        `<a:bottle_with_popping_cork:1056931540283699282>`,
-        `<a:firework:1010870326667788298>`,
-        `<a:cat_jump:1040302608813924415>`,
-        `<a:confetti_ball_animated:1056947556241903636>`,
-      ];
-      const reaction = reactions[Math.floor(Math.random() * reactions.length)];
-      message.react(reaction);
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] ✅ NYE | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | New Year`
-      );
-    }
-
-    // Cow
-    if (
-      message.guild.id == "325206992413130753" &&
-      message.content.match(/\b(cow|cows|368797989554356224)\b/gi)
-    ) {
-      const reactions = [
-        '<:cowcop:705958276210360391>',
-        '<:cowcowboypensive:705961325695729754>',
-        '<:cowheart:705960794101383258>',
-        '<:cowmad:705961134930526289>',
-        '<:cowsad:705960912732946492>',
-        '<a:cowsiren:705958068361625611>',
-        '<:cowsleep:705961477877530715>',
-        '<:cowwink:705961033298346004>',
-      ];
-      const reaction = reactions[Math.floor(Math.random() * reactions.length)];
-      message.react(reaction);
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] 🐮 COW | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Cow`
-      );
-    }
-
-    // Dinosaur
-    if (
-      message.content.match(/\b(dino|dinos|dinosaur|dinosaurs)\b/gi)
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      message.react(`🦕`);
-      console.log(
-        `[${uniDate}] 🦕 DINO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Dinosaur`
-      );
-    }
-
-    // Easter
-    if (
-      message.content.match(/(happy).(easter)/gi)
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      message.react(`🐰`);
-      console.log(
-        `[${uniDate}] 🐰 ESTR| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Easter`
-      );
-    }
-
-    // Good Kitty
-    if (
-      message.content.match(/(good|great|best|wonderful|pretty).(kitty|cat|kitten|feline)/gi)
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      message.react(`😻`);
-      console.log(
-        `[${uniDate}] 😻 CAT | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Good Kitty`
-      );
-    }
-
-    // Good Bot
-    if (
-      message.content.match(/(Good Bot)/gi)
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      message.react(`🥰`);
-      console.log(
-        `[${uniDate}] 🥰 BOT | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Good Bot`
-      );
-    }
-
-    // Bad Bot
-    if (
-      message.content.match(/(Bad Bot)/gi)
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      message.react(`😢`);
-      console.log(
-        `[${uniDate}] 😢 BAD | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bad Bot`
-      );
-    }
-
-    // Taser
-    if (
-      message.content.match(
-        /(taser|tased)/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      message.react(`⚡`);
-      console.log(
-        `[${uniDate}] ⚡ ZAP | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Taser`
-      );
-    }
-
-    // Peacock
-    if (
-      message.content.match(
-        /(peacock)/gi
-      )
-    ) {
-      if (message.guild.id == "325206992413130753") {
-        message.react(`<:NBC_peacock:1086865895709753404>`);
-      } else {
-        message.react(`🦚`);
-      }
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] 🦚 PCOK| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Peacock`
-      );
-    }
-
-    // here we go
-    if (
-      message.content.match(
-        /(here we go)/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      message.react(`🚨`);
-      console.log(
-        `[${uniDate}] 🚨 GO  | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | We Go`
-      );
-    }
-
-    // 2 beers
-    if (
-      message.content.match(
-        /(2 beer|two beer)/gi
-      )
-    ) {
-      if (message.guild.id == "325206992413130753") {
-        message.react(`<a:two_beer_mugs:1038932370352521406>`);
-      } else {
-        message.react(`🍻`);
-      }
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] 🍻 ALE | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | 2 Beers`
-      );
-    }
-
-    // POOPH
-    if (
-      message.content.match(
-        /(pooph|poopf)/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      if (message.guild.id == "325206992413130753") {
-        message.react(`<:poop_and_flowers:1070396627887603874>`);
-      } else {
-        message.react(`💩`);
-      }
-      console.log(
-        `[${uniDate}] 💩 POO | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Pooph`
-      );
-    }
-
-    // BINGO
-    if (
-      message.content.match(
-        /(bingo)/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      if (message.guild.id == "325206992413130753") {
-        message.react(`<:bingo:1066838689814163466>`);
-      } else {
-        message.react(`🎱`);
-      }
-      console.log(
-        `[${uniDate}] 🎱 BNGO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bingo`
-      );
-    }
-
-    // Jaws of Life
-    if (
-      message.content.match(
-        /(jaws of life)/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      if (message.guild.id == "325206992413130753") {
-        message.react(`<:jaws_of_life:1093940607732416623>`);
-      } else {
-        message.react(`🔧`);
-      }
-      console.log(
-        `[${uniDate}] 🔧 JoL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Jaws of Life`
-      );
-    }
-
-    // Jaws (not of Life)
-    if (
-      message.content.match(
-        /jaws(?! of life)/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      if (message.guild.id == "325206992413130753") {
-        message.react(`<:jaws:1093958471394791617>`);
-      } else {
-        message.react(`🦈`);
-      }
-      console.log(
-        `[${uniDate}] 🦈 Jaws| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Jaws`
-      );
-    }
-
-    // How do I play Bingo?
-    if (
-      message.content.match(
-        /(how|where).*(find|play|get).*(bingo|card)/gmi
-      )
-    ) {
-      const bingoEmbed = new EmbedBuilder()
-        .setColor(0xff0000)
-        .setTitle("Bingo")
-        .setDescription("Get your bingo cards and play with us live!")
-        .addFields({
-          name: "Website",
-          value: `[thatsabingo.com](https://www.thatsabingo.com/)`,
-          inline: true,
-        })
-        .setURL('https://www.thatsabingo.com/')
-        .setThumbnail(
-          "https://i.imgur.com/dJP9d8L.png"
+    // REACTIONS
+    if (messageReactionsEnabled === 'true') {
+      if (
+        message.content.match(
+          /\b(opie|1041050338775539732|1046068702396825674)\b/gi
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${uniDate}] ✅ OPIE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | said Opie`
         );
 
-      message.reply({ embeds: [bingoEmbed] });
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] 🤘 HOW | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bingo`
-      );
-    }
-
-    // POOP Flowers
-    if (
-      message.content.match(
-        /(poop(\W|_).*flowers)/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      if (message.guild.id == "325206992413130753") {
-        message.react(`<:pooph:1073752699914420244>`);
-      } else {
-        message.react(`👃`);
+        var reaction = "👋";
+        if (message.guild.id == "325206992413130753") {
+          const reactions = {
+            default: "👋",
+            member: {
+              "348629137080057878": `<:arctic_fox:1057115452553314354>`, // bwana
+              "629681401918390312": [
+                `<a:purple_heart_beating:1038193897337270352>`,
+                `<a:sloth_animated:1038514444289978479>`,
+              ], // barre
+              "511074631239598080": [
+                `<:ferret:1079139863544201224>`,
+                `<a:blue_heart_beating:1040127801879179354>`,
+              ], // ferret
+              "342487311860367362": "🔨", // wub
+              "440328038337478657": `<:sausage_thumbs_up:1039959562553401445>`, // saucy
+              "475145905117593623": [`<:suspicious_fry:1027310519910154330>`, `🏹`, `❤️`], // china
+              "368797989554356224": `<:cowheart:705960794101383258>`, // cow
+            },
+          };
+          const memberReaction =
+            reactions.member[message.member.id] || reactions.default;
+          if (Array.isArray(memberReaction)) {
+            reaction =
+              memberReaction[Math.floor(Math.random() * memberReaction.length)];
+          } else {
+            reaction = memberReaction;
+          }
+        }
+        message.react(reaction);
       }
-      console.log(
-        `[${uniDate}] 👃 P&F | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
-      );
-    }
 
-    // Buff out
-    if (
-      message.content.match(
-        /(Buff Out)/gi
-      ) && message.author.tag == "Sausageslinger11#3264"
-    ) {
-      // message.channel.send(`🚗 Come on down to ${message.member}'s car repair shop! Everything can be buffed out! 🚗`);
-      const image = new AttachmentBuilder('https://i.imgur.com/gF0aNsT.png');
-      message.reply({ files: [image] })
+      if (
+        message.guild.id == "325206992413130753" &&
+        message.content.match(/\b(happy\Wnew\Wyear)\b/gi)
+      ) {
+        const reactions = [
+          "🥳",
+          "🎉",
+          "🥂",
+          "🎆",
+          "🎇",
+          "🎊",
+          `<a:partying:1040138276692033556>`,
+          `<a:party_blob:1038194657848463370>`,
+          `<a:party_popper:1038207072485003274>`,
+          `<a:bottle_with_popping_cork:1056931540283699282>`,
+          `<a:firework:1010870326667788298>`,
+          `<a:cat_jump:1040302608813924415>`,
+          `<a:confetti_ball_animated:1056947556241903636>`,
+        ];
+        const reaction = reactions[Math.floor(Math.random() * reactions.length)];
+        message.react(reaction);
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${uniDate}] ✅ NYE | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | New Year`
+        );
+      }
 
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${uniDate}] 🚗 BUF | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Buff Out`
-      );
-    }
+      // Cow
+      if (
+        message.guild.id == "325206992413130753" &&
+        message.content.match(/\b(cow|cows|368797989554356224)\b/gi)
+      ) {
+        const reactions = [
+          '<:cowcop:705958276210360391>',
+          '<:cowcowboypensive:705961325695729754>',
+          '<:cowheart:705960794101383258>',
+          '<:cowmad:705961134930526289>',
+          '<:cowsad:705960912732946492>',
+          '<a:cowsiren:705958068361625611>',
+          '<:cowsleep:705961477877530715>',
+          '<:cowwink:705961033298346004>',
+        ];
+        const reaction = reactions[Math.floor(Math.random() * reactions.length)];
+        message.react(reaction);
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${uniDate}] 🐮 COW | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Cow`
+        );
+      }
+
+      // Dinosaur
+      if (
+        message.content.match(/\b(dino|dinos|dinosaur|dinosaurs)\b/gi)
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        message.react(`🦕`);
+        console.log(
+          `[${uniDate}] 🦕 DINO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Dinosaur`
+        );
+      }
+
+      // Easter
+      if (
+        message.content.match(/(happy).(easter)/gi)
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        message.react(`🐰`);
+        console.log(
+          `[${uniDate}] 🐰 ESTR| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Easter`
+        );
+      }
+
+      // Good Kitty
+      if (
+        message.content.match(/(good|great|best|wonderful|pretty).(kitty|cat|kitten|feline)/gi)
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        message.react(`😻`);
+        console.log(
+          `[${uniDate}] 😻 CAT | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Good Kitty`
+        );
+      }
+
+      // Good Bot
+      if (
+        message.content.match(/(Good Bot)/gi)
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        message.react(`🥰`);
+        console.log(
+          `[${uniDate}] 🥰 BOT | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Good Bot`
+        );
+      }
+
+      // Bad Bot
+      if (
+        message.content.match(/(Bad Bot)/gi)
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        message.react(`😢`);
+        console.log(
+          `[${uniDate}] 😢 BAD | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bad Bot`
+        );
+      }
+
+      // Taser
+      if (
+        message.content.match(
+          /(taser|tased)/gi
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        message.react(`⚡`);
+        console.log(
+          `[${uniDate}] ⚡ ZAP | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Taser`
+        );
+      }
+
+      // Peacock
+      if (
+        message.content.match(
+          /(peacock)/gi
+        )
+      ) {
+        if (message.guild.id == "325206992413130753") {
+          message.react(`<:NBC_peacock:1086865895709753404>`);
+        } else {
+          message.react(`🦚`);
+        }
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${uniDate}] 🦚 PCOK| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Peacock`
+        );
+      }
+
+      // here we go
+      if (
+        message.content.match(
+          /(here we go)/gi
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        message.react(`🚨`);
+        console.log(
+          `[${uniDate}] 🚨 GO  | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | We Go`
+        );
+      }
+
+      // 2 beers
+      if (
+        message.content.match(
+          /(2 beer|two beer)/gi
+        )
+      ) {
+        if (message.guild.id == "325206992413130753") {
+          message.react(`<a:two_beer_mugs:1038932370352521406>`);
+        } else {
+          message.react(`🍻`);
+        }
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${uniDate}] 🍻 ALE | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | 2 Beers`
+        );
+      }
+
+      // POOPH
+      if (
+        message.content.match(
+          /(pooph|poopf)/gi
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        if (message.guild.id == "325206992413130753") {
+          message.react(`<:poop_and_flowers:1070396627887603874>`);
+        } else {
+          message.react(`💩`);
+        }
+        console.log(
+          `[${uniDate}] 💩 POO | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Pooph`
+        );
+      }
+
+      // BINGO
+      if (
+        message.content.match(
+          /(bingo)/gi
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        if (message.guild.id == "325206992413130753") {
+          message.react(`<:bingo:1066838689814163466>`);
+        } else {
+          message.react(`🎱`);
+        }
+        console.log(
+          `[${uniDate}] 🎱 BNGO| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bingo`
+        );
+      }
+
+      // Jaws of Life
+      if (
+        message.content.match(
+          /(jaws of life)/gi
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        if (message.guild.id == "325206992413130753") {
+          message.react(`<:jaws_of_life:1093940607732416623>`);
+        } else {
+          message.react(`🔧`);
+        }
+        console.log(
+          `[${uniDate}] 🔧 JoL | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Jaws of Life`
+        );
+      }
+
+      // Jaws (not of Life)
+      if (
+        message.content.match(
+          /jaws(?! of life)/gi
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        if (message.guild.id == "325206992413130753") {
+          message.react(`<:jaws:1093958471394791617>`);
+        } else {
+          message.react(`🦈`);
+        }
+        console.log(
+          `[${uniDate}] 🦈 Jaws| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Jaws`
+        );
+      }
+
+      // How do I play Bingo?
+      if (
+        message.content.match(
+          /(how|where).*(find|play|get).*(bingo|card)/gmi
+        )
+      ) {
+        const bingoEmbed = new EmbedBuilder()
+          .setColor(0xff0000)
+          .setTitle("Bingo")
+          .setDescription("Get your bingo cards and play with us live!")
+          .addFields({
+            name: "Website",
+            value: `[thatsabingo.com](https://www.thatsabingo.com/)`,
+            inline: true,
+          })
+          .setURL('https://www.thatsabingo.com/')
+          .setThumbnail(
+            "https://i.imgur.com/dJP9d8L.png"
+          );
+
+        message.reply({ embeds: [bingoEmbed] });
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${uniDate}] 🤘 HOW | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Bingo`
+        );
+      }
+
+      // POOP Flowers
+      if (
+        message.content.match(
+          /(poop(\W|_).*flowers)/gi
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        if (message.guild.id == "325206992413130753") {
+          message.react(`<:pooph:1073752699914420244>`);
+        } else {
+          message.react(`👃`);
+        }
+        console.log(
+          `[${uniDate}] 👃 P&F | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        );
+      }
+
+      // Buff out
+      if (
+        message.content.match(
+          /(Buff Out)/gi
+        ) && message.author.tag == "Sausageslinger11#3264"
+      ) {
+        // message.channel.send(`🚗 Come on down to ${message.member}'s car repair shop! Everything can be buffed out! 🚗`);
+        const image = new AttachmentBuilder('https://i.imgur.com/gF0aNsT.png');
+        message.reply({ files: [image] })
+
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${uniDate}] 🚗 BUF | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Buff Out`
+        );
+      }
+
+      if (
+        message.content.match(
+          /\b(another|many|more|lots of|we just had|damn|extra|commercial)\W.*?\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\b/gi
+        )
+        && !(
+          message.author.bot ||
+          message.member.permissions.has(
+            PermissionsBitField.Flags.ManageMessages
+          ) ||
+          message.channel.name == "notifications" ||
+          message.channel.name == "art-corner"
+        )
+      ) {
+        const uniDate = new Date(message.createdTimestamp).toLocaleString();
+        message.react("😠");
+        console.log(
+          `[${uniDate}] 😠 ADS | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        );
+
+        // send notice to servers notice channel
+        const advertsEmbed = new EmbedBuilder()
+          .setColor(0x00ff99)
+          .setAuthor({
+            name: `${message.member.displayName} (${message.author.tag})`,
+            iconURL: `${message.member.displayAvatarURL()}`,
+          })
+          .setTitle("Advertising Complaint")
+          .setDescription(`${message.content}`)
+          .setThumbnail(
+            "https://i.imgur.com/3FNiHMX.png"
+          )
+          .addFields({
+            name: "Channel",
+            value: `${message.channel.name}`,
+            inline: true,
+          })
+          .addFields({
+            name: "Server",
+            value: `${message.guild.name}`,
+            inline: true,
+          });
+        message.client.channels.cache
+          .get(message.guild.publicUpdatesChannelId)
+          .send({ embeds: [advertsEmbed] });
+
+        // also send everything to bot's notice channel
+        // message.client.channels.cache
+        //   .get("1045327770592497694")
+        //   .send({ embeds: [advertsEmbed] });
+      }
+    } // End of REACTIONS if statement
 
     // Emoji Lock
     // Temp holder for future command
@@ -510,20 +566,16 @@ module.exports = {
       );
     }
 
-    // exempt mods from the following restrictions
-    if (
-      message.author.bot ||
-      message.member.permissions.has(
-        PermissionsBitField.Flags.ManageMessages
-      ) ||
-      message.channel.name == "notifications" ||
-      message.channel.name == "art-corner"
-    ) {
-      return;
-    }
-
     // Embed Timer: 
-    if (message.attachments.size !== 0 || message.embeds.length !== 0) {
+    if ((message.attachments.size !== 0 || message.embeds.length !== 0)
+      && !(
+        message.author.bot ||
+        message.member.permissions.has(
+          PermissionsBitField.Flags.ManageMessages
+        ) ||
+        message.channel.name == "notifications" ||
+        message.channel.name == "art-corner"
+      )) {
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       const lastTime = message.client.timers.get(message.member.id);
       const attachmentDelay = message.client.params.get("attachmentDelay");
@@ -608,49 +660,5 @@ module.exports = {
         }
       }
     }
-
-    if (
-      message.content.match(
-        /\b(another|many|more|lots of|we just had|damn|extra|commercial)\W.*?\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\b/gi
-      )
-    ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
-      message.react("😠");
-      console.log(
-        `[${uniDate}] 😠 ADS | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
-      );
-
-      // send notice to servers notice channel
-      const advertsEmbed = new EmbedBuilder()
-        .setColor(0x00ff99)
-        .setAuthor({
-          name: `${message.member.displayName} (${message.author.tag})`,
-          iconURL: `${message.member.displayAvatarURL()}`,
-        })
-        .setTitle("Advertising Complaint")
-        .setDescription(`${message.content}`)
-        .setThumbnail(
-          "https://i.imgur.com/3FNiHMX.png"
-        )
-        .addFields({
-          name: "Channel",
-          value: `${message.channel.name}`,
-          inline: true,
-        })
-        .addFields({
-          name: "Server",
-          value: `${message.guild.name}`,
-          inline: true,
-        });
-      message.client.channels.cache
-        .get(message.guild.publicUpdatesChannelId)
-        .send({ embeds: [advertsEmbed] });
-
-      // also send everything to bot's notice channel
-      // message.client.channels.cache
-      //   .get("1045327770592497694")
-      //   .send({ embeds: [advertsEmbed] });
-    }
-
   },
 };
