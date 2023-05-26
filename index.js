@@ -86,7 +86,7 @@ for (const file of commandFiles) {
   if ("data" in command && "execute" in command) {
     client.commands.set(command.data.name, command);
     const uniDate1 = new Date().toLocaleString();
-    console.log(`[${uniDate1}] 👉 CMD   | Command Loaded| ${command.data.name}`)
+    console.log(`[${uniDate1}] 💻 COMAND| Command Loaded| ${command.data.name}`)
   } else {
     console.log(
       `⛔ [WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`

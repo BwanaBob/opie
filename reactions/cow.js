@@ -13,6 +13,7 @@ module.exports = {
                 '<a:cowsiren:705958068361625611>',
                 '<:cowsleep:705961477877530715>',
                 '<:cowwink:705961033298346004>',
+                '<:cowgrad:1111541609838944356>',
             ];
             const reaction = reactions[Math.floor(Math.random() * reactions.length)];
             message.react(reaction);
