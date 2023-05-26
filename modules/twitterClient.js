@@ -9,28 +9,40 @@ const twitterClient = new TwitterApi(process.env.TWITTER_BEARER_TOKEN);
 
 async function exportTweetStream() {
   try {
-
     // Get and delete old rules if needed
     const rules = await twitterClient.v2.streamRules();
     if (rules.data?.length) {
+      // console.log(rules.data.map(rule => rule.id));
+      // console.log(`Existing rules: ${rules.data?.length}`)
       await twitterClient.v2.updateStreamRules({
         delete: { ids: rules.data.map(rule => rule.id) },
       });
     }
+    // const remainingRules = await twitterClient.v2.streamRules();
+    // console.log(`Remaining rules: ${remainingRules.data?.length}`)
 
     // Add our rules
     await twitterClient.v2.updateStreamRules({
       add: [{
-        value: '#OPLive from:danabrams lang:en has:images -is:retweet -is:reply -is:quote',
+        value: 'OPLive from:danabrams -is:retweet -is:reply -is:quote has:images',
         tag: 'lineup'
       }, {
-        value: '(Friday or Saturday) Cable Originals from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote',
+        value: "Cable Originals Friday from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote",
         tag: 'ratings'
-      // }, {
-      //   value: '#Fursuit lang:en -is:retweet -is:reply -is:quote has:images',
-      //   tag: 'furry'
+      }, {
+        value: "Cable Originals Saturday from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote",
+        tag: 'ratings'
+        // }, {
+        //   value: 'travel lang:en -is:retweet -is:reply -is:quote has:images',
+        //   tag: 'travel'
+        // }, {
+        //   value: 'from:CNN lang:en -is:retweet -is:reply -is:quote',
+        //   tag: 'cnn'
       }],
     });
+
+    // const addedRules = await twitterClient.v2.streamRules();
+    // console.log(`Added rules: ${addedRules.data?.length}`)
 
     const stream = await twitterClient.v2.searchStream({
       'tweet.fields': ['author_id', 'referenced_tweets'],
@@ -40,19 +52,20 @@ async function exportTweetStream() {
     });
     // Enable auto reconnect
     stream.autoReconnect = true;
-
+    // stream.keepAliveTimeoutMs = Infinity
     //stream.on(ETwitterStreamEvent.Connected, () => console.log('Stream is started.'));
     // console.log('Waiting for stream')
 
-  if (!(stream === undefined)) {
-    return stream;
-  } else {
-    // console.log(stream);
-    return "Failed";
-  }
+    if (!(stream === undefined)) {
+      return stream;
+    } else {
+      console.log("Twitter Failed!");
+      return "Failed";
+    }
 
   } catch (error) {
     console.error('Error:', error.data.detail);
+    console.error('Error:', error.data);
   }
 }
 

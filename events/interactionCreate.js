@@ -17,11 +17,11 @@ module.exports = {
     const uniDate = new Date(interaction.createdTimestamp).toLocaleString();
     if (!interaction.guild) {
       console.log(
-        `[${uniDate}] 💻 CMD | Private Message | ${interaction.user.tag} | ${interaction.commandName}`
+        `[${uniDate}] 💻 CMD   | Private Message | ${interaction.user.tag} | ${interaction.commandName}`
       );
     } else {
       console.log(
-        `[${uniDate}] 💻 CMD | ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}`
+        `[${uniDate}] 💻 CMD   | ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}`
       );
     }
 

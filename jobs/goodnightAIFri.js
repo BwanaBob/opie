@@ -26,7 +26,7 @@ module.exports = {
                     if (!airesponse.undefined && airesponse !== 'ERR') {
                         talkChannel.send(airesponse)
                     } else {
-                        console.log(` ⌛ CRON| Job Failed  | Goodnight AI Friday`);
+                        console.log(` ⌛ CRON  | Job Failed  | Goodnight AI Friday`);
                     }
                 }
 

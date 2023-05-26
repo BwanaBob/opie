@@ -8,7 +8,7 @@ module.exports = {
   execute(member) {
       const uniDate = new Date().toLocaleString();
       console.log(
-        `[${uniDate}] 😐 JOIN| ${member.guild.name} | ${member.user.tag} | ${member.nickname} -> ${newMember.nickname}`
+        `[${uniDate}] 😐 JOIN  | ${member.guild.name} | ${member.user.tag} | ${member.nickname} -> ${newMember.nickname}`
         )
       const removedEmbed = new EmbedBuilder()
       .setColor(0x777777)

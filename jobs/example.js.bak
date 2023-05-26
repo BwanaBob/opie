@@ -8,7 +8,7 @@ module.exports = {
             '*/10 * * * * *', () => {
                 client.channels.cache.get("392120898909634561").send("Scheuled message test")
                 const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate1}] ⌛ CRON| Job Executed  | Example`);
+                console.log(`[${uniDate1}] ⌛ CRON  | Job Executed  | Example`);
             },
             null,
             true,

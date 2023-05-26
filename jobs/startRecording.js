@@ -11,7 +11,7 @@ module.exports = {
                 //'*/15 * * * * *', () => {
                 noticeChannel.send("<@348629137080057878> Start recording First Shift!")
                 const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate}] ⌛ CRON| Job Executed  | Start Recording`);
+                console.log(`[${uniDate}] ⌛ CRON  | Job Executed  | Start Recording`);
             },
             null,
             true,

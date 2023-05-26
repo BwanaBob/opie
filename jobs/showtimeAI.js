@@ -26,12 +26,12 @@ module.exports = {
                     if (!airesponse.undefined && airesponse !== 'ERR') {
                         talkChannel.send(airesponse)
                     } else {
-                        console.log(` ⌛ CRON| Job Failed  | Showtime AI`);
+                        console.log(` ⌛ CRON  | Job Failed  | Showtime AI`);
                     }
                 }
 
                 const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate1}] ⌛ CRON| Job Executed  | Showtime AI`);
+                console.log(`[${uniDate1}] ⌛ CRON  | Job Executed  | Showtime AI`);
             },
             null,
             true,

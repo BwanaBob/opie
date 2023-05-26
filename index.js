@@ -5,9 +5,6 @@ const path = require("node:path");
 const {
   Client,
   Collection,
-  ActivityType,
-  Events,
-  AttachmentBuilder,
   GatewayIntentBits,
 } = require("discord.js");
 
@@ -40,17 +37,26 @@ async function getTweetStream() {
     return;
   } else {
     console.log(`[${uniDate2}] 🐦 TWIT  | Connected`)
+    // console.log(stream);
   }
 
   stream.on(ETwitterStreamEvent.Data, async tweet => {
     const tweetChannel = client.channels.cache.get("1074313334217789460") || client.channels.cache.get("392093299890061312"); // OPL #mod-chat or OPie #general 
+    const testChannel = client.channels.cache.get("392093299890061312"); // OPie #General
     const tweetURL = `https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}` || 'Unknown'
 
     const uniDate1 = new Date().toLocaleString();
     console.log(`[${uniDate1}] 🐦 TWIT| ${tweetURL}`)
 
     if (client.params.get("twitterStreamEnabled") == 'true') {
-      tweetChannel.send(tweetURL);
+      const tweetTag = tweet.matching_rules[0].tag || "none"
+      if(tweetTag === 'lineup' || tweetTag === 'ratings'){
+        tweetChannel.send(tweetURL);
+      } else {
+        testChannel.send(tweetURL);
+      }
+      // console.log(tweet);
+      // console.log(tweet.matching_rules[0].tag);
       // const tweetAttachment = new AttachmentBuilder(`${tweetURL}`);
       // tweetChannel.send({ files: [tweetAttachment] });
     }
@@ -59,7 +65,9 @@ async function getTweetStream() {
   stream.on('error', error => {
     console.error('Error:', error);
   });
-
+  stream.on('closed', closedmsg => {
+   console.log(`Connection has been closed. ${closedmsg}`)
+  });
   return stream;
 }
 const dummyVal = getTweetStream();
@@ -99,6 +107,28 @@ for (const file of eventFiles) {
     client.once(event.name, (...args) => event.execute(...args));
   } else {
     client.on(event.name, (...args) => event.execute(...args));
+  }
+}
+
+// Reactions Collection setup - See messageCreate.js event for processing of reactions
+client.reactions = new Collection();
+const reactionsPath = path.join(__dirname, "reactions");
+const reactionFiles = fs
+  .readdirSync(reactionsPath)
+  .filter((file) => file.endsWith(".js"));
+
+for (const reactFile of reactionFiles) {
+  const reactFilePath = path.join(reactionsPath, reactFile);
+  const reaction = require(reactFilePath);
+  // Set a new item in the Collection with the key as the reaction name and the value as the exported module
+  if ("name" in reaction && "execute" in reaction) {
+    client.reactions.set(reaction.name, reaction);
+    const uniDate1 = new Date().toLocaleString();
+    console.log(`[${uniDate1}] 👋 REACT | React Loaded  | ${reaction.name}`)
+  } else {
+    console.log(
+      `⛔ [WARNING] The reaction at ${reactFilePath} is missing a required "name" or "execute" property.`
+    );
   }
 }
 

@@ -29,12 +29,12 @@ module.exports = {
                     if (!airesponse.undefined && airesponse !== 'ERR') {
                         talkChannel.send(airesponse)
                     } else {
-                        console.log(` ⌛ CRON| Job Failed  | First Shift AI`);
+                        console.log(` ⌛ CRON  | Job Failed  | First Shift AI`);
                     }
                 }
 
                 const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate1}] ⌛ CRON| Job Executed  | First Shift AI`);
+                console.log(`[${uniDate1}] ⌛ CRON  | Job Executed  | First Shift AI`);
             },
             null,
             true,

@@ -64,7 +64,7 @@ module.exports = {
                     ],
                 });
                 const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate}] ⌛ CRON| Job Executed  | Showtime`);
+                console.log(`[${uniDate}] ⌛ CRON  | Job Executed  | Showtime`);
             },
             null,
             true,

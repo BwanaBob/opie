@@ -29,12 +29,12 @@ module.exports = {
                     if (!airesponse.undefined && airesponse !== 'ERR') {
                         bingoChannel.send(airesponse)
                     } else {
-                        console.log(` ⌛ CRON| Job Failed  | Showtime AI Bingo`);
+                        console.log(` ⌛ CRON  | Job Failed  | Showtime AI Bingo`);
                     }
                 }
 
                 const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate1}] ⌛ CRON| Job Executed  | Showtime AI Bingo`);
+                console.log(`[${uniDate1}] ⌛ CRON  | Job Executed  | Showtime AI Bingo`);
             },
             null,
             true,

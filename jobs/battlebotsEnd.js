@@ -19,7 +19,7 @@ module.exports = {
                     ],
                 });
                 const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate1}] ⌛ CRON| Job Executed  | Battlebots End`);
+                console.log(`[${uniDate1}] ⌛ CRON  | Job Executed  | Battlebots End`);
             },
             null,
             true,

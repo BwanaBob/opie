@@ -20,7 +20,7 @@ module.exports = {
                     ],
                 });
                  const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate}] ⌛ CRON| Job Executed  | Good Night`);
+                console.log(`[${uniDate}] ⌛ CRON  | Job Executed  | Good Night`);
             },
             null,
             true,
