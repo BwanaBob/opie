@@ -63,10 +63,10 @@ async function getTweetStream() {
   });
 
   stream.on('error', error => {
-    console.error('Error:', error);
+    console.error('⛔ [Error] ', error);
   });
   stream.on('closed', closedmsg => {
-   console.log(`Connection has been closed. ${closedmsg}`)
+   console.log(`🟡 [Warning] Twitter connection closed - ${closedmsg}`)
   });
   return stream;
 }

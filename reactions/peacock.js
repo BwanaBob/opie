@@ -1,6 +1,6 @@
 module.exports = {
     name: "Peacock",
-    logName: "🦚 P-COCK",
+    logName: "🐦 P-COCK",
     regex: "peacock",
     async execute(message) {
         if (message.guild.id == "325206992413130753") {

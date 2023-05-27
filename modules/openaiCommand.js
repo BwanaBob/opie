@@ -9,7 +9,7 @@ module.exports = async function (aicommand) {
     // try {
     const result = await openai.createChatCompletion( aicommand )
         .catch((error) => {
-            console.log(`OPENAI ERR: ${error}`);
+            console.log(`⛔ [Error] OPENAI: ${error}`);
         });
     // } catch (error) {
     //   console.log(`ERROR: ${error}`);

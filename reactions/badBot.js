@@ -1,8 +1,12 @@
 module.exports = {
     name: "BadBot",
     logName: "😢 BD BOT",
-    regex: "Bad Bot",
+    regex: "\\bbad bot\\b",
     async execute(message) {
-        message.react('😢')
+        if (message.guild.id == "325206992413130753") {
+            message.react(`<a:crying:1046282457177141309>`);
+        } else {
+            message.react('😢')
+        }
     }
 }

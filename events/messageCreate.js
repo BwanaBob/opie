@@ -25,7 +25,7 @@ module.exports = {
     const messageReactionsEnabled = message.client.params.get("messageReactionsEnabled") ?? "Undefined";
     if (messageReactionsEnabled === 'true') {
       // Reaction Handler
-      const matchingReactions = message.client.reactions.filter(react => new RegExp(react.regex, 'gi').test(message.content))
+      const matchingReactions = message.client.reactions.filter(react => new RegExp(react.regex, 'gmi').test(message.content))
       const uniDate = new Date(message.createdTimestamp).toLocaleString();
       for (reaction of matchingReactions.values()) {
         console.log(

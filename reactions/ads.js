@@ -3,7 +3,7 @@ const { PermissionsBitField, EmbedBuilder } = require("discord.js");
 module.exports = {
     name: "Ads",
     logName: "😠 ADS   ",
-    regex: "\\b(another|many|more|lots of|we just had|damn|extra|commercial)\\W.*?\\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\\b",
+    regex: "\\b(another|many|more|lots of|we just had|damn|extra|commercial)\\b.{0,30}\\b(break|breaks|ad|ads|commercial|commercials|advert|adverts|advertisement|advertisements|break|breaks)\\b",
     async execute(message) {
         if (
             message.author.bot ||

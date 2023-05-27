@@ -46,7 +46,7 @@ const result = await openai.createChatCompletion({
   max_tokens: 192, // limit token usage (length of response)
 })
   .catch((error) => {
-    console.log(`OPENAI ERR: ${error}`);
+    console.log(`⛔ [Error] OPENAI: ${error}`);
   });
 // } catch (error) {
 //   console.log(`ERROR: ${error}`);

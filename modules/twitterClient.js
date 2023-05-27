@@ -59,13 +59,13 @@ async function exportTweetStream() {
     if (!(stream === undefined)) {
       return stream;
     } else {
-      console.log("Twitter Failed!");
+      console.log("⛔ [Error] Twitter Failed to connect!");
       return "Failed";
     }
 
   } catch (error) {
-    console.error('Error:', error.data.detail);
-    console.error('Error:', error.data);
+    console.error('⛔ [Error] ', error.data.detail);
+    console.error('⛔ [Error] ', error.data);
   }
 }
 
