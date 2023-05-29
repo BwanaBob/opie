@@ -2,7 +2,7 @@ const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, Permi
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("options2")
+        .setName("options")
         .setDescription("Displays the current bot options.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
