@@ -1,100 +1,87 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("options")
-    .setDescription("Displays the current bot options.")
-    .setDMPermission(false)
-    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
-    .addStringOption(param =>
-      param.setName('parameter')
-        .setDescription('The option to set')
-        .setRequired(false)
-        .addChoices(
-          { name: 'Reactions Off', value: 'set_reactions_off' },
-          { name: 'Reactions On',  value: 'set_reactions_on'  },
-          { name: 'Chatbot Off',   value: 'set_chatbot_off' },
-          { name: 'Chatbot On',    value: 'set_chatbot_on'  },
-          { name: 'Announce Off',  value: 'set_announce_off' },
-          { name: 'Announce On',   value: 'set_announce_on' },
-          { name: 'Tweets Off',    value: 'set_tweets_off'   },
-          { name: 'Tweets On',     value: 'set_tweets_on'   },
-        ))
-,
-  async execute(interaction) {
+    data: new SlashCommandBuilder()
+        .setName("options2")
+        .setDescription("Displays the current bot options.")
+        .setDMPermission(false)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
+    ,
+    async execute(interaction) {
+        const attachmentDelay = interaction.client.params.get("attachmentDelay") ?? "Undefined";
+        const messageReactionsEnabled = interaction.client.params.get("messageReactionsEnabled") ?? "Undefined";
+        const chatbotChatEnabled = interaction.client.params.get("chatGPTEnabled") ?? "Undefined";
+        const chatbotAnnounementsEnabled = interaction.client.params.get("chatGPTAnnouncementsEnabled") ?? "Undefined";
+        const twitterStreamEnabled = interaction.client.params.get("twitterStreamEnabled") ?? "Undefined";
 
-    const setParam = interaction.options.getString('parameter') ?? 'set_none';
-    switch(setParam){
-      case "set_reactions_off" : {
-        interaction.client.params.set("messageReactionsEnabled", 'false');
-      }
-      break;
-      case "set_reactions_on" : {
-        interaction.client.params.set("messageReactionsEnabled", 'true');
-      }
-      break;
-      case "set_chatbot_off" : {
-        interaction.client.params.set("chatGPTEnabled", 'false');
-      }
-      break;
-      case "set_chatbot_on" : {
-        interaction.client.params.set("chatGPTEnabled", 'true');
-      }
-      break;
-      case "set_announce_off" : {
-        interaction.client.params.set("chatGPTAnnouncementsEnabled", 'false');
-      }
-      break;
-      case "set_announce_on" : {
-        interaction.client.params.set("chatGPTAnnouncementsEnabled", 'true');
-      }
-      break;
-      case "set_tweets_off" : {
-        interaction.client.params.set("twitterStreamEnabled", 'false');
-      }
-      break;
-      case "set_tweets_on" : {
-        interaction.client.params.set("twitterStreamEnabled", 'true');
-      }
-      break;
-    }
+        var delay30Style = ButtonStyle.Secondary
+        var delay60Style = ButtonStyle.Secondary
+        var delay90Style = ButtonStyle.Secondary
+        var delay120Style = ButtonStyle.Secondary
+        var delay300Style = ButtonStyle.Secondary
+        var reactStyle = ButtonStyle.Secondary
+        var chatStyle = ButtonStyle.Secondary
+        var announceStyle = ButtonStyle.Secondary
+        var twitterStyle = ButtonStyle.Secondary
 
-    const attachmentDelay = interaction.client.params.get("attachmentDelay") ?? "Undefined";
-    const messageReactionsEnabled = interaction.client.params.get("messageReactionsEnabled") ?? "Undefined";
-    const chatbotChatEnabled = interaction.client.params.get("chatGPTEnabled") ?? "Undefined";
-    const chatbotAnnounementsEnabled = interaction.client.params.get("chatGPTAnnouncementsEnabled") ?? "Undefined";
-    const twitterStreamEnabled = interaction.client.params.get("twitterStreamEnabled") ?? "Undefined";
-    
-    const optionsEmbed = new EmbedBuilder()
-    .setColor(0xe655d4)
-    .setTitle(`Bot Options`)
-    .setDescription(`Options controlling OPie's behavior.`)
-    .addFields({
-      name: "Attachments Delay",
-      value: attachmentDelay,
-      inline: false,
-    })
-    .addFields({
-      name: "Message Reactions Enabled",
-      value: messageReactionsEnabled,
-      inline: false,
-    })
-    .addFields({
-      name: "Chatbot Chat Enabled",
-      value: chatbotChatEnabled,
-      inline: false,
-    })
-    .addFields({
-      name: "Chatbot Announcements Enabled",
-      value: chatbotAnnounementsEnabled,
-      inline: false,
-    })
-    .addFields({
-      name: "Twitter Stream Enabled",
-      value: twitterStreamEnabled,
-      inline: false,
-    })
-    await interaction.reply({ embeds: [optionsEmbed], ephemeral: true });
-    // await interaction.reply({ content: `The user is: ${testVal}`, ephemeral: true });
-  },
+        if (attachmentDelay === '30') { delay30Style = ButtonStyle.Success }
+        if (attachmentDelay === '60') { delay60Style = ButtonStyle.Success }
+        if (attachmentDelay === '90') { delay90Style = ButtonStyle.Success }
+        if (attachmentDelay === '120') { delay120Style = ButtonStyle.Success }
+        if (attachmentDelay === '300') { delay300Style = ButtonStyle.Success }
+        if (messageReactionsEnabled === 'true') { reactStyle = ButtonStyle.Success }
+        if (chatbotChatEnabled === 'true') { chatStyle = ButtonStyle.Success }
+        if (chatbotAnnounementsEnabled === 'true') { announceStyle = ButtonStyle.Success }
+        if (twitterStreamEnabled === 'true') { twitterStyle = ButtonStyle.Success }
+
+        const delay30 = new ButtonBuilder()
+            .setCustomId('delay30')
+            .setLabel('Delay 30')
+            .setStyle(delay30Style);
+        const delay60 = new ButtonBuilder()
+            .setCustomId('delay60')
+            .setLabel('Delay 60')
+            .setStyle(delay60Style);
+        const delay90 = new ButtonBuilder()
+            .setCustomId('delay90')
+            .setLabel('Delay 90')
+            .setStyle(delay90Style);
+        const delay120 = new ButtonBuilder()
+            .setCustomId('delay120')
+            .setLabel('Delay 120')
+            .setStyle(delay120Style);
+        const delay300 = new ButtonBuilder()
+            .setCustomId('delay300')
+            .setLabel('Delay 300')
+            .setStyle(delay300Style);
+        const react = new ButtonBuilder()
+            .setCustomId('react')
+            .setLabel('Reactions')
+            .setStyle(reactStyle);
+        const chat = new ButtonBuilder()
+            .setCustomId('chat')
+            .setLabel('AI Chat')
+            .setStyle(chatStyle);
+        const announce = new ButtonBuilder()
+            .setCustomId('announce')
+            .setLabel('Announcements')
+            .setStyle(announceStyle);
+        const twitter = new ButtonBuilder()
+            .setCustomId('twitter')
+            .setLabel('Twitter')
+            .setStyle(twitterStyle);
+
+        const delayRow = new ActionRowBuilder()
+            .addComponents(delay30, delay60, delay90, delay120, delay300);
+        const optionsRow = new ActionRowBuilder()
+            .addComponents(react, chat, announce, twitter);
+
+        await interaction.reply({
+            content: `Adjust the bot's behavior here.`,
+            components: [delayRow, optionsRow],
+            //  embeds: [optionsEmbed],
+            ephemeral: false
+        });
+        // await interaction.reply({ content: `The user is: ${testVal}`, ephemeral: true });
+    },
 };

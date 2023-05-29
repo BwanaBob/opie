@@ -1,18 +1,21 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 
 const redditEmbed = new EmbedBuilder()
-.setColor(0xff4500)
-.setTitle("Reddit")
-.setDescription("Join the discussion on Reddit at r/OnPatrolLive")
-.addFields({
-  name: "Link",
-  value: `[reddit.com](https://www.reddit.com/r/OnPatrolLive/)`,
-  inline: true,
-})
-.setURL('https://www.reddit.com/r/OnPatrolLive/')
-.setThumbnail(
+  .setColor(0xff4500)
+  .setTitle("Reddit")
+  .setDescription("Join the discussion on Reddit at r/OnPatrolLive")
+  .setURL('https://www.reddit.com/r/OnPatrolLive/')
+  .setThumbnail(
     "https://i.imgur.com/sd2bsMa.png"
-);
+  );
+
+const redditButton = new ButtonBuilder()
+  .setLabel('reddit.com')
+  .setURL('https://www.reddit.com/r/OnPatrolLive/')
+  .setStyle(ButtonStyle.Link);
+
+const redditRow = new ActionRowBuilder()
+  .addComponents(redditButton);
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -21,6 +24,9 @@ module.exports = {
     .setDMPermission(true),
   async execute(interaction) {
     // await interaction.reply({ content: bingoMessage, ephemeral: true });
-    const messageId = await interaction.reply({ embeds: [ redditEmbed ] });
+    const messageId = await interaction.reply({
+      embeds: [redditEmbed],
+      components: [redditRow]
+    });
   },
 };

@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = {
     name: "BingoHow",
@@ -9,16 +9,22 @@ module.exports = {
             .setColor(0xff0000)
             .setTitle("Bingo")
             .setDescription("Get your bingo cards and play with us live!")
-            .addFields({
-                name: "Website",
-                value: `[thatsabingo.com](https://www.thatsabingo.com/)`,
-                inline: true,
-            })
             .setURL('https://www.thatsabingo.com/')
             .setThumbnail(
                 "https://i.imgur.com/dJP9d8L.png"
             );
 
-        message.reply({ embeds: [bingoEmbed] });
+        const bingoButton = new ButtonBuilder()
+            .setLabel('Play Now')
+            .setURL('https://www.thatsabingo.com')
+            .setStyle(ButtonStyle.Link);
+
+        const bingoRow = new ActionRowBuilder()
+            .addComponents(bingoButton);
+
+        message.reply({
+            embeds: [bingoEmbed],
+            components: [bingoRow]
+        });
     }
 }
