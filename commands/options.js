@@ -80,7 +80,7 @@ module.exports = {
             content: `Adjust the bot's behavior here.`,
             components: [delayRow, optionsRow],
             //  embeds: [optionsEmbed],
-            ephemeral: false
+            ephemeral: true
         });
         // await interaction.reply({ content: `The user is: ${testVal}`, ephemeral: true });
     },

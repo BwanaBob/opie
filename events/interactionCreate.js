@@ -43,79 +43,121 @@ module.exports = {
       // console.log(messageComponents);
       // console.log(buttonName);
       // console.log(usedCommand);
+
+      const uniDate = new Date().toLocaleString();
+
       switch (buttonName) {
         case "announce": {
           if (chatbotAnnounementsEnabled === "true") {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'false');
-            interaction.message.reply("Announcements Off");
+            interaction.reply("Announcements Off");
+            console.log(
+              `[${uniDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements Off`
+            );
           } else {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'true');
-            interaction.message.reply("Announcements On");
+            interaction.reply("Announcements On");
+            console.log(
+              `[${uniDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements On`
+            );
           }
-          interaction.message.delete();
+          // interaction.message.delete();
         }
           break;
         case "chat": {
           if (chatbotChatEnabled === "true") {
             interaction.client.params.set("chatGPTEnabled", 'false');
-            interaction.message.reply("AI chat Off");
+            interaction.reply("AI Chat Off");
+            console.log(
+              `[${uniDate}] 🔘 AICHAT| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | AI Chat Off`
+            );
           } else {
             interaction.client.params.set("chatGPTEnabled", 'true');
-            interaction.message.reply("AI chat On");
+            interaction.reply("AI Chat On");
+            console.log(
+              `[${uniDate}] 🔘 AICHAT| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | AI Chat On`
+            );
           }
-          interaction.message.delete();
+          // interaction.message.delete();
         }
           break;
         case "react": {
           if (messageReactionsEnabled === "true") {
             interaction.client.params.set("messageReactionsEnabled", 'false');
-            interaction.message.reply("Reactions Off");
+            interaction.reply("Reactions Off");
+            console.log(
+              `[${uniDate}] 🔘 REACTS| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Reactions Off`
+            );
           } else {
             interaction.client.params.set("messageReactionsEnabled", 'true');
-            interaction.message.reply("Reactions On");
+            interaction.reply("Reactions On");
+            console.log(
+              `[${uniDate}] 🔘 REACTS| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Reactions On`
+            );
           }
-          interaction.message.delete();
+          // interaction.message.delete();
         }
           break;
         case "twitter": {
           if (twitterStreamEnabled === "true") {
             interaction.client.params.set("twitterStreamEnabled", 'false');
-            interaction.message.reply("Twitter Off");
+            interaction.reply("Twitter Off");
+            console.log(
+              `[${uniDate}] 🔘 TWITER| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Twitter Off`
+            );
           } else {
             interaction.client.params.set("twitterStreamEnabled", 'true');
-            interaction.message.reply("Twitter On");
+            interaction.reply("Twitter On");
+            console.log(
+              `[${uniDate}] 🔘 TWITER| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Twitter On`
+            );
           }
-          interaction.message.delete();
+          // interaction.message.delete();
         }
           break;
         case "delay30": {
           interaction.client.params.set("attachmentDelay", '30');
-          interaction.message.reply("Attachment delay set to 30 seconds.");
-          interaction.message.delete();
+          interaction.reply("Attachment delay set to 30 seconds.");
+          console.log(
+            `[${uniDate}] 🔘 DLAY30| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 30`
+          );
+        // interaction.message.delete();
         }
           break;
         case "delay60": {
           interaction.client.params.set("attachmentDelay", '60');
-          interaction.message.reply("Attachment delay set to 60 seconds.");
-          interaction.message.delete();
+          interaction.reply("Attachment delay set to 60 seconds.");
+          console.log(
+            `[${uniDate}] 🔘 DLAY60| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 60`
+          );
+          // interaction.message.delete();
         }
           break;
         case "delay90": {
           interaction.client.params.set("attachmentDelay", '90');
-          interaction.message.reply("Attachment delay set to 90 seconds.");
-          interaction.message.delete();
+          interaction.reply("Attachment delay set to 90 seconds.");
+          console.log(
+            `[${uniDate}] 🔘 DLAY90| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 90`
+          );
+          // interaction.message.delete();
         }
           break;
         case "delay120": {
           interaction.client.params.set("attachmentDelay", '120');
-          interaction.message.reply("Attachment delay set to 120 seconds.");
-          interaction.message.delete();
+          interaction.reply("Attachment delay set to 120 seconds.");
+          console.log(
+            `[${uniDate}] 🔘 DLAY2m| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 120`
+          );
+          // interaction.message.delete();
         }
           break;
         case "delay300": {
           interaction.client.params.set("attachmentDelay", '300');
-          interaction.message.reply("Attachment delay set to 300 seconds.");
-          interaction.message.delete();
+          interaction.reply("Attachment delay set to 300 seconds.");
+          console.log(
+            `[${uniDate}] 🔘 DLAY5m| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 300`
+          );
+          // interaction.message.delete();
         }
           break;
       }
