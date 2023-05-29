@@ -205,7 +205,7 @@ module.exports = {
       const attachmentDelay = message.client.params.get("attachmentDelay");
       if (lastTime == undefined) {
         // console.log(
-        //   `[${uniDate}] ✅ EMB | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Embed`
+        //   `[${uniDate}] ✅ EMB   | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Attachment`
         // );
         message.client.timers.set(message.member.id, message.createdTimestamp);
       } else {
@@ -214,16 +214,16 @@ module.exports = {
         );
         if (elapsed < attachmentDelay) {
           console.log(
-            `[${uniDate}] ⛔ EMBED | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec BAD`
+            `[${uniDate}] ⛔ ATTACH| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec BAD`
           );
           message.delete();
 
           // send notice to user
           const userReplyEmbed = new EmbedBuilder()
             .setColor(0xff9900)
-            .setTitle("Embed Timer Violated")
+            .setTitle("Attachments Timer Violated")
             .setDescription(
-              `This server has limited the posting of embedded content to once every ${attachmentDelay} seconds.`
+              `This server has limited the posting of content with attachments to once every ${attachmentDelay} seconds.`
             )
             .setThumbnail(
               "https://i.imgur.com/TgSIaZD.png"
@@ -245,7 +245,7 @@ module.exports = {
           // systemChannel = System Messages (New users)
           const notificationEmbed = new EmbedBuilder()
             .setColor(0xff9900)
-            .setTitle("Embed Timer Violated")
+            .setTitle("Attachments Timer Violated")
             .setAuthor({
               name: `${message.member.displayName} (${message.author.tag})`,
               iconURL: `${message.member.displayAvatarURL()}`,
