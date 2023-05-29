@@ -47,10 +47,10 @@ module.exports = {
         case "announce": {
           if (chatbotAnnounementsEnabled === "true") {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'false');
-            interaction.message.channel.send("Announcements Off");
+            interaction.message.reply("Announcements Off");
           } else {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'true');
-            interaction.message.channel.send("Announcements On");
+            interaction.message.reply("Announcements On");
           }
           interaction.message.delete();
         }
@@ -61,7 +61,7 @@ module.exports = {
               interaction.message.channel.send("AI chat Off");
             } else {
               interaction.client.params.set("chatGPTEnabled", 'true');
-              interaction.message.channel.send("AI chat On");
+              interaction.message.reply("AI chat On");
             }
             interaction.message.delete();
           }
@@ -69,10 +69,10 @@ module.exports = {
             case "react": {
               if (messageReactionsEnabled === "true") {
                 interaction.client.params.set("messageReactionsEnabled", 'false');
-                interaction.message.channel.send("Reactions Off");
+                interaction.message.reply("Reactions Off");
               } else {
                 interaction.client.params.set("messageReactionsEnabled", 'true');
-                interaction.message.channel.send("Reactions On");
+                interaction.message.reply("Reactions On");
               }
               interaction.message.delete();
             }
@@ -80,41 +80,41 @@ module.exports = {
               case "twitter": {
                 if (twitterStreamEnabled === "true") {
                   interaction.client.params.set("twitterStreamEnabled", 'false');
-                  interaction.message.channel.send("Twitter Off");
+                  interaction.message.reply("Twitter Off");
                 } else {
                   interaction.client.params.set("twitterStreamEnabled", 'true');
-                  interaction.message.channel.send("Twitter On");
+                  interaction.message.reply("Twitter On");
                 }
                 interaction.message.delete();
               }
                 break;
                 case "delay30": {
                     interaction.client.params.set("attachmentDelay", '30');
-                    interaction.message.channel.send("Attachment delay set to 30 seconds.");
+                    interaction.message.reply("Attachment delay set to 30 seconds.");
                   interaction.message.delete();
                 }
                   break;
                   case "delay60": {
                     interaction.client.params.set("attachmentDelay", '60');
-                    interaction.message.channel.send("Attachment delay set to 60 seconds.");
+                    interaction.message.reply("Attachment delay set to 60 seconds.");
                   interaction.message.delete();
                 }
                   break;
                   case "delay90": {
                     interaction.client.params.set("attachmentDelay", '90');
-                    interaction.message.channel.send("Attachment delay set to 90 seconds.");
+                    interaction.message.reply("Attachment delay set to 90 seconds.");
                   interaction.message.delete();
                 }
                   break;
                   case "delay120": {
                     interaction.client.params.set("attachmentDelay", '120');
-                    interaction.message.channel.send("Attachment delay set to 120 seconds.");
+                    interaction.message.reply("Attachment delay set to 120 seconds.");
                   interaction.message.delete();
                 }
                   break;
                   case "delay300": {
                     interaction.client.params.set("attachmentDelay", '300');
-                    interaction.message.channel.send("Attachment delay set to 300 seconds.");
+                    interaction.message.reply("Attachment delay set to 300 seconds.");
                   interaction.message.delete();
                 }
                   break;
