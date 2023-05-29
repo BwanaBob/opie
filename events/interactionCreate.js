@@ -47,78 +47,78 @@ module.exports = {
         case "announce": {
           if (chatbotAnnounementsEnabled === "true") {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'false');
-            interaction.message.reply("Announcements Off");
+            // interaction.message.reply("Announcements Off");
           } else {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'true');
-            interaction.message.reply("Announcements On");
+            // interaction.message.reply("Announcements On");
           }
           interaction.message.delete();
         }
           break;
-          case "chat": {
-            if (chatbotChatEnabled === "true") {
-              interaction.client.params.set("chatGPTEnabled", 'false');
-              interaction.message.channel.send("AI chat Off");
-            } else {
-              interaction.client.params.set("chatGPTEnabled", 'true');
-              interaction.message.reply("AI chat On");
-            }
-            interaction.message.delete();
+        case "chat": {
+          if (chatbotChatEnabled === "true") {
+            interaction.client.params.set("chatGPTEnabled", 'false');
+            // interaction.message.reply("AI chat Off");
+          } else {
+            interaction.client.params.set("chatGPTEnabled", 'true');
+            // interaction.message.reply("AI chat On");
           }
-            break;
-            case "react": {
-              if (messageReactionsEnabled === "true") {
-                interaction.client.params.set("messageReactionsEnabled", 'false');
-                interaction.message.reply("Reactions Off");
-              } else {
-                interaction.client.params.set("messageReactionsEnabled", 'true');
-                interaction.message.reply("Reactions On");
-              }
-              interaction.message.delete();
-            }
-              break;
-              case "twitter": {
-                if (twitterStreamEnabled === "true") {
-                  interaction.client.params.set("twitterStreamEnabled", 'false');
-                  interaction.message.reply("Twitter Off");
-                } else {
-                  interaction.client.params.set("twitterStreamEnabled", 'true');
-                  interaction.message.reply("Twitter On");
-                }
-                interaction.message.delete();
-              }
-                break;
-                case "delay30": {
-                    interaction.client.params.set("attachmentDelay", '30');
-                    interaction.message.reply("Attachment delay set to 30 seconds.");
-                  interaction.message.delete();
-                }
-                  break;
-                  case "delay60": {
-                    interaction.client.params.set("attachmentDelay", '60');
-                    interaction.message.reply("Attachment delay set to 60 seconds.");
-                  interaction.message.delete();
-                }
-                  break;
-                  case "delay90": {
-                    interaction.client.params.set("attachmentDelay", '90');
-                    interaction.message.reply("Attachment delay set to 90 seconds.");
-                  interaction.message.delete();
-                }
-                  break;
-                  case "delay120": {
-                    interaction.client.params.set("attachmentDelay", '120');
-                    interaction.message.reply("Attachment delay set to 120 seconds.");
-                  interaction.message.delete();
-                }
-                  break;
-                  case "delay300": {
-                    interaction.client.params.set("attachmentDelay", '300');
-                    interaction.message.reply("Attachment delay set to 300 seconds.");
-                  interaction.message.delete();
-                }
-                  break;
-              }
+          interaction.message.delete();
+        }
+          break;
+        case "react": {
+          if (messageReactionsEnabled === "true") {
+            interaction.client.params.set("messageReactionsEnabled", 'false');
+            // interaction.message.reply("Reactions Off");
+          } else {
+            interaction.client.params.set("messageReactionsEnabled", 'true');
+            // interaction.message.reply("Reactions On");
+          }
+          interaction.message.delete();
+        }
+          break;
+        case "twitter": {
+          if (twitterStreamEnabled === "true") {
+            interaction.client.params.set("twitterStreamEnabled", 'false');
+            // interaction.message.reply("Twitter Off");
+          } else {
+            interaction.client.params.set("twitterStreamEnabled", 'true');
+            // interaction.message.reply("Twitter On");
+          }
+          interaction.message.delete();
+        }
+          break;
+        case "delay30": {
+          interaction.client.params.set("attachmentDelay", '30');
+          // interaction.message.reply("Attachment delay set to 30 seconds.");
+          interaction.message.delete();
+        }
+          break;
+        case "delay60": {
+          interaction.client.params.set("attachmentDelay", '60');
+          // interaction.message.reply("Attachment delay set to 60 seconds.");
+          interaction.message.delete();
+        }
+          break;
+        case "delay90": {
+          interaction.client.params.set("attachmentDelay", '90');
+          // interaction.message.reply("Attachment delay set to 90 seconds.");
+          interaction.message.delete();
+        }
+          break;
+        case "delay120": {
+          interaction.client.params.set("attachmentDelay", '120');
+          // interaction.message.reply("Attachment delay set to 120 seconds.");
+          interaction.message.delete();
+        }
+          break;
+        case "delay300": {
+          interaction.client.params.set("attachmentDelay", '300');
+          // interaction.message.reply("Attachment delay set to 300 seconds.");
+          interaction.message.delete();
+        }
+          break;
+      }
     }
   },
 };
