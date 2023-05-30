@@ -51,9 +51,7 @@ module.exports = {
         case "announce": {
           if (chatbotAnnounementsEnabled === "true") {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'false');
-            console.log(
-              `[${uniDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements Off`
-            );
+            console.log(`[${uniDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements Off`);
           } else {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'true');
             console.log(`[${uniDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements On`);
