@@ -3,7 +3,7 @@ const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("
 module.exports = {
     name: "BingoHow",
     logName: "🤘 HOWBGO",
-    regex: "(how|where).*(find|play|get).*(bingo|card)",
+    regex: "\\b(how|where)\\b.{1,20}\\b(find|play|get)\\b.{1,20}\\b(bingo|card(s)?)\\b",
     async execute(message) {
         const bingoEmbed = new EmbedBuilder()
             .setColor(0xff0000)

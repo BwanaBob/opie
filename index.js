@@ -41,7 +41,8 @@ async function getTweetStream() {
   }
 
   stream.on(ETwitterStreamEvent.Data, async tweet => {
-    const tweetChannel = client.channels.cache.get("1074313334217789460") || client.channels.cache.get("392093299890061312"); // OPL #mod-chat or OPie #general 
+    const modChannel = client.channels.cache.get("1074313334217789460") || client.channels.cache.get("392120898909634561"); // OPL #mod-chat or OPie #bot-test 
+    const tweetChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #episode-discussion or OPie #general 
     const testChannel = client.channels.cache.get("392093299890061312"); // OPie #General
     const tweetURL = `https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}` || 'Unknown'
 
@@ -50,15 +51,17 @@ async function getTweetStream() {
 
     if (client.params.get("twitterStreamEnabled") == 'true') {
       const tweetTag = tweet.matching_rules[0].tag || "none"
-      if(tweetTag === 'lineup' || tweetTag === 'ratings'){
-        tweetChannel.send(tweetURL);
-      } else {
-        testChannel.send(tweetURL);
+      switch (tweetTag) {
+        case 'lineup':
+        case 'ratings':
+        // case 'travel':
+          tweetChannel.send(tweetURL).then((msg) => msg.pin());
+          modChannel.send(tweetURL);
+          break;
+        default:
+          testChannel.send(tweetURL);
+          break;
       }
-      // console.log(tweet);
-      // console.log(tweet.matching_rules[0].tag);
-      // const tweetAttachment = new AttachmentBuilder(`${tweetURL}`);
-      // tweetChannel.send({ files: [tweetAttachment] });
     }
   });
 
@@ -66,7 +69,7 @@ async function getTweetStream() {
     console.error('⛔ [Error] ', error);
   });
   stream.on('closed', closedmsg => {
-   console.log(`🟡 [Warning] Twitter connection closed - ${closedmsg}`)
+    console.log(`🟡 [Warning] Twitter connection closed - ${closedmsg}`)
   });
   return stream;
 }
