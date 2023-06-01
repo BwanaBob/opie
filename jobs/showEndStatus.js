@@ -5,22 +5,22 @@ module.exports = {
     execute(client) {
         // const talkChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #epdis or OPie #General
         const uniDate1 = new Date().toLocaleString();
-        console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | First Shift`);
-        var jobFirstShift = new CronJob(
-            '00 00 19 * * FRI,SAT', () => {
-                //'*/15 * * * * *', () => {
-                // talkChannel.send("First Shift is starting now!")
+        console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Show End Status`);
+        var jobGoodnight = new CronJob(
+            '00 00 23 * * FRI,SAT', () => {
+            //'*/15 * * * * *', () => {
+                // talkChannel.send("Good night everyone!")
                 client.user.setPresence({
-                    status: "online",
+                    status: "idle",
                     activities: [
                         {
-                            type: ActivityType.Watching,
-                            name: "First Shift",
+                            type: ActivityType.Listening,
+                            name: "lullabies",
                         },
                     ],
                 });
-                const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate}] ⌛ CRON  | Job Executed  | First Shift`);
+                 const uniDate = new Date().toLocaleString();
+                console.log(`[${uniDate}] ⌛ CRON  | Job Executed  | Show End Status`);
             },
             null,
             true,

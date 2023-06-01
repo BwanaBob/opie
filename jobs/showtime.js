@@ -11,7 +11,7 @@ module.exports = {
         console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Showtime`);
         var jobShowtime = new CronJob(
             '00 00 20 * * FRI,SAT', () => {
-            //'*/15 * * * * *', () => {
+                //'*/15 * * * * *', () => {
                 const showtimeEmbed = new EmbedBuilder()
                     .setColor(0x0000ff)
                     .setTitle("Showtime")
@@ -52,8 +52,10 @@ module.exports = {
                     );
 
                 // noticeChannel.send("On Patrol: Live is starting now!")
-                talkChannel.send({ embeds: [showtimeEmbed] });
-                bingoChannel.send({ embeds: [bingoEmbed] });
+                if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
+                    talkChannel.send({ embeds: [showtimeEmbed] });
+                    bingoChannel.send({ embeds: [bingoEmbed] });
+                }
                 client.user.setPresence({
                     status: "online",
                     activities: [

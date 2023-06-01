@@ -16,12 +16,12 @@ module.exports = {
                         content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
                     }, {
                         role: 'system',
-                        content: 'You host a bingo game where players are given a card full of terms to look for on the tv show "On Patrol: Live". Players can select their own custom daubers to mark their cards, but the Cow dauber is rumored to bring good luck.',
+                        content: 'You host a bingo game where players are given a card full of terms to look for on the tv show "On Patrol: Live". The show and bingo game are finally returning after a two week break. Players can select their own custom daubers to mark their cards, but the Cow dauber is rumored to bring good luck.',
                     }, {
                         role: 'user',
                         content: 'Welcome our wonderful bingo players to their Bingo game based on the television show On Patrol: Live. Encourage them to grab their bingo cards at https://www.thatsabingo.com/'
                     }],
-                    max_tokens: 192, // limit token usage (length of response)
+                    max_tokens: 256, // limit token usage (length of response)
                 };
 
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {

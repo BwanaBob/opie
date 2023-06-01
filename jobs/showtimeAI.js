@@ -15,8 +15,11 @@ module.exports = {
                         role: 'system',
                         content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
                     }, {
+                        role: 'system',
+                        content: 'After a long two week break, the television show On Patrol: Live is returning now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord',
+                    }, {
                         role: 'user',
-                        content: 'Write an opening comment welcoming our wonderful discord users to their watch party for the television show On Patrol: Live.'
+                        content: 'Write an enthusiastic opening comment welcoming our wonderful discord users to their watch party for the television show On Patrol: Live.'
                     }],
                     max_tokens: 256, // limit token usage (length of response)
                 };
