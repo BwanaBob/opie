@@ -33,10 +33,10 @@ async function getTweetStream() {
   // console.log(stream);
   const uniDate2 = new Date().toLocaleString();
   if ((stream === undefined) || (stream === "Failed")) {
-    console.log(`[${uniDate2}] 🐦 TWIT  | Failed to connect`)
+    console.log(`[${uniDate2}] 🐦 TWIT  | ⛔ Failed to connect`)
     return;
   } else {
-    console.log(`[${uniDate2}] 🐦 TWIT  | Connected`)
+    console.log(`[${uniDate2}] 🐦 TWIT  | 🟢 Connected`)
     // console.log(stream);
   }
 
@@ -47,7 +47,7 @@ async function getTweetStream() {
     const tweetURL = `https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}` || 'Unknown'
 
     const uniDate1 = new Date().toLocaleString();
-    console.log(`[${uniDate1}] 🐦 TWIT| ${tweetURL}`)
+    console.log(`[${uniDate1}] 🐦 TWIT  | ${tweetURL}`)
 
     if (client.params.get("twitterStreamEnabled") == 'true') {
       const tweetTag = tweet.matching_rules[0].tag || "none"
@@ -67,32 +67,32 @@ async function getTweetStream() {
 
   stream.on(ETwitterStreamEvent.ConnectionLost, async err => {
     const logTime = new Date().toLocaleString();
-    console.error(`[${logTime}] 🐦 TWIT| ⛔ Connection Lost`, err);
+    console.error(`[${logTime}] 🐦 TWIT  | ⛔ Connection Lost`, err);
     client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | ⛔ Connection Lost" });
   });
   stream.on(ETwitterStreamEvent.ConnectionClosed, async msg => {
     const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT| 🟡 Connection Closed - ${msg}`)
+    console.log(`[${logTime}] 🐦 TWIT  | 🟡 Connection Closed - ${msg}`)
     client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | 🟡 Connection Closed" });
   });
   stream.on(ETwitterStreamEvent.Error, async err => { // combines ConnectionError & TweetParseError
     const logTime = new Date().toLocaleString();
-    console.error(`[${logTime}] 🐦 TWIT| ⛔ Connection Error - ${err.type}`, err.error)
+    console.error(`[${logTime}] 🐦 TWIT  | ⛔ Connection Error - ${err.type}`, err.error)
     client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | ⛔ Connection Error\n${err.type}\n${err.error}` });
   });
   stream.on(ETwitterStreamEvent.ReconnectAttempt, async attemptNum => {
     const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT| 🟡 Reconnecting - attempt # ${attemptNum}`)
+    console.log(`[${logTime}] 🐦 TWIT  | 🟡 Reconnecting - attempt # ${attemptNum}`)
     client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | 🟡 Reconnecting - attempt # ${attemptNum}`});
   });
   stream.on(ETwitterStreamEvent.Reconnected, async msg => {
     const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT| 🟢 Reconnected - ${msg}`)
+    console.log(`[${logTime}] 🐦 TWIT  | 🟢 Reconnected - ${msg}`)
     client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | 🟢 Reconnected" });
   });
     stream.on(ETwitterStreamEvent.DataKeepAlive, async msg => {
     client.timers.set("TwitterKeepAlive", Math.floor(new Date().getTime() / 1000));
-    // console.log(`[${logTime}] 🐦 TWIT| 🟡 Keep Alive - ${aliveDate}`)
+    // console.log(`[${logTime}] 🐦 TWIT  | 🟡 Keep Alive - ${aliveDate}`)
   });
   return stream;
 }
