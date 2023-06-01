@@ -54,7 +54,7 @@ async function getTweetStream() {
       switch (tweetTag) {
         case 'lineup':
         case 'ratings':
-        // case 'travel':
+          // case 'travel':
           tweetChannel.send(tweetURL).then((msg) => msg.pin());
           modChannel.send(tweetURL);
           break;
@@ -65,11 +65,20 @@ async function getTweetStream() {
     }
   });
 
-  stream.on('error', error => {
-    console.error('⛔ [Error] ', error);
+  stream.on(ETwitterStreamEvent.ConnectionLost, async err => {
+    console.error('⛔ [Twitter Connection Lost] ', err);
   });
-  stream.on('closed', closedmsg => {
-    console.log(`🟡 [Warning] Twitter connection closed - ${closedmsg}`)
+  stream.on(ETwitterStreamEvent.ConnectionClosed, async msg => {
+    console.log(`🟡 [Twitter Connection Closed] - ${msg}`)
+  });
+  stream.on(ETwitterStreamEvent.Error, async err => {
+    console.log(`⛔ [Twitter Connection Error] - ${err}`)
+  });
+  stream.on(ETwitterStreamEvent.DataKeepAlive, async msg => {
+    // aliveDate = new Date();
+    // client.timers.set("TwitterKeepAlive", new Date());
+    client.timers.set("TwitterKeepAlive", Math.floor(new Date().getTime() / 1000));
+    // console.log(`🟡 [Twitter Keep Alive] - ${aliveDate}`)
   });
   return stream;
 }
