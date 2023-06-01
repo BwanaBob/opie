@@ -36,7 +36,7 @@ async function getTweetStream() {
     console.log(`[${uniDate2}] 🐦 TWIT  | ⛔ Failed to connect`)
     return;
   } else {
-    console.log(`[${uniDate2}] 🐦 TWIT  | 🟢 Connected`)
+    console.log(`[${uniDate2}] 🐦 TWIT  | ✅ Connected`)
     // console.log(stream);
   }
 
@@ -72,8 +72,8 @@ async function getTweetStream() {
   });
   stream.on(ETwitterStreamEvent.ConnectionClosed, async msg => {
     const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT  | 🟡 Connection Closed - ${msg}`)
-    client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | 🟡 Connection Closed" });
+    console.log(`[${logTime}] 🐦 TWIT  | 🔶 Connection Closed - ${msg}`)
+    client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | 🔶 Connection Closed" });
   });
   stream.on(ETwitterStreamEvent.Error, async err => { // combines ConnectionError & TweetParseError
     const logTime = new Date().toLocaleString();
@@ -82,17 +82,17 @@ async function getTweetStream() {
   });
   stream.on(ETwitterStreamEvent.ReconnectAttempt, async attemptNum => {
     const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT  | 🟡 Reconnecting - attempt # ${attemptNum}`)
-    client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | 🟡 Reconnecting - attempt # ${attemptNum}`});
+    console.log(`[${logTime}] 🐦 TWIT  | 🔶 Reconnecting - attempt # ${attemptNum}`)
+    client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | 🔶 Reconnecting - attempt # ${attemptNum}`});
   });
   stream.on(ETwitterStreamEvent.Reconnected, async msg => {
     const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT  | 🟢 Reconnected - ${msg}`)
-    client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | 🟢 Reconnected" });
+    console.log(`[${logTime}] 🐦 TWIT  | ✅ Reconnected - ${msg}`)
+    client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | ✅ Reconnected" });
   });
     stream.on(ETwitterStreamEvent.DataKeepAlive, async msg => {
     client.timers.set("TwitterKeepAlive", Math.floor(new Date().getTime() / 1000));
-    // console.log(`[${logTime}] 🐦 TWIT  | 🟡 Keep Alive - ${aliveDate}`)
+    // console.log(`[${logTime}] 🐦 TWIT  | 🔶 Keep Alive - ${aliveDate}`)
   });
   return stream;
 }
