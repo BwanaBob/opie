@@ -15,3 +15,35 @@ https://www.reddit.com/r/OnPatrolLive/
 
 Discuss this bot on it's Discord server:<br>
 https://discord.gg/z75ZZzEn6b
+
+## Features
+### Slash Commands
+#### options
+A moderator only command that controls OPie's behavior.
+Delay buttons adjust how long users must wait between posting attachments (gifs)
+Toggle buttons enable and disable: Emoji Reactions, Chatbot Chat, Announcements, twitter monitoring
+#### post
+A moderator only command that istruct OPie to post a preconfigured message in the current channel.
+#### status
+A moderator only command that allows changing of the bot's user status in discord.
+#### echo
+A moderator only command that has opie repeat whatever text you enter into the current channel.
+
+#### bingo
+Responds with info on where to play bingo
+#### reddit
+Responds with a link to our subreddit
+#### rules
+Responds with a link to the #rules channel
+#### server
+Responds with information about the current discord server
+
+### Attachments Throttling
+### Reactions
+### ChatGPT chat
+### Jobs
+### Milestones
+### Twitter Monitoring
+### Notices
+#### User Name Change
+#### Message Deleted
