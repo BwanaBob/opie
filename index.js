@@ -41,8 +41,9 @@ async function getTweetStream() {
   }
 
   stream.on(ETwitterStreamEvent.Data, async tweet => {
+    const discussionChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #episode-discussion or OPie #general 
+    const loungeChannel = client.channels.cache.get("325206992413130753") || client.channels.cache.get("392093299890061312"); // OPL #lounge or OPie #general 
     const modChannel = client.channels.cache.get("1074313334217789460") || client.channels.cache.get("392120898909634561"); // OPL #mod-chat or OPie #bot-test 
-    const tweetChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #episode-discussion or OPie #general 
     const testChannel = client.channels.cache.get("392093299890061312"); // OPie #General
     const tweetURL = `https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}` || 'Unknown'
 
@@ -53,10 +54,11 @@ async function getTweetStream() {
       const tweetTag = tweet.matching_rules[0].tag || "none"
       switch (tweetTag) {
         case 'lineup':
+          loungeChannel.send(tweetURL);
+          modChannel.send(tweetURL);
         case 'ratings':
           // case 'travel':
-          tweetChannel.send(tweetURL).then((msg) => msg.pin());
-          modChannel.send(tweetURL);
+          discussionChannel.send(tweetURL).then((msg) => msg.pin());
           break;
         default:
           testChannel.send(tweetURL);
