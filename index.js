@@ -56,6 +56,7 @@ async function getTweetStream() {
         case 'lineup':
           loungeChannel.send(tweetURL);
           modChannel.send(tweetURL);
+          client.users.cache.get("629681401918390312").send(tweetURL);
         case 'ratings':
           // case 'travel':
           discussionChannel.send(tweetURL).then((msg) => msg.pin());
