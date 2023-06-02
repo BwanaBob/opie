@@ -5,9 +5,9 @@ module.exports = {
   execute(oldMember, newMember) {
     if (typeof newMember !== 'undefined' && typeof oldMember !== 'undefined') {
       if (newMember.nickname && oldMember.nickname !== newMember.nickname) {
-        const uniDate = new Date().toLocaleString();
+        const logDate = new Date().toLocaleString();
         console.log(
-          `[${uniDate}] 😐 NAME  | ${oldMember.guild.name} | ${oldMember.user.tag} | ${oldMember.nickname} -> ${newMember.nickname}`
+          `[${logDate}] 😐 NAME  | ${oldMember.guild.name} | ${oldMember.user.tag} | ${oldMember.nickname} -> ${newMember.nickname}`
         );
         const nameChangeEmbed = new EmbedBuilder()
           .setColor(0x00aaaa)

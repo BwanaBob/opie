@@ -3,9 +3,9 @@ const { Events, EmbedBuilder, PermissionsBitField } = require("discord.js");
 module.exports = {
   name: Events.MessageDelete,
   async execute(message) {
-    const uniDate = new Date(message.createdTimestamp).toLocaleString();
+    const logDate = new Date(message.createdTimestamp).toLocaleString();
     console.log(
-      `[${uniDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
+      `[${logDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
     );
 
     if (

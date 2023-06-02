@@ -6,9 +6,9 @@ const { Events, EmbedBuilder } = require("discord.js");
 module.exports = {
   name: Events.GuildMemberRemove,
   execute(GuildId, user) {
-      const uniDate = new Date().toLocaleString();
+      const logDate = new Date().toLocaleString();
       console.log(
-        `[${uniDate}] 😐 LEFT| ${user.name}`
+        `[${logDate}] 😐 LEFT| ${user.name}`
         )
       const removedEmbed = new EmbedBuilder()
       .setColor(0x777777)

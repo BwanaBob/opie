@@ -7,8 +7,8 @@ module.exports = {
         const talkChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #epdis or OPie #General
         const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
         const guildIcon = client.guilds.cache.get('391821567241224192').iconURL() || "https://i.imgur.com/fJ12AKT.png";
-        const uniDate1 = new Date().toLocaleString();
-        console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Showtime`);
+        const jobLoadedDate = new Date().toLocaleString();
+        console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Showtime`);
         var jobShowtime = new CronJob(
             '00 00 20 * * FRI,SAT', () => {
                 //'*/15 * * * * *', () => {
@@ -65,8 +65,8 @@ module.exports = {
                         },
                     ],
                 });
-                const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate}] ⌛ CRON  | Job Executed  | Showtime`);
+                const jobExecutedDate = new Date().toLocaleString();
+                console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Showtime`);
             },
             null,
             true,

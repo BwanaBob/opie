@@ -4,8 +4,8 @@ const CronJob = require('cron').CronJob;
 module.exports = {
     execute(client) {
         const talkChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #epdis or OPie #General
-        const uniDate1 = new Date().toLocaleString();
-        console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | First Shift AI`);
+        const jobLoadedDate = new Date().toLocaleString();
+        console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | First Shift AI`);
         var jobFirstShiftAI = new CronJob(
             '00 00 19 * * FRI,SAT', async () => {
                 //'*/15 * * * * *', async () => {
@@ -33,8 +33,8 @@ module.exports = {
                     }
                 }
 
-                const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate1}] ⌛ CRON  | Job Executed  | First Shift AI`);
+                const jobExecutedDate = new Date().toLocaleString();
+                console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | First Shift AI`);
             },
             null,
             true,

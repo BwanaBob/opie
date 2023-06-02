@@ -26,10 +26,10 @@ module.exports = {
     if (messageReactionsEnabled === 'true') {
       // Reaction Handler
       const matchingReactions = message.client.reactions.filter(react => new RegExp(react.regex, 'gmi').test(message.content))
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      const logDate = new Date(message.createdTimestamp).toLocaleString();
       for (reaction of matchingReactions.values()) {
         console.log(
-          `[${uniDate}] ${reaction.logName}| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+          `[${logDate}] ${reaction.logName}| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
         );
         reaction.execute(message);
       }
@@ -41,9 +41,9 @@ module.exports = {
       /^(opie,\W)/gi
     ) && message.client.params.get("chatGPTEnabled") === "true"
     ) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
-        `[${uniDate}] 🤖 AICHAT| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
+        `[${logDate}] 🤖 AICHAT| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`
       );
       const openai = require('../modules/openaiChat.js');
       const aiReply = await openai(message);
@@ -82,9 +82,9 @@ module.exports = {
       } else {
         message.react(`🤓`);
       }
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
-        `[${uniDate}] 🤓 EMOJI | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${emoji1.name} | ${emoji2.name}`
+        `[${logDate}] 🤓 EMOJI | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${emoji1.name} | ${emoji2.name}`
       );
     }
 
@@ -120,9 +120,9 @@ module.exports = {
       } else {
         message.react(`🤓`);
       }
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
-        `[${uniDate}] 🤓 EMOJI | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${emoji1.name} | ${emoji2.name}`
+        `[${logDate}] 🤓 EMOJI | ${message.guild.id} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${emoji1.name} | ${emoji2.name}`
       );
     }
 
@@ -149,9 +149,9 @@ module.exports = {
       //.setImage("https://i.imgur.com/OyZvh4R.jpg");
       const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
       postChannel.send({ embeds: [milestoneEmbed] });
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
-        `[${uniDate}] 🏆 MILSTN| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Milestone!`
+        `[${logDate}] 🏆 MILSTN| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Milestone!`
       );
     }
 
@@ -184,9 +184,9 @@ module.exports = {
       const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
       postChannel.send({ embeds: [boostedEmbed] });
       postChannel.send(`Thank you, <@${message.author.id}>!`)
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
-        `[${uniDate}] 🚀 BOOST | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | BOOSTED!`
+        `[${logDate}] 🚀 BOOST | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | BOOSTED!`
       );
     }
 
@@ -200,12 +200,12 @@ module.exports = {
         message.channel.name == "notifications" ||
         message.channel.name == "art-corner"
       )) {
-      const uniDate = new Date(message.createdTimestamp).toLocaleString();
+      const logDate = new Date(message.createdTimestamp).toLocaleString();
       const lastTime = message.client.timers.get(message.member.id);
       const attachmentDelay = message.client.params.get("attachmentDelay");
       if (lastTime == undefined) {
         // console.log(
-        //   `[${uniDate}] ✅ EMB   | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Attachment`
+        //   `[${logDate}] ✅ EMB   | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | First Attachment`
         // );
         message.client.timers.set(message.member.id, message.createdTimestamp);
       } else {
@@ -214,7 +214,7 @@ module.exports = {
         );
         if (elapsed < attachmentDelay) {
           console.log(
-            `[${uniDate}] ⛔ ATTACH| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec BAD`
+            `[${logDate}] ⛔ ATTACH| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec BAD`
           );
           message.delete();
 
@@ -275,7 +275,7 @@ module.exports = {
           //// "<t:${Math.round(message.createdTimestamp /1000)}>"
         } else {
           // console.log(
-          //   `[${uniDate}] ✅ EMBED | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec OK`
+          //   `[${logDate}] ✅ EMBED | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec OK`
           // );
           message.client.timers.set(
             message.member.id,

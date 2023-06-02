@@ -4,8 +4,8 @@ const CronJob = require('cron').CronJob;
 module.exports = {
     execute(client) {
         const bingoChannel = client.channels.cache.get("392157063502888962") || client.channels.cache.get("392093299890061312") || client.channels.cache.get("392093299890061312"); // OPL #bingo or Bingo #lobby or 
-        const uniDate1 = new Date().toLocaleString();
-        console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Show End AI Bingo`);
+        const jobLoadedDate = new Date().toLocaleString();
+        console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Show End AI Bingo`);
         var jobGoodnightAIBingo = new CronJob(
             '00 00 23 * * FRI,SAT', async () => {
                 //'*/15 * * * * *', async () => {
@@ -33,8 +33,8 @@ module.exports = {
                     }
                 }
 
-                const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate1}] ⌛ CRON  | Job Executed  | Show End AI Bingo`);
+                const jobExecutedDate = new Date().toLocaleString();
+                console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Show End AI Bingo`);
             },
             null,
             true,

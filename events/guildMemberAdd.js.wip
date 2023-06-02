@@ -6,9 +6,9 @@ const { Events, EmbedBuilder } = require("discord.js");
 module.exports = {
   name: Events.GuildMemberAdd,
   execute(member) {
-      const uniDate = new Date().toLocaleString();
+      const logDate = new Date().toLocaleString();
       console.log(
-        `[${uniDate}] 😐 JOIN  | ${member.guild.name} | ${member.user.tag} | ${member.nickname} -> ${newMember.nickname}`
+        `[${logDate}] 😐 JOIN  | ${member.guild.name} | ${member.user.tag} | ${member.nickname} -> ${newMember.nickname}`
         )
       const removedEmbed = new EmbedBuilder()
       .setColor(0x777777)

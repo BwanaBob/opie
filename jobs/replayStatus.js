@@ -3,8 +3,8 @@ const CronJob = require('cron').CronJob;
 
 module.exports = {
     execute(client) {
-        const uniDate1 = new Date().toLocaleString();
-        console.log(`[${uniDate1}] ⌛ CRON  | Job Loaded    | Replay Status`);
+        const jobLoadedDate = new Date().toLocaleString();
+        console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Replay Status`);
         var jobFirstShift = new CronJob(
             '00 00 16 * * FRI,SAT', () => {
                 //'*/15 * * * * *', () => {
@@ -17,8 +17,8 @@ module.exports = {
                         },
                     ],
                 });
-                const uniDate = new Date().toLocaleString();
-                console.log(`[${uniDate}] ⌛ CRON  | Job Executed  | Replay Status`);
+                const jobExecutedDate = new Date().toLocaleString();
+                console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Replay Status`);
             },
             null,
             true,

@@ -15,14 +15,14 @@ module.exports = {
         return;
       }
 
-      const uniDate = new Date(interaction.createdTimestamp).toLocaleString();
+      const logDate = new Date(interaction.createdTimestamp).toLocaleString();
       if (!interaction.guild) {
         console.log(
-          `[${uniDate}] 💻 COMAND| Private Message | ${interaction.user.tag} | ${interaction.commandName}`
+          `[${logDate}] 💻 COMAND| Private Message | ${interaction.user.tag} | ${interaction.commandName}`
         );
       } else {
         console.log(
-          `[${uniDate}] 💻 COMAND| ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}`
+          `[${logDate}] 💻 COMAND| ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}`
         );
       }
 
@@ -45,72 +45,72 @@ module.exports = {
       // console.log(buttonName);
       // console.log(usedCommand);
 
-      const uniDate = new Date().toLocaleString();
+      const logDate = new Date().toLocaleString();
 
       switch (buttonName) {
         case "announce": {
           if (chatbotAnnounementsEnabled === "true") {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'false');
-            console.log(`[${uniDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements Off`);
+            console.log(`[${logDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements Off`);
           } else {
             interaction.client.params.set("chatGPTAnnouncementsEnabled", 'true');
-            console.log(`[${uniDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements On`);
+            console.log(`[${logDate}] 🔘 ANOUNC| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Announcements On`);
           }
         }
           break;
         case "chat": {
           if (chatbotChatEnabled === "true") {
             interaction.client.params.set("chatGPTEnabled", 'false');
-            console.log(`[${uniDate}] 🔘 AICHAT| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | AI Chat Off`);
+            console.log(`[${logDate}] 🔘 AICHAT| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | AI Chat Off`);
           } else {
             interaction.client.params.set("chatGPTEnabled", 'true');
-            console.log(`[${uniDate}] 🔘 AICHAT| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | AI Chat On`);
+            console.log(`[${logDate}] 🔘 AICHAT| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | AI Chat On`);
           }
         }
           break;
         case "react": {
           if (messageReactionsEnabled === "true") {
             interaction.client.params.set("messageReactionsEnabled", 'false');
-            console.log(`[${uniDate}] 🔘 REACTS| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Reactions Off`);
+            console.log(`[${logDate}] 🔘 REACTS| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Reactions Off`);
           } else {
             interaction.client.params.set("messageReactionsEnabled", 'true');
-            console.log(`[${uniDate}] 🔘 REACTS| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Reactions On`);
+            console.log(`[${logDate}] 🔘 REACTS| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Reactions On`);
           }
         }
           break;
         case "twitter": {
           if (twitterStreamEnabled === "true") {
             interaction.client.params.set("twitterStreamEnabled", 'false');
-            console.log(`[${uniDate}] 🔘 TWITER| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Twitter Off`);
+            console.log(`[${logDate}] 🔘 TWITER| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Twitter Off`);
           } else {
             interaction.client.params.set("twitterStreamEnabled", 'true');
-            console.log(`[${uniDate}] 🔘 TWITER| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Twitter On`);
+            console.log(`[${logDate}] 🔘 TWITER| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Twitter On`);
           }
         }
           break;
         case "delay30": {
           interaction.client.params.set("attachmentDelay", '30');
-          console.log(`[${uniDate}] 🔘 DLAY30| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 30`);
+          console.log(`[${logDate}] 🔘 DLAY30| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 30`);
         }
           break;
         case "delay60": {
           interaction.client.params.set("attachmentDelay", '60');
-          console.log(`[${uniDate}] 🔘 DLAY60| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 60`);
+          console.log(`[${logDate}] 🔘 DLAY60| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 60`);
         }
           break;
         case "delay90": {
           interaction.client.params.set("attachmentDelay", '90');
-          console.log(`[${uniDate}] 🔘 DLAY90| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 90`);
+          console.log(`[${logDate}] 🔘 DLAY90| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 90`);
         }
           break;
         case "delay120": {
           interaction.client.params.set("attachmentDelay", '120');
-          console.log(`[${uniDate}] 🔘 DLAY2m| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 120`);
+          console.log(`[${logDate}] 🔘 DLAY2m| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 120`);
         }
           break;
         case "delay300": {
           interaction.client.params.set("attachmentDelay", '300');
-          console.log(`[${uniDate}] 🔘 DLAY5m| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 300`);
+          console.log(`[${logDate}] 🔘 DLAY5m| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Delay 300`);
         }
           break;
       }

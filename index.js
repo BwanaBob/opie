@@ -31,12 +31,12 @@ const exportTweetStream = require('./modules/twitterClient.js');
 async function getTweetStream() {
   const stream = await exportTweetStream();
   // console.log(stream);
-  const uniDate2 = new Date().toLocaleString();
+  const tConnectLogDate = new Date().toLocaleString();
   if ((stream === undefined) || (stream === "Failed")) {
-    console.log(`[${uniDate2}] 🐦 TWIT  | ⛔ Failed to connect`)
+    console.log(`[${tConnectLogDate}] 🐦 TWIT  | ⛔ Failed to connect`)
     return;
   } else {
-    console.log(`[${uniDate2}] 🐦 TWIT  | ✅ Connected`)
+    console.log(`[${tConnectLogDate}] 🐦 TWIT  | ✅ Connected`)
     // console.log(stream);
   }
 
@@ -46,8 +46,8 @@ async function getTweetStream() {
     const testChannel = client.channels.cache.get("392093299890061312"); // OPie #General
     const tweetURL = `https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}` || 'Unknown'
 
-    const uniDate1 = new Date().toLocaleString();
-    console.log(`[${uniDate1}] 🐦 TWIT  | ${tweetURL}`)
+    const logDate = new Date().toLocaleString();
+    console.log(`[${logDate}] 🐦 TWIT  | ${tweetURL}`)
 
     if (client.params.get("twitterStreamEnabled") == 'true') {
       const tweetTag = tweet.matching_rules[0].tag || "none"
@@ -66,33 +66,33 @@ async function getTweetStream() {
   });
 
   stream.on(ETwitterStreamEvent.ConnectionLost, async err => {
-    const logTime = new Date().toLocaleString();
-    console.error(`[${logTime}] 🐦 TWIT  | ⛔ Connection Lost`, err);
+    const logDate = new Date().toLocaleString();
+    console.error(`[${logDate}] 🐦 TWIT  | ⛔ Connection Lost`, err);
     client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | ⛔ Connection Lost" });
   });
   stream.on(ETwitterStreamEvent.ConnectionClosed, async msg => {
-    const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT  | 🔶 Connection Closed - ${msg}`)
+    const logDate = new Date().toLocaleString();
+    console.log(`[${logDate}] 🐦 TWIT  | 🔶 Connection Closed - ${msg}`)
     client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | 🔶 Connection Closed" });
   });
   stream.on(ETwitterStreamEvent.Error, async err => { // combines ConnectionError & TweetParseError
-    const logTime = new Date().toLocaleString();
-    console.error(`[${logTime}] 🐦 TWIT  | ⛔ Connection Error - ${err.type}`, err.error)
+    const logDate = new Date().toLocaleString();
+    console.error(`[${logDate}] 🐦 TWIT  | ⛔ Connection Error - ${err.type}`, err.error)
     client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | ⛔ Connection Error\n${err.type}\n${err.error}` });
   });
   stream.on(ETwitterStreamEvent.ReconnectAttempt, async attemptNum => {
-    const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT  | 🔶 Reconnecting - attempt # ${attemptNum}`)
+    const logDate = new Date().toLocaleString();
+    console.log(`[${logDate}] 🐦 TWIT  | 🔶 Reconnecting - attempt # ${attemptNum}`)
     client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | 🔶 Reconnecting - attempt # ${attemptNum}`});
   });
   stream.on(ETwitterStreamEvent.Reconnected, async msg => {
-    const logTime = new Date().toLocaleString();
-    console.log(`[${logTime}] 🐦 TWIT  | ✅ Reconnected - ${msg}`)
+    const logDate = new Date().toLocaleString();
+    console.log(`[${logDate}] 🐦 TWIT  | ✅ Reconnected - ${msg}`)
     client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | ✅ Reconnected" });
   });
     stream.on(ETwitterStreamEvent.DataKeepAlive, async msg => {
     client.timers.set("TwitterKeepAlive", Math.floor(new Date().getTime() / 1000));
-    // console.log(`[${logTime}] 🐦 TWIT  | 🔶 Keep Alive - ${aliveDate}`)
+    // console.info(`[${logDate}] 🐦 TWIT  | 🔶 Keep Alive - ${aliveDate}`)
   });
   return stream;
 }
@@ -111,8 +111,8 @@ for (const file of commandFiles) {
   // Set a new item in the Collection with the key as the command name and the value as the exported module
   if ("data" in command && "execute" in command) {
     client.commands.set(command.data.name, command);
-    const uniDate1 = new Date().toLocaleString();
-    console.log(`[${uniDate1}] 💻 COMAND| Command Loaded| ${command.data.name}`)
+    const cLoadedDate = new Date().toLocaleString();
+    console.log(`[${cLoadedDate}] 💻 COMAND| Command Loaded| ${command.data.name}`)
   } else {
     console.log(
       `⛔ [WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
@@ -149,8 +149,8 @@ for (const reactFile of reactionFiles) {
   // Set a new item in the Collection with the key as the reaction name and the value as the exported module
   if ("name" in reaction && "execute" in reaction) {
     client.reactions.set(reaction.name, reaction);
-    const uniDate1 = new Date().toLocaleString();
-    console.log(`[${uniDate1}] 👋 REACT | React Loaded  | ${reaction.name}`)
+    const rLoadedDate = new Date().toLocaleString();
+    console.log(`[${rLoadedDate}] 👋 REACT | React Loaded  | ${reaction.name}`)
   } else {
     console.log(
       `⛔ [WARNING] The reaction at ${reactFilePath} is missing a required "name" or "execute" property.`
