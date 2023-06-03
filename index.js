@@ -56,7 +56,7 @@ async function getTweetStream() {
         case 'lineup':
           loungeChannel.send(tweetURL);
           modChannel.send(tweetURL);
-          client.users.cache.get("629681401918390312").send(tweetURL);
+          client.users.send('629681401918390312', tweetURL); // PM Barre
         case 'ratings':
           // case 'travel':
           discussionChannel.send(tweetURL).then((msg) => msg.pin());
@@ -86,14 +86,14 @@ async function getTweetStream() {
   stream.on(ETwitterStreamEvent.ReconnectAttempt, async attemptNum => {
     const logDate = new Date().toLocaleString();
     console.log(`[${logDate}] 🐦 TWIT  | 🔶 Reconnecting - attempt # ${attemptNum}`)
-    client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | 🔶 Reconnecting - attempt # ${attemptNum}`});
+    client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | 🔶 Reconnecting - attempt # ${attemptNum}` });
   });
   stream.on(ETwitterStreamEvent.Reconnected, async msg => {
     const logDate = new Date().toLocaleString();
     console.log(`[${logDate}] 🐦 TWIT  | ✅ Reconnected - ${msg}`)
     client.channels.cache.get("1045327770592497694").send({ content: "🐦 TWITTER | ✅ Reconnected" });
   });
-    stream.on(ETwitterStreamEvent.DataKeepAlive, async msg => {
+  stream.on(ETwitterStreamEvent.DataKeepAlive, async msg => {
     client.timers.set("TwitterKeepAlive", Math.floor(new Date().getTime() / 1000));
     // console.info(`[${logDate}] 🐦 TWIT  | 🔶 Keep Alive - ${aliveDate}`)
   });
