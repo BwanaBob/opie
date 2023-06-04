@@ -11,6 +11,7 @@ module.exports = {
             message.reply({ files: [image] })
         } else {
             message.react('🚗')
+                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
         }
     }
 }

@@ -48,8 +48,12 @@ module.exports = {
       const openai = require('../modules/openaiChat.js');
       const aiReply = await openai(message);
       if (!aiReply.undefined && aiReply !== 'ERR') {
-        message.reply(aiReply);
-      } else { message.reply("Sorry, my AI brain is a bit glitchy at the moment.") }
+        message.reply(aiReply)
+          .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
+      } else {
+        message.reply("Sorry, my AI brain is a bit glitchy at the moment.")
+          .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
+      }
       return;
     }
 
@@ -216,7 +220,8 @@ module.exports = {
           console.log(
             `[${logDate}] ⛔ ATTACH| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | ${elapsed}sec BAD`
           );
-          message.delete();
+          message.delete()
+            .catch(err => { console.error(`[ERROR] Deleting message ${message.id} -`, err.message); });
 
           // send notice to user
           const userReplyEmbed = new EmbedBuilder()
@@ -238,7 +243,11 @@ module.exports = {
               value: `${message.channel.name}`,
               inline: true,
             });
-          message.author.send({ embeds: [userReplyEmbed] });
+
+          message.author.send({ embeds: [userReplyEmbed] })
+            .catch(err => {
+              console.error(`[ERROR] Sending private message to ${message.author} -`, err.message);
+            });
 
           // send notice to servers notice channel
           // publicUpdatesChannel = Community Updates

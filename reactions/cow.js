@@ -16,9 +16,11 @@ module.exports = {
                 '<:cowgrad:1111541609838944356>',
             ];
             const reaction = reactions[Math.floor(Math.random() * reactions.length)];
-            message.react(reaction);
+            message.react(reaction)
+                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
         } else {
             message.react('🐮')
+                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
         }
     }
 }

@@ -32,7 +32,7 @@ module.exports = {
                 reaction = memberReaction;
             }
         }
-        message.react(reaction);
-
+        message.react(reaction)
+            .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
     }
 }

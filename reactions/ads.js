@@ -16,6 +16,7 @@ module.exports = {
             return;
         } else {
             message.react('😠')
+                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
 
             // send notice to servers notice channel
             const advertsEmbed = new EmbedBuilder()

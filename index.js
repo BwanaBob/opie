@@ -55,19 +55,19 @@ async function getTweetStream() {
       switch (tweetTag) {
         case 'lineup':
           try { loungeChannel.send(tweetURL); }
-          catch (err) { console.error(err.message); }
+          catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
           try { modChannel.send(tweetURL); }
-          catch (err) { console.error(err.message); }
+          catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
           try { client.users.send('629681401918390312', tweetURL); } // PM Barre
-          catch (err) { console.error(err.message); }
+          catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
         case 'ratings':
-          // case 'travel':
+        case 'travel':
           try { discussionChannel.send(tweetURL).then((msg) => msg.pin()); }
-          catch (err) { console.error(err.message); }
+          catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
           break;
         default:
           try { testChannel.send(tweetURL); }
-          catch (err) { console.error(err.message); }
+          catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
           break;
       }
     }

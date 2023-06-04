@@ -20,9 +20,11 @@ module.exports = {
                 `<a:confetti_ball_animated:1056947556241903636>`,
             ];
             const reaction = reactions[Math.floor(Math.random() * reactions.length)];
-            message.react(reaction);
+            message.react(reaction)
+                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
         } else {
-            message.react(`🥂`);
+            message.react(`🥂`)
+                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
         }
     }
 }
