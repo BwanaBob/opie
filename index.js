@@ -41,10 +41,11 @@ async function getTweetStream() {
   }
 
   stream.on(ETwitterStreamEvent.Data, async tweet => {
-    const discussionChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #episode-discussion or OPie #general 
-    const loungeChannel = client.channels.cache.get("325206992413130753") || client.channels.cache.get("392093299890061312"); // OPL #lounge or OPie #general 
-    const modChannel = client.channels.cache.get("1074313334217789460") || client.channels.cache.get("392120898909634561"); // OPL #mod-chat or OPie #bot-test 
+    const announcementsChannel = client.channels.cache.get("1115429408614920303") || client.channels.cache.get("392093299890061312"); // OPL #announcements or OPie #general 
     const testChannel = client.channels.cache.get("392093299890061312"); // OPie #General
+    // const discussionChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #episode-discussion or OPie #general 
+    // const loungeChannel = client.channels.cache.get("325206992413130753") || client.channels.cache.get("392093299890061312"); // OPL #lounge or OPie #general 
+    // const modChannel = client.channels.cache.get("1074313334217789460") || client.channels.cache.get("392120898909634561"); // OPL #mod-chat or OPie #bot-test 
     const tweetURL = `https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}` || 'Unknown'
 
     const logDate = new Date().toLocaleString();
@@ -54,19 +55,14 @@ async function getTweetStream() {
       const tweetTag = tweet.matching_rules[0].tag || "none"
       switch (tweetTag) {
         case 'lineup':
-          try { loungeChannel.send(tweetURL); }
-          catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
-          try { modChannel.send(tweetURL); }
-          catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
           try { client.users.send('629681401918390312', tweetURL); } // PM Barre
           catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
         case 'ratings':
-        case 'travel':
-          try { discussionChannel.send(tweetURL).then((msg) => msg.pin()); }
+          try { announcementsChannel.send(tweetURL); }
           catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
           break;
         default:
-          try { testChannel.send(tweetURL); }
+          try { testChannel.send(tweetURL).then((msg) => msg.pin()); }
           catch (err) { console.error(`[ERROR] Sending tweet -`, err.message); }
           break;
       }
