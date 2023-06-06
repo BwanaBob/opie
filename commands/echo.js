@@ -6,7 +6,7 @@ const {
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("echo")
-    .setDescription("Replies with your input!")
+    .setDescription("OPie repeats whatever you type.")
     .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .addStringOption((option) =>

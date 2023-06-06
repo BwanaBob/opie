@@ -82,12 +82,12 @@ async function getTweetStream() {
   stream.on(ETwitterStreamEvent.Error, async err => { // combines ConnectionError & TweetParseError
     const logDate = new Date().toLocaleString();
     console.error(`[${logDate}] 🐦 TWIT  | ⛔ Connection Error - ${err.type}`, err.error)
-    client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | ⛔ Connection Error\n${err.type}\n${err.error}` });
+    client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | ⛔ Connection Error | ${err.type}` });
   });
   stream.on(ETwitterStreamEvent.ReconnectAttempt, async attemptNum => {
     const logDate = new Date().toLocaleString();
     console.log(`[${logDate}] 🐦 TWIT  | 🔶 Reconnecting - attempt # ${attemptNum}`)
-    client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | 🔶 Reconnecting - attempt # ${attemptNum}` });
+    client.channels.cache.get("1045327770592497694").send({ content: `🐦 TWITTER | 🔶 Reconnecting        | Attempt: ${attemptNum}` });
   });
   stream.on(ETwitterStreamEvent.Reconnected, async msg => {
     const logDate = new Date().toLocaleString();
