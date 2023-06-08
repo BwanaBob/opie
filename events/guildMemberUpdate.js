@@ -39,6 +39,53 @@ module.exports = {
           .get("1045327770592497694")
           .send({ embeds: [nameChangeEmbed] });
       }
+
+      // ROLE Changes
+      if (oldMember.roles.cache.size > newMember.roles.cache.size) {
+        const roleRemovedLogDate = new Date().toLocaleString();
+        const roleRemovedEmbed = new EmbedBuilder()
+          .setColor(0x00aaaa)
+          .setAuthor({
+            name: `${newMember.displayName} (${newMember.user.tag})`,
+            iconURL: `${newMember.displayAvatarURL()}`,
+          })
+          .addFields({
+            name: "Server",
+            value: `${newMember.guild.name}`,
+            inline: true,
+          });
+        oldMember.roles.cache.forEach(role => {
+          if (!newMember.roles.cache.has(role.id)) {
+            roleRemovedEmbed.addFields({ name: "Role Removed", value: role.name });
+            console.log(
+              `[${roleRemovedLogDate}] 🔒 ROLE- | ${oldMember.guild.name} | ${oldMember.user.tag} | ${role.name}`
+            );
+          }
+        });
+        newMember.client.channels.cache.get("1045327770592497694").send({ embeds: [roleRemovedEmbed] });
+      } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
+        const roleAddedLogDate = new Date().toLocaleString();
+        const roleAddedEmbed = new EmbedBuilder()
+          .setColor(0x00aaaa)
+          .setAuthor({
+            name: `${newMember.displayName} (${newMember.user.tag})`,
+            iconURL: `${newMember.displayAvatarURL()}`,
+          })
+          .addFields({
+            name: "Server",
+            value: `${newMember.guild.name}`,
+            inline: true,
+          });
+        newMember.roles.cache.forEach(role => {
+          if (!oldMember.roles.cache.has(role.id)) {
+            roleAddedEmbed.addFields({ name: "Role Added", value: role.name });
+            console.log(
+              `[${roleAddedLogDate}] 🔓 ROLE+ | ${oldMember.guild.name} | ${oldMember.user.tag} | ${role.name}`
+            );
+          }
+        });
+        newMember.client.channels.cache.get("1045327770592497694").send({ embeds: [roleAddedEmbed] });
+      }
     }
   },
 };
