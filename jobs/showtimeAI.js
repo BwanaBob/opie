@@ -16,10 +16,10 @@ module.exports = {
                         content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
                     }, {
                         role: 'system',
-                        content: 'After a long two week break, the television show On Patrol: Live is returning now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord',
+                        content: 'The television show On Patrol: Live is returning now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord',
                     }, {
                         role: 'user',
-                        content: 'Write an enthusiastic opening comment welcoming our wonderful discord users to their watch party for the television show On Patrol: Live.'
+                        content: 'Write an enthusiastic opening comment welcoming our discord users to their watch party for the television show On Patrol: Live. Also, be sure to give a huge shout-out to our favorite discord moderator @thecow, congratulating her on her college graduation day! She is awesome and we all love her.'
                     }],
                     max_tokens: 256, // limit token usage (length of response)
                 };

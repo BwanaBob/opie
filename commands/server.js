@@ -30,6 +30,21 @@ module.exports = {
       value: `${interaction.guild.premiumSubscriptionCount}`,
       inline: true,
     })
+    .addFields({
+      name: "Discoverable",
+      value: `${interaction.guild.features?.includes("DISCOVERABLE")}`,
+      inline: true,
+    })
+    .addFields({
+      name: "Community",
+      value: `${interaction.guild.features?.includes("COMMUNITY")}`,
+      inline: true,
+    })
+    .addFields({
+      name: "Featurable",
+      value: `${interaction.guild.features?.includes("FEATURABLE")}`,
+      inline: true,
+    })
     .setThumbnail(interaction.guild.iconURL())
     .setFooter({ text: `Established: ${interaction.guild.createdAt}`});
 
