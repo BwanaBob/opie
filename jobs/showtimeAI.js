@@ -19,7 +19,7 @@ module.exports = {
                         content: 'The television show On Patrol: Live is returning now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord',
                     }, {
                         role: 'user',
-                        content: 'Write an enthusiastic opening comment welcoming our discord users to their watch party for the television show On Patrol: Live. Also, be sure to give a huge shout-out to our favorite discord moderator @thecow, congratulating her on her college graduation day! She is awesome and we all love her.'
+                        content: 'Write an enthusiastic opening comment welcoming our discord users to their watch party for the television show On Patrol: Live.'
                     }],
                     max_tokens: 256, // limit token usage (length of response)
                 };

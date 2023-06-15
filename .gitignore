@@ -1,5 +1,4 @@
 .env
 package-lock.json
-test.js
-twitterTest.js
+test-*.js
 node_modules/
