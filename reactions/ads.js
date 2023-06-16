@@ -11,7 +11,7 @@ module.exports = {
                 PermissionsBitField.Flags.ManageMessages
             ) ||
             message.channel.name == "notifications" ||
-            message.channel.name == "art-corner"
+            message.channel.name == "art"
         ) {
             return;
         } else {

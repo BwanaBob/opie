@@ -202,11 +202,11 @@ module.exports = {
           PermissionsBitField.Flags.ManageMessages
         ) ||
         [
-          "notifications",
           "announcements",
-          "art-corner",
+          "art",
+          "food",
           "fur-babies",
-          "recipe-corner"
+          "notifications",
         ].includes(message.channel.name)
       )) {
       const logDate = new Date(message.createdTimestamp).toLocaleString();
