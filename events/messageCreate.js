@@ -201,8 +201,13 @@ module.exports = {
         message.member.permissions.has(
           PermissionsBitField.Flags.ManageMessages
         ) ||
-        message.channel.name == "notifications" ||
-        message.channel.name == "art-corner"
+        [
+          "notifications",
+          "announcements",
+          "art-corner",
+          "fur-babies",
+          "recipe-corner"
+        ].includes(message.channel.name)
       )) {
       const logDate = new Date(message.createdTimestamp).toLocaleString();
       const lastTime = message.client.timers.get(message.member.id);
