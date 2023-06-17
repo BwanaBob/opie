@@ -70,12 +70,15 @@ module.exports = {
       message.guild.emojis.fetch();
       let emoji1 = message.guild.emojis.cache.find(emoji => emoji.name === "confirm_check_ball") || false
       let emoji2 = message.guild.emojis.cache.find(emoji => emoji.name === "reject_cross_ball") || false
-      let role = message.guild.roles.cache.find(role => role.name === "Moderator") || false
+      let role1 = message.guild.roles.cache.find(role => role.name === "Moderator") || false
+      let role2 = message.guild.roles.cache.find(role => role.name === "Bingo Moderator") || false
 
-      if (emoji1 && emoji2 && role) {
+      if (emoji1 && emoji2 && role1 && role2) {
         try {
-          emoji1.roles.add(role.id)
-          emoji2.roles.add(role.id)
+          emoji1.roles.add(role1.id)
+          emoji1.roles.add(role2.id)
+          emoji2.roles.add(role1.id)
+          emoji2.roles.add(role2.id)
           //emoji1.roles.set([])
           //emoji2.roles.set([])
           message.react(`✅`);
