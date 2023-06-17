@@ -33,7 +33,8 @@ module.exports = async function (message) {
 
   conversationLog.unshift({ role: 'system', content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie' });
   let apiPackage = {};
-  if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+  // if mod or tech channel don't restrict response size
+  if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) || message.channel.id == "1119367030823473303" ) {
     apiPackage = {
       model: 'gpt-3.5-turbo',
       messages: conversationLog,
