@@ -27,11 +27,14 @@ async function exportTweetStream() {
         value: 'OPLive from:danabrams -is:retweet -is:reply -is:quote has:images',
         tag: 'lineup'
       }, {
-        value: "Cable Originals Friday from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote",
+        value: "(Friday OR Saturday) Cable Originals from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote",
         tag: 'ratings'
-      }, {
-        value: "Cable Originals Saturday from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote",
-        tag: 'ratings'
+        // }, {
+        //   value: "Cable Originals Friday from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote",
+        //   tag: 'ratings'
+        // }, {
+        //   value: "Cable Originals Saturday from:ShowBuzzDaily lang:en -is:retweet -is:reply -is:quote",
+        //   tag: 'ratings'
         // }, {
         //   value: 'travel lang:en -is:retweet -is:reply -is:quote has:images',
         //   tag: 'travel'
