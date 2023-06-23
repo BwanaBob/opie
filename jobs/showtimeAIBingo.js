@@ -19,7 +19,7 @@ module.exports = {
                         content: 'You host a bingo game where players are given a card full of terms to look for on the tv show "On Patrol: Live". Players can select their own custom daubers to mark their cards, but the Cow dauber is rumored to bring good luck.',
                     }, {
                         role: 'user',
-                        content: 'Welcome our wonderful bingo players to their Bingo game based on the television show On Patrol: Live. Encourage them to grab their bingo cards at https://www.thatsabingo.com/ . Also inform players that the new term "Lost in Translation" has been added to the game which can be marked off when two people on the show have difficuly communicating due to a language barrier.'
+                        content: 'Welcome our wonderful bingo players to their Bingo game based on the television show On Patrol: Live. Encourage them to grab their bingo cards at https://www.thatsabingo.com/ . Also inform players that the new term "Lost in Translation" has been added to the game which can be marked off when two people on the show have difficulty communicating due to a language barrier.'
                     }],
                     max_tokens: 512, // limit token usage (length of response)
                 };

@@ -16,12 +16,12 @@ module.exports = {
                         content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
                     }, {
                         role: 'system',
-                        content: 'The television show On Patrol: Live is returning now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord',
+                        content: 'The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord',
                     }, {
                         role: 'user',
-                        content: 'Write an enthusiastic opening comment welcoming our discord users to their watch party for the television show On Patrol: Live. Let people know that Seargeant Marcus Booth of the Daytona Beach Police Department will join our hosts in studio tonight. Remind everyone that there will be no live shows next weekend, but live shows will return the following weekend on Friday, July 7th.'
+                        content: 'Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live. Shout out to @argentmaid for boosting our Discord server, giving us the final boost needed to achieve level 3. Let people know that Sergeant Marcus Booth of the Daytona Beach Police Department will join our hosts in the studio tonight. Remind everyone that there will be no live shows next weekend, but live shows will return the following weekend on Friday, July 7th.'
                     }],
-                    max_tokens: 512, // limit token usage (length of response)
+                    max_tokens: 1024, // limit token usage (length of response)
                 };
 
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
