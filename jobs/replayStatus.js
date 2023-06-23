@@ -13,7 +13,7 @@ module.exports = {
                     activities: [
                         {
                             type: ActivityType.Watching,
-                            name: "the replay",
+                            name: "the encore",
                         },
                     ],
                 });

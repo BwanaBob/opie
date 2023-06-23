@@ -21,7 +21,7 @@ module.exports = {
                         role: 'user',
                         content: `Announce the end of tonight's bingo game and the show. Thank our lovely bingo players for playing along. Remind them to come back next episode for more live Bingo fun.`
                     }],
-                    max_tokens: 256, // limit token usage (length of response)
+                    max_tokens: 512, // limit token usage (length of response)
                 };
 
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {

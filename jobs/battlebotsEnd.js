@@ -6,7 +6,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Battlebots End`);
         var jobBattlebotsEnd = new CronJob(
-            '00 00 22 * * THU', () => {
+            '00 00 22 * JAN-JUN THU', () => {
             //'*/10 * * * * *', () => {
                 //client.channels.cache.get("392120898909634561").send("Scheuled message test")
                 client.user.setPresence({

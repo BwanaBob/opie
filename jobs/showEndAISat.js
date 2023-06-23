@@ -16,9 +16,9 @@ module.exports = {
                         content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
                     }, {
                         role: 'user',
-                        content: 'Write a closing comment thanking our wonderful discord users for their participation in a terrific watch party for the television show On Patrol: Live. Wish them safe and happy times until the next watch party next Friday.'
+                        content: 'Write a closing comment thanking our wonderful discord users for their participation in a terrific watch party for the television show On Patrol: Live. Remind everyone that there will be no live shows next weekend, but live shows will return the following weekend on Friday, July 7th. Wish them safe and happy times until the next watch party.'
                     }],
-                    max_tokens: 256, // limit token usage (length of response)
+                    max_tokens: 512, // limit token usage (length of response)
                 };
 
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {

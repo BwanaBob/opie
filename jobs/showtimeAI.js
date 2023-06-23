@@ -19,9 +19,9 @@ module.exports = {
                         content: 'The television show On Patrol: Live is returning now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord',
                     }, {
                         role: 'user',
-                        content: 'Write an enthusiastic opening comment welcoming our discord users to their watch party for the television show On Patrol: Live.'
+                        content: 'Write an enthusiastic opening comment welcoming our discord users to their watch party for the television show On Patrol: Live. Let people know that Seargeant Marcus Booth of the Daytona Beach Police Department will join our hosts in studio tonight. Remind everyone that there will be no live shows next weekend, but live shows will return the following weekend on Friday, July 7th.'
                     }],
-                    max_tokens: 256, // limit token usage (length of response)
+                    max_tokens: 512, // limit token usage (length of response)
                 };
 
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {

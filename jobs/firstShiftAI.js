@@ -19,9 +19,9 @@ module.exports = {
                         content: 'First Shift is a live tv segment that previews and leads into the upcoming show On Patrol: Live. First Shift introduces the law enforcement agencies which will be appearing on On Patrol: Live this evening. First Shift also provides updates on events from previous episodes of On Patrol: Live. First Shift is hosted by Dan Abrams, Sean "Sticks" Larkin, and Curtis Wilson',
                     }, {
                         role: 'user',
-                        content: 'Write a pithy Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour.'
+                        content: 'Write a pithy Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Let people know that Seargeant Marcus Booth of the Daytona Beach Police Department will join our hosts in studio tonight.'
                     }],
-                    max_tokens: 256, // limit token usage (length of response)
+                    max_tokens: 512, // limit token usage (length of response)
                 };
 
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {

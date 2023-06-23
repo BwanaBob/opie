@@ -3,9 +3,9 @@ module.exports = {
       name: "opie",
     script: 'index.js',
      watch: '.'
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
+  // }, {
+  //   script: './service-worker/',
+  //   watch: ['./service-worker']
   }],
 
   deploy : {
