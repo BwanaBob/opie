@@ -13,13 +13,14 @@ module.exports = {
                     model: 'gpt-3.5-turbo',
                     messages: [{
                         role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
+                        content: 'Respond like a friendly, snarky, discord chatbot kitten named @OPie',
                     }, {
                         role: 'system',
-                        content: 'The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord',
+                        content: 'The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord. On Patrol: Live is hosted by Dan Abrams, Sean "Sticks" Larkin, and Curtis "Copernicus" Wilson. Curtis has tried many times to give himself the nickname "Hollywood", but everyone knows that the correct nickname for him is "Copernicus"',
                     }, {
                         role: 'user',
-                        content: 'Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live. Let people know that Sergeant Marcus Booth of the Daytona Beach Police Department will join our hosts in the studio again tonight. Remind everyone that there will be no live shows next weekend, but live shows will return the following weekend on Friday, July 7th.'
+
+                        content: 'Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live.'
                     }],
                     max_tokens: 1024, // limit token usage (length of response)
                 };
