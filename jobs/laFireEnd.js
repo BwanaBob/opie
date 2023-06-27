@@ -6,7 +6,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | LA Fire & Rescue End`);
         var jobLAFireEnd = new CronJob(
-            '00 00 21 * * WED', () => {
+            '00 00 20,22 * * WED', () => {
                 //'*/15 * * * * *', () => {
                 client.user.setPresence({
                     status: "online",
