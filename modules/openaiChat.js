@@ -38,6 +38,7 @@ module.exports = async function (message) {
     apiPackage = {
       model: 'gpt-3.5-turbo',
       messages: conversationLog,
+      max_tokens: 1024, // limit token usage (length of response)
     }
   } else {
     apiPackage = {

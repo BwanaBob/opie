@@ -48,7 +48,10 @@ module.exports = {
       const openai = require('../modules/openaiChat.js');
       const aiReply = await openai(message);
       if (!aiReply.undefined && aiReply !== 'ERR') {
-        message.reply(aiReply)
+        aiEmbed = new EmbedBuilder()
+        .setColor(0xe655d4)
+        .setDescription(`${aiReply}`);
+        message.reply({ embeds: [aiEmbed] })
           .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
       } else {
         message.reply("Sorry, my AI brain is a bit glitchy at the moment.")
