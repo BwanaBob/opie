@@ -94,7 +94,7 @@ const laFireButtonRow = new ActionRowBuilder()
   .addComponents(discordButton)
   .addComponents(redditButton);
 
-const laFireText = "The new show **LA Fire & Rescue** premiers Wednesday, June 21 at 8/7c on NBC.\nThis docuseries tells the stories of the real-life heroes of the Los Angeles County Fire Department.\nCome chat with us on the new Discord server and subreddit dedicated to the show."
+const laFireText = "**LA Fire & Rescue** airs tonight, 8/7c on NBC.\nThis docuseries tells the stories of the real-life heroes of the Los Angeles County Fire Department.\nCome chat with us on the Discord server and subreddit dedicated to the show."
 const laFireMessage = {
   content: laFireText,
   components: [laFireButtonRow]
@@ -147,11 +147,11 @@ module.exports = {
         postMessage = ferretMessage;
       }
         break;
-        case "post_lafire": {
-          postMessage = laFireMessage;
-        }
-          break;
+      case "post_lafire": {
+        postMessage = laFireMessage;
       }
+        break;
+    }
     await interaction.reply({ content: postReply, ephemeral: true });
     interaction.channel.send(postMessage);
   },
