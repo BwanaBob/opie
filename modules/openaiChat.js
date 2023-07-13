@@ -13,20 +13,21 @@ module.exports = async function (message) {
   let prevMessages = await message.channel.messages.fetch({ limit: 20 });
   let userCount = 0;
   let botCount = 0;
+  let regex = /(\bOPie(,| ,)|<@1041050338775539732>|<@&1045554081848103007>)/gmi
   prevMessages.forEach((msg) => {
     if ((msg.author.id === message.client.user.id) && (botCount < 4)) {
       botCount++;
       conversationLog.unshift({
         role: 'assistant',
         content: msg.content,
-        //name: msg.member.displayName,
+        // name: msg.member.displayName,
       });
-    } else if ((msg.author.id === message.author.id) && (userCount < 4) && (msg.content.match(/^(opie,\W)/gi))) {
+    } else if ((msg.author.id === message.author.id) && (userCount < 4) && (msg.content.match(regex))) {
       userCount++;
       conversationLog.unshift({
         role: 'user',
-        content: msg.content.substr(6),
-        //name: msg.member.displayName,
+        content: msg.content,
+        // name: msg.member.displayName,
       });
     }
   })

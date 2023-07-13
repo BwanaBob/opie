@@ -38,7 +38,7 @@ module.exports = {
 
     // AI command
     if (message.content.match(
-      /^(opie,\W)/gi
+      /(\bOPie(,| ,)|<@1041050338775539732>|<@&1045554081848103007>)/gmi
     ) && message.client.params.get("chatGPTEnabled") === "true"
     ) {
       const logDate = new Date(message.createdTimestamp).toLocaleString();
