@@ -35,12 +35,32 @@ module.exports = {
       }
     }
 
+    let isAIChatMessage = false;
+
+    // AI reply test
+    if (message.reference) {
+      const repliedMessage = await message.fetchReference()
+      // console.log(repliedMessage.author.id)
+      // Andy: 1049292221515563058
+      // OPie: 1041050338775539732
+      if (
+        (repliedMessage.author.id == "1049292221515563058" ||
+          repliedMessage.author.id == "1041050338775539732")
+        && message.client.params.get("chatGPTEnabled") === "true"
+      ) {
+        isAIChatMessage = true;
+      }
+    }
 
     // AI command
     if (message.content.match(
       /(\bOPie(,| ,)|<@1041050338775539732>|<@&1045554081848103007>)/gmi
     ) && message.client.params.get("chatGPTEnabled") === "true"
     ) {
+      isAIChatMessage = true;
+    }
+
+    if (isAIChatMessage) {
       const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
         `[${logDate}] 🤖 AICHAT| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag})`

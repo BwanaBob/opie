@@ -6,15 +6,34 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+
+async function checkRepliedAuthor(message) {
+  const repliedMessage = await message.fetchReference()
+  if (
+    repliedMessage.author.id == "1049292221515563058" ||
+    repliedMessage.author.id == "1041050338775539732"
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 module.exports = async function (message) {
   // try {
   await message.channel.sendTyping();
   let conversationLog = new Array
-  let prevMessages = await message.channel.messages.fetch({ limit: 20 });
   let userCount = 0;
   let botCount = 0;
-  let regex = /(\bOPie(,| ,)|<@1041050338775539732>|<@&1045554081848103007>)/gmi
+  let regexAll = /(\bOPie(,| ,)|<@1041050338775539732>|<@&1045554081848103007>)/gmi
+  let regexIds = /(<@1041050338775539732>|<@&1045554081848103007>)/gmi
+  let thisMessage = "";
+  let prevMessages = await message.channel.messages.fetch({ limit: 20 });
   prevMessages.forEach((msg) => {
+    thisMessage = msg.content;
+    if (thisMessage.match(regexIds)) {
+      thisMessage = thisMessage.replace(regexIds, "OPie");
+    }
     if ((msg.author.id === message.client.user.id) && (botCount < 4)) {
       botCount++;
       conversationLog.unshift({
@@ -22,7 +41,7 @@ module.exports = async function (message) {
         content: msg.content,
         // name: msg.member.displayName,
       });
-    } else if ((msg.author.id === message.author.id) && (userCount < 4) && (msg.content.match(regex))) {
+    } else if ((msg.author.id === message.author.id) && (userCount < 4) && (msg.content.match(regexAll))) {
       userCount++;
       conversationLog.unshift({
         role: 'user',
@@ -30,12 +49,22 @@ module.exports = async function (message) {
         // name: msg.member.displayName,
       });
     }
+    else if ((msg.author.id === message.author.id) && (userCount < 4) && (msg.reference)) {
+      if (checkRepliedAuthor(msg)) {
+        userCount++;
+        conversationLog.unshift({
+          role: 'user',
+          content: msg.content,
+        });
+      }
+    }
   })
 
+  // conversationLog.unshift({ role: 'system', content: 'You are often refered to by the name: OPie, or the user Id: <@1041050338775539732> or the role id: <@&1045554081848103007>' });
   conversationLog.unshift({ role: 'system', content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie' });
   let apiPackage = {};
   // if mod or tech channel don't restrict response size
-  if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) || message.channel.id == "1119367030823473303" ) {
+  if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) || message.channel.id == "1119367030823473303") {
     apiPackage = {
       model: 'gpt-3.5-turbo',
       messages: conversationLog,
