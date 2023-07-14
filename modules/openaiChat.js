@@ -38,14 +38,14 @@ module.exports = async function (message) {
       botCount++;
       conversationLog.unshift({
         role: 'assistant',
-        content: msg.content,
+        content: thisMessage,
         // name: msg.member.displayName,
       });
     } else if ((msg.author.id === message.author.id) && (userCount < 4) && (msg.content.match(regexAll))) {
       userCount++;
       conversationLog.unshift({
         role: 'user',
-        content: msg.content,
+        content: thisMessage,
         // name: msg.member.displayName,
       });
     }
@@ -54,7 +54,7 @@ module.exports = async function (message) {
         userCount++;
         conversationLog.unshift({
           role: 'user',
-          content: msg.content,
+          content: thisMessage,
         });
       }
     }
