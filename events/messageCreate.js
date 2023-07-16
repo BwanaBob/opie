@@ -40,9 +40,6 @@ module.exports = {
     // AI reply test
     if (message.reference) {
       const repliedMessage = await message.fetchReference()
-      // console.log(repliedMessage.author.id)
-      // Andy: 1049292221515563058
-      // OPie: 1041050338775539732
       if (
         (repliedMessage.author.id == "1049292221515563058" ||
           repliedMessage.author.id == "1041050338775539732")
