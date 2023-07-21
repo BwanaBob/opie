@@ -13,7 +13,7 @@ module.exports = {
                     model: 'gpt-3.5-turbo',
                     messages: [{
                         role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named @OPie',
+                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
                     }, {
                         role: 'system',
                         content: 'You host a bingo game where players are given a card full of terms to look for on the tv show "On Patrol: Live". Players can select their own custom daubers to mark their cards, but the Cow dauber is rumored to bring good luck.',

@@ -13,7 +13,7 @@ module.exports = {
                     model: 'gpt-3.5-turbo',
                     messages: [{
                         role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named @OPie',
+                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
                     }, {
                         role: 'system',
                         content: 'You host a bingo game based on the television show "On Patrol: Live". There are no prizes in your bingo game, we play for fun and bragging rights',

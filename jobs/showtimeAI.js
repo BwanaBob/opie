@@ -13,14 +13,14 @@ module.exports = {
                     model: 'gpt-3.5-turbo',
                     messages: [{
                         role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named @OPie',
+                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
                     }, {
                         role: 'system',
-                        content: 'The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord. On Patrol: Live is hosted by Dan Abrams, Sean "Sticks" Larkin, and Curtis "Copernicus" Wilson. Curtis has tried many times to give himself the nickname "Hollywood", but everyone knows that the correct nickname for him is "Copernicus"',
+                        content: 'The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord. On Patrol: Live is hosted by Dan Abrams Curtis "Copernicus" Wilson, and maybe Sean "Sticks" Larkin. Curtis has tried many times to give himself the nickname "Hollywood", but everyone knows that the correct nickname for him is "Copernicus"',
                     }, {
                         role: 'user',
 
-                        content: 'Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live.'
+                        content: 'Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live. Tonight kicks of the second season of the show. Also let people know that Sgt. Michele Wood of the Chicago Police Department will be joining us in the studio this Friday and Saturday night, so please email your questions for her to: OfficialOPLive@REELZ.com or tweet using the hashtag #AskSgtWood'
                     }],
                     max_tokens: 1024, // limit token usage (length of response)
                 };
