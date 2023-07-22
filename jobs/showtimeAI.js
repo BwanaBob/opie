@@ -20,7 +20,7 @@ module.exports = {
                     }, {
                         role: 'user',
 
-                        content: 'Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live. Tonight kicks of the second season of the show. Also let people know that Sgt. Michele Wood of the Chicago Police Department will be joining us in the studio this Friday and Saturday night, so please email your questions for her to: OfficialOPLive@REELZ.com or tweet using the hashtag #AskSgtWood'
+                        content: 'Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live. Also let people know that Sgt. Michele Wood of the Chicago Police Department will be joining us in the studio again tonight.'
                     }],
                     max_tokens: 1024, // limit token usage (length of response)
                 };
