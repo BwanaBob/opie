@@ -100,7 +100,8 @@ async function getTweetStream() {
   });
   return stream;
 }
-const dummyVal = getTweetStream();
+// Remove until/unless Elon pulls his head out of his ass
+// const dummyVal = getTweetStream();
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, "commands");
