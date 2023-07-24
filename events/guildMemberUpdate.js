@@ -62,7 +62,14 @@ module.exports = {
             );
           }
         });
-        newMember.client.channels.cache.get("1045327770592497694").send({ embeds: [roleRemovedEmbed] });
+        // // Send to bot's notice channel
+        // newMember.client.channels.cache
+        //   .get("1045327770592497694")
+        //   .send({ embeds: [roleRemovedEmbed] });
+        // Send to members guild notice channel
+        newMember.client.channels.cache
+          .get(newMember.guild.publicUpdatesChannelId)
+          .send({ embeds: [roleRemovedEmbed] });
       } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         const roleAddedLogDate = new Date().toLocaleString();
         const roleAddedEmbed = new EmbedBuilder()
@@ -84,7 +91,14 @@ module.exports = {
             );
           }
         });
-        newMember.client.channels.cache.get("1045327770592497694").send({ embeds: [roleAddedEmbed] });
+        // // // Send to bot's notice channel
+        // newMember.client.channels.cache
+        //   .get("1045327770592497694")
+        //   .send({ embeds: [roleAddedEmbed] });
+        // Send to members guild notice channel
+        newMember.client.channels.cache
+          .get(newMember.guild.publicUpdatesChannelId)
+          .send({ embeds: [roleAddedEmbed] });
       }
     }
   },
