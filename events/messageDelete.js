@@ -38,15 +38,26 @@ module.exports = {
         inline: false,
       });
     }
-
-    if (message.attachments.first()) {
-      noticeEmbed.addFields({
-        name: "Attachment",
-        value: `${message.attachments.first()?.url || " "}`,
-        inline: false,
-      });
+    if (message.attachments.size !== 0) {
+      const removedAttachmentURL = message.attachments.first()?.url || " ";
+      const removedAttachmentType = message.attachments.first()?.contentType || " ";
+      if (removedAttachmentType.includes('image/')) {
+        noticeEmbed.setImage(removedAttachmentURL);
+      } else {
+        noticeEmbed.addFields({
+          name: "Attachment",
+          value: `${removedAttachmentURL}`,
+          inline: false,
+        });
+      }
     }
-
+    if (message.embeds.size !== 0) {
+      var noticeProvider = message.embeds[0]?.provider?.name || "";
+      if (noticeProvider == "Tenor") {
+        var noticeContent = message.embeds[0]?.thumbnail?.url || "";
+        noticeEmbed.setImage(noticeContent)
+      }
+    }
     noticeEmbed.addFields({
       name: "Channel",
       value: `${message.channel.name}`,
@@ -57,7 +68,6 @@ module.exports = {
       value: `${message.guild.name}`,
       inline: true,
     });
-
     message.client.channels.cache
       .get(message.guild.publicUpdatesChannelId)
       .send({ embeds: [noticeEmbed] });
