@@ -52,10 +52,19 @@ module.exports = {
       }
     }
     if (message.embeds.size !== 0) {
-      var noticeProvider = message.embeds[0]?.provider?.name || "";
-      if (noticeProvider == "Tenor") {
-        var noticeContent = message.embeds[0]?.thumbnail?.url || "";
-        noticeEmbed.setImage(noticeContent)
+      var embedProvider = message.embeds[0]?.provider?.name ?? "";
+      if (embedProvider == "Tenor") {
+        var tenorThumbnail = message.embeds[0]?.thumbnail?.url ?? "";
+        var tenorURL = message.embeds[0]?.url ?? "";
+        const tenorGifURL = await fetch(`${tenorURL}.gif`)
+          .then((response) => {
+            return response.url;
+          }) ?? "";
+        if (tenorGifURL) {
+          noticeEmbed.setImage(tenorGifURL);
+        } else {
+          noticeEmbed.setImage(tenorThumbnail);
+        }
       }
     }
     noticeEmbed.addFields({
