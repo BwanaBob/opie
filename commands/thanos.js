@@ -8,7 +8,7 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles),
     async execute(interaction) {
 
-        const roleToAssign = interaction.client.guild.roles.cache.get("1133491149412241518"); // Member role
+        const roleToAssign = interaction.guild.roles.cache.get("1133491149412241518"); // Member role
         // const roleToAssign = interaction.guild.roles.cache.get("392121688998936578"); // test role
         // console.log(roleToAssign);
         if (roleToAssign.name == 'Member') {
