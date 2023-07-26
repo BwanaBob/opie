@@ -7,10 +7,11 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | LAFR Thread Reminder`);
         var jobStartRecording = new CronJob(
-            '00 16 23 * * TUE', () => {
+            '00 00 18 * * TUE', () => {
                 // '*/15 * * * * *', () => {
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
-                    noticeChannel.send("<@&1119424005175246992> Update the thread for tomorrow's show!")
+                    try {noticeChannel.send("<@&1119424005175246992> Update the thread for tomorrow's show!");}
+                    catch (err) { console.error(`[ERROR] Sending message -`, err.message); }
                     // try { client.users.send('348629137080057878', "Start Recording"); } // PM Bwana
                     // catch (err) { console.error(`[ERROR] Sending message -`, err.message); }
                     const jobExecutedDate = new Date().toLocaleString();
