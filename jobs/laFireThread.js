@@ -7,7 +7,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | LAFR Thread Reminder`);
         var jobStartRecording = new CronJob(
-            '00 12 23 * * TUE', () => {
+            '00 16 23 * * TUE', () => {
                 // '*/15 * * * * *', () => {
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
                     noticeChannel.send("<@&1119424005175246992> Update the thread for tomorrow's show!")
