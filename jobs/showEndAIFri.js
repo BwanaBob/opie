@@ -1,5 +1,6 @@
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
+const options = require("../options.json");
 
 module.exports = {
     execute(client) {
@@ -7,17 +8,10 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Show End AI Friday`);
         var jobGoodnightAISat = new CronJob(
-            '00 00 23 * * FRI', async () => {
-                //'*/10 * * * * *', async () => {
+             options.jobs.showEndAIFri.schedule, async () => {
                 const aicommand = {
-                    model: 'gpt-3.5-turbo',
-                    messages: [{
-                        role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
-                    }, {
-                        role: 'user',
-                        content: 'Write a closing comment thanking our wonderful discord users for their participation in a terrific watch party for the television show On Patrol: Live. Wish them safe and happy times until the next watch party tomorrow night.'
-                    }],
+                    model: options.jobs.showEndAIFri.model,
+                    messages: options.jobs.showEndAIFri.messages,
                     max_tokens: 512, // limit token usage (length of response)
                 };
 
@@ -31,7 +25,7 @@ module.exports = {
                 }
 
                 const jobExecutedDate = new Date().toLocaleString();
-                console.log(`[${jobExecutedDate}] ⌛ CRON| Job Executed  | Show End AI Friday`);
+                console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Show End AI Friday`);
             },
             null,
             true,

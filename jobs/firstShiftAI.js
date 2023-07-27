@@ -1,5 +1,6 @@
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
+const options = require("../options.json");
 
 module.exports = {
     execute(client) {
@@ -7,20 +8,10 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | First Shift AI`);
         var jobFirstShiftAI = new CronJob(
-            '00 00 19 * * FRI,SAT', async () => {
-                //'*/15 * * * * *', async () => {
+             options.jobs.firstShiftAI.schedule, async () => {
                 const aicommand = {
-                    model: 'gpt-3.5-turbo',
-                    messages: [{
-                        role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
-                    }, {
-                        role: 'system',
-                        content: 'First Shift is a live tv segment that previews and leads into the upcoming show On Patrol: Live. First Shift introduces the law enforcement agencies which will be appearing on On Patrol: Live this evening. First Shift also provides updates on events from previous episodes of On Patrol: Live. First Shift is hosted by Dan Abrams, Curtis "Copernicus" Wilson, and maybe Sean "Sticks" Larkin',
-                    }, {
-                        role: 'user',
-                        content: "Write a Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Also let people know that Sgt. Michele Wood of the Chicago Police Department will be joining us in the studio again toight."
-                    }],
+                    model: options.jobs.firstShiftAI.model,
+                    messages: options.jobs.firstShiftAI.messages,
                     max_tokens: 512, // limit token usage (length of response)
                 };
 

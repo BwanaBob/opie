@@ -1,4 +1,5 @@
 const { Events, EmbedBuilder, PermissionsBitField } = require("discord.js");
+const options = require("../options.json");
 
 module.exports = {
   name: Events.MessageDelete,
@@ -20,16 +21,13 @@ module.exports = {
     }
 
     const noticeEmbed = new EmbedBuilder()
-      .setColor(0x9900ff)
-      .setTitle("Had a message deleted")
-      //  .setURL("https://discord.js.org/")
+      .setColor(options.embeds.messageDeleted.color)
+      .setTitle(options.embeds.messageDeleted.title)
+      .setThumbnail( options.embeds.messageDeleted.thumbnail )
       .setAuthor({
         name: `${message.member.displayName} (${message.author.tag})`,
         iconURL: `${message.member.displayAvatarURL()}`,
-      })
-      .setThumbnail(
-        "https://i.imgur.com/tr9aVAA.png"
-      );
+      });
 
     if (message.content) {
       noticeEmbed.addFields({

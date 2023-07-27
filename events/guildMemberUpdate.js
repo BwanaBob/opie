@@ -1,4 +1,5 @@
 const { Events, EmbedBuilder } = require("discord.js");
+const options = require("../options.json");
 
 module.exports = {
   name: Events.GuildMemberUpdate,
@@ -10,15 +11,13 @@ module.exports = {
           `[${logDate}] 😐 NAME  | ${oldMember.guild.name} | ${oldMember.user.tag} | ${oldMember.nickname} -> ${newMember.nickname}`
         );
         const nameChangeEmbed = new EmbedBuilder()
-          .setColor(0x00aaaa)
-          .setTitle("Server Alias Changed")
+          .setColor(options.embeds.nameChange.color)
+          .setTitle(options.embeds.nameChange.title)
+          .setThumbnail( options.embeds.nameChange.thumbnail )
           .setAuthor({
             name: `${newMember.displayName} (${newMember.user.tag})`,
             iconURL: `${newMember.displayAvatarURL()}`,
           })
-          .setThumbnail(
-            "https://i.imgur.com/lSTK0Iq.png"
-          )
           .addFields({
             name: "Previous Alias",
             value: `${oldMember.nickname}`,
@@ -44,7 +43,7 @@ module.exports = {
       if (oldMember.roles.cache.size > newMember.roles.cache.size) {
         const roleRemovedLogDate = new Date().toLocaleString();
         const roleRemovedEmbed = new EmbedBuilder()
-          .setColor(0x00aaaa)
+          .setColor(options.embeds.roleRemoved.color)
           .setAuthor({
             name: `${newMember.displayName} (${newMember.user.tag})`,
             iconURL: `${newMember.displayAvatarURL()}`,
@@ -73,7 +72,7 @@ module.exports = {
       } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         const roleAddedLogDate = new Date().toLocaleString();
         const roleAddedEmbed = new EmbedBuilder()
-          .setColor(0x00aaaa)
+          .setColor(options.embeds.roleAdded.color)
           .setAuthor({
             name: `${newMember.displayName} (${newMember.user.tag})`,
             iconURL: `${newMember.displayAvatarURL()}`,

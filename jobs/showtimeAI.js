@@ -1,5 +1,6 @@
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
+const options = require("../options.json");
 
 module.exports = {
     execute(client) {
@@ -7,21 +8,10 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Showtime AI`);
         var jobShowtimeAI = new CronJob(
-            '00 00 20 * * FRI,SAT', async () => {
-                //'*/15 * * * * *', async () => {
+            options.jobs.showtimeAI.schedule, async () => {
                 const aicommand = {
-                    model: 'gpt-3.5-turbo',
-                    messages: [{
-                        role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
-                    }, {
-                        role: 'system',
-                        content: 'The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord. On Patrol: Live is hosted by Dan Abrams Curtis "Copernicus" Wilson, and maybe Sean "Sticks" Larkin. Curtis has tried many times to give himself the nickname "Hollywood", but everyone knows that the correct nickname for him is "Copernicus"',
-                    }, {
-                        role: 'user',
-
-                        content: 'Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live. Also let people know that Sgt. Michele Wood of the Chicago Police Department will be joining us in the studio again tonight.'
-                    }],
+                    model: options.jobs.showtimeAI.model,
+                    messages: options.jobs.showtimeAI.messages,
                     max_tokens: 1024, // limit token usage (length of response)
                 };
 

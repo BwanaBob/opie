@@ -17,13 +17,15 @@ const client = new Client({
   ],
 });
 
+const options = require("./options.json"); // start replacing .env variables and client.params with this
+
 client.timers = new Collection();
 client.params = new Collection();
-client.params.set("attachmentDelay", process.env.OPTION_ATTACHMENT_DELAY ?? 90);
-client.params.set("chatGPTEnabled", process.env.OPTION_CHATGPT_ENABLED ?? false);
-client.params.set("chatGPTAnnouncementsEnabled", process.env.OPTION_CHATGPT_ANNOUNCEMENTS_ENABLED ?? false);
-client.params.set("twitterStreamEnabled", process.env.OPTION_TWITTER_STREAM_ENABLED ?? false);
-client.params.set("messageReactionsEnabled", process.env.OPTION_MESSAGE_REACTIONS_ENABLED ?? false);
+client.params.set("attachmentDelay", options.defaults.attachmentDelay ?? "90");
+client.params.set("chatGPTEnabled", options.defaults.chatGPTEnabled ?? "false");
+client.params.set("chatGPTAnnouncementsEnabled", options.defaults.chatGPTAnnouncementsEnabled ?? "false");
+client.params.set("twitterStreamEnabled", options.defaults.twitterStreamEnabled ?? "false");
+client.params.set("messageReactionsEnabled", options.defaults.messageReactionsEnabled ?? "false");
 
 // Watch Twitter Stream
 const { ETwitterStreamEvent } = require("twitter-api-v2");

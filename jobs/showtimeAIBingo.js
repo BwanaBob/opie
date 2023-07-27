@@ -1,5 +1,7 @@
+const { Options } = require('discord.js');
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
+const options = require("../options.json");
 
 module.exports = {
     execute(client) {
@@ -7,20 +9,10 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Showtime AI Bingo`);
         var jobShowtimeAIBingo = new CronJob(
-            '00 00 20 * * FRI,SAT', async () => {
-                //'*/15 * * * * *', async () => {
+             options.jobs.showtimeAIBingo.schedule, async () => {
                 const aicommand = {
-                    model: 'gpt-3.5-turbo',
-                    messages: [{
-                        role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
-                    }, {
-                        role: 'system',
-                        content: 'You host a bingo game where players are given a card full of terms to look for on the tv show "On Patrol: Live". Players can select their own custom daubers to mark their cards, but the Cow dauber is rumored to bring good luck.',
-                    }, {
-                        role: 'user',
-                        content: 'Welcome our wonderful bingo players to their Bingo game based on the television show On Patrol: Live. Encourage them to grab their bingo cards at https://www.thatsabingo.com/'
-                    }],
+                    model: options.jobs.showtimeAIBingo.model,
+                    messages: options.jobs.showtimeAIBingo.messages,
                     max_tokens: 512, // limit token usage (length of response)
                 };
 

@@ -8,6 +8,8 @@ const {
 
 const { OpenAIApi } = require("openai");
 
+const options = require("../options.json");
+
 function milestone(members) {
   const membersString = String(members);
   const membersExponent = membersString.length - 1;
@@ -67,7 +69,7 @@ module.exports = {
       if (!aiReply.undefined && aiReply !== 'ERR') {
         if (aiReply.length > 2000) {
           aiEmbed = new EmbedBuilder()
-            .setColor(0xe655d4)
+            .setColor(options.embeds.aiResponse.color)
             .setDescription(`${aiReply}`);
           message.reply({ embeds: [aiEmbed] })
             .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
@@ -164,7 +166,7 @@ module.exports = {
     ) {
       message.guild.nextUserCount = milestone(message.guild.memberCount);
       const milestoneEmbed = new EmbedBuilder()
-        .setColor(0xe655d4)
+        .setColor(options.embeds.milestone.color)
         .setTitle(`${message.guild.memberCount} Members!`)
         .setDescription(`${message.guild.name} has just reached a new milestone.\nThank you all for building such a lively community!`)
         .addFields({
@@ -192,13 +194,14 @@ module.exports = {
     if ((messageTypes.includes(message.type))
       || (message.content == "test boosted" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
     ) {
-      const boostedEmbed = new EmbedBuilder()
-        .setColor(0xe655d4)
+      const serverBoostedEmbed = new EmbedBuilder()
+        .setColor(options.embeds.serverBoosted.color)
+        .setTitle(options.embeds.serverBoosted.title)
+        .setThumbnail( options.embeds.serverBoosted.thumbnail )
         .setAuthor({
           name: `${message.member.displayName}`,
           iconURL: `${message.member.displayAvatarURL()}`,
         })
-        .setTitle("Boosted the server!")
         .setDescription(`<@${message.member.id}> has just boosted the server. Please thank them for their awesome support of our community!`)
         .addFields({
           name: "Server Level",
@@ -209,12 +212,9 @@ module.exports = {
           name: "Boosts",
           value: `${message.guild.premiumSubscriptionCount}`,
           inline: true,
-        })
-        .setThumbnail(
-          "https://i.imgur.com/RNBLHif.png"
-        );
+        });
       const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
-      postChannel.send({ embeds: [boostedEmbed] });
+      postChannel.send({ embeds: [serverBoostedEmbed] });
       postChannel.send(`Thank you, <@${message.author.id}>!`)
       const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
@@ -257,14 +257,12 @@ module.exports = {
             .catch(err => { console.error(`[ERROR] Deleting message ${message.id} -`, err.message); });
 
           // send notice to user
-          const userReplyEmbed = new EmbedBuilder()
-            .setColor(0xff9900)
-            .setTitle("Attachments Timer Violated")
+          const timerViolatedUserEmbed = new EmbedBuilder()
+            .setColor(options.embeds.timerViolatedUser.color)
+            .setTitle(options.embeds.timerViolatedUser.title)
+            .setThumbnail( options.embeds.timerViolatedUser.thumbnail )
             .setDescription(
               `This server has limited the posting of content with attachments to once every ${attachmentDelay} seconds.`
-            )
-            .setThumbnail(
-              "https://i.imgur.com/TgSIaZD.png"
             )
             .addFields({
               name: "Server",
@@ -277,7 +275,7 @@ module.exports = {
               inline: true,
             });
 
-          message.author.send({ embeds: [userReplyEmbed] })
+          message.author.send({ embeds: [timerViolatedUserEmbed] })
             .catch(err => {
               console.error(`[ERROR] Sending private message to ${message.author} -`, err.message);
             });
@@ -285,16 +283,14 @@ module.exports = {
           // send notice to servers notice channel
           // publicUpdatesChannel = Community Updates
           // systemChannel = System Messages (New users)
-          const notificationEmbed = new EmbedBuilder()
-            .setColor(0xff9900)
-            .setTitle("Attachments Timer Violated")
+          const timerViolatedEmbed = new EmbedBuilder()
+            .setColor(options.embeds.timerViolated.color)
+            .setTitle(options.embeds.timerViolated.title)
+            .setThumbnail( options.embeds.timerViolated.thumbnail )
             .setAuthor({
               name: `${message.member.displayName} (${message.author.tag})`,
               iconURL: `${message.member.displayAvatarURL()}`,
             })
-            .setThumbnail(
-              "https://i.imgur.com/TgSIaZD.png"
-            )
             .addFields({
               name: "Channel",
               value: `${message.channel.name}`,
@@ -308,7 +304,7 @@ module.exports = {
 
           message.client.channels.cache
             .get(message.guild.publicUpdatesChannelId)
-            .send({ embeds: [notificationEmbed] });
+            .send({ embeds: [timerViolatedEmbed] });
 
           //// also send everything to bot's notice channel
           // message.client.channels.cache

@@ -1,26 +1,17 @@
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
+const options = require("../options.json");
 
 module.exports = {
     execute(client) {
         const bingoChannel = client.channels.cache.get("392157063502888962") || client.channels.cache.get("392093299890061312") || client.channels.cache.get("392093299890061312"); // OPL #bingo or Bingo #lobby or 
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Show End AI Bingo`);
-        var jobGoodnightAIBingo = new CronJob(
-            '00 00 23 * * FRI,SAT', async () => {
-                //'*/15 * * * * *', async () => {
+        var showEndAIBingo = new CronJob(
+            options.jobs.showEndAIBingo.schedule, async () => {
                 const aicommand = {
-                    model: 'gpt-3.5-turbo',
-                    messages: [{
-                        role: 'system',
-                        content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie',
-                    }, {
-                        role: 'system',
-                        content: 'You host a bingo game based on the television show "On Patrol: Live". There are no prizes in your bingo game, we play for fun and bragging rights',
-                    }, {
-                        role: 'user',
-                        content: `Announce the end of tonight's bingo game and the show. Thank our lovely bingo players for playing along. Remind them to come back next episode for more live Bingo fun.`
-                    }],
+                    model: options.jobs.showEndAIBingo.model,
+                    messages: options.jobs.showEndAIBingo.messages,
                     max_tokens: 512, // limit token usage (length of response)
                 };
 
