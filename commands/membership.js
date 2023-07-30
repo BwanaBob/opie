@@ -2,7 +2,7 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("thanos")
+        .setName("membership")
         .setDescription("Assign role to every user")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles),
@@ -21,6 +21,6 @@ module.exports = {
                 }
             });
         }
-        await interaction.reply({ content: "Pong!", ephemeral: true });
+        await interaction.reply({ content: "Assigned role to all members", ephemeral: true });
     },
 };
