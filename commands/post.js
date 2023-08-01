@@ -100,6 +100,42 @@ const laFireMessage = {
   components: [laFireButtonRow]
 }
 
+const rulesEmbed = new EmbedBuilder()
+  .setColor(0x2B2D31)
+  // .setTitle("Rules")
+  .setDescription("Welcome to the On Patrol: Live server! These are the rules for this server. We want everyone to have fun, so please make sure to read them over.\n\
+## 👮  **Be Legal**  👮\n\
+\n\
+### 1️⃣  __No piracy.__\n\
+Requesting or sharing details about illegal sources of show content is prohibited and may result in a ban. \n\
+### 2️⃣  __Do not interfere with EMS/FIRE/LEO personnel in an attempt to get on the show.__\n\
+This is both dangerous and illegal.\n\
+### 3️⃣  __Do not post personal information of civilians featured on the show.__\n\
+This includes addresses, phone numbers, arrest reports, Google street views, LinkedIn profiles, and personal accounts for Facebook, TikTok, Twitter, Instagram, etc. Doxxing will not be tolerated and will result in a ban.\n\
+### 4️⃣  __No advertising other websites, products, or Discord servers.__\n\
+This server is not a podium for promotion of unaffiliated servers, webpages, social media, or products in order to gain subscribers or make money. This includes DMing unsolicited invites, referral links, or setting your custom status to an invite. Blatant advertisements will be removed. Users DMing unsolicited invites or repeatedly posting advertisements will be banned.\n\
+## 🕊️   **Be Respectful**  🕊️\n\
+\n\
+### 5️⃣  __No spamming or flooding the chat with messages, name changes, or gifs.__\n\
+Overuse of gifs is annoying and makes it difficult to read the chat, especially during showtime. This, and frequent name-changing, will be considered spam and will result in administrative action.\n\
+### 6️⃣  __No harassment or bullying; no bashing or heated arguments with others in the chat.__\n\
+With a little thought, we can discuss civilly or just agree to disagree. Repeated complaints regarding a user from multiple members will lead to administrative action. Any personal attacks will result in a ban.\n\
+### 7️⃣  __No sexual, explicit, body shaming, or controversial content.__\n\
+This includes commenting on the \"hotness factor\" (or lack thereof) of people on the show. Usernames, profile pictures, banners, bios, and status should not display any harmful, offensive, or explicit material. Bragging about drug or alcohol use will not be tolerated. Repeated infractions or arguments over removal of such content will result in a ban.\n\
+### 8️⃣  __No racist, degrading, or other discriminatory content.__\n\
+Any such content will be removed. Repeated infractions or arguments over removal of such content will result in a ban.\n\
+### 9️⃣  __No discussion of politics.__\n\
+This is a server about a TV show. General discussions of laws referred to on the show are fine, but be careful not to allow such discussions to devolve into politics.\n\
+### 🔟  __Inviting unofficial bots is NOT allowed.__\n\
+Any unapproved bots found will be instantly banned.\n\
+\n\
+📌 Other common sense rules and [Discord's Rules](https://discord.com/guidelines) also apply to this server at the discretion of the moderators.\n\
+\n\
+📌 Any questions, concerns or suggestions can be forwarded to a <@&343568731793915904>, whose usernames are in purple.\n\
+\n\
+📌 Get involved with our [Reddit Community](https://www.reddit.com/r/OnPatrolLive)");
+const rulesMessage = { embeds: [rulesEmbed] };
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("post")
@@ -117,6 +153,7 @@ module.exports = {
           { name: 'ferret', value: 'post_ferret' },
           { name: 'reddit', value: 'post_reddit' },
           { name: 'LAFire', value: 'post_lafire' },
+          { name: 'rules', value: 'post_rules' },
         ))
   // .addChannelOption(option =>
   //   option.setName('channel')
@@ -149,6 +186,10 @@ module.exports = {
         break;
       case "post_lafire": {
         postMessage = laFireMessage;
+      }
+        break;
+      case "post_rules": {
+        postMessage = rulesMessage;
       }
         break;
     }
