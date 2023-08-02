@@ -136,6 +136,47 @@ Any unapproved bots found will be instantly banned.\n\
 📌 Get involved with our [Reddit Community](https://www.reddit.com/r/OnPatrolLive)");
 const rulesMessage = { embeds: [rulesEmbed] };
 
+
+
+
+const faqEmbed1 = new EmbedBuilder()
+  .setColor(0x2B2D31)
+  // .setTitle("Bingo")
+  .setDescription("# How can I watch On Patrol: Live on Reelz?\n\
+  You must have a valid subscription/trial with a cable, satellite, or streaming provider. Also see the [guide](https://www.reelz.com/extra/how-can-i-watch-on-patrol-live/) at reelz.com.\n\
+\n\
+  Check with your cable/satellite provider to see if they offer streaming options (most do).  Regional/country restrictions may apply.\n\
+  ## Streaming services:\n\
+  * **Peacock**:  \"Premium\" or \"Premium Plus\" package\n\
+  * **Sling TV**: Orange or Blue Package + “Hollywood Extra” add-on package\n\
+  * **Philo**: “Movies & More” add-on along with basic subscription\n\
+  * **DirecTV Stream**: \"Entertainment\", \"Choice\", \"Ultimate\", or \"Premier\" package\n\
+  * **FreeCast**: \"Value Channels\" package\n\
+  Most of the streaming services offer free trials.\n\
+  ## Cable and Satellite providers\n\
+  Check with your cable/satellite provider to see if they offer streaming options (most do).\n\
+  ## ReelzNow\n\
+  If you have a subscription package that offers the Reelz channel, you can watch the Reelz channel live on [ReelzNow.com](https://www.reelznow.com/ ) with your subscription service login.");
+const faqEmbed2 = new EmbedBuilder()
+  .setColor(0x2B2D31)
+  .setDescription("# When will the latest episode be available on demand?\n\
+  * Peacock and other services will normally post the last episode within 48 hours after it aired live. There are frequently delays and they make no promises as to when an episode will appear on their service.\n\
+  * Occasionally, episodes are removed from on demand availability without explanation. This is likely due to legal policies in place to protect the rights of those who appear on the show. So far, any episodes that were removed have returned.");
+const faqMessage = { embeds: [faqEmbed1, faqEmbed2] };
+
+const resourcesEmbed = new EmbedBuilder()
+  .setColor(0x2B2D31)
+  .setTitle("📖 Additional Resources")
+  .setDescription("## 🔗 Links\n\
+- [**r/OnPatrolLive**](<https://www.reddit.com/r/onpatrollive/>) - Our companion subreddit\n\
+- [**That's a Bingo!**]( <https://www.thatsabingo.com/>) - Play bingo with us live, while you watch the show!\n\
+## 🧭 Server Navigation\n\
+- <id:customize> - Set or change your roles\n\
+- <id:browse> - See more channels\n\
+## 💬 Feedback\n\
+- **Community Feedback** - You can send general community feedback to <@&343568731793915904> in the <#325206992413130753>.");
+const resourcesMessage = { embeds: [resourcesEmbed] };
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("post")
@@ -154,6 +195,8 @@ module.exports = {
           { name: 'reddit', value: 'post_reddit' },
           { name: 'LAFire', value: 'post_lafire' },
           { name: 'rules', value: 'post_rules' },
+          { name: 'faq', value: 'post_faq' },
+          { name: 'resources', value: 'post_resources' },
         ))
   // .addChannelOption(option =>
   //   option.setName('channel')
@@ -190,6 +233,14 @@ module.exports = {
         break;
       case "post_rules": {
         postMessage = rulesMessage;
+      }
+        break;
+      case "post_faq": {
+        postMessage = faqMessage;
+      }
+        break;
+      case "post_resources": {
+        postMessage = resourcesMessage;
       }
         break;
     }
