@@ -1,0 +1,25 @@
+const CronJob = require('cron').CronJob;
+
+module.exports = {
+    execute(client) {
+        const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
+        const noticeRole = '325210261722234881'; // OPL Admin
+        const jobLoadedDate = new Date().toLocaleString();
+        console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Reminder OPL Thread`);
+        var setThreadOPL = new CronJob(
+            '00 00 15 * * FRI,SAT', () => {
+            //'*/15 * * * * *', () => {
+                if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
+                    const jobExecutedDate = new Date().toLocaleString();
+                    const scheduleTime = Math.floor(new Date().setHours(18, 0, 0) / 1000);
+                    try { noticeChannel.send(`<@&${noticeRole}>,\nBe sure there is a **[Live Thread](https://www.reddit.com/r/OnPatrolLive/about/scheduledposts)** scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R> for tonight's episode`); }
+                    catch (err) { console.error(`[ERROR] Sending message -`, err.message); }
+                    console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Reminder OPL Thread`);
+                }
+            },
+            null,
+            true,
+            'America/Chicago'
+        );
+    },
+};
