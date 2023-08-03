@@ -100,7 +100,7 @@ const laFireMessage = {
   components: [laFireButtonRow]
 }
 
-const rulesAttach = new AttachmentBuilder("https://i.imgur.com/PB29Wqn.png", { name: 'rules.png' })
+const rulesAttach = new AttachmentBuilder("./resources/rules-banner.png", { name: 'rules.png' })
 const rulesEmbed = new EmbedBuilder()
   .setColor(0x2B2D31)
   // .setTitle("Rules")
@@ -140,7 +140,7 @@ const rulesMessage = {
   embeds: [rulesEmbed]
 };
 
-const faqAttach = new AttachmentBuilder("https://i.imgur.com/ieK99xX.png", { name: 'faq.png' })
+const faqAttach = new AttachmentBuilder("./resources/faq-banner.png", { name: 'faq.png' })
 const faqEmbed1 = new EmbedBuilder()
   .setColor(0x2B2D31)
   // .setTitle("Bingo")
@@ -169,7 +169,7 @@ const faqMessage = {
   embeds: [faqEmbed1, faqEmbed2]
 };
 
-const resourcesAttach = new AttachmentBuilder("https://i.imgur.com/7aa9cef.png", { name: 'resources.png' })
+const resourcesAttach = new AttachmentBuilder("./resources/resources-banner.png", { name: 'resources.png' })
 const resourcesEmbed = new EmbedBuilder()
   .setColor(0x2B2D31)
   .setTitle("📖 Additional Resources")
