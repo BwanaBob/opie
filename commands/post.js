@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits, AttachmentBuilder } = require("discord.js");
 
 const postReply = `Posted`;
 
@@ -100,6 +100,7 @@ const laFireMessage = {
   components: [laFireButtonRow]
 }
 
+const rulesAttach = new AttachmentBuilder("https://i.imgur.com/PB29Wqn.png", { name: 'rules.png' })
 const rulesEmbed = new EmbedBuilder()
   .setColor(0x2B2D31)
   // .setTitle("Rules")
@@ -134,11 +135,12 @@ Any unapproved bots found will be instantly banned.\n\
 📌 Any questions, concerns or suggestions can be forwarded to a <@&343568731793915904>, whose usernames are in purple.\n\
 \n\
 📌 Get involved with our [Reddit Community](https://www.reddit.com/r/OnPatrolLive)");
-const rulesMessage = { embeds: [rulesEmbed] };
+const rulesMessage = {
+  files: [rulesAttach],
+  embeds: [rulesEmbed]
+};
 
-
-
-
+const faqAttach = new AttachmentBuilder("https://i.imgur.com/ieK99xX.png", { name: 'faq.png' })
 const faqEmbed1 = new EmbedBuilder()
   .setColor(0x2B2D31)
   // .setTitle("Bingo")
@@ -162,8 +164,12 @@ const faqEmbed2 = new EmbedBuilder()
   .setDescription("# When will the latest episode be available on demand?\n\
   * Peacock and other services will normally post the last episode within 48 hours after it aired live. There are frequently delays and they make no promises as to when an episode will appear on their service.\n\
   * Occasionally, episodes are removed from on demand availability without explanation. This is likely due to legal policies in place to protect the rights of those who appear on the show. So far, any episodes that were removed have returned.");
-const faqMessage = { embeds: [faqEmbed1, faqEmbed2] };
+const faqMessage = {
+  files: [faqAttach],
+  embeds: [faqEmbed1, faqEmbed2]
+};
 
+const resourcesAttach = new AttachmentBuilder("https://i.imgur.com/7aa9cef.png", { name: 'resources.png' })
 const resourcesEmbed = new EmbedBuilder()
   .setColor(0x2B2D31)
   .setTitle("📖 Additional Resources")
@@ -175,7 +181,10 @@ const resourcesEmbed = new EmbedBuilder()
 - <id:browse> - See more channels\n\
 ## 💬 Feedback\n\
 - **Community Feedback** - You can send general community feedback to <@&343568731793915904> in the <#325206992413130753>.");
-const resourcesMessage = { embeds: [resourcesEmbed] };
+const resourcesMessage = {
+  files: [resourcesAttach],
+  embeds: [resourcesEmbed]
+};
 
 module.exports = {
   data: new SlashCommandBuilder()
