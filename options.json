@@ -9,40 +9,40 @@
     "embeds": {
         "messageDeleted": {
             "title": "Had a message deleted",
-            "color": "004422",
+            "color": "e74c3c",
             "thumbnail": "https://i.imgur.com/gEBApmt.png"
         },
         "timerViolatedUser": {
             "title": "Attachments Timer Violated",
-            "color": "ff9900",
+            "color": "f1c40f",
             "thumbnail": "https://i.imgur.com/08pQkJd.png"
         },
         "timerViolated": {
             "title": "Attachments Timer Violated",
-            "color": "ff9900",
+            "color": "f1c40f",
             "thumbnail": "https://i.imgur.com/08pQkJd.png"
         },
         "serverBoosted": {
             "title": "Boosted the server!",
-            "color": "e655d4",
+            "color": "9b59b6",
             "thumbnail": "https://i.imgur.com/RNBLHif.png"
         },
         "nameChange": {
             "title": "Server Alias Changed",
-            "color": "00aaaa",
-            "thumbnail": "https://i.imgur.com/lSTK0Iq.png"
+            "color": "e67e22",
+            "thumbnail": "https://i.imgur.com/H7tfpuD.png"
         },
         "roleRemoved": {
-            "color": "00aaaa"
+            "color": "2ecc71"
         },
         "roleAdded": {
-            "color": "00aaaa"
+            "color": "2ecc71"
         },
         "aiResponse": {
-            "color": "e655d4"
+            "color": "2b2d31"
         },
         "milestone": {
-            "color": "e655d4"
+            "color": "e91e63"
         }
     },
     "jobs": {
