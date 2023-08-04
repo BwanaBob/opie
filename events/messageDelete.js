@@ -1,4 +1,4 @@
-const { Events, EmbedBuilder, PermissionsBitField } = require("discord.js");
+const { Events, EmbedBuilder, PermissionsBitField, AttachmentBuilder } = require("discord.js");
 const options = require("../options.json");
 
 module.exports = {
@@ -20,10 +20,11 @@ module.exports = {
       return;
     }
 
+    const noticeImage = new AttachmentBuilder("./resources/thumb-wastebasket.png", {name: "thumb-wastebasket.png"});
     const noticeEmbed = new EmbedBuilder()
       .setColor(options.embeds.messageDeleted.color)
       .setTitle(options.embeds.messageDeleted.title)
-      .setThumbnail( options.embeds.messageDeleted.thumbnail )
+      .setThumbnail("attachment://thumb-wastebasket.png")
       .setAuthor({
         name: `${message.member.displayName} (${message.author.tag})`,
         iconURL: `${message.member.displayAvatarURL()}`,
@@ -77,6 +78,6 @@ module.exports = {
     });
     message.client.channels.cache
       .get(message.guild.publicUpdatesChannelId)
-      .send({ embeds: [noticeEmbed] });
+      .send({ embeds: [noticeEmbed], files: [noticeImage] });
   },
 };

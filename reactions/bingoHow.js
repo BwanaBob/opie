@@ -1,4 +1,5 @@
-const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, AttachmentBuilder } = require("discord.js");
+const bingoThumb = new AttachmentBuilder("./resources/thumb-bingo.png", {name: "thumb-bingo.png"});
 
 module.exports = {
     name: "BingoHow",
@@ -10,10 +11,7 @@ module.exports = {
             .setTitle("Bingo")
             .setDescription("Get your bingo cards and play with us live!")
             .setURL('https://www.thatsabingo.com/')
-            .setThumbnail(
-                "https://i.imgur.com/dJP9d8L.png"
-            );
-
+            .setThumbnail('attachment://thumb-bingo.png');
         const bingoButton = new ButtonBuilder()
             .setLabel('Play Now')
             .setURL('https://www.thatsabingo.com')
@@ -24,7 +22,8 @@ module.exports = {
 
         message.reply({
             embeds: [bingoEmbed],
-            components: [bingoRow]
+            components: [bingoRow],
+            files: [bingoThumb]
         });
     }
 }

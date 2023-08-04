@@ -1,13 +1,12 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, AttachmentBuilder } = require("discord.js");
 
+const bingoImage = new AttachmentBuilder("./resources/thumb-bingo.png", {name: "thumb-bingo.png"});
 const bingoEmbed = new EmbedBuilder()
 .setColor(0xff0000)
 .setTitle("Bingo")
 .setDescription("Get your bingo cards and play with us live!")
 .setURL('https://www.thatsabingo.com/')
-.setThumbnail(
-    "https://i.imgur.com/dJP9d8L.png"
-);
+.setThumbnail("attachment://thumb-bingo.png");
 
 const bingoButton = new ButtonBuilder()
 .setLabel('Play Now')
@@ -26,7 +25,8 @@ module.exports = {
     // await interaction.reply({ content: bingoMessage, ephemeral: true });
     const messageId = await interaction.reply({
        embeds: [ bingoEmbed ],
-       components: [bingoRow]
+       components: [bingoRow],
+       files: [bingoImage]
        });
   },
 };

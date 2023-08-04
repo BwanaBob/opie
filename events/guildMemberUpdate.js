@@ -1,4 +1,4 @@
-const { Events, EmbedBuilder } = require("discord.js");
+const { Events, EmbedBuilder, AttachmentBuilder } = require("discord.js");
 const options = require("../options.json");
 
 module.exports = {
@@ -10,10 +10,11 @@ module.exports = {
         console.log(
           `[${logDate}] 😐 NAME  | ${oldMember.guild.name} | ${oldMember.user.tag} | ${oldMember.nickname} -> ${newMember.nickname}`
         );
+        const nameChangeImage = new AttachmentBuilder("./resources/thumb-name.png", {name: "thumb-name.png"});
         const nameChangeEmbed = new EmbedBuilder()
           .setColor(options.embeds.nameChange.color)
           .setTitle(options.embeds.nameChange.title)
-          .setThumbnail( options.embeds.nameChange.thumbnail )
+          .setThumbnail("attachment://thumb-name.png")
           .setAuthor({
             name: `${newMember.displayName} (${newMember.user.tag})`,
             iconURL: `${newMember.displayAvatarURL()}`,
@@ -31,12 +32,12 @@ module.exports = {
 
         oldMember.client.channels.cache
           .get(oldMember.guild.publicUpdatesChannelId)
-          .send({ embeds: [nameChangeEmbed] });
+          .send({ embeds: [nameChangeEmbed], files: [nameChangeImage] });
 
         // also send everything to bot's notice channel
         oldMember.client.channels.cache
           .get("1045327770592497694")
-          .send({ embeds: [nameChangeEmbed] });
+          .send({ embeds: [nameChangeEmbed], files: [nameChangeImage] });
       }
 
       // ROLE Changes

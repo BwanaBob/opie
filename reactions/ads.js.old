@@ -1,4 +1,5 @@
-const { PermissionsBitField, EmbedBuilder } = require("discord.js");
+const { PermissionsBitField, EmbedBuilder, AttachmentBuilder } = require("discord.js");
+const adsThumb = new AttachmentBuilder("./resources/thumb-ads.png", {name: "thumb-ads.png"});
 
 module.exports = {
     name: "Ads",
@@ -27,9 +28,7 @@ module.exports = {
                 })
                 .setTitle("Advertising Complaint")
                 .setDescription(`${message.content}`)
-                .setThumbnail(
-                    "https://i.imgur.com/3FNiHMX.png"
-                )
+                .setThumbnail('attachment://thumb-ads.png')
                 .addFields({
                     name: "Channel",
                     value: `${message.channel.name}`,
@@ -42,7 +41,7 @@ module.exports = {
                 });
             message.client.channels.cache
                 .get(message.guild.publicUpdatesChannelId)
-                .send({ embeds: [advertsEmbed] });
+                .send({ embeds: [advertsEmbed], files: [adsThumb] });
 
             // also send everything to bot's notice channel
             // message.client.channels.cache

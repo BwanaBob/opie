@@ -1,13 +1,12 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, AttachmentBuilder } = require("discord.js");
 
+const redditImage = new AttachmentBuilder("./resources/thumb-reddit.png", {name: "thumb-reddit.png"});
 const redditEmbed = new EmbedBuilder()
   .setColor(0xff4500)
   .setTitle("Reddit")
   .setDescription("Join the discussion on Reddit at r/OnPatrolLive")
   .setURL('https://www.reddit.com/r/OnPatrolLive/')
-  .setThumbnail(
-    "https://i.imgur.com/sd2bsMa.png"
-  );
+  .setThumbnail("attachment://thumb-reddit.png");
 
 const redditButton = new ButtonBuilder()
   .setLabel('reddit.com')
@@ -26,7 +25,8 @@ module.exports = {
     // await interaction.reply({ content: bingoMessage, ephemeral: true });
     const messageId = await interaction.reply({
       embeds: [redditEmbed],
-      components: [redditRow]
+      components: [redditRow],
+      files: [redditImage]
     });
   },
 };

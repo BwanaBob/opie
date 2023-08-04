@@ -9,28 +9,23 @@
     "embeds": {
         "messageDeleted": {
             "title": "Had a message deleted",
-            "color": "e74c3c",
-            "thumbnail": "https://i.imgur.com/gEBApmt.png"
+            "color": "e74c3c"
         },
         "timerViolatedUser": {
             "title": "Attachments Timer Violated",
-            "color": "f1c40f",
-            "thumbnail": "https://i.imgur.com/08pQkJd.png"
+            "color": "f1c40f"
         },
         "timerViolated": {
             "title": "Attachments Timer Violated",
-            "color": "f1c40f",
-            "thumbnail": "https://i.imgur.com/08pQkJd.png"
+            "color": "f1c40f"
         },
         "serverBoosted": {
             "title": "Boosted the server!",
-            "color": "9b59b6",
-            "thumbnail": "https://i.imgur.com/RNBLHif.png"
+            "color": "9b59b6"
         },
         "nameChange": {
             "title": "Server Alias Changed",
-            "color": "e67e22",
-            "thumbnail": "https://i.imgur.com/H7tfpuD.png"
+            "color": "e67e22"
         },
         "roleRemoved": {
             "color": "2ecc71"

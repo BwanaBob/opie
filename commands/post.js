@@ -2,28 +2,23 @@ const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRow
 
 const postReply = `Posted`;
 
+const kidsImage = new AttachmentBuilder("./resources/thumb-safe-place.png", {name: "thumb-safe-place.png"});
 const kidsEmbed = new EmbedBuilder()
   .setColor(0xffce07)
   .setTitle("Explicit Content Warning")
-  .setDescription(
-    "Please keep in mind that viewers under 18 years old join us."
-  )
-  .setThumbnail(
-    "https://i.imgur.com/yunluXs.png"
-  );
-const kidsMessage = { embeds: [kidsEmbed] };
+  .setDescription("Please keep in mind that viewers under 18 years old join us.")
+  .setThumbnail("attachment://thumb-safe-place.png");
+const kidsMessage = { embeds: [kidsEmbed], files: [kidsImage] };
 
+const ferretImage = new AttachmentBuilder("./resources/thumb-ferret.png", {name: "thumb-ferret.png"});
 const ferretEmbed = new EmbedBuilder()
   .setColor(0xFF69B4)
   .setTitle("Ferret Warning")
-  .setDescription(
-    "Please keep in mind that delicate ferrets are watching!"
-  )
-  .setThumbnail(
-    "https://i.imgur.com/E9dE4eM.png"
-  );
-const ferretMessage = { embeds: [ferretEmbed] };
+  .setDescription("Please keep in mind that delicate ferrets are watching!")
+  .setThumbnail("attachment://thumb-ferret.png");
+const ferretMessage = { embeds: [ferretEmbed], files: [ferretImage] };
 
+const bingoImage = new AttachmentBuilder("./resources/thumb-bingo.png", {name: "thumb-bingo.png"});
 const bingoEmbed = new EmbedBuilder()
   .setColor(0xff0000)
   .setTitle("Bingo")
@@ -34,11 +29,10 @@ const bingoEmbed = new EmbedBuilder()
     inline: true,
   })
   .setURL('https://www.thatsabingo.com/')
-  .setThumbnail(
-    "https://i.imgur.com/dJP9d8L.png"
-  );
-const bingoMessage = { embeds: [bingoEmbed] };
+  .setThumbnail("attachment://thumb-bingo.png");
+const bingoMessage = { embeds: [bingoEmbed], files:[bingoImage] };
 
+const redditImage = new AttachmentBuilder("./resources/thumb-reddit.png", {name: "thumb-reddit.png"});
 const redditEmbed = new EmbedBuilder()
   .setColor(0xff4500)
   .setTitle("Reddit")
@@ -49,17 +43,17 @@ const redditEmbed = new EmbedBuilder()
     inline: true,
   })
   .setURL('https://www.reddit.com/r/OnPatrolLive/')
-  .setThumbnail(
-    "https://i.imgur.com/sd2bsMa.png"
-  );
-const redditMessage = { embeds: [redditEmbed] };
+  .setThumbnail("attachment://thumb-reddit.png");
+const redditMessage = { embeds: [redditEmbed], files:[redditImage] };
 
+const showtimeImage = new AttachmentBuilder("./resources/thumb-opl.png", {name: "thumb-opl.png"});
+const showtimeBanner = new AttachmentBuilder("./resources/banner-no-text.png", {name: "banner-no-text.png"});
 const showtimeEmbed = new EmbedBuilder()
   .setColor(0x0000ff)
   .setTitle("Showtime")
   .setDescription("Welcome and enjoy the show!\nPlease read the rules before posting.")
-  .setThumbnail("https://i.imgur.com/fJ12AKT.png")
-  .setImage('https://i.imgur.com/1oZPjOW.png')
+  .setThumbnail("attachment://thumb-opl.png")
+  .setImage("attachment://banner-no-text.png")
   .addFields({
     name: "Rules",
     value: `[#rules](https://discord.com/channels/325206992413130753/1000869946215120987)`,
@@ -77,7 +71,7 @@ const showtimeEmbed = new EmbedBuilder()
   })
   //.setFooter({ text: "Showtime: \<t:1680307200:f> - <t:1680307200:R>" });
   ;
-const showtimeMessage = { embeds: [showtimeEmbed] };
+const showtimeMessage = { embeds: [showtimeEmbed], files:[showtimeImage, showtimeBanner] };
 
 // LA Fire & Rescue
 const discordButton = new ButtonBuilder()

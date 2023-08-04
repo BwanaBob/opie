@@ -1,24 +1,24 @@
-const { EmbedBuilder, ActivityType } = require("discord.js");
+const { EmbedBuilder, ActivityType, AttachmentBuilder } = require("discord.js");
 const CronJob = require('cron').CronJob;
 
 module.exports = {
     execute(client) {
         const bingoChannel = client.channels.cache.get("392157063502888962") || client.channels.cache.get("392093299890061312") || client.channels.cache.get("392093299890061312"); // OPL #bingo or Bingo #lobby or 
         const talkChannel = client.channels.cache.get("325207222814507018") || client.channels.cache.get("392093299890061312"); // OPL #epdis or OPie #General
-        const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
-        const guildIcon = client.guilds.cache.get('391821567241224192').iconURL() || "https://i.imgur.com/fJ12AKT.png";
+        // const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Showtime`);
         var jobShowtime = new CronJob(
             '00 00 20 * * FRI,SAT', () => {
-                //'*/15 * * * * *', () => {
+                // '*/15 * * * * *', () => {
+                const showtimeImage = new AttachmentBuilder("./resources/thumb-opl.png", { name: "thumb-opl.png" });
+                const showtimeBanner = new AttachmentBuilder("./resources/banner-no-text.png", { name: "banner-no-text.png" });
                 const showtimeEmbed = new EmbedBuilder()
                     .setColor(0x0000ff)
                     .setTitle("Showtime")
                     .setDescription("Welcome and enjoy the show!\nPlease read the rules before posting.")
-                    //.setThumbnail("https://i.imgur.com/fJ12AKT.png")
-                    .setThumbnail(guildIcon)
-                    .setImage('https://i.imgur.com/1oZPjOW.png')
+                    .setThumbnail("attachment://thumb-opl.png")
+                    .setImage("attachment://banner-no-text.png")
                     .addFields({
                         name: "Rules",
                         value: `[#rules](https://discord.com/channels/325206992413130753/1000869946215120987)`,
@@ -37,6 +37,7 @@ module.exports = {
                     //.setFooter({ text: "Showtime: \<t:1680307200:f> - <t:1680307200:R>" });
                     ;
 
+                const bingoImage = new AttachmentBuilder("./resources/thumb-bingo.png", { name: "thumb-bingo.png" });
                 const bingoEmbed = new EmbedBuilder()
                     .setColor(0xff0000)
                     .setTitle("Bingo")
@@ -47,14 +48,12 @@ module.exports = {
                         inline: true,
                     })
                     .setURL('https://www.thatsabingo.com/')
-                    .setThumbnail(
-                        "https://i.imgur.com/dJP9d8L.png"
-                    );
+                    .setThumbnail("attachment://thumb-bingo.png");
 
                 // noticeChannel.send("On Patrol: Live is starting now!")
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
-                    talkChannel.send({ embeds: [showtimeEmbed] });
-                    bingoChannel.send({ embeds: [bingoEmbed] });
+                    talkChannel.send({ embeds: [showtimeEmbed], files: [showtimeImage, showtimeBanner] });
+                    bingoChannel.send({ embeds: [bingoEmbed], files: [bingoImage] });
                 }
                 client.user.setPresence({
                     status: "online",

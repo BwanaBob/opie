@@ -180,7 +180,6 @@ module.exports = {
           inline: true,
         })
         .setThumbnail(message.guild.iconURL());
-      //.setImage("https://i.imgur.com/OyZvh4R.jpg");
       const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
       postChannel.send({ embeds: [milestoneEmbed] });
       const logDate = new Date(message.createdTimestamp).toLocaleString();
@@ -194,10 +193,11 @@ module.exports = {
     if ((messageTypes.includes(message.type))
       || (message.content == "test boosted" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
     ) {
+      const serverBoostedImage = new AttachmentBuilder("./resources/thumb-boosted.png", {name: "thumb-boosted.png"});
       const serverBoostedEmbed = new EmbedBuilder()
         .setColor(options.embeds.serverBoosted.color)
         .setTitle(options.embeds.serverBoosted.title)
-        .setThumbnail( options.embeds.serverBoosted.thumbnail )
+        .setThumbnail("attachment://thumb-boosted.png")
         .setAuthor({
           name: `${message.member.displayName}`,
           iconURL: `${message.member.displayAvatarURL()}`,
@@ -214,7 +214,7 @@ module.exports = {
           inline: true,
         });
       const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
-      postChannel.send({ embeds: [serverBoostedEmbed] });
+      postChannel.send({ embeds: [serverBoostedEmbed], files: [serverBoostedImage] });
       postChannel.send(`Thank you, <@${message.author.id}>!`)
       const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
@@ -257,10 +257,11 @@ module.exports = {
             .catch(err => { console.error(`[ERROR] Deleting message ${message.id} -`, err.message); });
 
           // send notice to user
+          const timerViolatedImage = new AttachmentBuilder("./resources/thumb-timer.png", {name: "thumb-timer.png"});
           const timerViolatedUserEmbed = new EmbedBuilder()
             .setColor(options.embeds.timerViolatedUser.color)
             .setTitle(options.embeds.timerViolatedUser.title)
-            .setThumbnail( options.embeds.timerViolatedUser.thumbnail )
+            .setThumbnail("attachment://thumb-timer.png")
             .setDescription(
               `This server has limited the posting of content with attachments to once every ${attachmentDelay} seconds.`
             )
@@ -275,7 +276,7 @@ module.exports = {
               inline: true,
             });
 
-          message.author.send({ embeds: [timerViolatedUserEmbed] })
+          message.author.send({ embeds: [timerViolatedUserEmbed], files: [timerViolatedImage] })
             .catch(err => {
               console.error(`[ERROR] Sending private message to ${message.author} -`, err.message);
             });
@@ -286,7 +287,7 @@ module.exports = {
           const timerViolatedEmbed = new EmbedBuilder()
             .setColor(options.embeds.timerViolated.color)
             .setTitle(options.embeds.timerViolated.title)
-            .setThumbnail( options.embeds.timerViolated.thumbnail )
+            .setThumbnail("attachment://thumb-timer.png")
             .setAuthor({
               name: `${message.member.displayName} (${message.author.tag})`,
               iconURL: `${message.member.displayAvatarURL()}`,
@@ -304,7 +305,7 @@ module.exports = {
 
           message.client.channels.cache
             .get(message.guild.publicUpdatesChannelId)
-            .send({ embeds: [timerViolatedEmbed] });
+            .send({ embeds: [timerViolatedEmbed], files: [timerViolatedImage] });
 
           //// also send everything to bot's notice channel
           // message.client.channels.cache
