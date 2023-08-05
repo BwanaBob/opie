@@ -1,14 +1,26 @@
+const { AttachmentBuilder } = require("discord.js");
+
 module.exports = {
     name: "PoopFlower",
     logName: "🌼 POOPFL",
     regex: "(poop(\\W|_).*flowers)",
     async execute(message) {
-        if (message.guild.id == "325206992413130753") {
-            message.react(`<:pooph:1073752699914420244>`)
-                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
+        const imageDelay = 900;
+        const lastImage = message.client.timers.get("image-poop-flower") ?? imageDelay + 100;
+        const elapsed = Math.trunc((message.createdTimestamp - lastImage) / 1000);
+        if (elapsed > imageDelay) {
+            message.client.timers.set("image-poop-flower", message.createdTimestamp);
+            const replyImage = new AttachmentBuilder("./resources/reaction-poop-flower.gif", { name: "reaction-poop-flower.gif" });
+            message.reply({ files: [replyImage] })
+                .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
         } else {
-            message.react(`🌼`)
-                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
+            if (message.guild.id == "325206992413130753") {
+                message.react(`<:pooph:1073752699914420244>`)
+                    .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
+            } else {
+                message.react(`🌼`)
+                    .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
+            }
         }
     }
 }
