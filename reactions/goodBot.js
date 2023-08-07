@@ -1,7 +1,7 @@
 module.exports = {
     name: "GoodBot",
     logName: "🥰 GD BOT",
-    regex: "Good Bot",
+    regex: "\\bgood\\b.Bot\\b",
     async execute(message) {
         if (message.guild.id == "325206992413130753") {
             message.react(`<a:smiling_hearts:1038217476225388574>`)
