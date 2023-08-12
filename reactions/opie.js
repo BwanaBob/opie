@@ -1,7 +1,7 @@
 module.exports = {
     name: "OPie",
     logName: "👋 OPie  ",
-    regex: "\\b(opie|1041050338775539732|1046068702396825674)\\b",
+    regex: "\\bopie\\b(?!,)",
     async execute(message) {
         var reaction = "👋";
         if (message.guild.id == "325206992413130753") {
