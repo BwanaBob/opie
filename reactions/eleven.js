@@ -2,7 +2,7 @@ const { AttachmentBuilder } = require("discord.js");
 
 module.exports = {
     name: "Eleven",
-    logName: "🎛️ GOTO11",
+    logName: "🎛️  GOTO11",
     regex: "\\bgo.to.(11|eleven)\\b",
     async execute(message) {
         const imageDelay = 900;
