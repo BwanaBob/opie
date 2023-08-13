@@ -2,7 +2,7 @@ const { AttachmentBuilder } = require("discord.js");
 
 module.exports = {
     name: "Vomit",
-    logName: "🤮 VOMIT ",
+    logName: "🤮  VOMIT ",
     regex: "\\bdust\\b(.){0,12}\\bvomit\\b",
     async execute(message) {
         const imageDelay = 900;
@@ -10,8 +10,8 @@ module.exports = {
         const elapsed = Math.trunc((message.createdTimestamp - lastImage) / 1000);
         if (elapsed > imageDelay) {
             message.client.timers.set("image-vomit", message.createdTimestamp);
-            const combustImage = new AttachmentBuilder("./resources/reaction-vomit.gif", { name: "reaction-vomit.gif" });
-            message.reply({ files: [combustImage] })
+            const vomitImage = new AttachmentBuilder("./resources/reaction-vomit.gif", { name: "reaction-vomit.gif" });
+            message.reply({ files: [vomitImage] })
                 .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
         } else {
             if (message.guild.id == "325206992413130753") {

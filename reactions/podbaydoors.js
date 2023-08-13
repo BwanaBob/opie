@@ -1,5 +1,3 @@
-const { AttachmentBuilder } = require("discord.js");
-
 module.exports = {
     name: "PodBay",
     logName: "🤖 PODBAY",

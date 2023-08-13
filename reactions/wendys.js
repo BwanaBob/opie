@@ -1,7 +1,7 @@
 const { AttachmentBuilder } = require("discord.js");
 
 module.exports = {
-    name: "Combust",
+    name: "Wendys",
     logName: "🍔 WENDYS",
     regex: "(sir|ma('|d)?am)(\\W){1,2}(this.is|you(')?re.in).a.wendy(')?s",
     async execute(message) {
