@@ -5,7 +5,7 @@ module.exports = {
     logName: "🍑 LUME  ",
     regex: "\\blume\\b",
     async execute(message) {
-        const imageDelay = 300;
+        const imageDelay = 900;
         const lastImage = message.client.timers.get("image-lume") ?? imageDelay + 100;
         const elapsed = Math.trunc((message.createdTimestamp - lastImage) / 1000);
         if (elapsed > imageDelay) {
