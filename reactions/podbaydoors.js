@@ -6,7 +6,7 @@ module.exports = {
         if (message.content.match(
             /(\bOPie(,| ,)|<@1041050338775539732>|<@&1045554081848103007>)/gmi
         )) { return; }
-        const imageDelay = 900;
+        const imageDelay = 1800;
         const lastImage = message.client.timers.get("image-podbay") ?? imageDelay + 100;
         const elapsed = Math.trunc((message.createdTimestamp - lastImage) / 1000);
         if (elapsed > imageDelay) {
