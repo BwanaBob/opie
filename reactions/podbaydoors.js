@@ -17,7 +17,7 @@ module.exports = {
             })
                 .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
         } else {
-            if (message.guild.id == "325206992413130753") {
+            if (message.client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
                 message.react(`<:hal_9000:1140404991333498961>`)
                     .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
             } else {

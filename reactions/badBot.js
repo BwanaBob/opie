@@ -3,7 +3,7 @@ module.exports = {
     logName: "😢 BD BOT",
     regex: "\\bbad bot\\b",
     async execute(message) {
-        if (message.guild.id == "325206992413130753") {
+        if (message.client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
             message.react(`<a:crying:1046282457177141309>`)
                 .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
         } else {

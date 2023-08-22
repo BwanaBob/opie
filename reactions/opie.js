@@ -4,7 +4,7 @@ module.exports = {
     regex: "\\bopie\\b(?!,)",
     async execute(message) {
         var reaction = "👋";
-        if (message.guild.id == "325206992413130753") {
+        if (message.client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
             const reactions = {
                 default: "👋",
                 member: {

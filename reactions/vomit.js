@@ -14,7 +14,7 @@ module.exports = {
             message.reply({ files: [vomitImage] })
                 .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
         } else {
-            if (message.guild.id == "325206992413130753") {
+            if (message.client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
                 message.react(`<a:vomiting:1109159906419949670>`)
                     .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
             } else {
