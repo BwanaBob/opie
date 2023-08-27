@@ -5,7 +5,7 @@ module.exports = {
     logName: "🍔 WENDYS",
     regex: "(sir|ma('|d)?am)(\\W){1,2}(this.is|you(')?re.in).a.wendy(')?s",
     async execute(message) {
-        const imageDelay = 300;
+        const imageDelay = 5400; // seconds 5400 = 1.5hr
         const lastImage = message.client.timers.get("image-wendys") ?? imageDelay + 100;
         const elapsed = Math.trunc((message.createdTimestamp - lastImage) / 1000);
         if (elapsed > imageDelay) {

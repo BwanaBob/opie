@@ -5,7 +5,7 @@ module.exports = {
     logName: "🌼 POOPFL",
     regex: "(poop(\\W|_).*flowers)",
     async execute(message) {
-        const imageDelay = 900;
+        const imageDelay = 5400; // seconds 5400 = 1.5hr
         const lastImage = message.client.timers.get("image-poop-flower") ?? imageDelay + 100;
         const elapsed = Math.trunc((message.createdTimestamp - lastImage) / 1000);
         if (elapsed > imageDelay) {

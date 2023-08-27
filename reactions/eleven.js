@@ -5,7 +5,7 @@ module.exports = {
     logName: "🎛️  GOTO11",
     regex: "\\bgo.to.(11|eleven)\\b",
     async execute(message) {
-        const imageDelay = 900;
+        const imageDelay = 5400; // seconds 5400 = 1.5hr
         const lastImage = message.client.timers.get("image-eleven") ?? imageDelay + 100;
         const elapsed = Math.trunc((message.createdTimestamp - lastImage) / 1000);
         if (elapsed > imageDelay) {
