@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRow
 
 const postReply = `Posted`;
 
-const kidsImage = new AttachmentBuilder("./resources/thumb-safe-place.png", {name: "thumb-safe-place.png"});
+const kidsImage = new AttachmentBuilder("./resources/thumb-safe-place.png", { name: "thumb-safe-place.png" });
 const kidsEmbed = new EmbedBuilder()
   .setColor(0xffce07)
   .setTitle("Explicit Content Warning")
@@ -10,7 +10,7 @@ const kidsEmbed = new EmbedBuilder()
   .setThumbnail("attachment://thumb-safe-place.png");
 const kidsMessage = { embeds: [kidsEmbed], files: [kidsImage] };
 
-const ferretImage = new AttachmentBuilder("./resources/thumb-ferret.png", {name: "thumb-ferret.png"});
+const ferretImage = new AttachmentBuilder("./resources/thumb-ferret.png", { name: "thumb-ferret.png" });
 const ferretEmbed = new EmbedBuilder()
   .setColor(0xFF69B4)
   .setTitle("Ferret Warning")
@@ -18,7 +18,7 @@ const ferretEmbed = new EmbedBuilder()
   .setThumbnail("attachment://thumb-ferret.png");
 const ferretMessage = { embeds: [ferretEmbed], files: [ferretImage] };
 
-const bingoImage = new AttachmentBuilder("./resources/thumb-bingo.png", {name: "thumb-bingo.png"});
+const bingoImage = new AttachmentBuilder("./resources/thumb-bingo.png", { name: "thumb-bingo.png" });
 const bingoEmbed = new EmbedBuilder()
   .setColor(0xff0000)
   .setTitle("Bingo")
@@ -30,9 +30,9 @@ const bingoEmbed = new EmbedBuilder()
   })
   .setURL('https://www.thatsabingo.com/')
   .setThumbnail("attachment://thumb-bingo.png");
-const bingoMessage = { embeds: [bingoEmbed], files:[bingoImage] };
+const bingoMessage = { embeds: [bingoEmbed], files: [bingoImage] };
 
-const redditImage = new AttachmentBuilder("./resources/thumb-reddit.png", {name: "thumb-reddit.png"});
+const redditImage = new AttachmentBuilder("./resources/thumb-reddit.png", { name: "thumb-reddit.png" });
 const redditEmbed = new EmbedBuilder()
   .setColor(0xff4500)
   .setTitle("Reddit")
@@ -44,10 +44,10 @@ const redditEmbed = new EmbedBuilder()
   })
   .setURL('https://www.reddit.com/r/OnPatrolLive/')
   .setThumbnail("attachment://thumb-reddit.png");
-const redditMessage = { embeds: [redditEmbed], files:[redditImage] };
+const redditMessage = { embeds: [redditEmbed], files: [redditImage] };
 
-const showtimeImage = new AttachmentBuilder("./resources/thumb-opl.png", {name: "thumb-opl.png"});
-const showtimeBanner = new AttachmentBuilder("./resources/banner-no-text.png", {name: "banner-no-text.png"});
+const showtimeImage = new AttachmentBuilder("./resources/thumb-opl.png", { name: "thumb-opl.png" });
+const showtimeBanner = new AttachmentBuilder("./resources/banner-no-text.png", { name: "banner-no-text.png" });
 const showtimeEmbed = new EmbedBuilder()
   .setColor(0x0000ff)
   .setTitle("Showtime")
@@ -71,7 +71,7 @@ const showtimeEmbed = new EmbedBuilder()
   })
   //.setFooter({ text: "Showtime: \<t:1680307200:f> - <t:1680307200:R>" });
   ;
-const showtimeMessage = { embeds: [showtimeEmbed], files:[showtimeImage, showtimeBanner] };
+const showtimeMessage = { embeds: [showtimeEmbed], files: [showtimeImage, showtimeBanner] };
 
 // LA Fire & Rescue
 const discordButton = new ButtonBuilder()
@@ -180,6 +180,110 @@ const resourcesMessage = {
   embeds: [resourcesEmbed]
 };
 
+const modPermissionsDescription1 = "# Managing Permissions\n\
+  Permissions control a users ability to view channels and what abilities they have on them as well as what changes they can make to the server and other users.\n\
+  Permissions exist on Roles, Groups, and Channels\n\
+## Channel visibility and features\n\
+### Ideal Setup\n\
+- Categories should determine what channels each role can see. \n\
+- Roles should determine a persons abilities on every channel they can see. \n\
+- Channels and Categories should have no permissions settings (exceptions below). \n\
+- Vanity and Notification roles should have permissions cleared. \n\
+- The only place any permissios should be set is on the following roles (exceptions below):\n\
+  * Moderator\n\
+  * everyone\n\
+  * Bots\n\
+    - OPie\n\
+    - Jake\n\
+    - Kudos\n\
+    - Midjourney Bot"
+
+const modPermissionsDescription2 = "### Role Permissions \n\
+\n\
+Mod/Member | Name \n\
+:white_check_mark: :white_check_mark: | View Channels \n\
+:no_entry: :no_entry: | Manage Channels \n\
+:no_entry: :no_entry: | Manage Roles \n\
+:no_entry: :no_entry: | Create Expressions \n\
+:no_entry: :no_entry: | Manage Expressions \n\
+:no_entry: :no_entry: | View Audit Log \n\
+:white_check_mark: :no_entry: | View Server Insights \n\
+:no_entry: :no_entry: | Manage Webhooks \n\
+:no_entry: :no_entry: | Manage Server \n\
+:white_check_mark: :no_entry: | Create Invite \n\
+:white_check_mark: :white_check_mark: | Change Nickname \n\
+:white_check_mark: :no_entry: | Manage Nicknames \n\
+:white_check_mark: :no_entry: | Kick Members \n\
+:white_check_mark: :no_entry: | Ban Members \n\
+:white_check_mark: :no_entry: | Timeout Members \n\
+:white_check_mark: :white_check_mark: | Send Messages \n\
+:white_check_mark: :white_check_mark: | Send Messages in Threads \n\
+:white_check_mark: :no_entry: | Create Public Threads \n\
+:white_check_mark: :no_entry: | Create Private Threads \n\
+:white_check_mark: :white_check_mark: | Embed Links \n\
+:white_check_mark: :white_check_mark: | Attach Files \n\
+:white_check_mark: :white_check_mark: | Add Reactions \n\
+:white_check_mark: :white_check_mark: | Use External Emoji \n\
+:white_check_mark: :white_check_mark: | Use External Stickers \n\
+:white_check_mark: :no_entry: | Mention @everyone, etc \n\
+:white_check_mark: :no_entry: | Manage Messages \n\
+:white_check_mark: :no_entry: | Manage Threads \n\
+:white_check_mark: :white_check_mark: | Read Message History \n\
+:white_check_mark: :no_entry: | Send TTS Messages \n\
+:white_check_mark: :white_check_mark: | Use Application Commands \n\
+:white_check_mark: :no_entry: | Send Voice Messages \n\
+:white_check_mark: :white_check_mark: | Connect \n\
+:white_check_mark: :white_check_mark: | Speak \n\
+:white_check_mark: :no_entry: | Video \n\
+:white_check_mark: :white_check_mark: | Use Activities \n\
+:white_check_mark: :white_check_mark: | Use Soundboard \n\
+:white_check_mark: :no_entry: | Use External Sounds \n\
+:white_check_mark: :white_check_mark: | Use Voice Activity \n\
+:white_check_mark: :no_entry: | Priority Speaker \n\
+:white_check_mark: :no_entry: | Mute Members \n\
+:white_check_mark: :no_entry: | Deafen Members \n\
+:white_check_mark: :no_entry: | Move Members \n\
+:white_check_mark: :white_check_mark: | Request to Speak \n\
+:white_check_mark: :no_entry: | Create Events \n\
+:white_check_mark: :no_entry: | Manage Events \n\
+:no_entry: :no_entry: | **Administrator**"
+
+const modPermissionsDescription3 = "## Exceptions\n\
+###  #off-topic threads\n\
+The @member role has **Create Public Threads** enabled on this channel only. \n\
+### Retired Channels Visibility \n\
+These are restricted to specific users that could view them at the time the channel was active. Those channels are not synced with their category. Features should still be determined by the users roles, however. So, add users to the channel, do not modify the radio buttons below. \n\
+### Resources Category\n\
+The **Send Message** permission will be restricted on this category for **everyone**. All Channels will have permissions synced with the category.\n\
+### Announcements Channel\n\
+#announcements is a special channel with the **Announcements Channel** setting selected.\n\
+the **everyone** role has **Send Messages** disabled on this channel.\n\
+### Bingo-Mod Channel\n\
+This channel is not synced with it's category\n\
+**View Channel** is disabled for **everyone**.\n\
+**Moderator** and **Bingo Moderator** are added so they can view it. No permissions need to be set.\n\
+### Community Category\n\
+**everyone** has **View Channel** disabled\n\
+**member** is added to the category to provide visibility\n\
+## Additional Channel Settings\n\
+#episode-discussion and #lounge currently have **slow mode** enabled and set to 10 seconds.";
+
+const modPermissionsEmbed1 = new EmbedBuilder()
+  .setColor(0x2B2D31)
+  .setDescription(modPermissionsDescription1 + "\n" + modPermissionsDescription3);
+
+const modPermissionsEmbed2 = new EmbedBuilder()
+  .setColor(0x2B2D31)
+  .setDescription(modPermissionsDescription2);
+
+// const modPermissionsEmbed3 = new EmbedBuilder()
+//   .setColor(0x2B2D31)
+//   .setDescription(modPermissionsDescription3);
+
+const modPermissionsMessage = {
+  embeds: [modPermissionsEmbed1, modPermissionsEmbed2]
+};
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("post")
@@ -200,6 +304,7 @@ module.exports = {
           { name: 'rules', value: 'post_rules' },
           { name: 'faq', value: 'post_faq' },
           { name: 'resources', value: 'post_resources' },
+          { name: 'moderation', value: 'post_moderation' },
         ))
   // .addChannelOption(option =>
   //   option.setName('channel')
@@ -244,6 +349,10 @@ module.exports = {
         break;
       case "post_resources": {
         postMessage = resourcesMessage;
+      }
+        break;
+      case "post_moderation": {
+        postMessage = modPermissionsMessage;
       }
         break;
     }
