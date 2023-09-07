@@ -200,7 +200,7 @@ const modPermissionsDescription1 = "# Managing Permissions\n\
 
 const modPermissionsDescription2 = "### Role Permissions \n\
 \n\
-Mod/Member | Name \n\
+Mod/Everyone | Name \n\
 :white_check_mark: :white_check_mark: | View Channels \n\
 :no_entry: :no_entry: | Manage Channels \n\
 :no_entry: :no_entry: | Manage Roles \n\
@@ -243,6 +243,7 @@ Mod/Member | Name \n\
 :white_check_mark: :no_entry: | Mute Members \n\
 :white_check_mark: :no_entry: | Deafen Members \n\
 :white_check_mark: :no_entry: | Move Members \n\
+:white_check_mark: :no_entry: | Set Voice Channel Status \n\
 :white_check_mark: :white_check_mark: | Request to Speak \n\
 :white_check_mark: :no_entry: | Create Events \n\
 :white_check_mark: :no_entry: | Manage Events \n\
