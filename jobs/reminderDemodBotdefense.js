@@ -1,0 +1,24 @@
+const CronJob = require('cron').CronJob;
+
+module.exports = {
+    execute(client) {
+        const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
+        const noticeRole = '343568731793915904'; // OPL Moderator
+        const jobLoadedDate = new Date().toLocaleString();
+        console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Reminder Demod Botdefense`);
+        var jobDemodBotdefense = new CronJob(
+            '00 00 12 03 Oct *', () => {
+                // '*/15 * * * * *', () => {
+                if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
+                    const jobExecutedDate = new Date().toLocaleString();
+                    try { noticeChannel.send(`<@&${noticeRole}>,\nRemove u/BotDefense from the moderators on all reddit subs. Botsefense is now officially shut down.\n[LINK](https://www.reddit.com/r/ModCoord/comments/14rkdpl/botdefense_is_wrapping_up_operations/)`); }
+                    catch (err) { console.error(`[ERROR] Sending message -`, err.message); }
+                    console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Reminder Demod Botdefense`);
+                }
+            },
+            null,
+            true,
+            'America/Chicago'
+        );
+    },
+};
