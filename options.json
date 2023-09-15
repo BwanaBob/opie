@@ -56,7 +56,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
+                    "content": "Write a Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Be sure to mention that we have a special guest, Master Deputy Braylyn Salmond of the Richland County Shiriff's Department, in the studio this weekend. Also, let's keep our fingers crossed that we get an update on that crazy knife slashing incident that happened in Berkeley County last Saturday."
                 }
             ]
         },
@@ -75,7 +75,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live."
+                    "content": "Write an enthusiastic opening comment welcoming our Discord users to their watch party for the television show On Patrol: Live. Be sure to mention that we have a special guest, Master Deputy Braylyn Salmond of the Richland County Shiriff's Department, in the studio this weekend."
                 }
             ]
         },
@@ -90,7 +90,7 @@
                 },
                 {
                     "role": "system",
-                    "content": "You host a bingo game where players are given a card full of terms to look for on the tv show On Patrol: Live. Players can select their own custom daubers to mark their cards, but the Cow dauber is rumored to bring good luck."
+                    "content": "You host a bingo game where players are given a card full of terms to look for on the tv show On Patrol: Live. Players can select their own custom daubers to mark their cards, but the Cow dauber is proven to bring good luck."
                 },
                 {
                     "role": "user",
