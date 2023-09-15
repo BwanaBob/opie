@@ -138,26 +138,26 @@ const faqAttach = new AttachmentBuilder("./resources/faq-banner.png", { name: 'f
 const faqEmbed1 = new EmbedBuilder()
   .setColor(0x2B2D31)
   // .setTitle("Bingo")
-  .setDescription("# How can I watch On Patrol: Live on Reelz?\n\
-  You must have a valid subscription/trial with a cable, satellite, or streaming provider. Also see the [guide](https://www.reelz.com/extra/how-can-i-watch-on-patrol-live/) at reelz.com.\n\
+.setDescription("# How can I watch On Patrol: Live on Reelz?\n\
+You must have a valid subscription/trial with a cable, satellite, or streaming provider. Also see the [guide](https://www.reelz.com/extra/how-can-i-watch-on-patrol-live/) at reelz.com.\n\
 \n\
-  Check with your cable/satellite provider to see if they offer streaming options (most do).  Regional/country restrictions may apply.\n\
-  ## Streaming services:\n\
-  * **Peacock**:  \"Premium\" or \"Premium Plus\" package\n\
-  * **Sling TV**: Orange or Blue Package + “Hollywood Extra” add-on package\n\
-  * **Philo**: “Movies & More” add-on along with basic subscription\n\
-  * **DirecTV Stream**: \"Entertainment\", \"Choice\", \"Ultimate\", or \"Premier\" package\n\
-  * **FreeCast**: \"Value Channels\" package\n\
-  Most of the streaming services offer free trials.\n\
-  ## Cable and Satellite providers\n\
-  Check with your cable/satellite provider to see if they offer streaming options (most do).\n\
-  ## ReelzNow\n\
-  If you have a subscription package that offers the Reelz channel, you can watch the Reelz channel live on [ReelzNow.com](https://www.reelznow.com/ ) with your subscription service login.");
+Check with your cable/satellite provider to see if they offer streaming options (most do).  Regional/country restrictions may apply.\n\
+## Streaming services:\n\
+* **Peacock**:  \"Premium\" or \"Premium Plus\" package\n\
+* **Sling TV**: Orange or Blue Package + “Hollywood Extra” add-on package\n\
+* **Philo**: “Movies & More” add-on along with basic subscription\n\
+* **DirecTV Stream**: \"Entertainment\", \"Choice\", \"Ultimate\", or \"Premier\" package\n\
+* **FreeCast**: \"Value Channels\" package\n\
+Most of the streaming services offer free trials.\n\
+# Cable and Satellite providers\n\
+Check with your cable/satellite provider to see if they offer streaming options (most do).\n\
+## ReelzNow\n\
+If you have a subscription package that offers the Reelz channel, you can watch the Reelz channel live on [ReelzNow.com](https://www.reelznow.com/ ) with your subscription service login.");
 const faqEmbed2 = new EmbedBuilder()
   .setColor(0x2B2D31)
   .setDescription("# When will the latest episode be available on demand?\n\
-  * Peacock and other services will normally post the last episode within 48 hours after it aired live. There are frequently delays and they make no promises as to when an episode will appear on their service.\n\
-  * Occasionally, episodes are removed from on demand availability without explanation. This is likely due to legal policies in place to protect the rights of those who appear on the show. So far, any episodes that were removed have returned.");
+* Peacock and other services will normally post the last episode within 48 hours after it aired live. There are frequently delays and they make no promises as to when an episode will appear on their service.\n\
+* Occasionally, episodes are removed from on demand availability without explanation. This is likely due to legal policies in place to protect the rights of those who appear on the show. So far, any episodes that were removed have returned.");
 const faqMessage = {
   files: [faqAttach],
   embeds: [faqEmbed1, faqEmbed2]
@@ -181,8 +181,8 @@ const resourcesMessage = {
 };
 
 const modPermissionsDescription1 = "# Managing Permissions\n\
-  Permissions control a users ability to view channels and what abilities they have on them as well as what changes they can make to the server and other users.\n\
-  Permissions exist on Roles, Groups, and Channels\n\
+Permissions control a users ability to view channels and what abilities they have on them as well as what changes they can make to the server and other users.\n\
+Permissions exist on Roles, Groups, and Channels\n\
 ## Channel visibility and features\n\
 ### Ideal Setup\n\
 - Categories should determine what channels each role can see. \n\
