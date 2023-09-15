@@ -52,7 +52,7 @@
                 },
                 {
                     "role": "system",
-                    "content": "First Shift is a live tv segment that previews and leads into the upcoming show On Patrol: Live. First Shift introduces the law enforcement agencies which will be appearing on On Patrol: Live this evening. First Shift also provides updates on events from previous episodes of On Patrol: Live. First Shift is hosted by Dan Abrams, Curtis \"Copernicus\" Wilson, and sometimes Sean \"Sticks\" Larkin"
+                    "content": "First Shift is a live tv segment that previews and leads into the upcoming show On Patrol: Live. First Shift introduces the law enforcement agencies which will be appearing on On Patrol: Live this evening. First Shift also provides updates on events from previous episodes of On Patrol: Live. First Shift is hosted by Dan Abrams and Curtis \"Copernicus\" Wilson."
                 },
                 {
                     "role": "user",
@@ -71,7 +71,7 @@
                 },
                 {
                     "role": "system",
-                    "content": "The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord. On Patrol: Live is hosted by Dan Abrams Curtis \"Copernicus\" Wilson, and sometimes Sean \"Sticks\" Larkin."
+                    "content": "The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this watch party on Discord. On Patrol: Live is hosted by Dan Abrams and Curtis \"Copernicus\" Wilson."
                 },
                 {
                     "role": "user",
