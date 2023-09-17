@@ -255,7 +255,7 @@ The @member role has **Create Public Threads** enabled on this channel only. \n\
 ### Retired Channels Visibility \n\
 These are restricted to specific users that could view them at the time the channel was active. Those channels are not synced with their category. Features should still be determined by the users roles, however. So, add users to the channel, do not modify the radio buttons below. \n\
 ### Resources Category\n\
-The **Send Message** permission will be restricted on this category for **everyone**. All Channels will have permissions synced with the category.\n\
+The **Send Message** permission will be restricted on this category for **everyone**. OPie has Send messages enabled. All Channels will have permissions synced with the category.\n\
 ### Announcements Channel\n\
 #announcements is a special channel with the **Announcements Channel** setting selected.\n\
 the **everyone** role has **Send Messages** disabled on this channel.\n\
@@ -357,8 +357,10 @@ module.exports = {
       }
         break;
     }
-    await interaction.reply({ content: postReply, ephemeral: true });
-    interaction.channel.send(postMessage);
+    await interaction.reply({ content: postReply, ephemeral: true })
+    .catch(err => { console.error(`[ERROR] Relpying to command ${message.id} -`, err.message); });
+    interaction.channel.send(postMessage)
+    .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
   },
 };
 
