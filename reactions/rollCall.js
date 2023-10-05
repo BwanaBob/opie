@@ -11,7 +11,8 @@ module.exports = {
                 .then(() => message.react("⛔"))
                 .then(() => message.react("⏲️"))
                 .then(() => message.react("🤷"))
-                .catch(error => console.error('One of the emojis failed to react:', error));
+                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
+
         } else {
             message.react("💬")
                 .then(() => message.react("🤖"))
@@ -19,7 +20,7 @@ module.exports = {
                 .then(() => message.react("⛔"))
                 .then(() => message.react("⏲️"))
                 .then(() => message.react("🤷"))
-                .catch(error => console.error('One of the emojis failed to react:', error));
+                .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
         }
     }
 }

@@ -3,7 +3,7 @@ module.exports = {
     logName: "🎱 BINGO ",
     regex: "bingo",
     async execute(message) {
-        if (message.channel.name == "mod-business" || message.channel.name == "bot-test") { return; }
+        if (message.channel.name == "mod-business" || message.channel.name == "bot-test") { return; } // Messes with Roll Call reactions
         if (message.client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
             message.react(`<:bingo:1066838689814163466>`)
                 .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
