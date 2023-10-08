@@ -192,7 +192,8 @@ Permissions exist on Roles, Groups, and Channels\n\
 - The only place any permissios should be set is on the following roles (exceptions below):\n\
   * Moderator\n\
   * everyone\n\
-  * Bots\n\
+  * Server Booster\n\
+* Bots\n\
     - OPie\n\
     - Jake\n\
     - Kudos\n\
@@ -200,58 +201,56 @@ Permissions exist on Roles, Groups, and Channels\n\
 
 const modPermissionsDescription2 = "### Role Permissions \n\
 \n\
-Mod/Everyone | Name \n\
-:white_check_mark: :white_check_mark: | View Channels \n\
-:no_entry: :no_entry: | Manage Channels \n\
-:no_entry: :no_entry: | Manage Roles \n\
-:no_entry: :no_entry: | Create Expressions \n\
-:no_entry: :no_entry: | Manage Expressions \n\
-:no_entry: :no_entry: | View Audit Log \n\
-:white_check_mark: :no_entry: | View Server Insights \n\
-:no_entry: :no_entry: | Manage Webhooks \n\
-:no_entry: :no_entry: | Manage Server \n\
-:white_check_mark: :no_entry: | Create Invite \n\
-:white_check_mark: :white_check_mark: | Change Nickname \n\
-:white_check_mark: :no_entry: | Manage Nicknames \n\
-:white_check_mark: :no_entry: | Kick Members \n\
-:white_check_mark: :no_entry: | Ban Members \n\
-:white_check_mark: :no_entry: | Timeout Members \n\
-:white_check_mark: :white_check_mark: | Send Messages \n\
-:white_check_mark: :white_check_mark: | Send Messages in Threads \n\
-:white_check_mark: :no_entry: | Create Public Threads \n\
-:white_check_mark: :no_entry: | Create Private Threads \n\
-:white_check_mark: :white_check_mark: | Embed Links \n\
-:white_check_mark: :white_check_mark: | Attach Files \n\
-:white_check_mark: :white_check_mark: | Add Reactions \n\
-:white_check_mark: :white_check_mark: | Use External Emoji \n\
-:white_check_mark: :white_check_mark: | Use External Stickers \n\
-:white_check_mark: :no_entry: | Mention @everyone, etc \n\
-:white_check_mark: :no_entry: | Manage Messages \n\
-:white_check_mark: :no_entry: | Manage Threads \n\
-:white_check_mark: :white_check_mark: | Read Message History \n\
-:white_check_mark: :no_entry: | Send TTS Messages \n\
-:white_check_mark: :white_check_mark: | Use Application Commands \n\
-:white_check_mark: :no_entry: | Send Voice Messages \n\
-:white_check_mark: :white_check_mark: | Connect \n\
-:white_check_mark: :white_check_mark: | Speak \n\
-:white_check_mark: :no_entry: | Video \n\
-:white_check_mark: :white_check_mark: | Use Activities \n\
-:white_check_mark: :white_check_mark: | Use Soundboard \n\
-:white_check_mark: :no_entry: | Use External Sounds \n\
-:white_check_mark: :white_check_mark: | Use Voice Activity \n\
-:white_check_mark: :no_entry: | Priority Speaker \n\
-:white_check_mark: :no_entry: | Mute Members \n\
-:white_check_mark: :no_entry: | Deafen Members \n\
-:white_check_mark: :no_entry: | Move Members \n\
-:white_check_mark: :no_entry: | Set Voice Channel Status \n\
-:white_check_mark: :white_check_mark: | Request to Speak \n\
-:white_check_mark: :no_entry: | Create Events \n\
-:white_check_mark: :no_entry: | Manage Events \n\
-:no_entry: :no_entry: | **Administrator**"
+Mod/Everyone/Booster | Name \n\
+✅ ✅ ⬛ | View Channels \n\
+⛔ ⛔ ⬛ | Manage Channels \n\
+⛔ ⛔ ⬛ | Manage Roles \n\
+⛔ ⛔ ⬛ | Create Expressions \n\
+⛔ ⛔ ⬛ | Manage Expressions \n\
+⛔ ⛔ ⬛ | View Audit Log \n\
+✅ ⛔ ⬛ | View Server Insights \n\
+⛔ ⛔ ⬛ | Manage Webhooks \n\
+⛔ ⛔ ⬛ | Manage Server \n\
+✅ ⛔ ⬛ | Create Invite \n\
+✅ ✅ ⬛ | Change Nickname \n\
+✅ ⛔ ⬛ | Manage Nicknames \n\
+✅ ⛔ ⬛ | Kick Members \n\
+✅ ⛔ ⬛ | Ban Members \n\
+✅ ⛔ ⬛ | Timeout Members \n\
+✅ ✅ ⬛ | Send Messages \n\
+✅ ✅ ⬛ | Send Messages in Threads \n\
+✅ ✅ ⬛ | Create Public Threads \n\
+✅ ⛔ ✅ | Create Private Threads \n\
+✅ ✅ ⬛ | Embed Links \n\
+✅ ✅ ⬛ | Attach Files \n\
+✅ ✅ ⬛ | Add Reactions \n\
+✅ ✅ ⬛ | Use External Emoji \n\
+✅ ✅ ⬛ | Use External Stickers \n\
+✅ ⛔ ⬛ | Mention @everyone, etc \n\
+✅ ⛔ ⬛ | Manage Messages \n\
+✅ ⛔ ⬛ | Manage Threads \n\
+✅ ✅ ⬛ | Read Message History \n\
+✅ ⛔ ⬛ | Send TTS Messages \n\
+✅ ✅ ⬛ | Use Application Commands \n\
+✅ ⛔ ✅ | Send Voice Messages \n\
+✅ ✅ ⬛ | Connect \n\
+✅ ✅ ⬛ | Speak \n\
+✅ ⛔ ✅ | Video \n\
+✅ ✅ ⬛ | Use Activities \n\
+✅ ✅ ⬛ | Use Soundboard \n\
+✅ ⛔ ✅ | Use External Sounds \n\
+✅ ✅ ⬛ | Use Voice Activity \n\
+✅ ⛔ ⬛ | Priority Speaker \n\
+✅ ⛔ ⬛ | Mute Members \n\
+✅ ⛔ ⬛ | Deafen Members \n\
+✅ ⛔ ⬛ | Move Members \n\
+✅ ⛔ ⬛ | Set Voice Channel Status \n\
+✅ ✅ ⬛ | Request to Speak \n\
+✅ ⛔ ⬛ | Create Events \n\
+✅ ⛔ ⬛ | Manage Events \n\
+⛔ ⛔ ⬛ | **Administrator**"
 
 const modPermissionsDescription3 = "## Exceptions\n\
-###  #off-topic threads\n\
-The @member role has **Create Public Threads** enabled on this channel only. \n\
 ### Retired Channels Visibility \n\
 These are restricted to specific users that could view them at the time the channel was active. Those channels are not synced with their category. Features should still be determined by the users roles, however. So, add users to the channel, do not modify the radio buttons below. \n\
 ### Resources Category\n\
