@@ -14,19 +14,19 @@ module.exports = {
         var jobRollCall = new CronJob(
             '00 00 18 * * WED', async () => {
             // '*/15 * * * * *', async () => {
-                var reacts = ["💬", "🤖", "🎱", "⛔", "⏲️", "🤷"];
-                // var friMessageContent = `## Friday Roll Call\nWho will be available to mod <t:${friShowTime}:F>?\n💬 Discord  🤖 Reddit  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
-                // var satMessageContent = `## Saturday Roll Call\nWho will be available to mod <t:${satShowTime}:F>?\n💬 Discord  🤖 Reddit  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
-                var friMessageContent = `## Friday Roll Call\nWho will be available to mod on Friday?\n💬 Discord  🤖 Reddit  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
-                var satMessageContent = `## Saturday Roll Call\nWho will be available to mod on Saturday?\n💬 Discord  🤖 Reddit  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
+                var reacts = ["🤖", "💬", "🎱", "⛔", "⏲️", "🤷"];
+                // var friMessageContent = `## Friday Roll Call\nWho will be available to mod <t:${friShowTime}:F>?\n🤖 Reddit  💬 Discord  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
+                // var satMessageContent = `## Saturday Roll Call\nWho will be available to mod <t:${satShowTime}:F>?\n🤖 Reddit  💬 Discord  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
+                var friMessageContent = `## Friday Roll Call\nWho will be available to mod on Friday?\n🤖 Reddit  💬 Discord  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
+                var satMessageContent = `## Saturday Roll Call\nWho will be available to mod on Saturday?\n🤖 Reddit  💬 Discord  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
                     if (client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
                         noticeRole = '343568731793915904';  // OPL Moderator
                         reacts = ["<:discord_clyde:1157337181711515710>", "<:reddit_snoo:1129542362641739856>", "<:bingo:1066838689814163466>", "⛔", "⏲️", "🤷"];
-                        // friMessageContent = `## Friday Roll Call\nWho will be available to mod <t:${friShowTime}:F>?\n:discord_clyde: Discord  :reddit_snoo: Reddit  :bingo: Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
-                        // satMessageContent = `## Saturday Roll Call\nWho will be available to mod <t:${satShowTime}:F>?\n:discord_clyde: Discord  :reddit_snoo: Reddit  :bingo: Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
-                        friMessageContent = `## Friday Roll Call\nWho will be available to mod on Friday?\n:discord_clyde: Discord  :reddit_snoo: Reddit  :bingo: Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
-                        satMessageContent = `## Saturday Roll Call\nWho will be available to mod on Saturday?\n:discord_clyde: Discord  :reddit_snoo: Reddit  :bingo: Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
+                        // friMessageContent = `## Friday Roll Call\nWho will be available to mod <t:${friShowTime}:F>?\n<:reddit_snoo:1129542362641739856> Reddit  <:discord_clyde:1157337181711515710> Discord  <:bingo:1066838689814163466>" Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
+                        // satMessageContent = `## Saturday Roll Call\nWho will be available to mod <t:${satShowTime}:F>?\n<:reddit_snoo:1129542362641739856> Reddit  <:discord_clyde:1157337181711515710> Discord  <:bingo:1066838689814163466>" Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
+                        friMessageContent = `## Friday Roll Call\nWho will be available to mod on Friday?\n<:reddit_snoo:1129542362641739856> Reddit  <:discord_clyde:1157337181711515710> Discord  <:bingo:1066838689814163466>" Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
+                        satMessageContent = `## Saturday Roll Call\nWho will be available to mod on Saturday?\n<:reddit_snoo:1129542362641739856> Reddit  <:discord_clyde:1157337181711515710> Discord  <:bingo:1066838689814163466>" Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
                     }
                     await modChannel.send(`<@&${noticeRole}>`)
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
