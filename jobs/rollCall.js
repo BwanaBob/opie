@@ -12,8 +12,8 @@ module.exports = {
         // satShowTime.setDate(satShowTime.getDate() + 1);
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call`);
         var jobRollCall = new CronJob(
-            '00 00 18 * * WED', async () => {
-            // '*/15 * * * * *', async () => {
+            // '00 00 18 * * WED', async () => {
+            '*/15 * * * * *', async () => {
                 var reacts = ["🤖", "💬", "🎱", "⛔", "⏲️", "🤷"];
                 // var friMessageContent = `## Friday Roll Call\nWho will be available to mod <t:${friShowTime}:F>?\n🤖 Reddit  💬 Discord  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
                 // var satMessageContent = `## Saturday Roll Call\nWho will be available to mod <t:${satShowTime}:F>?\n🤖 Reddit  💬 Discord  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
@@ -28,8 +28,8 @@ module.exports = {
                         friMessageContent = `## Friday Roll Call\nWho will be available to mod on Friday?\n<:reddit_snoo:1129542362641739856> Reddit  <:discord_clyde:1157337181711515710> Discord  <:bingo:1066838689814163466>" Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
                         satMessageContent = `## Saturday Roll Call\nWho will be available to mod on Saturday?\n<:reddit_snoo:1129542362641739856> Reddit  <:discord_clyde:1157337181711515710> Discord  <:bingo:1066838689814163466>" Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
                     }
-                    await modChannel.send(`<@&${noticeRole}>`)
-                        .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
+                    // await modChannel.send(`<@&${noticeRole}>`)
+                    //     .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
                     const friMessage = await modChannel.send(friMessageContent)
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
                     friMessage.react(reacts[0])
