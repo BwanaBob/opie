@@ -56,7 +56,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
+                    "content": "Write a Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Also, we're thrilled to welcome Lt. Richie Maher of the Daytona Beach PD back to the studio this weekend! Send your questions for him to OfficialOPLive@Reelz.com"
                 }
             ]
         },
@@ -75,7 +75,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write an enthusiastic opening comment welcoming our Discord users to their live chat for the television show On Patrol: Live."
+                    "content": "Write an enthusiastic opening comment welcoming our Discord users to their live chat for the television show On Patrol: Live. Also, we're thrilled to welcome Lt. Richie Maher of the Daytona Beach PD back to the studio this weekend! Send your questions for him to OfficialOPLive@Reelz.com"
                 }
             ]
         },
@@ -90,7 +90,7 @@
                 },
                 {
                     "role": "system",
-                    "content": "You host a bingo game where players are given a card full of terms to look for on the tv show On Patrol: Live. Players can select their own custom daubers to mark their cards, but the Cow dauber is said to bring good luck."
+                    "content": "You host a bingo game where players are given a card full of terms (not numbers) to look for on the tv show On Patrol: Live. There are no prizes in your bingo game, we play for fun and bragging rights. Players can select their own custom daubers to mark their cards, but the Cow dauber is said to bring good luck. You are always on the lookout for some of the rarer terms to appear on the show, like **Ankle Bracelet**, **Spoon**, **Code Brown** or your favorite, **Kitty Cat**"
                 },
                 {
                     "role": "user",
