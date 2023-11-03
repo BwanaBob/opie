@@ -6,8 +6,10 @@ module.exports = {
     execute(client) {
         const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
         const jobLoadedDate = new Date().toLocaleString();
-        const firstShiftTime = Math.floor(new Date().setHours(19, 0, 0) / 1000);
-        const showStartTime = Math.floor(new Date().setHours(20, 0, 0) / 1000);
+        var firstShiftTime = Math.floor(new Date().setHours(19, 0, 0) / 1000);
+        firstShiftTime += 60 * 60 * 24;
+        var showStartTime = Math.floor(new Date().setHours(20, 0, 0) / 1000);
+        showStartTime += 60 * 60 * 24;
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Reminder Start Recording`);
         var jobStartRecording = new CronJob(
             '00 45 18,19 * * FRI,SAT', () => {
