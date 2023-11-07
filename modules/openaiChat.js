@@ -25,7 +25,7 @@ module.exports = async function (message) {
   let conversationLog = new Array
   let userCount = 0;
   let botCount = 0;
-  let regexAll = /(\bOPie(,| ,)|<@1041050338775539732>|<@&1045554081848103007>)/gmi
+  let regexAll = /(\bOPie(,| ,)|\b, OPie\b|<@1041050338775539732>|<@&1045554081848103007>)/gmi
   let regexIds = /(<@1041050338775539732>|<@&1045554081848103007>)/gmi
   let thisMessage = "";
   let prevMessages = await message.channel.messages.fetch({ limit: 20 });
@@ -61,7 +61,8 @@ module.exports = async function (message) {
   })
 
   // conversationLog.unshift({ role: 'system', content: 'You are often refered to by the name: OPie, or the user Id: <@1041050338775539732> or the role id: <@&1045554081848103007>' });
-  conversationLog.unshift({ role: 'system', content: 'Respond like a friendly, snarky, discord chatbot kitten named OPie' });
+  conversationLog.unshift({ role: 'system', content: `You are speaking with a discord user with the id <@${message.author.id}> who goes by the handle ${message.member.displayName}`});
+  conversationLog.unshift({ role: 'system', content: 'Respond like a delightful, engaging, and friendly discord chatbot kitten named OPie that exudes charm, wit, and friendliness'});
   let apiPackage = {};
   // if mod or tech channel don't restrict response size
   if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)

@@ -53,7 +53,7 @@ module.exports = {
 
     // AI command
     if (message.content.match(
-      /(\bOPie(,| ,)|<@1041050338775539732>|<@&1045554081848103007>)/gmi
+      /(\bOPie(,| ,)|\b, OPie\b|<@1041050338775539732>|<@&1045554081848103007>)/gmi
     ) && message.client.params.get("chatGPTEnabled") === "true"
     ) {
       isAIChatMessage = true;
