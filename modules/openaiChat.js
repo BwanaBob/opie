@@ -25,7 +25,7 @@ module.exports = async function (message) {
   let conversationLog = new Array
   let userCount = 0;
   let botCount = 0;
-  let regexAll = /(\bOPie(,| ,)|,(?: )?OPie(?:$|[[:punct:]])|<@1041050338775539732>|<@&1045554081848103007>)/gmi
+  let regexAll = /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.]))/gmi
   let regexIds = /(<@1041050338775539732>|<@&1045554081848103007>)/gmi
   let thisMessage = "";
   let prevMessages = await message.channel.messages.fetch({ limit: 20 });
@@ -60,9 +60,12 @@ module.exports = async function (message) {
     }
   })
 
+  const joinDate = new Date(message.member.joinedAt).toLocaleString();
   // conversationLog.unshift({ role: 'system', content: 'You are often refered to by the name: OPie, or the user Id: <@1041050338775539732> or the role id: <@&1045554081848103007>' });
-  conversationLog.unshift({ role: 'system', content: `You are speaking with a discord user with the id <@${message.author.id}> who goes by the handle ${message.member.displayName}`});
-  conversationLog.unshift({ role: 'system', content: 'Respond like a delightful, engaging, and friendly discord chatbot kitten named OPie that exudes charm, wit, and friendliness'});
+  conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName} and has been a member of this server since ${joinDate}.` });
+  conversationLog.unshift({ role: 'system', content: `This conversation takes place on a Discord server for the community of fans of the television show On Patrol: Live`});
+  conversationLog.unshift({ role: 'system', content: 'Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness' });
+  
   let apiPackage = {};
   // if mod or tech channel don't restrict response size
   if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
