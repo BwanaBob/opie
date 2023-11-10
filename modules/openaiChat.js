@@ -60,12 +60,16 @@ module.exports = async function (message) {
     }
   })
 
-  const joinDate = new Date(message.member.joinedAt).toLocaleString();
+  if (message.member.premiumSince) {
+    conversationLog.unshift({ role: 'system', content: `${message.member.displayName} has boosted the server which means they have paid money to support our community and are considered a VIP` });
+  }
   // conversationLog.unshift({ role: 'system', content: 'You are often refered to by the name: OPie, or the user Id: <@1041050338775539732> or the role id: <@&1045554081848103007>' });
+  const joinDate = new Date(message.member.joinedAt).toLocaleString();
   conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName} and has been a member of this server since ${joinDate}.` });
-  conversationLog.unshift({ role: 'system', content: `This conversation takes place on a Discord server for the community of fans of the television show On Patrol: Live`});
+  const esablishedDate = new Date(message.member.guild.createdAt).toLocaleString();
+  conversationLog.unshift({ role: 'system', content: `This conversation takes place on the Discord server "On Patrol Live" for the community of fans of the television show On Patrol: Live. The server was established ${esablishedDate}.` });
   conversationLog.unshift({ role: 'system', content: 'Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness' });
-  
+
   let apiPackage = {};
   // if mod or tech channel don't restrict response size
   if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
