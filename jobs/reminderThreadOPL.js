@@ -2,7 +2,7 @@ const CronJob = require('cron').CronJob;
 
 module.exports = {
     execute(client) {
-        const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
+        const noticeChannel = client.channels.cache.get("1074317729978400819") || client.channels.cache.get("1045327770592497694"); // OPL #mod-business or OPie #notifications
         const noticeRole = '325210261722234881'; // OPL Admin
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Reminder OPL Thread`);

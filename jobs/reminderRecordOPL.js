@@ -4,7 +4,7 @@ const CronJob = require('cron').CronJob;
 
 module.exports = {
     execute(client) {
-        const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
+        const noticeChannel = client.channels.cache.get("1074317729978400819") || client.channels.cache.get("1045327770592497694"); // OPL #mod-business or OPie #notifications
         const jobLoadedDate = new Date().toLocaleString();
         var firstShiftTime = Math.floor(new Date().setHours(19, 0, 0) / 1000);
         firstShiftTime += 60 * 60 * 24;
