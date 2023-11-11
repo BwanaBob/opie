@@ -25,7 +25,7 @@ module.exports = async function (message) {
   let conversationLog = new Array
   let userCount = 0;
   let botCount = 0;
-  let regexAll = /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.]))/gmi
+  let regexAll = /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>)/gmi
   let regexIds = /(<@1041050338775539732>|<@&1045554081848103007>)/gmi
   let thisMessage = "";
   let prevMessages = await message.channel.messages.fetch({ limit: 20 });
