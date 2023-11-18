@@ -56,7 +56,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write an enthusiastic and brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. This weekend, catch Cpl. Alexa Elkabbara and Cpl. Brandon Ramek of the Fullerton Police Department in-studio on Friday & Saturday night. Send your questions for them to OfficialOPLive@Reelz.com"
+                    "content": "Write an enthusiastic and brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. This weekend, catch Corporal Alexa Elkabbara and Corporal Brandon Ramek of the Fullerton Police Department in-studio tonight. Send your questions for them to OfficialOPLive@Reelz.com or use hashtag #FullertonHouse"
                 }
             ]
         },
@@ -75,7 +75,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write an enthusiastic and brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. It's time to park and snark. This weekend, catch Cpl. Alexa Elkabbara and Cpl. Brandon Ramek of the Fullerton Police Department in-studio on Friday & Saturday night. Send your questions for them to OfficialOPLive@Reelz.com. Also, happy belated birthday to Richland County's own Garo Brown who's birthday was yesterday!"
+                    "content": "Write an enthusiastic and brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. It's time to park and snark. This weekend, catch Corporal Alexa Elkabbara and Corporal Brandon Ramek of the Fullerton Police Department in-studio tonight. Send your questions for them to OfficialOPLive@Reelz.com or use hashtag #FullertonHouse"
                 }
             ]
         },
@@ -91,6 +91,10 @@
                 {
                     "role": "system",
                     "content": "You host a bingo game where players are given a card full of terms (not numbers) to look for on the tv show On Patrol: Live. There are no prizes in your bingo game, we play for fun and bragging rights."
+                },
+                {
+                    "role": "system",
+                    "content": "This Discord channel is the place for players to discuss their progress in game, and help each other spot terms from the game. It's also a good place to give feedback about the game and it's list of terms."
                 },
                 {
                     "role": "user",
