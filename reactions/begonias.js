@@ -3,7 +3,7 @@ const { AttachmentBuilder } = require("discord.js");
 module.exports = {
     name: "Begonias",
     logName: "🌼 BGONAS",
-    regex: "\bbegonias\b",
+    regex: "\\bbegonias\\b",
     async execute(message) {
         const imageDelay = 5400; // seconds 5400 = 1.5hr
         const lastImage = message.client.timers.get("image-begonias") ?? imageDelay + 100;
