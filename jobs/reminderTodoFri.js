@@ -6,7 +6,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Reminder Todo Fri`);
         var todoListFridayJob = new CronJob(
-            '00 00 15 * * FRI', async () => {
+            '00 00 12 * * FRI', async () => {
             // '*/25 * * * * *', async () => {
                 let noticeRole = '391837678967980035'; // OPie Test Role
                 let reacts = ["🧵", "🎱", "🤖", "📋", "💬", "⏺️", "🧹", "🏅"];
@@ -16,7 +16,7 @@ module.exports = {
                         noticeRole = '325210261722234881';  // OPL Admin
                         reacts = ["🧵", "<:bingo:1066838689814163466>", "🤖", "📋", "💬", "⏺️", "🧹", "🏅"];
                     }
-                    let noticeContent = `<@&${noticeRole}>\n## Friday Todo List\n### Pre-show\n- 🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/scheduledposts>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>\n- ${reacts[1]} [Bingo](<https://www.thatsabingo.com/>) Reset\n- 🤖 OPie prompts\n- 📋 Lineup\n- 💬 Opening comment\n- ⏺️ First Shift Recording\n### After\n- 🧹 Closing and !tidy\n- 🏅 Comment of the Night Awards`;
+                    let noticeContent = `<@&${noticeRole}>\n## Friday Checklist\n### Pre-show\n- 🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/scheduledposts>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>\n- ${reacts[1]} [Bingo](<https://www.thatsabingo.com/>) Reset\n- 🤖 OPie prompts\n- 📋 Lineup\n- 💬 Opening comment\n- ⏺️ First Shift Recording\n### After\n- 🧹 Closing and !tidy\n- 🏅 Comment of the Night Awards`;
                     const noticeMessage = await noticeChannel.send({ content: noticeContent })
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
                     noticeMessage.react(reacts[0])
