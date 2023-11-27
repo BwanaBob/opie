@@ -31,7 +31,6 @@ module.exports = {
             for (const thisEmoji of aiReplyArr) {
                 const regex_emoji = /[\p{Extended_Pictographic}\u{1F3FB}-\u{1F3FF}\u{1F9B0}-\u{1F9B3}]/u;
                 if (regex_emoji.test(thisEmoji)) {
-                    console.log(thisEmoji)
                     await message.react(thisEmoji)
                         .catch(err => { console.error(`[ERROR] Reacting to message ${message.id} -`, err.message); });
                 }
