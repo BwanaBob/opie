@@ -1,6 +1,6 @@
 module.exports = {
     name: "OPieEmote",
-    logName: "👋 OPieEm",
+    logName: "🤖 OPieEm",
     regex: "🤖",
     async execute(message) {
         const openai = require('../modules/openaiEmoji.js');
