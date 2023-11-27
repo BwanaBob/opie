@@ -4,7 +4,7 @@ module.exports = {
     regex: "\\open(.){1,35}pod.bay.doors\\b",
     async execute(message) {
         if (message.content.match(
-            /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>)/gmi
+            /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi
         )) { return; }
         const imageDelay = 1800;
         const lastImage = message.client.timers.get("image-podbay") ?? imageDelay + 100;

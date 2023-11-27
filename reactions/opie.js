@@ -3,6 +3,25 @@ module.exports = {
     logName: "👋 OPie  ",
     regex: "\\bopie\\b(?!,)",
     async execute(message) {
+        // AI reply test
+        // Do not react if this is an AI chat message
+        if (message.reference) {
+            const repliedMessage = await message.fetchReference()
+            if (
+                (repliedMessage.author.id == "1049292221515563058" ||
+                    repliedMessage.author.id == "1041050338775539732")
+                && message.client.params.get("chatGPTEnabled") === "true"
+            ) {
+                return;
+            }
+        }
+
+        // Do not react if this is an AI chat message
+        if (message.content.match(
+            /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi
+        ) && message.client.params.get("chatGPTEnabled") === "true"
+        ) { return }
+
         var reaction = "👋";
         if (message.client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
             const reactions = {
