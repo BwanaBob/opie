@@ -6,7 +6,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Reminder Todo Fri`);
         var todoListFridayJob = new CronJob(
-            '00 00 12 * * FRI', async () => {
+            '00 00 10 * * FRI', async () => {
             // '*/25 * * * * *', async () => {
                 let noticeRole = '391837678967980035'; // OPie Test Role
                 let reacts = ["🧵", "🎱", "🤖", "📋", "💬", "⏺️", "🧹", "🏅"];
