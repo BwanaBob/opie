@@ -7,16 +7,43 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 
-async function checkRepliedAuthor(message) {
-  const repliedMessage = await message.fetchReference()
-  if (
-    repliedMessage.author.id == "1049292221515563058" ||
-    repliedMessage.author.id == "1041050338775539732"
-  ) {
-    return true;
-  } else {
+async function replyIsToBot(message) {
+  try {
+    const repliedMessage = await message.fetchReference();
+    const botIds = ["1049292221515563058", "1041050338775539732"];
+    return botIds.includes(repliedMessage.author.id);
+  } catch (error) {
+    console.error("Error fetching reference:", error);
     return false;
   }
+}
+
+async function replyIsToUser(message, UserId) {
+  try {
+    const repliedMessage = await message.fetchReference()
+    return repliedMessage.author.id == UserId
+  } catch (error) {
+    console.error("Error fetching reference:", error);
+    return false;
+  }
+}
+
+async function messageIsPartOfConversation(message, botId, authorId) {
+  const regexAll = /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@1049292221515563058>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi;
+
+  const isAuthorMessage = message.author.id === authorId;
+  const isBotMessage = message.author.id === botId;
+
+// console.log(isBotMessage, !!message.reference, await replyIsToUser(message, authorId), message.content )
+
+  if (isAuthorMessage) {
+    if (message.content.match(regexAll) || (!!message.reference && (await replyIsToBot(message)))) {
+      return true;
+    }
+  } else if (isBotMessage && !!message.reference && (await replyIsToUser(message, authorId))) {
+    return true;
+  }
+  return false;
 }
 
 module.exports = async function (message) {
@@ -25,40 +52,31 @@ module.exports = async function (message) {
   let conversationLog = new Array
   let userCount = 0;
   let botCount = 0;
-  let regexAll = /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi
   let regexIds = /(<@1041050338775539732>|<@&1045554081848103007>)/gmi
   let thisMessage = "";
   let prevMessages = await message.channel.messages.fetch({ limit: 20 });
-  prevMessages.forEach((msg) => {
-    thisMessage = msg.content;
-    if (thisMessage.match(regexIds)) {
-      thisMessage = thisMessage.replace(regexIds, "OPie");
-    }
-    if ((msg.author.id === message.client.user.id) && (botCount < 4)) {
-      botCount++;
-      conversationLog.unshift({
-        role: 'assistant',
-        content: thisMessage,
-        // name: msg.member.displayName,
-      });
-    } else if ((msg.author.id === message.author.id) && (userCount < 4) && (msg.content.match(regexAll))) {
-      userCount++;
-      conversationLog.unshift({
-        role: 'user',
-        content: thisMessage,
-        // name: msg.member.displayName,
-      });
-    }
-    else if ((msg.author.id === message.author.id) && (userCount < 4) && (msg.reference)) {
-      if (checkRepliedAuthor(msg)) {
+  const convoMessages = [];
+  for (const item of prevMessages) {
+    const msg = item[1];
+    const shouldInclude = await messageIsPartOfConversation(msg, message.client.user.id, message.author.id);
+    if (shouldInclude) {
+      if ((msg.author.id === message.client.user.id) && (botCount < 4)) {
+        botCount++;
+        conversationLog.unshift({
+          role: 'assistant',
+          content: msg.content.replace(regexIds, "OPie"),
+          // name: msg.member.displayName,
+        })
+      } else if ((msg.author.id === message.author.id) && (userCount < 4)) {
         userCount++;
         conversationLog.unshift({
           role: 'user',
-          content: thisMessage,
-        });
+          content: msg.content.replace(regexIds, "OPie"),
+          // name: msg.member.displayName,
+        })
       }
-    }
-  })
+    };
+  }
 
   if (message.member.premiumSince) {
     conversationLog.unshift({ role: 'system', content: `${message.member.displayName} has boosted the server which means they have paid money to support our community and are considered a VIP` });
