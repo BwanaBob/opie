@@ -10,12 +10,32 @@ const { OpenAIApi } = require("openai");
 
 const options = require("../options.json");
 
-function milestone(members) {
-  const membersString = String(members);
-  const membersExponent = membersString.length - 1;
-  const firstChar = membersString[0];
-  const nextMilestone = (Number(firstChar) + 1) * (10 ** membersExponent)
-  return nextMilestone;
+// function oldMilestone(members) {
+//   const membersString = String(members);
+//   const membersExponent = membersString.length - 1;
+//   const firstChar = membersString[0];
+//   const nextMilestone = (Number(firstChar) + 1) * (10 ** membersExponent)
+//   return nextMilestone;
+// }
+
+function nextMilestone(currentCount) {
+  const milestonesArray = [10, 50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800, 900,
+    1000, 1500, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 8000, 9000,
+    10000, 15000, 20000, 25000, 30000, 40000, 50000, 60000, 70000, 80000, 90000,
+    100000, 150000, 200000, 250000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
+    1000000, 1500000, 2000000, 2500000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000];
+  // Ensure milestonesArray is sorted in ascending order
+  milestonesArray.sort((a, b) => a - b);
+
+  // Iterate through milestones to find the next or currently met milestone
+  for (let milestone of milestonesArray) {
+    if (currentCount <= milestone) {
+      return milestone;
+    }
+  }
+
+  // If all milestones are reached, return the last milestone
+  return milestonesArray[milestonesArray.length - 1];
 }
 
 module.exports = {
@@ -53,7 +73,7 @@ module.exports = {
 
     // AI command
     if (message.content.match(
-      /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi    ) && message.client.params.get("chatGPTEnabled") === "true"
+      /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi) && message.client.params.get("chatGPTEnabled") === "true"
     ) {
       isAIChatMessage = true;
     }
@@ -160,31 +180,40 @@ module.exports = {
     }
 
     // Member Added Message Detection
-    if ((message.type == 7 && message.guild.memberCount >= message.guild.nextUserCount)
-      || (message.content == "test milestone" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
+    if ((message.type == 7) || (message.content == "test milestone" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
     ) {
-      message.guild.nextUserCount = milestone(message.guild.memberCount);
-      const milestoneEmbed = new EmbedBuilder()
-        .setColor(options.embeds.milestone.color)
-        .setTitle(`${message.guild.memberCount} Members!`)
-        .setDescription(`${message.guild.name} has just reached a new milestone.\nThank you all for building such a lively community!`)
-        .addFields({
-          name: "Members",
-          value: `${message.guild.memberCount}`,
-          inline: true,
-        })
-        .addFields({
-          name: "Next Milestone",
-          value: `${message.guild.nextUserCount}`,
-          inline: true,
-        })
-        .setThumbnail(message.guild.iconURL());
-      const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
-      postChannel.send({ embeds: [milestoneEmbed] });
-      const logDate = new Date(message.createdTimestamp).toLocaleString();
-      console.log(
-        `[${logDate}] 🏆 MILSTN| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Milestone!`
-      );
+      const nextMilestoneUserCount = nextMilestone(message.guild.memberCount);
+      if (nextMilestoneUserCount == message.guild.memberCount || message.content == "test milestone") {
+        const futureMilestoneUserCount = nextMilestone(message.guild.memberCount + 1);
+        const milestoneEmbed = new EmbedBuilder()
+          .setColor(options.embeds.milestone.color)
+          .setTitle(`${message.guild.memberCount} Members!`)
+          .setDescription(`**${message.guild.name}** has just reached a new milestone.\nThank you all for building such a lively community!`)
+          .addFields({
+            name: "Members",
+            value: `${message.guild.memberCount}`,
+            inline: true,
+          })
+          .addFields({
+            name: "Next Milestone",
+            value: `${futureMilestoneUserCount}`,
+            inline: true,
+          })
+          .setThumbnail(message.guild.iconURL());
+        const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
+        postChannel.send({ embeds: [milestoneEmbed] })
+          .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
+        const logDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${logDate}] 🏆 MILSTN| ${message.guild.name} | ${message.guild.memberCount}/${nextMilestoneUserCount} | ${message.member.displayName} (${message.author.tag}) | Milestone!`
+        );
+
+      } else {
+        const logDate = new Date(message.createdTimestamp).toLocaleString();
+        console.log(
+          `[${logDate}] 👤 MEMBER| ${message.guild.name} | ${message.guild.memberCount}/${nextMilestoneUserCount} | ${message.member.displayName} (${message.author.tag}) | Added`
+        );
+      }
     }
 
     // Server Boosted Message Detection
@@ -192,7 +221,7 @@ module.exports = {
     if ((messageTypes.includes(message.type))
       || (message.content == "test boosted" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
     ) {
-      const serverBoostedImage = new AttachmentBuilder("./resources/thumb-boosted.png", {name: "thumb-boosted.png"});
+      const serverBoostedImage = new AttachmentBuilder("./resources/thumb-boosted.png", { name: "thumb-boosted.png" });
       const serverBoostedEmbed = new EmbedBuilder()
         .setColor(options.embeds.serverBoosted.color)
         .setTitle(options.embeds.serverBoosted.title)
@@ -256,7 +285,7 @@ module.exports = {
             .catch(err => { console.error(`[ERROR] Deleting message ${message.id} -`, err.message); });
 
           // send notice to user
-          const timerViolatedImage = new AttachmentBuilder("./resources/thumb-timer.png", {name: "thumb-timer.png"});
+          const timerViolatedImage = new AttachmentBuilder("./resources/thumb-timer.png", { name: "thumb-timer.png" });
           const timerViolatedUserEmbed = new EmbedBuilder()
             .setColor(options.embeds.timerViolatedUser.color)
             .setTitle(options.embeds.timerViolatedUser.title)
