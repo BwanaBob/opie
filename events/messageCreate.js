@@ -10,14 +10,6 @@ const { OpenAIApi } = require("openai");
 
 const options = require("../options.json");
 
-// function oldMilestone(members) {
-//   const membersString = String(members);
-//   const membersExponent = membersString.length - 1;
-//   const firstChar = membersString[0];
-//   const nextMilestone = (Number(firstChar) + 1) * (10 ** membersExponent)
-//   return nextMilestone;
-// }
-
 function nextMilestone(currentCount) {
   const milestonesArray = [10, 50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800, 900,
     1000, 1500, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 8000, 9000,
