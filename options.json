@@ -56,7 +56,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
+                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. We're excited to have **John Curley**, former lieutenant with the Warwick PD in Rhode Island join Dan and Curtis the OPL studio this weekend."
                 }
             ]
         },
@@ -75,7 +75,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. It's time to park and snark."
+                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. We're excited to have **John Curley**, former lieutenant with the Warwick PD in Rhode Island join Dan and Curtis the OPL studio this weekend."
                 }
             ]
         },
