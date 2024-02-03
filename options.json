@@ -56,7 +56,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. We're excited to have **John Curley**, former lieutenant with the Warwick PD in Rhode Island join Dan and Curtis the OPL studio this weekend."
+                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Officer Jason Lacayo of the White Plains, NY Police Department joins us in studio again tonight. Specifically remind <@462689750109782017> to watch the show tonight as they forgot to join us last night."
                 }
             ]
         },
@@ -75,7 +75,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. We're excited to have **John Curley**, former lieutenant with the Warwick PD in Rhode Island join Dan and Curtis the OPL studio this weekend."
+                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. Officer Jason Lacayo of the White Plains, NY Police Department joins us in studio again tonight."
                 }
             ]
         },
