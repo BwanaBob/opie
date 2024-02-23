@@ -12,8 +12,9 @@ module.exports = {
         // satShowTime.setDate(satShowTime.getDate() + 1);
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call`);
         var jobRollCall = new CronJob(
-            '00 00 15 * * THU', async () => {
-            // '*/15 * * * * *', async () => {
+            '00 00 23 05 * THU', async () => {
+                // '00 00 15 * * THU', async () => {
+                    // '*/15 * * * * *', async () => {
                 var reacts = ["🤖", "💬", "🎱", "⛔", "⏲️", "🤷"];
                 // var friMessageContent = `## Friday Roll Call\nWho will be available to mod <t:${friShowTime}:F>?\n🤖 Reddit  💬 Discord  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
                 // var satMessageContent = `## Saturday Roll Call\nWho will be available to mod <t:${satShowTime}:F>?\n🤖 Reddit  💬 Discord  🎱 Bingo  ⛔ Can't make it  ⏲️ Part time  🤷 Not sure`
