@@ -12,7 +12,7 @@ module.exports = {
         // satShowTime.setDate(satShowTime.getDate() + 1);
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call`);
         var jobRollCall = new CronJob(
-            '00 00 23 05 * THU', async () => {
+            '00 22 23 * * THU', async () => {
                 // '00 00 15 * * THU', async () => {
                     // '*/15 * * * * *', async () => {
                 var reacts = ["🤖", "💬", "🎱", "⛔", "⏲️", "🤷"];
