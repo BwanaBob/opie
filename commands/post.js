@@ -262,9 +262,6 @@ the **everyone** role has **Send Messages** disabled on this channel.\n\
 This channel is not synced with it's category\n\
 **View Channel** is disabled for **everyone**.\n\
 **Moderator** and **Bingo Moderator** are added so they can view it. No permissions need to be set.\n\
-### Community Category\n\
-**everyone** has **View Channel** disabled\n\
-**member** is added to the category to provide visibility\n\
 ## Additional Channel Settings\n\
 #episode-discussion and #lounge currently have **slow mode** enabled and set to 10 seconds.";
 
