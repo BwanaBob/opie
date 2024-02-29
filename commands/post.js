@@ -174,7 +174,7 @@ const resourcesEmbed = new EmbedBuilder()
 - <id:customize> - Set or change your roles\n\
 - <id:browse> - See more channels\n\
 ## 💬 Feedback\n\
-- **Community Feedback** - You can send general community feedback to <@&343568731793915904> in the <#325206992413130753>.");
+- **Community Feedback** - The <#1211792503175520346> channel is your go-to place to share your thoughts, ideas, and suggestions to help us enhance your OPL viewing experience. Whether you have ideas for Discord, Reddit, Bingo, or have feedback on our bots - this is the spot.");
 const resourcesMessage = {
   files: [resourcesAttach],
   embeds: [resourcesEmbed]
