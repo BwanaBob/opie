@@ -56,7 +56,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Captain Tom Rizzo will be joining us in studio once again this weekend. Also, Double check that your DVRs are going to record the show. For the past two weeks, some folks missed it because of incorrect guide data."
+                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Captain Tom Rizzo will be joining us in studio once again this weekend."
                 }
             ]
         },
@@ -75,7 +75,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. Captain Tom Rizzo will be joining us in studio once again this weekend 🤜🏾 🤛🏽. Also, beware the Ides of March."
+                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. Captain Tom Rizzo will be joining us in studio once again this weekend 🤜🏾 🤛🏽."
                 }
             ]
         },
