@@ -6,7 +6,7 @@ module.exports = {
   async execute(message) {
     const logDate = new Date(message.createdTimestamp).toLocaleString();
     console.log(
-      `[${logDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
+      `[${logDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName || "unknown"} (${message.author.tag}) | Deleted`
     );
 
     if (
