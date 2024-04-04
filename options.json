@@ -42,7 +42,7 @@
     },
     "jobs": {
         "firstShiftAI": {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4-turbo-preview",
             "schedule": "00 00 19 * * FRI,SAT",
             "scheduleTest": "*/15 * * * * *",
             "messages": [
@@ -61,7 +61,7 @@
             ]
         },
         "showtimeAI": {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4-turbo-preview",
             "schedule": "00 00 20 * * FRI,SAT",
             "scheduleTest": "*/15 * * * * *",
             "messages": [
@@ -80,7 +80,7 @@
             ]
         },
         "showtimeAIBingo": {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4-turbo-preview",
             "schedule": "00 00 20 * * FRI,SAT",
             "scheduleTest": "*/15 * * * * *",
             "messages": [
@@ -103,7 +103,7 @@
             ]
         },
         "showEndAIFri": {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4-turbo-preview",
             "schedule": "00 00 23 * * FRI",
             "scheduleTest": "*/15 * * * * *",
             "messages": [
@@ -118,7 +118,7 @@
             ]
         },
         "showEndAISat": {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4-turbo-preview",
             "schedule": "00 00 23 * * SAT",
             "scheduleTest": "*/15 * * * * *",
             "messages": [
@@ -133,7 +133,7 @@
             ]
         },
         "showEndAIBingo": {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4-turbo-preview",
             "schedule": "00 00 23 * * FRI,SAT",
             "scheduleTest": "*/15 * * * * *",
             "messages": [
