@@ -13,7 +13,7 @@ module.exports = {
             message.client.timers.set("image-podbay", message.createdTimestamp);
             message.reply({
                 content: `I'm sorry ${message.member.displayName}, I'm afraid I can't do that`,
-                tts: "true"
+                // tts: "true"
             })
                 .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
         } else {
