@@ -12,7 +12,7 @@ module.exports = {
         const currentDay = now.getUTCDay();
         const currentHour = now.getUTCHours();
         const currentMinute = now.getUTCMinutes();
-        console.log(`D: ${currentDay} H:${currentHour} M:${currentMinute} Id:${message.author.id}`);
+        // console.log(`D: ${currentDay} H:${currentHour} M:${currentMinute} Id:${message.author.id}`);
         if ((message.author.id == '844616406293151745' &&
             (elapsed > imageDelay) &&
             (currentDay === 6 || currentDay === 0) &&
@@ -20,7 +20,7 @@ module.exports = {
             currentMinute >= 46) ||
             (message.author.id == '348629137080057878')) {
             message.client.timers.set("image-last-ad", message.createdTimestamp);
-            const replyImage = new AttachmentBuilder("./resources/reaction-mentioned.gif", { name: "reaction-caca-flores.gif" });
+            const replyImage = new AttachmentBuilder("./resources/reaction-last-ad-02.gif", { name: "reaction-caca-flores.gif" });
             message.reply({ files: [replyImage] })
                 .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
         }
