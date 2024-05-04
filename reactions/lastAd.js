@@ -20,8 +20,10 @@ module.exports = {
             currentMinute >= 46) ||
             (message.author.id == '348629137080057878')) {
             message.client.timers.set("image-last-ad", message.createdTimestamp);
-            const replyImage = new AttachmentBuilder("./resources/reaction-last-ad-02.gif", { name: "reaction-caca-flores.gif" });
-            message.reply({ files: [replyImage] })
+            const replyImages = ["./resources/reaction-last-ad-01.gif", "./resources/reaction-last-ad-02.gif", "./resources/reaction-last-ad-03.gif", "./resources/reaction-last-ad-04.gif", "./resources/reaction-last-ad-05.gif"]
+            const replyImage = Math.floor(currentDate.getTime() / (1000 * 60 * 60 * 24)) % replyImages.length
+            const replyImageAttachment = new AttachmentBuilder(replyImage, { name: "reaction-last-ad.gif" });
+            message.reply({ files: [replyImageAttachment] })
                 .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
         }
     }
