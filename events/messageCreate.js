@@ -252,9 +252,12 @@ module.exports = {
         [
           "announcements",
           "art",
+          "bingo",
           "food",
           "fur-babies",
+          "memes",
           "notifications",
+          "off-topic",
         ].includes(message.channel.name)
       )) {
       const logDate = new Date(message.createdTimestamp).toLocaleString();
