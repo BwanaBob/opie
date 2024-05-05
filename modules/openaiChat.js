@@ -88,8 +88,8 @@ module.exports = async function (message) {
   } else {
     conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName} and has been a member of this server since ${joinDate}.` });
   }
-  const esablishedDate = new Date(message.member.guild.createdAt).toLocaleString();
-  conversationLog.unshift({ role: 'system', content: `This conversation takes place on the Discord server "On Patrol Live" for the community of fans of the television show On Patrol: Live. The server was established ${esablishedDate}.` });
+  // const esablishedDate = new Date(message.member.guild.createdAt).toLocaleString();
+  conversationLog.unshift({ role: 'system', content: `This conversation takes place on the Discord server "On Patrol Live" for the community of fans of the television show On Patrol: Live.` });
   conversationLog.unshift({ role: 'system', content: "Today's date is May the 4th, 2024, so Star Wars references are welcome." });
   conversationLog.unshift({ role: 'system', content: 'Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness' });
 
