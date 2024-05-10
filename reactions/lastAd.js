@@ -22,7 +22,7 @@ module.exports = {
             message.client.timers.set("image-last-ad", message.createdTimestamp);
             const replyImages = ["./resources/reaction-last-ad-01.gif", "./resources/reaction-last-ad-02.gif", "./resources/reaction-last-ad-03.gif", "./resources/reaction-last-ad-04.gif", "./resources/reaction-last-ad-05.gif"]
             const currentDate = new Date();
-            const replyImageIndex = Math.floor(currentDate.getTime() / (1000 * 60 * 60 * 24)) % replyImages.length
+            const replyImageIndex = Math.floor(currentDate.getTime() / (1000 * 60 * 60 * 24) + 1) % replyImages.length
             const replyImage = replyImages[replyImageIndex];
             const replyImageAttachment = new AttachmentBuilder(replyImage, { name: "reaction-last-ad.gif" });
             message.reply({ files: [replyImageAttachment] })
