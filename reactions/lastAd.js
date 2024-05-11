@@ -3,7 +3,7 @@ const { AttachmentBuilder } = require("discord.js");
 module.exports = {
     name: "LastAd",
     logName: "📺 LASTAD",
-    regex: "(?:4|7|four|seven|quatro|siete|quatre|sept|vier|sieben).minut(?:e|es|o|os)?",
+    regex: "(?:4|7|four|seven|quatro|siete|sete|set|quatre|sept|vier|sieben|nne|saba|vier|sewe|lau|zazpi|chetiri|sedem|zeven|kvar|sep|apat|pito).(?:minu|daki|daqi|daqa)",
     async execute(message) {
         const imageDelay = 5400; // seconds 5400 = 1.5hr
         const lastImage = message.client.timers.get("image-last-ad") ?? imageDelay + 100;
