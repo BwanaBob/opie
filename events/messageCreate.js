@@ -192,9 +192,15 @@ module.exports = {
             inline: true,
           })
           .setThumbnail(message.guild.iconURL());
-        const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
-        postChannel.send({ embeds: [milestoneEmbed] })
-          .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
+        const postChannel = message.guild.channels.cache.find(channel => channel.name === "announcements") || message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
+        const postPingRole = message.guild.roles.cache.find(role => role.name === "Server News") || "Unknown"
+        if (postPingRole == "Unknown") {
+          postChannel.send({ embeds: [milestoneEmbed] })
+            .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
+        } else {
+          postChannel.send({ content: `<@&${postPingRole.id}>`, embeds: [milestoneEmbed] })
+            .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
+        }
         const logDate = new Date(message.createdTimestamp).toLocaleString();
         console.log(
           `[${logDate}] 🏆 MILSTN| ${message.guild.name} | ${message.guild.memberCount}/${nextMilestoneUserCount} | ${message.member.displayName} (${message.author.tag}) | Milestone!`
@@ -233,9 +239,20 @@ module.exports = {
           value: `${message.guild.premiumSubscriptionCount}`,
           inline: true,
         });
-      const postChannel = message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
-      postChannel.send({ embeds: [serverBoostedEmbed], files: [serverBoostedImage] });
-      postChannel.send(`Thank you, <@${message.author.id}>!`)
+      const postChannel = message.guild.channels.cache.find(channel => channel.name === "announcements") || message.guild.channels.cache.find(channel => channel.name === "lounge") || message.guild.channels.cache.find(channel => channel.name === "lobby") || message.guild.channels.cache.find(channel => channel.name === "general") || message.client.channels.cache.get(message.guild.publicUpdatesChannelId)
+      const postPingRole = message.guild.roles.cache.find(role => role.name === "Server News") || "Unknown"
+        if(postPingRole == 'Unknown'){
+          postChannel.send({ embeds: [serverBoostedEmbed], files: [serverBoostedImage] })
+          .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
+          postChannel.send(`Thank you, <@${message.author.id}>!`)
+          .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
+        } else {
+          postChannel.send({ content: `<@&${postPingRole.id}>`, embeds: [serverBoostedEmbed], files: [serverBoostedImage] })
+          .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
+          postChannel.send(`Thank you, <@${message.author.id}>!`)
+          .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });
+        }
+
       const logDate = new Date(message.createdTimestamp).toLocaleString();
       console.log(
         `[${logDate}] 🚀 BOOST | ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | BOOSTED!`
