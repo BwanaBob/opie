@@ -18,7 +18,7 @@ module.exports = {
         }
 
         await interaction.reply({
-            content: `## __Options controlling bot behavior__\n* **Delay:** How long in seconds a user must wait between posting attachments (gifs).\n* **Reactions**: Emoji reactions to certain phrases.\n* **AI Chat**: AI Responses to user input.\n* **Announcements**: Scheduled AI announcemnets.\n* **Twitter**: Posting of found tweets.\nLast Twitter Ping: ${twitterLastKeepAlive}`,
+            content: `## __Options controlling bot behavior__\n* **Delay:** How long in seconds a user must wait between posting attachments (gifs).\n* **Reactions**: Emoji reactions to certain phrases.\n* **AI Chat**: AI Responses to user input.\n* **Announcements**: Scheduled AI announcemnets.\n* **Status Rotation**: Periodically change the bot's user status to a random value.\nLast Twitter Ping: ${twitterLastKeepAlive}`,
             components: optionsComponents,
             ephemeral: true
         });
