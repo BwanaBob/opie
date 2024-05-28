@@ -27,6 +27,7 @@ client.params.set("chatGPTEnabled", options.defaults.chatGPTEnabled ?? "false");
 client.params.set("chatGPTAnnouncementsEnabled", options.defaults.chatGPTAnnouncementsEnabled ?? "false");
 client.params.set("twitterStreamEnabled", options.defaults.twitterStreamEnabled ?? "false");
 client.params.set("messageReactionsEnabled", options.defaults.messageReactionsEnabled ?? "false");
+client.params.set("statusRotationEnabled", options.defaults.statusRotationEnabled ?? "false");
 
 // Watch Twitter Stream
 const { ETwitterStreamEvent } = require("twitter-api-v2");

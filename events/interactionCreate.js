@@ -37,6 +37,7 @@ module.exports = {
       const chatbotChatEnabled = interaction.client.params.get("chatGPTEnabled") ?? "Undefined";
       const chatbotAnnounementsEnabled = interaction.client.params.get("chatGPTAnnouncementsEnabled") ?? "Undefined";
       const twitterStreamEnabled = interaction.client.params.get("twitterStreamEnabled") ?? "Undefined";
+      const statusRotationEnabled = interaction.client.params.get("statusRotationEnabled") ?? "Undefined";
 
       //const messageComponents = interaction.message.components
       const buttonName = interaction.customId;
@@ -75,6 +76,16 @@ module.exports = {
           } else {
             interaction.client.params.set("messageReactionsEnabled", 'true');
             console.log(`[${logDate}] 🔘 REACTS| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Reactions On`);
+          }
+        }
+          break;
+        case "rotation": {
+          if (statusRotationEnabled === "true") {
+            interaction.client.params.set("statusRotationEnabled", 'false');
+            console.log(`[${logDate}] 🔘 ROTATE| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Status Rotation Off`);
+          } else {
+            interaction.client.params.set("statusRotationEnabled", 'true');
+            console.log(`[${logDate}] 🔘 ROTATE| ${interaction.member.guild.name} | ${interaction.message.channel.name} | ${interaction.user.username} | Status Rotation On`);
           }
         }
           break;

@@ -3,8 +3,9 @@
         "attachmentDelay": "90",
         "chatGPTEnabled": "true",
         "chatGPTAnnouncementsEnabled": "true",
-        "twitterStreamEnabled": "true",
-        "messageReactionsEnabled": "true"
+        "twitterStreamEnabled": "false",
+        "messageReactionsEnabled": "true",
+        "statusRotationEnabled": "true"
     },
     "embeds": {
         "messageDeleted": {
