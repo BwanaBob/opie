@@ -25,10 +25,10 @@ module.exports = {
                 if (client.params.get("statusRotationEnabled") == 'true') {
                     var newStatus = statuses[Math.floor(Math.random() * statuses.length)];
                     client.user.setPresence(newStatus);
-                    const jobExecutedDate = new Date().toLocaleString();
-                    const newStatusType = newStatus.activities[0].type
-                    const newStatusName = newStatus.activities[0].state || newStatus.activities[0].name
-                    console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Status Rotation | ${newStatusType} | ${newStatusName}`);
+                    // const jobExecutedDate = new Date().toLocaleString();
+                    // const newStatusType = newStatus.activities[0].type
+                    // const newStatusName = newStatus.activities[0].state || newStatus.activities[0].name
+                    // console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Status Rotation | ${newStatusType} | ${newStatusName}`);
                 }
             },
             null,
