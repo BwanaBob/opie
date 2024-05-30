@@ -9,7 +9,7 @@ module.exports = {
         var noticeRole = '391837678967980035'; // OPie Test Role
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call Poll`);
         var jobRollCallPoll = new CronJob(
-            '00 15 15 * * THU', async () => {
+            '00 20 15 * * THU', async () => {
             // '*/15 * * * * *', async () => {
                 var friPollContent = {
                     question: { text: "Will you be available to moderate on Friday?" },
@@ -51,7 +51,7 @@ module.exports = {
                                 { text: "Part Time", emoji: '⏲️'},
                                 { text: "Not Sure", emoji: '🤷'},
                             ],
-                            allowMultiSelect: true,
+                            allowMultiselect: true,
                             duration:32,
                         };
                         satPollContent = {
@@ -64,14 +64,14 @@ module.exports = {
                                 { text: "Part Time", emoji: '⏲️'},
                                 { text: "Not Sure", emoji: '🤷'},
                             ],
-                            allowMultiSelect: true,
+                            allowMultiselect: true,
                             duration: 56,
                         };
                     }
-                    // await modChannel.send(`<@&${noticeRole}>`)
-                    //     .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
-                    await modChannel.send(`Ignore this, just testing ATM`)
+                    await modChannel.send(`<@&${noticeRole}>`)
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
+                    // await modChannel.send(`Ignore this, just testing ATM`)
+                    //     .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
                     await modChannel.send({poll: friPollContent})
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
                     await modChannel.send({poll: satPollContent})
