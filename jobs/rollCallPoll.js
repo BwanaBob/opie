@@ -9,7 +9,7 @@ module.exports = {
         var noticeRole = '391837678967980035'; // OPie Test Role
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call Poll`);
         var jobRollCallPoll = new CronJob(
-            '00 00 15 * * THU', async () => {
+            '00 15 15 * * THU', async () => {
             // '*/15 * * * * *', async () => {
                 var friPollContent = {
                     question: { text: "Will you be available to moderate on Friday?" },
@@ -68,11 +68,13 @@ module.exports = {
                             duration: 56,
                         };
                     }
-                    await modChannel.send(`<@&${noticeRole}>`)
+                    // await modChannel.send(`<@&${noticeRole}>`)
+                    //     .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
+                    await modChannel.send(`Ignore this, just testing ATM`)
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
-                        const friMessage = await modChannel.send({poll: friPollContent})
+                    await modChannel.send({poll: friPollContent})
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
-                        const satMessage = await modChannel.send({poll: satPollContent})
+                    await modChannel.send({poll: satPollContent})
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
                 }
                 const jobExecutedDate = new Date().toLocaleString();
