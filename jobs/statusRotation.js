@@ -18,6 +18,9 @@ module.exports = {
             { status: "online", activities: [{ type: ActivityType.Custom, state: "🐾 Pawsing to think...", name: "🐾 Pawsing to think..." }] },
             { status: "online", activities: [{ type: ActivityType.Custom, state: "🐾 Chasing laser pointers", name: "🐾 Chasing laser pointers" }] },
             { status: "online", activities: [{ type: ActivityType.Custom, state: "🐱 Purr-petually ready", name: "🐱 Purr-petually ready" }] },
+            { status: "online", activities: [{ type: ActivityType.Custom, state: "😼 Spreading rumors online", name: "😼 Spreading rumors online" }] },
+            { status: "online", activities: [{ type: ActivityType.Custom, state: "😹 Laughing at Dad jokes", name: "😹 Laughing at Dad jokes" }] },
+            { status: "online", activities: [{ type: ActivityType.Custom, state: "😽 Blocking your GIFs", name: "😽 Blocking your GIFs" }] },
             { status: "online", activities: [{ type: ActivityType.Listening, name: "to the hum of the server" }] },
         ]
         var jobStatusRotation = new CronJob(
