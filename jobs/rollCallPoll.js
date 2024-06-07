@@ -9,7 +9,7 @@ module.exports = {
         var noticeRole = '391837678967980035'; // OPie Test Role
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call Poll`);
         var jobRollCallPoll = new CronJob(
-            '00 20 15 * * THU', async () => {
+            '00 00 15 * * THU', async () => {
             // '*/15 * * * * *', async () => {
                 var friPollContent = {
                     question: { text: "Will you be available to moderate on Friday?" },
