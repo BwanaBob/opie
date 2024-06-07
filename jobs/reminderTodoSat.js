@@ -10,7 +10,7 @@ module.exports = {
             // '*/25 * * * * *', async () => {
                 let noticeRole = '391837678967980035'; // OPie Test Role
                 let reacts = ["🧵", "🎱", "🤖", "📋", "💬", "⏺️", "🚨", "🧹", "🏅", "📊"];
-                const scheduleTime = Math.floor(new Date().setHours(18, 0, 0) / 1000);
+                const scheduleTime = Math.floor(new Date().setHours(17, 58, 0) / 1000);
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {
                     if (client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
                         noticeRole = '325210261722234881';  // OPL Admin
