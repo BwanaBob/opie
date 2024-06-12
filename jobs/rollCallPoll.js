@@ -4,7 +4,7 @@ const options = require("../options.json");
 
 module.exports = {
     execute(client) {
-        const modChannel = client.channels.cache.get("1074317729978400819") || client.channels.cache.get("392093299890061312"); // OPL #mod-business or OPie #General
+        const modChannel = client.channels.cache.get("1250585288942817381") || client.channels.cache.get("392093299890061312"); // OPL #mod-business or OPie #General
         const jobLoadedDate = new Date().toLocaleString();
         var noticeRole = '391837678967980035'; // OPie Test Role
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call Poll`);

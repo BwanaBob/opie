@@ -2,7 +2,7 @@ const CronJob = require('cron').CronJob;
 
 module.exports = {
     execute(client) {
-        const noticeChannel = client.channels.cache.get("1074317729978400819") || client.channels.cache.get("1045327770592497694"); // OPL #mod-business or OPie #notifications
+        const noticeChannel = client.channels.cache.get("1250585288942817381") || client.channels.cache.get("1045327770592497694"); // OPL #mod-business or OPie #notifications
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Reminder Todo Sat`);
         var todoListSaturdayJob = new CronJob(
