@@ -231,12 +231,11 @@ Mod/Everyone/Booster | Name \n\
 ✅ ⛔ ⬛ | Manage Threads \n\
 ✅ ✅ ⬛ | Read Message History \n\
 ✅ ⛔ ⬛ | Send TTS Messages \n\
-✅ ✅ ⬛ | Use Application Commands \n\
 ✅ ⛔ ✅ | Send Voice Messages \n\
+✅ ⛔ ✅ | Create Polls \n\
 ✅ ✅ ⬛ | Connect \n\
 ✅ ✅ ⬛ | Speak \n\
 ✅ ⛔ ✅ | Video \n\
-✅ ✅ ⬛ | Use Activities \n\
 ✅ ✅ ⬛ | Use Soundboard \n\
 ✅ ⛔ ✅ | Use External Sounds \n\
 ✅ ✅ ⬛ | Use Voice Activity \n\
@@ -245,6 +244,9 @@ Mod/Everyone/Booster | Name \n\
 ✅ ⛔ ⬛ | Deafen Members \n\
 ✅ ⛔ ⬛ | Move Members \n\
 ✅ ⛔ ⬛ | Set Voice Channel Status \n\
+✅ ✅ ⬛ | Use Application Commands \n\
+✅ ✅ ⬛ | Use Activities \n\
+✅ ⛔ ⬛ | Use External Apps \n\
 ✅ ✅ ⬛ | Request to Speak \n\
 ✅ ⛔ ⬛ | Create Events \n\
 ✅ ⛔ ⬛ | Manage Events \n\
