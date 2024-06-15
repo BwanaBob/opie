@@ -100,7 +100,7 @@ module.exports = {
     if (message.content.match(/(emojilock)/gi)) {
       if (
         !message.member.permissions.has(
-          PermissionsBitField.Flags.ManageEmojisAndStickers
+          PermissionsBitField.Flags.ManageGuildExpressions
         )
       ) {
         return
@@ -138,7 +138,7 @@ module.exports = {
     if (message.content.match(/(emojiunlock)/gi)) {
       if (
         !message.member.permissions.has(
-          PermissionsBitField.Flags.ManageEmojisAndStickers
+          PermissionsBitField.Flags.ManageGuildExpressions
         )
       ) {
         return
