@@ -27,7 +27,7 @@ module.exports = {
             const reactions = {
                 default: "👋",
                 member: {
-                    "348629137080057878": `<:arctic_fox:1057115452553314354>`, // bwana
+                    "348629137080057878": ["<a:orange_heart_beating:1040133037582729247>", `<:arctic_fox:1057115452553314354>`], // bwana
                     "629681401918390312": [
                         `<a:purple_heart_beating:1038193897337270352>`,
                         `<a:sloth_animated:1038514444289978479>`,
@@ -43,10 +43,13 @@ module.exports = {
                         `<a:green_heart_beating:1040130714697482251>`,
                         `<:christmas_t_rex_dino:1172369717583941734>`,
                     ], // Kav
-                    "342487311860367362": "🔨", // wub
-                    "440328038337478657": `<:sausage_thumbs_up:1039959562553401445>`, // saucy
+                    "342487311860367362": ["🔨", "✊", "<a:black_heart_beating:1040136459908304916>"], // wub
+                    "440328038337478657": ["<a:light_blue_heart_beating:1140754909227130890>", `<:sausage_thumbs_up:1039959562553401445>`], // saucy
                     // "475145905117593623": [`<:suspicious_fry:1027310519910154330>`, `🏹`, `❤️`], // china
-                    "368797989554356224": `<:cowheart:705960794101383258>`, // cow
+                    "368797989554356224": `<:cowheart:705960794101383258>`, // theCow
+                    "1119766591740063765": `<:cowheart:705960794101383258>`, // theCowsMom
+                    "1250263798070247487": "🐣", // HatchlingChibi
+                    "393460780932136961": "💘", // LydiaTheTattooedLady
                 },
             };
             const memberReaction =
