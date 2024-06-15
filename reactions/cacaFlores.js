@@ -3,7 +3,7 @@ const { AttachmentBuilder, PermissionsBitField } = require("discord.js");
 module.exports = {
     name: "CacaFlores",
     logName: "🌼 CACAFL",
-    regex: "\\b(caca\\b.{1,12}\\bflores|flores\\b.{1,12}\bcaca)\\b",
+    regex: "\\b(caca\\b.{1,12}\\bflores|flores\\b.{1,12}\\bcaca)\\b",
     async execute(message) {
         const imageDelay = 5400; // seconds 5400 = 1.5hr
         const lastImage = message.client.timers.get("image-caca-flores") ?? imageDelay + 100;
