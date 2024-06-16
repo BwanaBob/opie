@@ -50,7 +50,7 @@ module.exports = {
                     "1119766591740063765": `<:cowheart:705960794101383258>`, // theCowsMom
                     "1043713323344068609": "<a:pink_heart_beating:1040126277799137310>", // @ᔕᗯEETIEᑭI
                     "1250263798070247487": ["🐣", "💕"], // HatchlingChibi
-                    "393460780932136961": "💘", // LydiaTheTattooedLady
+                    "393460780932136961": "<a:teal_heart_beating:1251766088350302250>", // LydiaTheTattooedLady
                 },
             };
             const memberReaction =
