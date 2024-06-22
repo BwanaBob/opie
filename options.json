@@ -57,7 +57,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. This weekend, the Hazen PD returns to the lineup! Also, it's a full (strawberry) moon tonight, so be prepared for some sweet sweet lunacy!"
+                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
                 }
             ]
         },
@@ -76,7 +76,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. This weekend, the Hazen PD returns to the lineup! Also, it's a full (strawberry) moon tonight, so be prepared for some sweet sweet lunacy!"
+                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live."
                 }
             ]
         },
