@@ -34,7 +34,7 @@ async function messageIsPartOfConversation(message, botId, authorId) {
   const isAuthorMessage = message.author.id === authorId;
   const isBotMessage = message.author.id === botId;
 
-// console.log(isBotMessage, !!message.reference, await replyIsToUser(message, authorId), message.content )
+  // console.log(isBotMessage, !!message.reference, await replyIsToUser(message, authorId), message.content )
 
   if (isAuthorMessage) {
     if (message.content.match(regexAll) || (!!message.reference && (await replyIsToBot(message)))) {
@@ -78,15 +78,16 @@ module.exports = async function (message) {
     };
   }
 
-  if (message.member.premiumSince) {
-    conversationLog.unshift({ role: 'system', content: `${message.member.displayName} has boosted the server which means they have paid money to support our community and are considered a VIP` });
-  }
   // conversationLog.unshift({ role: 'system', content: 'You are often refered to by the name: OPie, or the user Id: <@1041050338775539732> or the role id: <@&1045554081848103007>' });
-  const joinDate = new Date(message.member.joinedAt).toLocaleString();
+  // const joinDate = new Date(message.member.joinedAt).toLocaleString();
   if (message.member.id == "629681401918390312") { // Barre
-    conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName} and has been a member of this server since ${joinDate}. She is the owner of this server and is held in the highest regard. You sometimes refer to her as "highness", "queen", "SWMBO", etc.` });
+    conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is the owner of this server and is held in the highest regard. You sometimes refer to her as "highness", "queen", "SWMBO", etc.` });
+  } else if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+    conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They are a moderator of our Discord community.` });
+  } else if (message.member.premiumSince && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+    conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They have boosted the server which means they have paid money to support our community and are a highly regarded community member` });
   } else {
-    conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName} and has been a member of this server since ${joinDate}.` });
+    conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}.` });
   }
   // const esablishedDate = new Date(message.member.guild.createdAt).toLocaleString();
   conversationLog.unshift({ role: 'system', content: `This conversation takes place on the Discord server "On Patrol Live" for the community of fans of the television show On Patrol: Live.` });
@@ -95,6 +96,7 @@ module.exports = async function (message) {
   let apiPackage = {};
   // if mod or tech channel don't restrict response size
   if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
+    || message.channel.id == "1250589626717175910"
     || message.channel.id == "1119367030823473303"
     || message.channel.id == "366531564693356554"
     || message.channel.id == "1079220872973406319") {
