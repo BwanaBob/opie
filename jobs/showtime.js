@@ -1,5 +1,6 @@
 const { EmbedBuilder, ActivityType, AttachmentBuilder } = require("discord.js");
 const CronJob = require('cron').CronJob;
+const { showStartCron } = require("../options.json");
 
 module.exports = {
     execute(client) {
@@ -9,7 +10,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Showtime`);
         var jobShowtime = new CronJob(
-            '00 00 20 * * FRI,SAT', () => {
+            showStartCron, () => {
                 // '*/15 * * * * *', () => {
                 const showtimeImage = new AttachmentBuilder("./resources/thumb-opl.png", { name: "thumb-opl.png" });
                 const showtimeBanner = new AttachmentBuilder("./resources/banner-no-text.png", { name: "banner-no-text.png" });

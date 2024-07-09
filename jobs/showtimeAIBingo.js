@@ -2,6 +2,8 @@ const { Options } = require('discord.js');
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
 const options = require("../options.json");
+const { showStartCron } = options;
+const { model, messages } = options.jobs.showtimeAIBingo
 
 module.exports = {
     execute(client) {
@@ -9,10 +11,10 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Showtime AI Bingo`);
         var jobShowtimeAIBingo = new CronJob(
-             options.jobs.showtimeAIBingo.schedule, async () => {
+             showStartCron, async () => {
                 const aicommand = {
-                    model: options.jobs.showtimeAIBingo.model,
-                    messages: options.jobs.showtimeAIBingo.messages,
+                    model,
+                    messages,
                     max_tokens: 512, // limit token usage (length of response)
                 };
 

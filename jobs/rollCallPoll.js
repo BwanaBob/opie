@@ -1,6 +1,6 @@
 const CronJob = require('cron').CronJob;
 const { Poll } = require('discord.js');
-const options = require("../options.json");
+const { rollCallCron } = require("../options.json");
 
 module.exports = {
     execute(client) {
@@ -9,7 +9,7 @@ module.exports = {
         var noticeRole = '391837678967980035'; // OPie Test Role
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call Poll`);
         var jobRollCallPoll = new CronJob(
-            '00 00 15 * * THU', async () => {
+            rollCallCron, async () => {
             // '*/15 * * * * *', async () => {
                 var friPollContent = {
                     question: { text: "Will you be available to moderate on Friday?" },

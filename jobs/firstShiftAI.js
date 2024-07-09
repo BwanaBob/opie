@@ -1,6 +1,8 @@
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
 const options = require("../options.json");
+const { firstShiftStartCron } = options;
+const { model, messages } = options.jobs.firstShiftAI
 
 module.exports = {
     execute(client) {
@@ -8,10 +10,10 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | First Shift AI`);
         var jobFirstShiftAI = new CronJob(
-             options.jobs.firstShiftAI.schedule, async () => {
+             firstShiftStartCron, async () => {
                 const aicommand = {
-                    model: options.jobs.firstShiftAI.model,
-                    messages: options.jobs.firstShiftAI.messages,
+                    model,
+                    messages,
                     max_tokens: 512, // limit token usage (length of response)
                 };
 

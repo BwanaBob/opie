@@ -1,6 +1,8 @@
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
 const options = require("../options.json");
+const { showStartCron } = options;
+const { model, messages } = options.jobs.showtimeAI
 
 module.exports = {
     execute(client) {
@@ -8,10 +10,10 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Showtime AI`);
         var jobShowtimeAI = new CronJob(
-            options.jobs.showtimeAI.schedule, async () => {
+            showStartCron, async () => {
                 const aicommand = {
-                    model: options.jobs.showtimeAI.model,
-                    messages: options.jobs.showtimeAI.messages,
+                    model,
+                    messages,
                     max_tokens: 1024, // limit token usage (length of response)
                 };
 

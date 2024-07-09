@@ -1,5 +1,7 @@
 const { ActivityType } = require("discord.js");
 const CronJob = require('cron').CronJob;
+const options = require("../options.json");
+const { firstShiftStartCron } = options;
 
 module.exports = {
     execute(client) {
@@ -7,9 +9,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | First Shift Status`);
         var jobFirstShift = new CronJob(
-            '00 00 19 * * FRI,SAT', () => {
-                //'*/15 * * * * *', () => {
-                // talkChannel.send("First Shift is starting now!")
+            firstShiftStartCron, () => {
                 client.user.setPresence({
                     status: "online",
                     activities: [

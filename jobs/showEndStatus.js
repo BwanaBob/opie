@@ -1,5 +1,6 @@
 const { ActivityType } = require("discord.js");
 const CronJob = require('cron').CronJob;
+const { showEndCron } = require("../options.json");
 
 module.exports = {
     execute(client) {
@@ -7,7 +8,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Show End Status`);
         var jobGoodnight = new CronJob(
-            '00 00 23 * * FRI,SAT', () => {
+            showEndCron, () => {
             //'*/15 * * * * *', () => {
                 // talkChannel.send("Good night everyone!")
                 client.user.setPresence({

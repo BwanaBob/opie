@@ -1,4 +1,5 @@
 const CronJob = require('cron').CronJob;
+const { todoSatCron } = require("../options.json");
 
 module.exports = {
     execute(client) {
@@ -6,7 +7,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Reminder Todo Sat`);
         var todoListSaturdayJob = new CronJob(
-            '00 00 12 * * SAT', async () => {
+            todoSatCron, async () => {
             // '*/25 * * * * *', async () => {
                 let noticeRole = '391837678967980035'; // OPie Test Role
                 let reacts = ["🧵", "🤖", "📋", "💬", "⏺️", "🚨", "🧹", "🏅", "📊"];
