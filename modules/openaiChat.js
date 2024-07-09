@@ -82,6 +82,10 @@ module.exports = async function (message) {
   // const joinDate = new Date(message.member.joinedAt).toLocaleString();
   if (message.member.id == "629681401918390312") { // Barre
     conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is the owner of this server and is held in the highest regard. You sometimes refer to her as "highness", "queen", "SWMBO", etc.` });
+  } else if (message.member.id == "348629137080057878") { // Bwana
+    conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He is the resident I.T. nerd and your daddy.` });
+  } else if (message.member.id == "511074631239598080") { // Ferret
+    conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is an adorable ferret that we all love, but she has been known to steal socks and needs occasional baths.` });
   } else if (message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
     conversationLog.unshift({ role: 'system', content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They are a moderator of our Discord community.` });
   } else if (message.member.premiumSince && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
