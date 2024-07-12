@@ -5,17 +5,19 @@ module.exports = {
   name: Events.MessageDelete,
   async execute(message) {
     const logDate = new Date(message.createdTimestamp).toLocaleString();
+    const memberDisplayName = message.member?.displayName ?? "unknown";
+    const memberDisplayAvatarURL = message.member?.displayAvatarURL ?? "";
     console.log(
-      `[${logDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName || "unknown"} (${message.author.tag}) | Deleted`
+      `[${logDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | ${memberDisplayName} (${message.author.tag}) | Deleted`
     );
 
     if (
       message.author.bot ||
-      message.member.permissions.has(
+      ( message.member && message.member.permissions.has(
         PermissionsBitField.Flags.ManageMessages
-      ) ||
+      )) ||
       message.channel.name == "notifications" ||
-      message.channel.name == "art"
+      message.channel.name == "art" // midjourney message
     ) {
       return;
     }
@@ -26,8 +28,8 @@ module.exports = {
       .setTitle(options.embeds.messageDeleted.title)
       .setThumbnail("attachment://thumb-wastebasket.png")
       .setAuthor({
-        name: `${message.member.displayName} (${message.author.tag})`,
-        iconURL: `${message.member.displayAvatarURL()}`,
+        name: `${memberDisplayName} (${message.author.tag})`,
+        iconURL: memberDisplayAvatarURL,
       });
 
     if (message.content) {
