@@ -1,7 +1,7 @@
 const ai = require('../modules/openaiCommand.js')
 const CronJob = require('cron').CronJob;
 const options = require("../options.json");
-const { showEndCron } = options;
+const { showEndSatCron } = options;
 const { model, messages } = options.jobs.showEndAISat
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
         const jobLoadedDate = new Date().toLocaleString();
         console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Show End AI Saturday`);
         var jobGoodnightAISat = new CronJob(
-            showEndCron, async () => {
+            showEndSatCron, async () => {
                 const aicommand = {
                     model,
                     messages,
