@@ -10,15 +10,16 @@ module.exports = {
   name: Events.MessageDelete,
   async execute(message) {
     const logDate = new Date(message.createdTimestamp).toLocaleString();
-    let memberDisplayName = "unknown";
-    let memberDisplayAvatarURL = null;
+
     if (message.member) {
-      memberDisplayAvatarURL = message.member.memberDisplayAvatarURL;
-      memberDisplayName = message.member.displayName;
+      console.log(
+        `[${logDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | ${message.member.displayName} (${message.author.tag}) | Deleted`
+      );
+    } else {
+      console.log(
+        `[${logDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | <Not a member> (${message.author.tag}) | Deleted`
+      );
     }
-    console.log(
-      `[${logDate}] 🚮 DELETE| ${message.guild.name} | ${message.channel.name} | ${memberDisplayName} (${message.author.tag}) | Deleted`
-    );
 
     if (
       message.author.bot ||
@@ -27,7 +28,7 @@ module.exports = {
           PermissionsBitField.Flags.ManageMessages
         )) ||
       message.channel.name == "notifications" ||
-      message.channel.name == "art" // midjourney message
+      message.channel.name == "art"
     ) {
       return;
     }
@@ -39,11 +40,18 @@ module.exports = {
     const noticeEmbed = new EmbedBuilder()
       .setColor(options.embeds.messageDeleted.color)
       .setTitle(options.embeds.messageDeleted.title)
-      .setThumbnail("attachment://thumb-wastebasket.png")
-      .setAuthor({
-        name: `${memberDisplayName} (${message.author.tag})`,
-        iconURL: memberDisplayAvatarURL,
+      .setThumbnail("attachment://thumb-wastebasket.png");
+
+    if (message.member) {
+      noticeEmbed.setAuthor({
+        name: `${message.member.displayName} (${message.author.tag})`,
+        iconURL: `${message.member.displayAvatarURL()}`,
       });
+    } else {
+      noticeEmbed.setAuthor({
+        name: `<Not a member> (${message.author.tag})`,
+      });
+    }
 
     if (message.content) {
       noticeEmbed.addFields({
