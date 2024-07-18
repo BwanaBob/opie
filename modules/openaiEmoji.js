@@ -16,7 +16,7 @@ module.exports = async function (message) {
     conversationLog.unshift({ role: 'system', content: 'You will be provided with a message and your task is to provie a clever response using only Discord emojis.' });
 
     let apiPackage = {
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o-mini',
         messages: conversationLog,
         max_tokens: 256, // limit token usage (length of response)
     }

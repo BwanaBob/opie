@@ -105,14 +105,13 @@ module.exports = async function (message) {
     || message.channel.id == "366531564693356554"
     || message.channel.id == "1079220872973406319") {
     apiPackage = {
-      model: 'gpt-4-turbo-preview',
-      // model: 'gpt-3.5-turbo',
+      model: 'gpt-4o-mini',
       messages: conversationLog,
       max_tokens: 1024, // limit token usage (length of response)
     }
   } else {
     apiPackage = {
-      model: 'gpt-4-turbo-preview',
+      model: 'gpt-4o-mini',
       messages: conversationLog,
       max_tokens: 256, // limit token usage (length of response)
     }
