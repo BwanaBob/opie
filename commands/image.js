@@ -46,7 +46,7 @@ module.exports = {
         // .setTitle("Generated Image")
         // .setDescription(input)
         .setImage(imageUrl)
-        .setColor("#00FF00")
+        .setColor("#151321")
         .setFooter({ text: input });
 
       await interaction.editReply({ embeds: [embed] });
