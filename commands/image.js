@@ -1,4 +1,8 @@
-const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
+const {
+  SlashCommandBuilder,
+  PermissionFlagsBits,
+  EmbedBuilder,
+} = require("discord.js");
 
 require("dotenv").config();
 const { Configuration, OpenAIApi } = require("openai");
@@ -32,6 +36,7 @@ module.exports = {
         prompt: input,
         n: 1,
         size: "1024x1024",
+        model: "dall-e-3",
       });
 
       const imageUrl = response.data.data[0].url;
