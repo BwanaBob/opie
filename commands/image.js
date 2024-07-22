@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 
 require("dotenv").config();
 const { Configuration, OpenAIApi } = require("openai");
@@ -25,7 +25,7 @@ module.exports = {
     // await interaction.reply({ content: "Generating Image", ephemeral: true });
     //   await interaction.channel.send({ content: input });
     await interaction.channel.sendTyping();
-    await interaction.deferReply();  // Defer the reply
+    await interaction.deferReply(); // Defer the reply
     try {
       const response = await openai.createImage({
         // model: 'gpt-4o-mini',
@@ -35,12 +35,21 @@ module.exports = {
       });
 
       const imageUrl = response.data.data[0].url;
-    //   await interaction.reply({ content: imageUrl, ephemeral: true });
-      await interaction.editReply({ content: imageUrl, ephemeral: false });
+      //   await interaction.reply({ content: imageUrl, ephemeral: true });
+
+      const embed = new EmbedBuilder()
+        .setTitle("Generated Image")
+        .setDescription(input)
+        .setImage(imageUrl)
+        .setColor("#00FF00");
+
+      await interaction.editReply({ embeds: [embed] });
+
+      // await interaction.editReply({ content: `**Generating Image**\n${input}\n${imageUrl}`, ephemeral: false });
       // message.channel.send(imageUrl);
     } catch (error) {
       console.error(error);
-      interaction.reply("Failed to generate image.");
+      interaction.channel.send("Failed to generate image.");
     }
   },
 };
