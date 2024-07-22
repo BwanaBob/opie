@@ -43,10 +43,11 @@ module.exports = {
       //   await interaction.reply({ content: imageUrl, ephemeral: true });
 
       const embed = new EmbedBuilder()
-        .setTitle("Generated Image")
-        .setDescription(input)
+        // .setTitle("Generated Image")
+        // .setDescription(input)
         .setImage(imageUrl)
-        .setColor("#00FF00");
+        .setColor("#00FF00")
+        .setFooter({ text: input });
 
       await interaction.editReply({ embeds: [embed] });
 
