@@ -20,7 +20,7 @@ module.exports = {
     ),
   async execute(interaction) {
     const input =
-      interaction.options.getString("input") ??
+      interaction.options.getString("prompt") ??
       "An angry robot cat showing you his tail agressively.";
     // await interaction.reply({ content: "Generating Image", ephemeral: true });
     //   await interaction.channel.send({ content: input });
