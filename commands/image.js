@@ -21,6 +21,7 @@ module.exports = {
       option
         .setName("prompt")
         .setDescription("Describe the image you want generated")
+        .setRequired(true)
     ),
   async execute(interaction) {
     const input =
