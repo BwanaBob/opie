@@ -8,7 +8,7 @@
     "todoFriCron": "00 00 10 * * FRI",
     "todoSatCron": "00 00 12 * * SAT",
     "defaults": {
-        "attachmentDelay": "90",
+        "attachmentDelay": "60",
         "chatGPTEnabled": "true",
         "chatGPTAnnouncementsEnabled": "true",
         "twitterStreamEnabled": "false",
