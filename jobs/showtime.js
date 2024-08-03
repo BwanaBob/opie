@@ -86,7 +86,7 @@ module.exports = {
           });
           bingoChannel.send({ embeds: [bingoEmbed], files: [bingoImage] });
           modChannel.send({
-            content: `<@&${325210261722234881}>`,
+            content: `<@&325210261722234881>`,
             embeds: [modReminderEmbed],
           });
         }
