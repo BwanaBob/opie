@@ -1,164 +1,165 @@
 {
-    "firstShiftStartCron": "00 00 19 * * FRI,SAT",
-    "showStartCron": "00 00 20 * * FRI,SAT",
-    "showEndCron": "00 00 23 * * FRI,SAT",
-    "showEndFriCron": "00 00 23 * * FRI",
-    "showEndSatCron": "00 00 23 * * SAT",
-    "rollCallCron": "00 00 15 * * THU",
-    "todoFriCron": "00 00 10 * * FRI",
-    "todoSatCron": "00 00 12 * * SAT",
-    "defaults": {
-        "attachmentDelay": "60",
-        "chatGPTEnabled": "true",
-        "chatGPTAnnouncementsEnabled": "true",
-        "twitterStreamEnabled": "false",
-        "messageReactionsEnabled": "true",
-        "statusRotationEnabled": "true"
+  "firstShiftStartCron": "00 00 19 * * FRI,SAT",
+  "firstShiftReminderCron": "00 40 18 * * FRI,SAT",
+  "showStartCron": "00 00 20 * * FRI,SAT",
+  "showEndCron": "00 00 23 * * FRI,SAT",
+  "showEndFriCron": "00 00 23 * * FRI",
+  "showEndSatCron": "00 00 23 * * SAT",
+  "rollCallCron": "00 00 15 * * THU",
+  "todoFriCron": "00 00 10 * * FRI",
+  "todoSatCron": "00 00 12 * * SAT",
+  "defaults": {
+    "attachmentDelay": "60",
+    "chatGPTEnabled": "true",
+    "chatGPTAnnouncementsEnabled": "true",
+    "twitterStreamEnabled": "false",
+    "messageReactionsEnabled": "true",
+    "statusRotationEnabled": "true"
+  },
+  "embeds": {
+    "messageDeleted": {
+      "title": "Had a message deleted",
+      "color": "e74c3c"
     },
-    "embeds": {
-        "messageDeleted": {
-            "title": "Had a message deleted",
-            "color": "e74c3c"
-        },
-        "timerViolatedUser": {
-            "title": "Attachments Timer Violated",
-            "color": "f1c40f"
-        },
-        "timerViolated": {
-            "title": "Attachments Timer Violated",
-            "color": "f1c40f"
-        },
-        "serverBoosted": {
-            "title": "Boosted the server!",
-            "color": "9b59b6"
-        },
-        "nameChange": {
-            "title": "Server Alias Changed",
-            "color": "e67e22"
-        },
-        "roleRemoved": {
-            "color": "2ecc71"
-        },
-        "roleAdded": {
-            "color": "2ecc71"
-        },
-        "aiResponse": {
-            "color": "2b2d31"
-        },
-        "milestone": {
-            "color": "e91e63"
-        }
+    "timerViolatedUser": {
+      "title": "Attachments Timer Violated",
+      "color": "f1c40f"
     },
-    "jobs": {
-        "firstShiftAI": {
-            "model": "gpt-4o-mini",
-            "schedule": "00 00 19 * * FRI,SAT",
-            "scheduleTest": "*/15 * * * * *",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
-                },
-                {
-                    "role": "system",
-                    "content": "First Shift is a live tv segment that previews and leads into the upcoming show On Patrol: Live. First Shift introduces the law enforcement agencies which will be appearing on On Patrol: Live this evening. First Shift also provides updates on events from previous episodes of On Patrol: Live. First Shift is hosted by Dan Abrams and Curtis Wilson."
-                },
-                {
-                    "role": "user",
-                    "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
-                }
-            ]
-        },
-        "showtimeAI": {
-            "model": "gpt-4o-mini",
-            "schedule": "00 00 20 * * FRI,SAT",
-            "scheduleTest": "*/15 * * * * *",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
-                },
-                {
-                    "role": "system",
-                    "content": "The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this live chat session on Discord. On Patrol: Live is hosted by Dan Abrams and Curtis Wilson."
-                },
-                {
-                    "role": "user",
-                    "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live."
-                }
-            ]
-        },
-        "showtimeAIBingo": {
-            "model": "gpt-4o-mini",
-            "schedule": "00 00 20 * * FRI,SAT",
-            "scheduleTest": "*/15 * * * * *",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
-                },
-                {
-                    "role": "system",
-                    "content": "You host a bingo game where players are given a card full of terms (not numbers) to look for on the tv show On Patrol: Live. There are no prizes in your bingo game, we play for fun and bragging rights."
-                },
-                {
-                    "role": "system",
-                    "content": "This Discord channel is the place for players to discuss their progress in game, and help each other spot terms from the game. It's also a good place to give feedback about the game and it's list of terms."
-                },
-                {
-                    "role": "user",
-                    "content": "Write a brief message to our fellow bingo players welcoming them to their bingo game based on the television show On Patrol: Live. Thank everyone in advance for helping spot bingo terms that appear on the show and calling them out in chat."
-                }
-            ]
-        },
-        "showEndAIFri": {
-            "model": "gpt-4o-mini",
-            "schedule": "00 00 23 * * FRI",
-            "scheduleTest": "*/15 * * * * *",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
-                },
-                {
-                    "role": "user",
-                    "content": "Write a brief closing comment thanking our community of discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next get togther tomorrow night."
-                }
-            ]
-        },
-        "showEndAISat": {
-            "model": "gpt-4o-mini",
-            "schedule": "00 00 23 * * SAT",
-            "scheduleTest": "*/15 * * * * *",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
-                },
-                {
-                    "role": "user",
-                    "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next show."
-                }
-            ]
-        },
-        "showEndAIBingo": {
-            "model": "gpt-4o-mini",
-            "schedule": "00 00 23 * * FRI,SAT",
-            "scheduleTest": "*/15 * * * * *",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
-                },
-                {
-                    "role": "system",
-                    "content": "You host a bingo game based on the television show On Patrol: Live. There are no prizes in your bingo game, we play for fun and bragging rights"
-                },
-                {
-                    "role": "user",
-                    "content": "Write a brief closing comment announcing the end of tonight's bingo game and the show. Thank our awesome bingo players for playing along and helping spot bingo terms during the show. Remind them to come back next episode for more live Bingo fun."
-                }
-            ]
-        }
+    "timerViolated": {
+      "title": "Attachments Timer Violated",
+      "color": "f1c40f"
+    },
+    "serverBoosted": {
+      "title": "Boosted the server!",
+      "color": "9b59b6"
+    },
+    "nameChange": {
+      "title": "Server Alias Changed",
+      "color": "e67e22"
+    },
+    "roleRemoved": {
+      "color": "2ecc71"
+    },
+    "roleAdded": {
+      "color": "2ecc71"
+    },
+    "aiResponse": {
+      "color": "2b2d31"
+    },
+    "milestone": {
+      "color": "e91e63"
     }
+  },
+  "jobs": {
+    "firstShiftAI": {
+      "model": "gpt-4o-mini",
+      "schedule": "00 00 19 * * FRI,SAT",
+      "scheduleTest": "*/15 * * * * *",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
+        },
+        {
+          "role": "system",
+          "content": "First Shift is a live tv segment that previews and leads into the upcoming show On Patrol: Live. First Shift introduces the law enforcement agencies which will be appearing on On Patrol: Live this evening. First Shift also provides updates on events from previous episodes of On Patrol: Live. First Shift is hosted by Dan Abrams and Curtis Wilson."
+        },
+        {
+          "role": "user",
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
+        }
+      ]
+    },
+    "showtimeAI": {
+      "model": "gpt-4o-mini",
+      "schedule": "00 00 20 * * FRI,SAT",
+      "scheduleTest": "*/15 * * * * *",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
+        },
+        {
+          "role": "system",
+          "content": "The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this live chat session on Discord. On Patrol: Live is hosted by Dan Abrams and Curtis Wilson."
+        },
+        {
+          "role": "user",
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live."
+        }
+      ]
+    },
+    "showtimeAIBingo": {
+      "model": "gpt-4o-mini",
+      "schedule": "00 00 20 * * FRI,SAT",
+      "scheduleTest": "*/15 * * * * *",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
+        },
+        {
+          "role": "system",
+          "content": "You host a bingo game where players are given a card full of terms (not numbers) to look for on the tv show On Patrol: Live. There are no prizes in your bingo game, we play for fun and bragging rights."
+        },
+        {
+          "role": "system",
+          "content": "This Discord channel is the place for players to discuss their progress in game, and help each other spot terms from the game. It's also a good place to give feedback about the game and it's list of terms."
+        },
+        {
+          "role": "user",
+          "content": "Write a brief message to our fellow bingo players welcoming them to their bingo game based on the television show On Patrol: Live. Thank everyone in advance for helping spot bingo terms that appear on the show and calling them out in chat."
+        }
+      ]
+    },
+    "showEndAIFri": {
+      "model": "gpt-4o-mini",
+      "schedule": "00 00 23 * * FRI",
+      "scheduleTest": "*/15 * * * * *",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
+        },
+        {
+          "role": "user",
+          "content": "Write a brief closing comment thanking our community of discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next get togther tomorrow night."
+        }
+      ]
+    },
+    "showEndAISat": {
+      "model": "gpt-4o-mini",
+      "schedule": "00 00 23 * * SAT",
+      "scheduleTest": "*/15 * * * * *",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
+        },
+        {
+          "role": "user",
+          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next show."
+        }
+      ]
+    },
+    "showEndAIBingo": {
+      "model": "gpt-4o-mini",
+      "schedule": "00 00 23 * * FRI,SAT",
+      "scheduleTest": "*/15 * * * * *",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness"
+        },
+        {
+          "role": "system",
+          "content": "You host a bingo game based on the television show On Patrol: Live. There are no prizes in your bingo game, we play for fun and bragging rights"
+        },
+        {
+          "role": "user",
+          "content": "Write a brief closing comment announcing the end of tonight's bingo game and the show. Thank our awesome bingo players for playing along and helping spot bingo terms during the show. Remind them to come back next episode for more live Bingo fun."
+        }
+      ]
+    }
+  }
 }
