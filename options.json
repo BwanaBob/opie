@@ -62,11 +62,11 @@
         },
         {
           "role": "system",
-          "content": "First Shift is a live tv segment that previews and leads into the upcoming show On Patrol: Live. First Shift introduces the law enforcement agencies which will be appearing on On Patrol: Live this evening. First Shift also provides updates on events from previous episodes of On Patrol: Live. First Shift is hosted by Dan Abrams and Curtis Wilson."
+          "content": "First Shift is a live tv segment that previews and leads into the upcoming show On Patrol: Live. First Shift introduces the law enforcement agencies which will be appearing on On Patrol: Live this evening. First Shift also provides updates on events from previous episodes of On Patrol: Live. First Shift is hosted by Dan Abrams, Curtis Wilson, and Tom Rizzo."
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. There are some changes for this weekend. Dan has started his vacation early, so Sean 'Sticks' Larkin is taking the reigns as host! Officer Ryan Tillman from The Chino Police Department will also be joining Curtis and Ryan in the studio. Also, filling the void left by the Frederick Police Department, who wrapped up their tenure last week, is the returning Beech Grove PD from Indiana! Please remember that the next TWO weekends will be reruns."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. This weekend, we are returning from a long 2 weekend break from the show and celebrating it's 200th episode, which airs on Saturday! Also, the show is running the \"Got Rizz?\" sweepstakes to give away some swag. Details at [this link](https://www.reelz.com/200th/). Tonight is Friday the 13th, so be careful out there."
         }
       ]
     },
@@ -81,11 +81,11 @@
         },
         {
           "role": "system",
-          "content": "The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this live chat session on Discord. On Patrol: Live is hosted by Dan Abrams and Curtis Wilson."
+          "content": "The television show On Patrol: Live starts now now to follow the activities of law enforcement officers around the country, live. You host this live chat session on Discord. On Patrol: Live is hosted by Dan Abrams, Curtis Wilson, and Tom Rizzo."
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. There are some changes for this weekend. Dan has started his vacation early, so Sean 'Sticks' Larkin is taking the reigns as host! Officer Ryan Tillman from The Chino Police Department will also be joining Curtis and Ryan in the studio. Also, filling the void left by the Frederick Police Department, who wrapped up their tenure last week, is the returning Beech Grove PD from Indiana! Please remember that the next TWO weekends will be reruns."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. Tonight, we are celebrating the show's 200th episode! Also, the show is running the \"Got Rizz?\" sweepstakes to give away some swag. Details at [this link](https://www.reelz.com/200th/)."
         }
       ]
     },
@@ -138,7 +138,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next show. A big reminder that there will be no live shows for the next TWO weekends. Please have a safe and healthy extended break!"
+          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next show."
         }
       ]
     },
@@ -157,7 +157,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief closing comment announcing the end of tonight's bingo game and the show. Thank our awesome bingo players for playing along and helping spot bingo terms during the show. Remind them to come back next episode for more live Bingo fun. A big reminder that there will be no live shows for the next TWO weekends. Please have a safe and healthy extended break!"
+          "content": "Write a brief closing comment announcing the end of tonight's bingo game and the show. Thank our awesome bingo players for playing along and helping spot bingo terms during the show. Remind them to come back next episode for more live Bingo fun."
         }
       ]
     }
