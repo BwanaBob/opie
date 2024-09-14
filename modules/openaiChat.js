@@ -145,7 +145,7 @@ module.exports = async function (message) {
       content: [
         {
           type: "text",
-          text: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is an adorable ferret that we all love, but she has been known to steal socks and needs occasional baths.`,
+          text: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is an adorable ferret that we all love, who has been known to steal socks and other household items, and needs occasional baths.`,
         },
       ],
     });
