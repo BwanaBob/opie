@@ -66,7 +66,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Tonight we are celebrating the 200th episode of the show with a commercial free first hour and the \"Got Rizz?\" sweepstakes, giving away some swag. Details at [this link](https://www.reelz.com/200th/)."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
         }
       ]
     },
@@ -85,7 +85,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. Tonight we are celebrating the 200th episode of the show with a commercial free first hour and the \"Got Rizz?\" sweepstakes, giving away some swag. Details at [this link](https://www.reelz.com/200th/)."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live."
         }
       ]
     },
