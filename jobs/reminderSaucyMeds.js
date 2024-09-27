@@ -1,6 +1,6 @@
 const { EmbedBuilder, ActivityType, AttachmentBuilder } = require("discord.js");
 const CronJob = require("cron").CronJob;
-const { chibiReminderCron } = require("../options.json");
+const { saucyChibiReminderCron } = require("../options.json");
 
 module.exports = {
   execute(client) {
@@ -10,26 +10,26 @@ module.exports = {
 
     // const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
     const jobLoadedDate = new Date().toLocaleString();
-    console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Chibi Reminder`);
-    var jobChibiReminder = new CronJob(
-      chibiReminderCron,
+    console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Saucy Reminder`);
+    var jobSaucyChibiReminder = new CronJob(
+      saucyChibiReminderCron,
       () => {
         const modReminderEmbed = new EmbedBuilder()
           .setColor(0x0000ff)
-          .setTitle("Medicate")
+          .setTitle("Remind Chibi")
           .setDescription(
-            "Take more medication!"
+            "Hey, Saucy boy! Don't forget to remind HatchlingChibi to take her meds!"
           )
 
         // noticeChannel.send("On Patrol: Live is starting now!")
         if (client.params.get("chatGPTAnnouncementsEnabled") == "true") {
           modChannel.send({
-            content: `<@1250263798070247487>`,
+            content: `<@440328038337478657>`,
             embeds: [modReminderEmbed],
           });
         }
         const jobExecutedDate = new Date().toLocaleString();
-        console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Chibi Reminder`);
+        console.log(`[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Saucy Reminder`);
       },
       null,
       true,
