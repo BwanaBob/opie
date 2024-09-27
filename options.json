@@ -1,6 +1,7 @@
 {
   "firstShiftStartCron": "00 00 19 * * FRI,SAT",
   "firstShiftReminderCron": "00 40 18 * * FRI,SAT",
+  "chibiReminderCron": "00 00 19 * * FRI",
   "showStartCron": "00 00 20 * * FRI,SAT",
   "showEndCron": "00 00 23 * * FRI,SAT",
   "showEndFriCron": "00 00 23 * * FRI",
