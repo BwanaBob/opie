@@ -18,7 +18,7 @@ module.exports = {
           .setColor(0x0000ff)
           .setTitle("Record First Shift")
           .setDescription(
-            "Start recording First Shift to publish in #Announccements"
+            "Start recording First Shift to publish in #Announcements"
           )
 
         // noticeChannel.send("On Patrol: Live is starting now!")
