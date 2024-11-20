@@ -1,6 +1,6 @@
 {
   "name": "opie",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "On Patrol Live Discord bot",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,13 @@
   "author": "Bwana",
   "license": "ISC",
   "dependencies": {
+    "@atproto/api": "^0.13.16",
+    "axios": "^1.7.7",
     "cron": "^2.3.0",
     "discord.js": "^14.6.0",
     "dotenv": "^16.0.3",
     "openai": "^3.2.1",
+    "sharp": "^0.33.5",
     "twitter-api-v2": "^1.14.2"
   }
 }

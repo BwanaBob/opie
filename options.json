@@ -162,6 +162,12 @@
           "content": "Write a brief closing comment announcing the end of tonight's bingo game and the show. Thank our awesome bingo players for playing along and helping spot bingo terms during the show. Remind them to come back next episode for more live Bingo fun."
         }
       ]
+    },
+      "blueskyLineup": {
+        "schedule": "0 0 12 1 1 *",
+        "scheduleTest": "*/15 * * * * *",
+        "targetUsername": "thatsabingo.com",
+        "readBehind": 120000000000000000
     }
   }
 }

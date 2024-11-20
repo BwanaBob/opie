@@ -1,4 +1,5 @@
 .env
 package-lock.json
+bluesky-session.json
 test-*.js
 node_modules/
