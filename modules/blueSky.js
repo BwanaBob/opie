@@ -1,8 +1,9 @@
-// TODO:
-// add logger to bluesky code
+// many problems with session handling. loadsession isn't being used. there is no session in the class. need to streamline
+
 
 const { AtpAgent } = require("@atproto/api");
 const fs = require("fs");
+const jwt = require("jsonwebtoken");
 
 class Bluesky {
   static actorCache = {}; // Shared cache for all instances
@@ -22,67 +23,100 @@ class Bluesky {
   persistSession(evt, sess) {
     // console.log("Session event:", evt);
     if (evt === "create") {
-      fs.writeFileSync(this.sessionFilePath, JSON.stringify(sess));
+      fs.writeFileSync(this.sessionFilePath, JSON.stringify(sess), "utf8");
       // console.log("Session saved.");
     }
   }
 
-
-// // new functions
-// async ensureAuthenticated() {
-//   if (!this.sessionData || this.isSessionExpired()) {
-//     console.log('Session expired or not available, re-authenticating...');
-//     await this.login();
-//   }
-// }
-
-// async login() {
-//   try {
-//     // Ensure the login data is provided
-//     if (!this.username || !this.password) {
-//       throw new Error('Login credentials (username or password) are missing.');
-//     }
-
-//     // Attempt to log in using the provided username and password
-//     this.sessionData = await this.agent.login({
-//       identifier: this.username, // Make sure this is the correct identifier (e.g., email)
-//       password: this.password,
-//     });
-
-//     console.log('Successfully logged in.');
-//   } catch (error) {
-//     console.error('Failed to log in:', error);
-//     throw error; // Let the caller handle this if necessary
-//   }
-// }
-
-// isSessionExpired() {
-//   if (!this.sessionData || !this.sessionData.expiration) return true;
-//   const expirationTime = new Date(this.sessionData.expiration);
-//   return Date.now() >= expirationTime.getTime();
-// }
-
-
-  // Resume or create a new session
-  async ensureAuthenticated() {
-    try {
-      if (fs.existsSync(this.sessionFilePath)) {
-        const savedSession = JSON.parse(
-          fs.readFileSync(this.sessionFilePath, "utf-8")
-        );
-        await this.agent.resumeSession(savedSession);
-        // console.log("Resumed session successfully.");
-      } else {
-        await this.agent.login({
-          identifier: this.username,
-          password: this.password,
-        });
-        // console.log("Logged in successfully.");
-      }
-    } catch (error) {
-      console.error("Failed to ensure authentication:", error);
-      throw error;
+  // Load session from file
+  loadSession() {
+    if (fs.existsSync(this.sessionFilePath)) {
+      return JSON.parse(fs.readFileSync(this.sessionFilePath, "utf8"));
     }
+    return null;
+  }
+
+  // Check if session is valid
+  isSessionValid(session) {
+    console.log(!session)
+    console.log(!session.data)
+    console.log(!session.data.accessJwt)
+    if (!session || !session.data || !session.data.accessJwt) {
+      console.warn("Session is invalid: Missing accessJwt.");
+      return false;
+    }
+  
+    try {
+      const decoded = jwt.decode(session.data.accessJwt, { complete: true });
+  
+      if (!decoded) {
+        console.warn("Session is invalid: Decoded JWT is null.");
+        return false;
+      }
+  
+      console.log("Decoded JWT:", JSON.stringify(decoded, null, 2));
+  
+      // Ensure the `exp` field exists
+      if (!decoded.payload || !decoded.payload.exp) {
+        console.warn("Session is invalid: JWT does not contain expiration info.");
+        return false;
+      }
+  
+      const now = Math.floor(Date.now() / 1000); // Current time in seconds
+      console.log(`Current time: ${now}, Token expires at: ${decoded.payload.exp}`);
+  
+      if (decoded.payload.exp <= now) {
+        console.warn("Session is invalid: Access token has expired.");
+        return false;
+      }
+  
+      console.log("Session is valid.");
+      return true;
+    } catch (err) {
+      console.error("Failed to decode JWT:", err);
+      return false;
+    }
+  }
+  
+  // Resume or login to create a session
+  async ensureAuthenticated() {
+    console.log("Session exists: ", !!this.session)
+    if (this.session && this.isSessionValid(this.session)) {
+      try {
+        console.log("Session is valid. Resuming valid session...");
+        await this.agent.resumeSession(this.session.data); // Resume with existing session
+        return;
+      } catch (err) {
+        console.warn("Failed to resume session:", err.message);
+        // Fall through to re-login if resuming fails
+      }
+    }
+  
+    console.warn("Session expired or not found. Logging in...");
+    await this.login(); // Perform login and update session
+  }
+
+
+  async login() {
+    try {
+      if (this.session?.data?.refreshJwt) {
+        console.log("Attempting to refresh session...");
+        const refreshedSession = await this.agent.refreshSession(this.session.data.refreshJwt);
+        this.session = refreshedSession; // Save the refreshed session
+        console.log("Session refreshed successfully.");
+        return;
+      }
+    } catch (err) {
+      console.warn("Failed to refresh session:", err.message);
+    }
+  
+    console.log("Logging in with credentials...");
+    const session = await this.agent.login({
+      identifier: this.username,
+      password: this.password,
+    });
+    this.persistSession("create", session);
+    console.log("Logged in successfully.");
   }
 
   async createPostWithImage(text) {
@@ -117,6 +151,11 @@ class Bluesky {
 
       console.log("Post created successfully!");
     } catch (err) {
+      if (err.response?.status === 401 || err.response?.status === 400) {
+        console.warn("Token expired. Re-authenticating...");
+        await this.ensureAuthenticated();
+        return this.createPostWithImage(text); // Retry after re-authentication
+      }
       console.error("Failed to create a post:", err);
     }
   }
@@ -158,6 +197,12 @@ class Bluesky {
         nextCursor: data.cursor,
       };
     } catch (error) {
+      if (error.response?.status === 401 || error.response?.status === 400) {
+        console.warn("Token expired. Re-authenticating...");
+        await this.ensureAuthenticated();
+        return this.getPostsFromUser(handle, filter, limit); // Retry after re-authentication
+      }
+
       console.error("Failed to retrieve posts:", error);
       throw error;
     }

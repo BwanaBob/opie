@@ -164,9 +164,9 @@
       ]
     },
       "blueskyLineup": {
-        "schedule": "0 0 12 1 1 *",
+        "schedule": "3,33 * 17-19 * * FRI,SAT",
         "scheduleTest": "*/15 * * * * *",
-        "targetUsername": "thatsabingo.com",
+        "scheduleParked": "0 0 12 1 1 *",
         "readBehind": 120000000000000000
     }
   }
