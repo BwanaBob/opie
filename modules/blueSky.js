@@ -1,9 +1,5 @@
-// many problems with session handling. loadsession isn't being used. there is no session in the class. need to streamline
-
-
 const { AtpAgent } = require("@atproto/api");
 const fs = require("fs");
-const jwt = require("jsonwebtoken");
 
 class Bluesky {
   static actorCache = {}; // Shared cache for all instances
@@ -36,92 +32,18 @@ class Bluesky {
     return null;
   }
 
-  // Check if session is valid
-  isSessionValid(session) {
-    console.log(!session)
-    console.log(!session.data)
-    console.log(!session.data.accessJwt)
-    if (!session || !session.data || !session.data.accessJwt) {
-      console.warn("Session is invalid: Missing accessJwt.");
-      return false;
-    }
-  
-    try {
-      const decoded = jwt.decode(session.data.accessJwt, { complete: true });
-  
-      if (!decoded) {
-        console.warn("Session is invalid: Decoded JWT is null.");
-        return false;
-      }
-  
-      console.log("Decoded JWT:", JSON.stringify(decoded, null, 2));
-  
-      // Ensure the `exp` field exists
-      if (!decoded.payload || !decoded.payload.exp) {
-        console.warn("Session is invalid: JWT does not contain expiration info.");
-        return false;
-      }
-  
-      const now = Math.floor(Date.now() / 1000); // Current time in seconds
-      console.log(`Current time: ${now}, Token expires at: ${decoded.payload.exp}`);
-  
-      if (decoded.payload.exp <= now) {
-        console.warn("Session is invalid: Access token has expired.");
-        return false;
-      }
-  
-      console.log("Session is valid.");
-      return true;
-    } catch (err) {
-      console.error("Failed to decode JWT:", err);
-      return false;
-    }
-  }
-  
-  // Resume or login to create a session
-  async ensureAuthenticated() {
-    console.log("Session exists: ", !!this.session)
-    if (this.session && this.isSessionValid(this.session)) {
-      try {
-        console.log("Session is valid. Resuming valid session...");
-        await this.agent.resumeSession(this.session.data); // Resume with existing session
-        return;
-      } catch (err) {
-        console.warn("Failed to resume session:", err.message);
-        // Fall through to re-login if resuming fails
-      }
-    }
-  
-    console.warn("Session expired or not found. Logging in...");
-    await this.login(); // Perform login and update session
-  }
-
-
   async login() {
-    try {
-      if (this.session?.data?.refreshJwt) {
-        console.log("Attempting to refresh session...");
-        const refreshedSession = await this.agent.refreshSession(this.session.data.refreshJwt);
-        this.session = refreshedSession; // Save the refreshed session
-        console.log("Session refreshed successfully.");
-        return;
-      }
-    } catch (err) {
-      console.warn("Failed to refresh session:", err.message);
-    }
-  
-    console.log("Logging in with credentials...");
-    const session = await this.agent.login({
+    // console.log("Logging in with credentials...");
+    await this.agent.login({
       identifier: this.username,
       password: this.password,
     });
-    this.persistSession("create", session);
-    console.log("Logged in successfully.");
+    // console.log("Logged in successfully.");
   }
 
   async createPostWithImage(text) {
     try {
-      await this.ensureAuthenticated(); // Ensure we're authenticated before making the API call
+      await this.login()
       // Read and upload the image
       const imageBuffer = fs.readFileSync(this.imagePath);
       const uploadedImage = await this.agent.api.com.atproto.repo.uploadBlob(
@@ -179,7 +101,7 @@ class Bluesky {
 
   async getPostsFromUser(handle, filter = "posts_with_media", limit = 10) {
     try {
-      await this.ensureAuthenticated(); // Ensure we're authenticated before making the API call
+      await this.login()
 
       // Resolve or retrieve actorDid from cache
       const actorDid = await this.getActorDid(handle);

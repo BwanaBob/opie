@@ -22,7 +22,7 @@ async function getImageBuffer(imageURL) {
     const response = await axios.get(imageURL, { responseType: "arraybuffer" });
     return Buffer.from(response.data);
   } catch (err) {
-    console.error("Error fetching image buffer:", err);
+    console.error("Error fetching image buffer:", err.message);
     return false;
   }
 }
@@ -58,7 +58,7 @@ async function isImageRowWhite(
     // console.log(`Row ${rowNumber} is ${isRowWhite}` )
     return isRowWhite;
   } catch (err) {
-    console.error("Error analyzing image:", err);
+    console.error("Error analyzing image:", err.message);
     return false;
   }
 }
@@ -128,7 +128,7 @@ async function removeWhiteBands(imageBuffer) {
     // console.log("White bands removed");
     return croppedBuffer;
   } catch (error) {
-    console.error("Error processing image:", error);
+    console.error("Error processing image:", error.message);
   }
 }
 
@@ -146,12 +146,12 @@ module.exports = {
     if (client.guilds.cache.get("325206992413130753")) {
       //bot is a member of OPL
       lineupRole = "1131662348617269479"; // OPL Role
-      let targetUsername = "danabrams1.bsky.social";
+      targetUsername = "danabrams1.bsky.social";
     }
     const jobLoadedDate = new Date().toLocaleString();
     console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | BlueSky Lineup`);
     var jobBlueskyLineup = new CronJob(
-      scheduleParked,
+      schedule,
       async () => {
         //   '*/15 * * * * *', async () => {
         // notificationChannel.send("Locating lineup");
@@ -167,16 +167,18 @@ module.exports = {
           if (posts.length > 0) {
             // console.log("Found posts:", posts.length);
 
-            for (const post of posts) {
+            postloop: for (const post of posts) {
               if (postCache.has(post.post.uri)) {
                 break;
               } else {
                 // post has not been retrieved previously
-                postCache.add(post.post.uri); // Add to cache
+                // postCache.add(post.post.uri); // Add to cache
+                // wait on this until successfully processed
               }
               const indexedAt = new Date(post.post.indexedAt);
               if (indexedAt < startTime) {
                 console.log("Posted before bot started, skipping.");
+                postCache.add(post.post.uri); // Add to cache
                 break;
               }
               const now = new Date();
@@ -185,6 +187,7 @@ module.exports = {
               );
               if (indexedAt < twelveHoursAgo) {
                 console.log("Post is older than 12 hours, skipping.");
+                postCache.add(post.post.uri); // Add to cache
                 break;
               }
 
@@ -196,10 +199,16 @@ module.exports = {
                 // const thisImageBuffer = await getImageBuffer(
                 //   "https://i.imgur.com/btjWhKE.jpeg"
                 // );
+
+                if (!thisImageBuffer) {
+                  console.log("Unable to retrieve image from post");
+                  break postloop;
+                }
                 const isLineupImage = await isImageRowWhite(thisImageBuffer, 0);
                 // console.log("Is Lineup : ", isLineupImage);
 
                 if (!isLineupImage) {
+                  // postCache.add(post.post.uri); // Add to cache
                   break;
                 }
                 const lineupFoundDate = new Date().toLocaleString();
@@ -213,16 +222,19 @@ module.exports = {
                     { name: "cropped-lineup.jpg" }
                   );
                   await lineupChannel.send({
-                    content: `Here is tonight's <@&${lineupTestRole}>!`,
+                    content: `Here is tonight's <@&${lineupRole}>!`,
                     files: [discordAttachment],
                   });
                 } catch (error) {
-                  console.error("Error sending image:", error);
+                  console.error("Error sending image:", error.message);
                   await notificationChannel.send(
                     "Failed to process and send the lineup image."
                   );
+                  break postloop;
                 }
               }
+              // console.log("Post cached");
+              postCache.add(post.post.uri); // Add to cache
             }
 
             // console.log("Next page cursor:", nextCursor);
