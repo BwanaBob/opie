@@ -151,7 +151,7 @@ module.exports = {
     const jobLoadedDate = new Date().toLocaleString();
     console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | BlueSky Lineup`);
     var jobBlueskyLineup = new CronJob(
-      schedule,
+      scheduleParked,
       async () => {
         //   '*/15 * * * * *', async () => {
         // notificationChannel.send("Locating lineup");

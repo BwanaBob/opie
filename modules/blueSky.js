@@ -94,7 +94,7 @@ class Bluesky {
       // console.log(`Resolved and cached actorDid for handle: ${handle}`);
       return data.did;
     } catch (error) {
-      console.error("Failed to resolve handle:", error);
+      console.error("Failed to resolve handle:", error.message);
       throw error;
     }
   }
