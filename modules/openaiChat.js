@@ -145,7 +145,40 @@ module.exports = async function (message) {
       content: [
         {
           type: "text",
-          text: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is an adorable ferret that we all love, who has been known to steal socks and other household items, and needs occasional baths.`,
+          text: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is an adorable ferret that we all love, who has been known to steal socks and other household items, and needs occasional baths. She is also a moderator here.`,
+        },
+      ],
+    });
+  } else if (message.member.id == "1250263798070247487") {
+    // Chibi
+    conversationLog.unshift({
+      role: "system",
+      content: [
+        {
+          type: "text",
+          text: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is a lovely small chibi. By day, she makes beautiful flower arrangements. By night, she's one of our beloved moderators.`,
+        },
+      ],
+    });
+  } else if (message.member.id == "303930225945870336") {
+    // Kavzilla
+    conversationLog.unshift({
+      role: "system",
+      content: [
+        {
+          type: "text",
+          text: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She assumes the persona of a bearded dragon and loves and keeps lizards, frogs, etc. She also works in I.T. and is one of our moderators here.`,
+        },
+      ],
+    });
+  } else if (message.member.id == "440328038337478657") {
+    // Saucy
+    conversationLog.unshift({
+      role: "system",
+      content: [
+        {
+          type: "text",
+          text: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He assumes the persona of a sausage and is a moderator here who also umpires baseball games and moderates our subreddit.`,
         },
       ],
     });
