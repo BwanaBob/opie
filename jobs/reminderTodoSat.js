@@ -17,7 +17,7 @@ module.exports = {
                         noticeRole = '325210261722234881';  // OPL Admin
                         reacts = ["🧵", "🤖", "📋", "💬", "⏺️", "🚨", "🧹", "🏅", "📊"];
                     }
-                    let noticeContent = `<@&${noticeRole}>\n## Saturday Checklist\n### Pre-show\n🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/wiki/moderation/live-thread/>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>\n🤖 [OPie prompts](<https://github.com/BwanaBob/opie/commits/main/>)\n📋 [Lineup](<https://twitter.com/danabrams>)\n💬 Opening comment\n⏺️ [First Shift Recording](<https://www.reelznow.com/live>)\n🚨 Set Community Status & highlights\n### After\n🧹 Closing, !tidy, remove community status & highlights\n🏅 Comment of the Night Awards\n📊 Compile Stats`;
+                    let noticeContent = `<@&${noticeRole}>\n## Saturday Checklist\n### Pre-show\n🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/wiki/moderation/live-thread/>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>\n🤖 [Bot prompts](<https://github.com/BwanaBob/opie/commits/main/>) (OPie & Jake)\n📋 [Lineup](<https://twitter.com/danabrams>)\n💬 Opening comment\n⏺️ [First Shift Recording](<https://www.reelznow.com/live>)\n🚨 Set Community Status & highlights\n### After\n🧹 Closing, !tidy, remove community status & highlights\n🏅 Comment of the Night Awards\n📊 Compile Stats`;
                     const noticeMessage = await noticeChannel.send({ content: noticeContent })
                         .catch(err => { console.error(`[ERROR] Sending message: `, err.message); });
                     noticeMessage.react(reacts[0])
