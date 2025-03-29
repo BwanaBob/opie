@@ -68,7 +68,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. Dan has returned to the studio this weekend to everyone's delight. Rumor has it, a certain TikTok personality who goes by emo_cop1417 will be joining remotely on First Shift tonight."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
         }
       ]
     },
@@ -140,7 +140,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next show."
+          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next show. Important reminder: Next week there is no live show. Live episodes will return on Friday, Apr 11."
         }
       ]
     },
