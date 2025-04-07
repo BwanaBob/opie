@@ -138,7 +138,7 @@ module.exports = async function (message) {
         },
       ],
     });
-  } else if (message.member.id == "511074631239598080") {
+  } else if (message.member.id == "511074631239598080" | message.member.id == "1358747746395361280") {
     // Ferret
     conversationLog.unshift({
       role: "system",
