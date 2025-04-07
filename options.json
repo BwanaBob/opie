@@ -68,7 +68,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol: Live in one hour. We are back live this weekend following some time off last weekend."
         }
       ]
     },
@@ -87,7 +87,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol: Live. We are back live this weekend following some time off last weekend."
         }
       ]
     },
@@ -140,7 +140,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next show. Important reminder: Next week there is no live show. Live episodes will return on Friday, Apr 11."
+          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol: Live. Wish them safe and happy times until the next show."
         }
       ]
     },
