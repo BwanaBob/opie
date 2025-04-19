@@ -27,8 +27,8 @@ module.exports = {
           { name: "thumb-opl.png" }
         );
         const showtimeBanner = new AttachmentBuilder(
-          "./resources/banner-mods.png",
-          { name: "banner-mods.png" }
+          "./resources/banner-no-text.png",
+          { name: "banner-no-text.png" }
         );
         const showtimeEmbed = new EmbedBuilder()
           .setColor(0x0000ff)
@@ -37,7 +37,7 @@ module.exports = {
             "Welcome and enjoy the show!\nPlease read the rules before posting."
           )
           .setThumbnail("attachment://thumb-opl.png")
-          .setImage("attachment://banner-mods.png")
+          .setImage("attachment://banner-no-text.png")
           .addFields({
             name: "Rules",
             value: `[#rules](https://discord.com/channels/325206992413130753/1000869946215120987)`,
@@ -85,10 +85,10 @@ module.exports = {
             files: [showtimeImage, showtimeBanner],
           });
           bingoChannel.send({ embeds: [bingoEmbed], files: [bingoImage] });
-          modChannel.send({
-            content: `<@&325210261722234881>`,
-            embeds: [modReminderEmbed],
-          });
+          // modChannel.send({
+          //   content: `<@&325210261722234881>`,
+          //   embeds: [modReminderEmbed],
+          // });
         }
         client.user.setPresence({
           status: "online",
