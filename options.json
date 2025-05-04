@@ -10,6 +10,7 @@
   "rollCallCron": "00 00 15 * * THU",
   "todoFriCron": "00 00 10 * * FRI",
   "todoSatCron": "00 00 12 * * SAT",
+  "OpenAIChatModel": "gpt-4.1-mini",
   "defaults": {
     "attachmentDelay": "60",
     "chatGPTEnabled": "true",
