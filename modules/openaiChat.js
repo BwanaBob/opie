@@ -1,5 +1,7 @@
 const { PermissionsBitField } = require("discord.js");
 require("dotenv").config();
+const options = require("../options.json");
+const { OpenAIChatModel } = options;
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
   apiKey: process.env.CHATGPT_API_KEY,
@@ -146,9 +148,6 @@ module.exports = async function (message) {
     totalTokens += entryTokens;
   }
 
-  // Ensure the model name is valid
-  const modelName = "gpt-4.1-mini"; // Replace with a valid model name if necessary
-
   let apiPackage = {};
   // if mod or tech channel don't restrict response size
   if (
@@ -159,13 +158,13 @@ module.exports = async function (message) {
     message.channel.id == "1079220872973406319"
   ) {
     apiPackage = {
-      model: modelName,
+      model: OpenAIChatModel,
       messages: truncatedLog,
       max_tokens: 1024, // limit token usage (length of response)
     };
   } else {
     apiPackage = {
-      model: modelName,
+      model: OpenAIChatModel,
       messages: truncatedLog,
       max_tokens: 256, // limit token usage (length of response)
     };
