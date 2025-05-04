@@ -2,11 +2,8 @@ const { PermissionsBitField } = require("discord.js");
 require("dotenv").config();
 const options = require("../options.json");
 const { OpenAIChatModel } = options;
-const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-  apiKey: process.env.CHATGPT_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const { OpenAI } = require("openai"); // Correct import
+const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // Correct initialization
 
 async function isMessageToOrFromBot(message, botId) {
   try {
@@ -209,14 +206,13 @@ module.exports = async function (message) {
   // console.log(apiPackage);
 
   try {
-    const result = await openai.createChatCompletion(apiPackage);
+    const result = await openai.chat.completions.create(apiPackage); // Correct method
     if (
       result &&
-      result.data &&
-      result.data.choices &&
-      result.data.choices[0]
+      result.choices &&
+      result.choices[0]
     ) {
-      return result.data.choices[0].message.content;
+      return result.choices[0].message.content; // Adjusted response structure
     } else {
       return "ERR";
     }

@@ -1,13 +1,10 @@
 const { PermissionsBitField } = require("discord.js");
 require("dotenv").config();
-const { Configuration, OpenAIApi } = require('openai');
-const configuration = new Configuration({
-    apiKey: process.env.CHATGPT_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const { OpenAI } = require('openai'); // Correct import
+const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // Correct initialization
 
 module.exports = async function (message) {
-    let conversationLog = new Array
+    let conversationLog = new Array;
     conversationLog.unshift({
         role: 'user',
         content: message.content,
@@ -19,12 +16,14 @@ module.exports = async function (message) {
         model: 'gpt-4o-mini',
         messages: conversationLog,
         max_tokens: 256, // limit token usage (length of response)
-    }
+    };
 
-    const result = await openai.createChatCompletion(apiPackage)
+    const result = await openai.chat.completions.create(apiPackage) // Correct method
         .catch((error) => { console.log(`⛔ [Error] OPENAI: ${error}`); });
 
     if (typeof result !== 'undefined') {
-        return result.data.choices[0].message.content
-    } else { return "ERR" }
+        return result.choices[0].message.content; // Adjusted response structure
+    } else { 
+        return "ERR"; 
+    }
 }
