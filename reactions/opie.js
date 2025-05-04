@@ -1,15 +1,14 @@
 module.exports = {
     name: "OPie",
     logName: "👋 OPie  ",
-    regex: "\\bopie\\b(?!,)",
+    regex: "\\bopie\\b",
     async execute(message) {
         // AI reply test
         // Do not react if this is an AI chat message
         if (message.reference) {
             const repliedMessage = await message.fetchReference()
             if (
-                (repliedMessage.author.id == "1049292221515563058" ||
-                    repliedMessage.author.id == "1041050338775539732")
+                (repliedMessage.author.id == message.client.user.id )
                 && message.client.params.get("chatGPTEnabled") === "true"
             ) {
                 return;
@@ -18,7 +17,7 @@ module.exports = {
 
         // Do not react if this is an AI chat message
         if (message.content.match(
-            /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi
+            /(<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi
         ) && message.client.params.get("chatGPTEnabled") === "true"
         ) { return }
 
