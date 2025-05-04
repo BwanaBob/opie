@@ -115,7 +115,7 @@ module.exports = async function (message) {
     // Bwana
     truncatedLog.unshift({
       role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He is the resident I.T. nerd and your daddy.`,
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He is the resident I.T. nerd and the one who programmed you.`,
     });
   } else if (
     message.member.id == "511074631239598080" ||
