@@ -34,7 +34,7 @@ module.exports = async function (message) {
   let regexIds = /(<@1041050338775539732>|<@&1045554081848103007>)/gim;
   const conversationLog = [];
 
-  const prevMessages = await message.channel.messages.fetch({ limit: 50 });
+  const prevMessages = await message.channel.messages.fetch({ limit: 40 });
   for (const item of prevMessages) {
     const msg = item[1];
     if (await isMessageToOrFromBot(msg, botId)) {
@@ -67,76 +67,6 @@ module.exports = async function (message) {
     }
   }
 
-  if (message.member.id === "629681401918390312") {
-    // Barre
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is the owner of this server and is held in the highest regard. You sometimes refer to her as "highness", "queen", "SWMBO", etc.`,
-    });
-  } else if (message.member.id == "348629137080057878") {
-    // Bwana
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He is the resident I.T. nerd and your daddy.`,
-    });
-  } else if (
-    message.member.id == "511074631239598080" ||
-    message.member.id == "1358747746395361280"
-  ) {
-    // Ferret
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check.`,
-    });
-  } else if (message.member.id == "1250263798070247487") {
-    // Chibi
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is a lovely small chibi. By day, she makes beautiful flower arrangements. By night, she's one of our beloved moderators.`,
-    });
-  } else if (message.member.id == "303930225945870336") {
-    // Kavzilla
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She assumes the persona of a bearded dragon and loves and keeps lizards, frogs, etc. She also works in I.T. and is one of our moderators here.`,
-    });
-  } else if (message.member.id == "440328038337478657") {
-    // Saucy
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He assumes the persona of a sausage and is a moderator here who also umpires baseball games and moderates our subreddit.`,
-    });
-  } else if (
-    message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
-  ) {
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They are a moderator of our Discord community.`,
-    });
-  } else if (
-    message.member.premiumSince &&
-    !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
-  ) {
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They have boosted the server which means they have paid money to support our community and are a highly regarded community member`,
-    });
-  } else {
-    conversationLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}.`,
-    });
-  }
-
-  conversationLog.unshift({
-    role: "system",
-    content: `This conversation takes place on the Discord server "On Patrol Live" for the community of fans of the television show On Patrol: Live.`,
-  });
-  conversationLog.unshift({
-    role: "system",
-    content: `Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness`,
-  });
-
   // Truncate conversationLog to avoid exceeding token limits
   const maxLogTokens = 4096 - 1024; // Reserve 1024 tokens for the response
   let totalTokens = 0;
@@ -147,6 +77,112 @@ module.exports = async function (message) {
     truncatedLog.unshift(entry);
     totalTokens += entryTokens;
   }
+
+  if (message.reference) {
+    try {
+      const referencedMessage = await message.fetchReference();
+      if (referencedMessage) {
+        // Remove the referenced message if it already exists in the conversationLog
+        const existingIndex = truncatedLog.findIndex(
+          (entry) =>
+            entry.content === referencedMessage.content &&
+            entry.name === sanitizeName(referencedMessage.member?.displayName || "Unknown")
+        );
+        if (existingIndex !== -1) {
+          truncatedLog.splice(existingIndex, 1); // Remove the existing entry
+        }
+
+        // Add the referenced message as the last entry before the user's response
+        truncatedLog.push({
+          role: referencedMessage.author.id === botId ? "assistant" : "user",
+          name: sanitizeName(referencedMessage.member?.displayName || "Unknown"),
+          content: `The user is replying to this message: "${referencedMessage.content}"`,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching referenced message:", error);
+    }
+  }
+
+  // Add user-specific prompts
+  if (message.member.id === "629681401918390312") {
+    // Barre
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is the owner of this server and is held in the highest regard. You sometimes refer to her as "highness", "queen", "SWMBO", etc.`,
+    });
+  } else if (message.member.id == "348629137080057878") {
+    // Bwana
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He is the resident I.T. nerd and your daddy.`,
+    });
+  } else if (
+    message.member.id == "511074631239598080" ||
+    message.member.id == "1358747746395361280"
+  ) {
+    // Ferret
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check.`,
+    });
+  } else if (message.member.id == "1250263798070247487") {
+    // Chibi
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is a lovely small chibi. By day, she makes beautiful flower arrangements. By night, she's one of our beloved moderators.`,
+    });
+  } else if (message.member.id == "303930225945870336") {
+    // Kavzilla
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She assumes the persona of a bearded dragon and loves and keeps lizards, frogs, etc. She also works in I.T. and is one of our moderators here.`,
+    });
+  } else if (message.member.id == "440328038337478657") {
+    // Saucy
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He assumes the persona of a sausage and is a moderator here who also umpires baseball games and moderates our subreddit.`,
+    });
+  } else if (
+    message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
+  ) {
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They are a moderator of our Discord community.`,
+    });
+  } else if (
+    message.member.premiumSince &&
+    !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
+  ) {
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They have boosted the server which means they have paid money to support our community and are a highly regarded community member`,
+    });
+  } else {
+    truncatedLog.unshift({
+      role: "system",
+      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}.`,
+    });
+  }
+
+  // add prompts for context specific information
+  if(message.content.includes("first shift")) {
+    truncatedLog.unshift({
+      role: "system",
+      content: `On Patrol First Shift is a program that airs for one hour prior to the start of On Patrol Live. The first 6 minutes of the show includes a live in-studio segment with the hosts and sometimes guests following up on events from recent episodes. The remaining 54 minutes of First Shift are just clips from previously aired episodes, and no live content.`,
+    });
+  }
+
+  // Add system prompts
+  truncatedLog.unshift({
+    role: "system",
+    content: `This conversation takes place on the Discord server for fans of the show "On Patrol Live" which airs on Fridays and Saturdays from 9 PM to 12 AM ET. You are familiar with the show's schedule, hosts, departments, and general format. If a question is about the show, answer with accurate and helpful information. If you're not sure about something, say you don't know and direct the user to the #announcements channel for updates.`,
+  });
+  truncatedLog.unshift({
+    role: "system",
+    content: `Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness`,
+  });
 
   let apiPackage = {};
   // if mod or tech channel don't restrict response size
