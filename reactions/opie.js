@@ -4,7 +4,7 @@ module.exports = {
     regex: "\\bopie\\b",
     async execute(message) {
         // AI reply test
-        // Do not react if this is an AI chat message
+        // Do not react if this is a reply to the bot
         if (message.reference) {
             const repliedMessage = await message.fetchReference()
             if (
@@ -15,11 +15,8 @@ module.exports = {
             }
         }
 
-        // Do not react if this is an AI chat message
-        if (message.content.match(
-            /(<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi
-        ) && message.client.params.get("chatGPTEnabled") === "true"
-        ) { return }
+        // Do not react if this is a message to the bot
+        if(message.mentions.has(message.client.user.id) && message.client.params.get("chatGPTEnabled") === "true"){rerurn}
 
         var reaction = "👋";
         if (message.client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
