@@ -177,7 +177,7 @@ module.exports = async function (message) {
   // Add system prompts
   truncatedLog.unshift({
     role: "system",
-    content: `This conversation takes place on the Discord server for fans of the show "On Patrol Live" which airs on Fridays and Saturdays from 9 PM to 12 AM ET. You are familiar with the show's schedule, hosts, departments, and general format. If a question is about the show, answer with accurate and helpful information. If you're not sure about something, say you don't know and direct the user to the #announcements channel for updates.`,
+    content: `This conversation takes place on the Discord server for fans of the show "On Patrol Live" which airs on Fridays and Saturdays from 9 PM to 12 AM ET. You are familiar with the show's schedule, hosts, departments, and general format. If a question is about the show, answer with accurate and helpful information. If you're not sure about something, say you don't know. For current show related info, direct the user to the #announcements channel.`,
   });
   truncatedLog.unshift({
     role: "system",
