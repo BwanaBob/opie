@@ -53,19 +53,19 @@ module.exports = {
 
     // AI reply test
     if (message.reference) {
-      const repliedMessage = await message.fetchReference()
-      if (
-        (repliedMessage.author.id == "1049292221515563058" ||
-          repliedMessage.author.id == "1041050338775539732")
-        && message.client.params.get("chatGPTEnabled") === "true"
+      const repliedMessage = await message.fetchReference();
+      if
+       (repliedMessage.author.id == message.client.user.id &&
+        message.client.params.get("chatGPTEnabled") === "true"
       ) {
         isAIChatMessage = true;
       }
     }
 
     // AI command
-    if (message.content.match(
-      /(\bOPie(?:,| ,)|,(?: )?OPie(?:$|[!"#$%&()*+,:;<=>?@^_{|}~\.])|<@1041050338775539732>|<@&1045554081848103007>|<@&1046068702396825674>|<@&1045554081848103007>)/gmi) && message.client.params.get("chatGPTEnabled") === "true"
+    if (
+      message.mentions.has(message.client.user) &&
+      message.client.params.get("chatGPTEnabled") === "true"
     ) {
       isAIChatMessage = true;
     }
