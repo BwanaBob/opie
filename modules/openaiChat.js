@@ -166,8 +166,8 @@ module.exports = async function (message) {
     });
   }
 
-  // add prompts for context specific information
-  if (message.content.includes("first shift")) {
+  // Add prompts for context-specific information
+  if (message.content.toLowerCase().includes("first shift")) { // Convert to lowercase for case-insensitive match
     truncatedLog.unshift({
       role: "system",
       content: `On Patrol First Shift is a program that airs for one hour prior to the start of On Patrol Live. The first 6 minutes of the show includes a live in-studio segment with the hosts and sometimes guests following up on events from recent episodes. The remaining 54 minutes of First Shift are just clips from previously aired episodes, and no live content.`,
