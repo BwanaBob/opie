@@ -83,7 +83,8 @@ module.exports = async function (message) {
         const existingIndex = truncatedLog.findIndex(
           (entry) =>
             entry.content === referencedMessage.content &&
-            entry.name === sanitizeName(referencedMessage.member?.displayName || "Unknown")
+            entry.name ===
+              sanitizeName(referencedMessage.member?.displayName || "Unknown")
         );
         if (existingIndex !== -1) {
           truncatedLog.splice(existingIndex, 1); // Remove the existing entry
@@ -92,7 +93,9 @@ module.exports = async function (message) {
         // Add the referenced message as the last entry before the user's response
         truncatedLog.push({
           role: referencedMessage.author.id === botId ? "assistant" : "user",
-          name: sanitizeName(referencedMessage.member?.displayName || "Unknown"),
+          name: sanitizeName(
+            referencedMessage.member?.displayName || "Unknown"
+          ),
           content: `The user is replying to this message: "${referencedMessage.content}"`,
         });
       }
@@ -164,7 +167,7 @@ module.exports = async function (message) {
   }
 
   // add prompts for context specific information
-  if(message.content.includes("first shift")) {
+  if (message.content.includes("first shift")) {
     truncatedLog.unshift({
       role: "system",
       content: `On Patrol First Shift is a program that airs for one hour prior to the start of On Patrol Live. The first 6 minutes of the show includes a live in-studio segment with the hosts and sometimes guests following up on events from recent episodes. The remaining 54 minutes of First Shift are just clips from previously aired episodes, and no live content.`,
@@ -172,6 +175,29 @@ module.exports = async function (message) {
   }
 
   // Add system prompts
+  if (options.liveShows.length > 0) {
+    const upcomingShows = options.liveShows
+      .filter((show) => new Date(show.showtime) > new Date()) // Filter future showtimes
+      .map(
+        (show) =>
+          `${show.episode} on ${new Date(
+            show.showtime
+          ).toLocaleString()}.`
+      ) // Format each showtime
+      .join(", ");
+    if (upcomingShows) {
+      truncatedLog.unshift({
+        role: "system",
+        content: `Upcoming live shows: ${upcomingShows}`,
+      });
+    }
+  }
+
+  truncatedLog.unshift({
+    role: "system",
+    content: `Today is ${new Date().toLocaleString()}.`, // Dynamically include the current date and time
+  });
+
   truncatedLog.unshift({
     role: "system",
     content: `This conversation takes place on the Discord server for fans of the show "On Patrol Live" which airs on Fridays and Saturdays from 9 PM to 12 AM ET. You are familiar with the show's schedule, hosts, departments, and general format. If a question is about the show, answer with accurate and helpful information. If you're not sure about something, say you don't know. For current show related info, direct the user to the #announcements channel.`,
@@ -207,11 +233,7 @@ module.exports = async function (message) {
 
   try {
     const result = await openai.chat.completions.create(apiPackage); // Correct method
-    if (
-      result &&
-      result.choices &&
-      result.choices[0]
-    ) {
+    if (result && result.choices && result.choices[0]) {
       return result.choices[0].message.content; // Adjusted response structure
     } else {
       return "ERR";

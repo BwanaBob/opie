@@ -17,6 +17,14 @@
     "messageReactionsEnabled": "true",
     "statusRotationEnabled": "true"
   },
+  "liveShows": [
+    {"showtime": "2025-05-02T21:00:00-05:00", "episode":"S03E75"},
+    {"showtime": "2025-05-03T21:00:00-05:00", "episode":"S03E76"},
+    {"showtime": "2025-05-09T21:00:00-05:00", "episode":"S03E77"},
+    {"showtime": "2025-05-10T21:00:00-05:00", "episode":"S03E78"},
+    {"showtime": "2025-05-16T21:00:00-05:00", "episode":"S03E79"},
+    {"showtime": "2025-05-17T21:00:00-05:00", "episode":"S03E80"}
+  ],
   "embeds": {
     "messageDeleted": {
       "title": "Had a message deleted",
