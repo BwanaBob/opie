@@ -16,7 +16,7 @@ module.exports = {
         }
 
         // Do not react if this is a message to the bot
-        if(message.mentions.has(message.client.user.id) && message.client.params.get("chatGPTEnabled") === "true"){rerurn}
+        if(message.mentions.has(message.client.user.id) && message.client.params.get("chatGPTEnabled") === "true"){return}
 
         var reaction = "👋";
         if (message.client.guilds.cache.get('325206992413130753')) { //bot is a member of OPL
