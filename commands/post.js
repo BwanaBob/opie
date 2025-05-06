@@ -138,11 +138,12 @@ const faqAttach = new AttachmentBuilder("./resources/faq-banner.png", { name: 'f
 const faqEmbed1 = new EmbedBuilder()
   .setColor(0x2B2D31)
   // .setTitle("Bingo")
-.setDescription("# How can I watch On Patrol: Live on Reelz?\n\
-You must have a valid subscription/trial with a cable, satellite, or streaming provider. Also see the [guide](https://www.reelz.com/extra/how-can-i-watch-on-patrol-live/) at reelz.com.\n\
+.setDescription("# How can I watch On Patrol: Live on REELZ?\n\
+You must have a valid subscription/trial with a cable, satellite, or streaming provider. Also see the [guide](https://www.reelz.com/extra/how-can-i-watch-on-patrol-live/) at REELZ.com.\n\
 \n\
 Check with your cable/satellite provider to see if they offer streaming options (most do).  Regional/country restrictions may apply.\n\
 ## Streaming services:\n\
+* **REELZ Plus**:  \"Monthly\" or \"Yearly\"\n\
 * **Peacock**:  \"Premium\" or \"Premium Plus\" package\n\
 * **Sling TV**: Orange or Blue Package + “Hollywood Extra” add-on package\n\
 * **Philo**: “Movies & More” add-on along with basic subscription\n\
@@ -151,8 +152,8 @@ Check with your cable/satellite provider to see if they offer streaming options 
 Most of the streaming services offer free trials.\n\
 # Cable and Satellite providers\n\
 Check with your cable/satellite provider to see if they offer streaming options (most do).\n\
-## ReelzNow\n\
-If you have a subscription package that offers the Reelz channel, you can watch the Reelz channel live on [ReelzNow.com](https://www.reelznow.com/ ) with your subscription service login.");
+## REELZ Now and REELZ Plus\n\
+If you have a subscription package that offers the REELZ channel, you can watch REELZ live at [REELZNow.com](https://www.reelznow.com/ ) and [REELZPlus.com](https://reelzplus.com/) with your subscription service login.");
 const faqEmbed2 = new EmbedBuilder()
   .setColor(0x2B2D31)
   .setDescription("# When will the latest episode be available on demand?\n\
