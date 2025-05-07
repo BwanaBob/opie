@@ -8,7 +8,6 @@
   "rollCallCron": "00 00 15 * * THU",
   "todoFriCron": "00 00 10 * * FRI",
   "todoSatCron": "00 00 12 * * SAT",
-  "OpenAIChatModel": "gpt-4.1-mini",
   "defaults": {
     "attachmentDelay": "60",
     "chatGPTEnabled": "true",
@@ -17,14 +16,6 @@
     "messageReactionsEnabled": "true",
     "statusRotationEnabled": "true"
   },
-  "liveShows": [
-    {"showtime": "2025-05-02T21:00:00-05:00", "episode":"S03E75"},
-    {"showtime": "2025-05-03T21:00:00-05:00", "episode":"S03E76"},
-    {"showtime": "2025-05-09T21:00:00-05:00", "episode":"S03E77"},
-    {"showtime": "2025-05-10T21:00:00-05:00", "episode":"S03E78"},
-    {"showtime": "2025-05-16T21:00:00-05:00", "episode":"S03E79"},
-    {"showtime": "2025-05-17T21:00:00-05:00", "episode":"S03E80"}
-  ],
   "embeds": {
     "messageDeleted": {
       "title": "Had a message deleted",
@@ -57,6 +48,30 @@
     },
     "milestone": {
       "color": "e91e63"
+    }
+  },
+  "modules": {
+    "openaiChat": {
+      "OpenAIChatModel": "gpt-4.1-mini",
+      "liveShows": [
+        { "showtime": "2025-05-02T21:00:00-05:00", "episode": "S03E75" },
+        { "showtime": "2025-05-03T21:00:00-05:00", "episode": "S03E76" },
+        { "showtime": "2025-05-09T21:00:00-05:00", "episode": "S03E77" },
+        { "showtime": "2025-05-10T21:00:00-05:00", "episode": "S03E78" },
+        { "showtime": "2025-05-16T21:00:00-05:00", "episode": "S03E79" },
+        { "showtime": "2025-05-17T21:00:00-05:00", "episode": "S03E80" }
+      ],
+      "userPrompts": {
+        "629681401918390312" : {"name": "Barre",     "prompt":"She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."},
+        "348629137080057878" : {"name": "Bean" ,     "prompt":"He is the resident I.T. nerd and the one who programmed you."},
+        "511074631239598080" : {"name": "OldFerret", "prompt":"She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check."},
+        "1358747746395361280": {"name": "Ferret",    "prompt":"She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check."},
+        "1250263798070247487": {"name": "Chibi",     "prompt":"She is a lovely small chibi. By day, she makes beautiful flower arrangements. By night, she's one of our beloved moderators."},
+        "303930225945870336" : {"name": "KavZilla",  "prompt":"She assumes the persona of a bearded dragon and loves and keeps lizards, frogs, etc. She also works in I.T. and is one of our moderators here."},
+        "440328038337478657" : {"name": "Saucy",     "prompt":"He assumes the persona of a sausage and is a moderator here who also umpires baseball games and moderates our subreddit."}
+      },
+      "moderatorPrompt": "They are a moderator of our Discord community.",
+      "boosterPrompt": "They have boosted the server which means they have paid money to support our community and are a highly regarded community member."
     }
   },
   "jobs": {
@@ -170,11 +185,11 @@
         }
       ]
     },
-      "blueskyLineup": {
-        "schedule": "3,33 * 17-19 * * FRI,SAT",
-        "scheduleTest": "*/15 * * * * *",
-        "scheduleParked": "0 0 12 1 1 *",
-        "readBehind": 120
+    "blueskyLineup": {
+      "schedule": "3,33 * 17-19 * * FRI,SAT",
+      "scheduleTest": "*/15 * * * * *",
+      "scheduleParked": "0 0 12 1 1 *",
+      "readBehind": 120
     }
   }
 }

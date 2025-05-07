@@ -1,7 +1,13 @@
 const { PermissionsBitField } = require("discord.js");
 require("dotenv").config();
 const options = require("../options.json");
-const { OpenAIChatModel } = options;
+const {
+  OpenAIChatModel,
+  liveShows,
+  userPrompts,
+  moderatorPrompt,
+  boosterPrompt,
+} = options.modules.openaiChat;
 const { OpenAI } = require("openai"); // Correct import
 const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // Correct initialization
 
@@ -28,17 +34,16 @@ function sanitizeName(name) {
 module.exports = async function (message) {
   await message.channel.sendTyping();
   const botId = message.client.user.id;
-  let regexIds = /(<@1041050338775539732>|<@&1045554081848103007>)/gim;
-  const conversationLog = [];
-
-  const prevMessages = await message.channel.messages.fetch({ limit: 40 });
-  for (const item of prevMessages) {
+  const botName = message.client.user.username; // Get the bot's name
+  const botMessageHistory = [];
+  const allMessageHistory = await message.channel.messages.fetch({ limit: 40 });
+  for (const item of allMessageHistory) {
     const msg = item[1];
     if (await isMessageToOrFromBot(msg, botId)) {
       let thisMsgContent = [
         {
           type: "text",
-          text: msg.content.replace(regexIds, "OPie"),
+          text: msg.content.replaceAll(`<@${botId}>`, botName), // Replace bot mentions with bot name
         },
       ];
 
@@ -56,7 +61,7 @@ module.exports = async function (message) {
         });
       }
 
-      conversationLog.unshift({
+      botMessageHistory.unshift({
         role: msg.author.id === botId ? "assistant" : "user",
         name: sanitizeName(msg.member?.displayName || "Unknown"),
         content: thisMsgContent,
@@ -67,11 +72,11 @@ module.exports = async function (message) {
   // Truncate conversationLog to avoid exceeding token limits
   const maxLogTokens = 4096 - 1024; // Reserve 1024 tokens for the response
   let totalTokens = 0;
-  const truncatedLog = [];
-  for (const entry of conversationLog.reverse()) {
+  const filteredBotMessageHistory = [];
+  for (const entry of botMessageHistory.reverse()) {
     const entryTokens = entry.content.length / 4; // Approximation: 1 token ≈ 4 characters
     if (totalTokens + entryTokens > maxLogTokens) break;
-    truncatedLog.unshift(entry);
+    filteredBotMessageHistory.unshift(entry);
     totalTokens += entryTokens;
   }
 
@@ -80,18 +85,18 @@ module.exports = async function (message) {
       const referencedMessage = await message.fetchReference();
       if (referencedMessage) {
         // Remove the referenced message if it already exists in the conversationLog
-        const existingIndex = truncatedLog.findIndex(
+        const existingIndex = filteredBotMessageHistory.findIndex(
           (entry) =>
             entry.content === referencedMessage.content &&
             entry.name ===
               sanitizeName(referencedMessage.member?.displayName || "Unknown")
         );
         if (existingIndex !== -1) {
-          truncatedLog.splice(existingIndex, 1); // Remove the existing entry
+          filteredBotMessageHistory.splice(existingIndex, 1); // Remove the existing entry
         }
 
         // Add the referenced message as the last entry before the user's response
-        truncatedLog.push({
+        filteredBotMessageHistory.push({
           role: referencedMessage.author.id === botId ? "assistant" : "user",
           name: sanitizeName(
             referencedMessage.member?.displayName || "Unknown"
@@ -105,104 +110,60 @@ module.exports = async function (message) {
   }
 
   // Add user-specific prompts
-  if (message.member.id === "629681401918390312") {
-    // Barre
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is the owner of this server and is held in the highest regard. You sometimes refer to her as "highness", "queen", "SWMBO", etc.`,
-    });
-  } else if (message.member.id == "348629137080057878") {
-    // Bwana
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He is the resident I.T. nerd and the one who programmed you.`,
-    });
-  } else if (
-    message.member.id == "511074631239598080" ||
-    message.member.id == "1358747746395361280"
-  ) {
-    // Ferret
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check.`,
-    });
-  } else if (message.member.id == "1250263798070247487") {
-    // Chibi
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She is a lovely small chibi. By day, she makes beautiful flower arrangements. By night, she's one of our beloved moderators.`,
-    });
-  } else if (message.member.id == "303930225945870336") {
-    // Kavzilla
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. She assumes the persona of a bearded dragon and loves and keeps lizards, frogs, etc. She also works in I.T. and is one of our moderators here.`,
-    });
-  } else if (message.member.id == "440328038337478657") {
-    // Saucy
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. He assumes the persona of a sausage and is a moderator here who also umpires baseball games and moderates our subreddit.`,
-    });
+  let thisUserPrompt = `You are speaking with a Discord user who goes by the handle ${message.member.displayName}.`;
+  if (userPrompts[message.member.id]) {
+    thisUserPrompt += ` ${userPrompts[message.member.id].prompt}`;
   } else if (
     message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
   ) {
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They are a moderator of our Discord community.`,
-    });
+    thisUserPrompt += ` ${moderatorPrompt}`;
   } else if (
     message.member.premiumSince &&
     !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
   ) {
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}. They have boosted the server which means they have paid money to support our community and are a highly regarded community member`,
-    });
-  } else {
-    truncatedLog.unshift({
-      role: "system",
-      content: `You are speaking with a Discord user who goes by the handle ${message.member.displayName}.`,
-    });
+    thisUserPrompt += ` ${boosterPrompt}`;
   }
+  filteredBotMessageHistory.unshift({
+    role: "system",
+    content: thisUserPrompt,
+  });
 
   // Add prompts for context-specific information
-  if (message.content.toLowerCase().includes("first shift")) { // Convert to lowercase for case-insensitive match
-    truncatedLog.unshift({
+  if (message.content.toLowerCase().includes("first shift")) {
+    // Convert to lowercase for case-insensitive match
+    filteredBotMessageHistory.unshift({
       role: "system",
       content: `On Patrol First Shift is a program that airs for one hour prior to the start of On Patrol Live. The first 6 minutes of the show includes a live in-studio segment with the hosts and sometimes guests following up on events from recent episodes. The remaining 54 minutes of First Shift are just clips from previously aired episodes, and no live content.`,
     });
   }
 
-  // Add system prompts
-  if (options.liveShows.length > 0) {
-    const upcomingShows = options.liveShows
-      .filter((show) => new Date(show.showtime) > new Date()) // Filter future showtimes
+  // Add prompts for live show information
+  if (liveShows.length > 0) {
+    const upcomingShows = liveShows
       .map(
         (show) =>
-          `${show.episode} on ${new Date(
-            show.showtime
-          ).toLocaleString()}.`
+          `${show.episode} on ${new Date(show.showtime).toLocaleString()}.`
       ) // Format each showtime
       .join(", ");
     if (upcomingShows) {
-      truncatedLog.unshift({
+      filteredBotMessageHistory.unshift({
         role: "system",
-        content: `Upcoming live shows: ${upcomingShows}`,
+        content: `Upcoming and recent live shows: ${upcomingShows}`,
       });
     }
   }
 
-  truncatedLog.unshift({
+  // Add system prompts
+  filteredBotMessageHistory.unshift({
     role: "system",
     content: `Today is ${new Date().toLocaleString()}.`, // Dynamically include the current date and time
   });
 
-  truncatedLog.unshift({
+  filteredBotMessageHistory.unshift({
     role: "system",
-    content: `This conversation takes place on the Discord server for fans of the show "On Patrol Live" which airs on Fridays and Saturdays from 9 PM to 12 AM ET. You are familiar with the show's schedule, hosts, departments, and general format. If a question is about the show, answer with accurate and helpful information. If you're not sure about something, say you don't know. For current show related info, direct the user to the #announcements channel.`,
+    content: `This conversation takes place on the Discord server for fans of the show "On Patrol Live" which airs on Fridays and Saturdays from 9 PM to 12 AM ET. You are familiar with the show's schedule, hosts, departments, and general format. If a question is about the show, answer with accurate and helpful information. If you're not sure about something, say you don't know. For current show related news, direct the user to the #announcements channel.`,
   });
-  truncatedLog.unshift({
+  filteredBotMessageHistory.unshift({
     role: "system",
     content: `Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness`,
   });
@@ -218,13 +179,13 @@ module.exports = async function (message) {
   ) {
     apiPackage = {
       model: OpenAIChatModel,
-      messages: truncatedLog,
+      messages: filteredBotMessageHistory,
       max_tokens: 1024, // limit token usage (length of response)
     };
   } else {
     apiPackage = {
       model: OpenAIChatModel,
-      messages: truncatedLog,
+      messages: filteredBotMessageHistory,
       max_tokens: 256, // limit token usage (length of response)
     };
   }
