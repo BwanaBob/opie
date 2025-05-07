@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits, AttachmentBuilder, messageLink } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits, AttachmentBuilder, messageLink, MessageFlags } = require("discord.js"); // Import MessageFlags
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,8 +27,11 @@ module.exports = {
             })
             .catch(err => { console.error(`[ERROR] Fetching message - `, err.message); });
 
-        await interaction.reply({ content: `Reacted to message: ${reactMessage} with emoji: ${reactEmoji}`, ephemeral: true })
-            .catch(err => { console.error(`[ERROR] Relpying to command ${message.id} -`, err.message); });
+        await interaction.reply({ 
+            content: `Reacted to message: ${reactMessage} with emoji: ${reactEmoji}`, 
+            flags: MessageFlags.Ephemeral // Use the named flag instead of a numeric value
+        })
+        .catch(err => { console.error(`[ERROR] Relpying to command ${message.id} -`, err.message); });
     },
 };
 

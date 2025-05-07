@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ActivityType, PermissionFlagsBits, Client } = require("discord.js");
+const { SlashCommandBuilder, ActivityType, PermissionFlagsBits, Client, MessageFlags } = require("discord.js");
 const { parse } = require("dotenv");
 const statusReply = `Status Set`;
 
@@ -75,6 +75,9 @@ module.exports = {
     }
 
     interaction.client.user.setPresence(newStatus);
-    await interaction.reply({ content: statusReply, ephemeral: true });
+    await interaction.reply({ 
+      content: statusReply, 
+      flags: MessageFlags.Ephemeral 
+    });
   },
 };

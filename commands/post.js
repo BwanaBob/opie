@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits, AttachmentBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits, AttachmentBuilder, MessageFlags } = require("discord.js");
 
 const postReply = `Posted`;
 
@@ -356,7 +356,10 @@ module.exports = {
       }
         break;
     }
-    await interaction.reply({ content: postReply, ephemeral: true })
+    await interaction.reply({ 
+      content: postReply, 
+      flags: MessageFlags.Ephemeral
+    })
     .catch(err => { console.error(`[ERROR] Relpying to command ${message.id} -`, err.message); });
     interaction.channel.send(postMessage)
     .catch(err => { console.error(`[ERROR] Posting message ${message.id} -`, err.message); });

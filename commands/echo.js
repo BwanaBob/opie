@@ -1,6 +1,7 @@
 const {
   SlashCommandBuilder,
   PermissionFlagsBits,
+  MessageFlags, // Import MessageFlags
 } = require("discord.js");
 
 module.exports = {
@@ -14,7 +15,10 @@ module.exports = {
     ),
   async execute(interaction) {
     const input = interaction.options.getString("input") ?? "I don't know what to say.";
-    await interaction.reply({ content: "Message sent", ephemeral: true });
+    await interaction.reply({ 
+      content: "Message sent", 
+      flags: MessageFlags.Ephemeral // Use the named flag instead of ephemeral
+    });
     await interaction.channel.send({ content: input });
   },
 };

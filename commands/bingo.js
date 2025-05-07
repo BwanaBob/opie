@@ -22,7 +22,6 @@ module.exports = {
     .setDescription("How do I play Bingo?")
     .setDMPermission(true),
   async execute(interaction) {
-    // await interaction.reply({ content: bingoMessage, ephemeral: true });
     const messageId = await interaction.reply({
        embeds: [ bingoEmbed ],
        components: [bingoRow],

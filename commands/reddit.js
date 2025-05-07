@@ -22,7 +22,6 @@ module.exports = {
     .setDescription("Join us on Reddit")
     .setDMPermission(true),
   async execute(interaction) {
-    // await interaction.reply({ content: bingoMessage, ephemeral: true });
     const messageId = await interaction.reply({
       embeds: [redditEmbed],
       components: [redditRow],

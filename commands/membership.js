@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,6 +21,9 @@ module.exports = {
                 }
             });
         }
-        await interaction.reply({ content: "Assigned role to all members", ephemeral: true });
+        await interaction.reply({ 
+            content: "Assigned role to all members", 
+            flags: MessageFlags.Ephemeral 
+        });
     },
 };

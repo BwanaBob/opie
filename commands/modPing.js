@@ -1,5 +1,5 @@
 // This should be a server specific command. Needs work.
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,7 +27,10 @@ module.exports = {
             }
         }
 
-        await interaction.reply({ content: `Toggled pings: ${roleStatus}`, ephemeral: true });
+        await interaction.reply({ 
+            content: `Toggled pings: ${roleStatus}`, 
+            flags: MessageFlags.Ephemeral 
+        });
         // const commandExecutedDate = new Date().toLocaleString();
         // console.log(`[${commandExecutedDate}] ⌛ CMD   | Mod Ping: ${roleStatus} | Role Toggled ${interaction.user.tag}`);
     },
