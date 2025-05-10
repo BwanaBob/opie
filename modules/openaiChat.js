@@ -10,6 +10,7 @@ const {
 } = options.modules.openaiChat;
 const { OpenAI } = require("openai"); // Correct import
 const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // Correct initialization
+const { DateTime } = require("luxon"); // Import Luxon for timezone handling
 
 async function isMessageToOrFromBot(message, botId) {
   try {
@@ -154,9 +155,15 @@ module.exports = async function (message) {
   }
 
   // Add system prompts
-  filteredBotMessageHistory.unshift({
+
+  // Get the current time in Eastern Time (EST)
+  const currentTimeEST = DateTime.now()
+    .setZone("America/New_York")
+    .toLocaleString(DateTime.DATETIME_FULL);
+
+    filteredBotMessageHistory.unshift({
     role: "system",
-    content: `Today is ${new Date().toLocaleString()}.`, // Dynamically include the current date and time
+    content: `Today is ${currentTimeEST}.`, // Dynamically include the current date and time in EST
   });
 
   filteredBotMessageHistory.unshift({
