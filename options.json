@@ -54,14 +54,14 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-05-02T21:00:00-05:00", "episode": "S03E75" },
-        { "showtime": "2025-05-03T21:00:00-05:00", "episode": "S03E76" },
-        { "showtime": "2025-05-09T21:00:00-05:00", "episode": "S03E77" },
-        { "showtime": "2025-05-10T21:00:00-05:00", "episode": "S03E78" },
-        { "showtime": "2025-05-16T21:00:00-05:00", "episode": "S03E79" },
-        { "showtime": "2025-05-17T21:00:00-05:00", "episode": "S03E80" },
-        { "showtime": "2025-05-23T21:00:00-05:00", "episode": "S03E81" },
-        { "showtime": "2025-05-24T21:00:00-05:00", "episode": "S03E82" }
+        { "showtime": "2025-05-02T21:00:00-05:00", "episode": "Season 3 Episode 75" },
+        { "showtime": "2025-05-03T21:00:00-05:00", "episode": "Season 3 Episode 76" },
+        { "showtime": "2025-05-09T21:00:00-05:00", "episode": "Season 3 Episode 77" },
+        { "showtime": "2025-05-10T21:00:00-05:00", "episode": "Season 3 Episode 78" },
+        { "showtime": "2025-05-16T21:00:00-05:00", "episode": "Season 3 Episode 79" },
+        { "showtime": "2025-05-17T21:00:00-05:00", "episode": "Season 3 Episode 80" },
+        { "showtime": "2025-05-23T21:00:00-05:00", "episode": "Season 3 Episode 81" },
+        { "showtime": "2025-05-24T21:00:00-05:00", "episode": "Season 3 Episode 82" }
       ],
       "userPrompts": {
         "629681401918390312" : {"name": "Barre",     "prompt":"She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."},
