@@ -32,6 +32,64 @@ function sanitizeName(name) {
   return name.replace(/[^\w-]/g, "_");
 }
 
+function formatMessageForLog(msg, botId, botName, asReply = false) {
+  let thisMsgContent = [];
+
+  // Add embed info if present
+  if (msg.embeds && msg.embeds.length > 0) {
+    msg.embeds.forEach(embed => {
+      if (embed.title) {
+        thisMsgContent.push({
+          type: "text",
+          text: `[Embed Title]: ${embed.title}`,
+        });
+      }
+      if (embed.description) {
+        thisMsgContent.push({
+          type: "text",
+          text: `[Embed Description]: ${embed.description}`,
+        });
+      }
+    });
+  }
+
+  // Add message content if present
+  if (msg.content && msg.content.length > 0) {
+    thisMsgContent.push({
+      type: "text",
+      text: msg.content.replaceAll(`<@${botId}>`, botName),
+    });
+  }
+
+  // check for images in the message
+  if (msg.attachments && msg.attachments.size > 0) {
+    msg.attachments.forEach((attachment) => {
+      if (attachment.contentType && attachment.contentType.startsWith("image/")) {
+        thisMsgContent.push({
+          type: "image_url",
+          image_url: {
+            url: attachment.url,
+          },
+        });
+      }
+    });
+  }
+
+  if (asReply) {
+    // Prepend the reply context to the text content
+    thisMsgContent.unshift({
+      type: "text",
+      text: `The user is replying to this message:`,
+    });
+  }
+
+  return {
+    role: msg.author.id === botId ? "assistant" : "user",
+    name: sanitizeName(msg.member?.displayName || "Unknown"),
+    content: thisMsgContent,
+  };
+}
+
 module.exports = async function (message) {
   await message.channel.sendTyping();
   const botId = message.client.user.id;
@@ -41,32 +99,7 @@ module.exports = async function (message) {
   for (const item of allMessageHistory) {
     const msg = item[1];
     if (await isMessageToOrFromBot(msg, botId)) {
-      let thisMsgContent = [
-        {
-          type: "text",
-          text: msg.content.replaceAll(`<@${botId}>`, botName), // Replace bot mentions with bot name
-        },
-      ];
-
-      // check for images in the message
-      if (msg.attachments.size > 0) {
-        msg.attachments.forEach((attachment) => {
-          if (attachment.contentType.startsWith("image/")) {
-            thisMsgContent.push({
-              type: "image_url",
-              image_url: {
-                url: attachment.url,
-              },
-            });
-          }
-        });
-      }
-
-      botMessageHistory.unshift({
-        role: msg.author.id === botId ? "assistant" : "user",
-        name: sanitizeName(msg.member?.displayName || "Unknown"),
-        content: thisMsgContent,
-      });
+      botMessageHistory.unshift(formatMessageForLog(msg, botId, botName));
     }
   }
 
@@ -96,14 +129,8 @@ module.exports = async function (message) {
           filteredBotMessageHistory.splice(existingIndex, 1); // Remove the existing entry
         }
 
-        // Add the referenced message as the last entry before the user's response
-        filteredBotMessageHistory.push({
-          role: referencedMessage.author.id === botId ? "assistant" : "user",
-          name: sanitizeName(
-            referencedMessage.member?.displayName || "Unknown"
-          ),
-          content: `The user is replying to this message: "${referencedMessage.content}"`,
-        });
+        // Add the referenced message as the last entry before the user's response, with reply context
+        filteredBotMessageHistory.push(formatMessageForLog(referencedMessage, botId, botName, true));
       }
     } catch (error) {
       console.error("Error fetching referenced message:", error);
