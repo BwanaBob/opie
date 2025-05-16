@@ -11,6 +11,8 @@ const {
 const { OpenAI } = require("openai"); // Correct import
 const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // Correct initialization
 const { DateTime } = require("luxon"); // Import Luxon for timezone handling
+const fs = require("fs");
+const path = require("path");
 
 async function isMessageToOrFromBot(message, botId) {
   try {
@@ -201,6 +203,18 @@ module.exports = async function (message) {
     role: "system",
     content: `Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness`,
   });
+
+  // Write the prompt to a debug file before sending to OpenAI
+  try {
+    const debugDir = path.join(__dirname, "../debug");
+    if (!fs.existsSync(debugDir)) {
+      fs.mkdirSync(debugDir);
+    }
+    const debugFile = path.join(debugDir, `openai_prompt_${Date.now()}.txt`);
+    fs.writeFileSync(debugFile, JSON.stringify(filteredBotMessageHistory, null, 2), "utf8");
+  } catch (err) {
+    console.error("Error writing OpenAI prompt debug file:", err);
+  }
 
   let apiPackage = {};
   // if mod or tech channel don't restrict response size
