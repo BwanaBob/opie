@@ -2,12 +2,12 @@ module.exports = {
   apps : [{
       name: "opie",
     script: 'index.js',
-     watch: '.'
-  // }, {
-  //   script: './service-worker/',
-  //   watch: ['./service-worker']
+     watch: true,
+     ignore_watch: [
+        "debug",
+        "*.txt"
+      ],
   }],
-
   deploy : {
     production : {
       user : 'SSH_USERNAME',
