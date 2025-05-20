@@ -89,7 +89,15 @@ function formatMessageForLog(msg, botId, botName, asReply = false) {
     role: msg.author.id === botId ? "assistant" : "user",
     name: sanitizeName(msg.member?.displayName || "Unknown"),
     content: thisMsgContent,
+    messageId: msg.id, // <-- Add this line
   };
+}
+
+// Example post-processing function
+function stripBotNameAndEmoji(text, botName) {
+  // Regex: start of string, bot name, optional emoji, optional whitespace/newline
+  const regex = new RegExp(`^${botName}\\s*(?:[\\p{Emoji_Presentation}\\p{Emoji}\\u200d]+)?\\s*`, 'u');
+  return text.replace(regex, '');
 }
 
 module.exports = async function (message) {
@@ -106,7 +114,7 @@ module.exports = async function (message) {
   }
 
   // Truncate conversationLog to avoid exceeding token limits
-  const maxLogTokens = 4096 - 1024; // Reserve 1024 tokens for the response
+  const maxLogTokens = 4096 - 1024 - 300; // Reserve 1024 tokens for the response and 300 for the system prompts being added after this
   let totalTokens = 0;
   const filteredBotMessageHistory = [];
   for (const entry of botMessageHistory.reverse()) {
@@ -116,23 +124,44 @@ module.exports = async function (message) {
     totalTokens += entryTokens;
   }
 
+  // Log if truncation happened
+  if (filteredBotMessageHistory.length < botMessageHistory.length) {
+    console.log(
+      `Truncation occurred: filtered length: ${filteredBotMessageHistory.length}, original lenght: ${botMessageHistory.length}`
+    );
+  }
+
   if (message.reference) {
     try {
       const referencedMessage = await message.fetchReference();
       if (referencedMessage) {
-        // Remove the referenced message if it already exists in the conversationLog
-        const existingIndex = filteredBotMessageHistory.findIndex(
-          (entry) =>
-            entry.content === referencedMessage.content &&
-            entry.name ===
-              sanitizeName(referencedMessage.member?.displayName || "Unknown")
+        // Remove the referenced message by messageId
+        const refIndex = filteredBotMessageHistory.findIndex(
+          (entry) => entry.messageId === referencedMessage.id
         );
-        if (existingIndex !== -1) {
-          filteredBotMessageHistory.splice(existingIndex, 1); // Remove the existing entry
+        if (refIndex !== -1) {
+          filteredBotMessageHistory.splice(refIndex, 1);
         }
 
-        // Add the referenced message as the last entry before the user's response, with reply context
-        filteredBotMessageHistory.push(formatMessageForLog(referencedMessage, botId, botName, true));
+        // Prepare the referenced message and combine the note with its first text content
+        const replyEntry = formatMessageForLog(referencedMessage, botId, botName);
+        const firstText = replyEntry.content.find(c => c.type === "text");
+        if (firstText) {
+          firstText.text = `The user is replying to this message: ${firstText.text}`;
+        } else {
+          // If no text content, add the note as a new text block
+          replyEntry.content.unshift({
+            type: "text",
+            text: `The user is replying to this message:`
+          });
+        }
+
+        // Insert as second-to-last (just before the user's message)
+        if (filteredBotMessageHistory.length > 0) {
+          filteredBotMessageHistory.splice(filteredBotMessageHistory.length - 1, 0, replyEntry);
+        } else {
+          filteredBotMessageHistory.push(replyEntry);
+        }
       }
     } catch (error) {
       console.error("Error fetching referenced message:", error);
@@ -201,7 +230,7 @@ module.exports = async function (message) {
   });
   filteredBotMessageHistory.unshift({
     role: "system",
-    content: `Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness`,
+    content: `Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness. Do not preface your responses with your own name or emoji; Discord already shows your name and avatar.`,
   });
 
   // Write the prompt to a debug file before sending to OpenAI
@@ -217,6 +246,9 @@ module.exports = async function (message) {
   }
 
   let apiPackage = {};
+  // Remove messageId before sending to OpenAI
+  const apiMessages = filteredBotMessageHistory.map(({ messageId, ...rest }) => rest);
+
   // if mod or tech channel don't restrict response size
   if (
     message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) ||
@@ -227,13 +259,13 @@ module.exports = async function (message) {
   ) {
     apiPackage = {
       model: OpenAIChatModel,
-      messages: filteredBotMessageHistory,
+      messages: apiMessages,
       max_tokens: 1024, // limit token usage (length of response)
     };
   } else {
     apiPackage = {
       model: OpenAIChatModel,
-      messages: filteredBotMessageHistory,
+      messages: apiMessages,
       max_tokens: 256, // limit token usage (length of response)
     };
   }
@@ -243,7 +275,10 @@ module.exports = async function (message) {
   try {
     const result = await openai.chat.completions.create(apiPackage); // Correct method
     if (result && result.choices && result.choices[0]) {
-      return result.choices[0].message.content; // Adjusted response structure
+      // Use stripBotNameAndEmoji to clean up the bot's reply before sending
+      const rawReply = result.choices[0].message.content;
+      const cleanReply = stripBotNameAndEmoji(rawReply, botName);
+      return cleanReply;
     } else {
       return "ERR";
     }
