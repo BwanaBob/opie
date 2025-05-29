@@ -3,11 +3,15 @@ module.exports = {
       name: "opie",
     script: 'index.js',
      watch: true,
-     ignore_watch: [
+      ignore_watch: [
+        "node_modules",
+        "logs",
         "debug",
+        ".git",
+        ".nvm",
         "*.txt"
       ],
-  }],
+ }],
   deploy : {
     production : {
       user : 'SSH_USERNAME',
