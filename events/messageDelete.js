@@ -27,7 +27,10 @@ module.exports = {
         message.member.permissions.has(
           PermissionsBitField.Flags.ManageMessages
         )) ||
-      message.channel.name == "notifications" ||
+      message.channel.name == "notifications-opie" ||
+      message.channel.name == "notifications-discord" ||
+      message.channel.name == "notifications-automod" ||
+      message.channel.name == "notifications-github" ||
       message.channel.name == "art"
     ) {
       return;
@@ -100,8 +103,18 @@ module.exports = {
       value: `${message.guild.name}`,
       inline: true,
     });
-    message.client.channels.cache
-      .get(message.guild.publicUpdatesChannelId)
-      .send({ embeds: [noticeEmbed], files: [noticeImage] });
+
+    // Find the notifications-opie channel, or fall back to publicUpdatesChannelId
+    let notifyChannel =
+      message.guild.channels.cache.find(
+        (ch) => ch.name === "notifications-opie" && ch.type === 0 // 0 = GuildText
+      ) ||
+      message.client.channels.cache.get(message.guild.publicUpdatesChannelId);
+
+    if (notifyChannel) {
+      notifyChannel.send({ embeds: [noticeEmbed], files: [noticeImage] });
+    } else {
+      console.error("No suitable notification channel found for message delete event.");
+    }
   },
 };

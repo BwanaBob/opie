@@ -1,6 +1,17 @@
 const { Events, EmbedBuilder, AttachmentBuilder } = require("discord.js");
 const options = require("../options.json");
 
+// Helper function to get the notification channel
+function getNotificationChannel(guild) {
+  // Try to find a channel named "notifications-opie"
+  const opieChannel = guild.channels.cache.find(
+    (ch) => ch.name === "notifications-opie" && ch.type === 0 // 0 = GuildText
+  );
+  if (opieChannel) return opieChannel;
+  // Fallback to publicUpdatesChannelId
+  return guild.channels.cache.get(guild.publicUpdatesChannelId);
+}
+
 module.exports = {
   name: Events.GuildMemberUpdate,
   execute(oldMember, newMember) {
@@ -30,11 +41,15 @@ module.exports = {
             inline: true,
           });
 
-        oldMember.client.channels.cache
-          .get(oldMember.guild.publicUpdatesChannelId)
-          .send({ embeds: [nameChangeEmbed], files: [nameChangeImage] });
+        // Send to notification channel
+        const notifyChannel = getNotificationChannel(oldMember.guild);
+        if (notifyChannel) {
+          notifyChannel.send({ embeds: [nameChangeEmbed], files: [nameChangeImage] });
+        } else {
+          console.error("No suitable notification channel found for name change event.");
+        }
 
-        // also send everything to bot's notice channel
+        // also send everything to bot's notice channel (unchanged)
         oldMember.client.channels.cache
           .get("1045327770592497694")
           .send({ embeds: [nameChangeEmbed], files: [nameChangeImage] });
@@ -62,14 +77,13 @@ module.exports = {
             );
           }
         });
-        // // Send to bot's notice channel
-        // newMember.client.channels.cache
-        //   .get("1045327770592497694")
-        //   .send({ embeds: [roleRemovedEmbed] });
-        // Send to members guild notice channel
-        newMember.client.channels.cache
-          .get(newMember.guild.publicUpdatesChannelId)
-          .send({ embeds: [roleRemovedEmbed] });
+        // Send to notification channel
+        const notifyChannel = getNotificationChannel(newMember.guild);
+        if (notifyChannel) {
+          notifyChannel.send({ embeds: [roleRemovedEmbed] });
+        } else {
+          console.error("No suitable notification channel found for role removed event.");
+        }
       } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         const roleAddedLogDate = new Date().toLocaleString();
         const roleAddedEmbed = new EmbedBuilder()
@@ -91,14 +105,13 @@ module.exports = {
             );
           }
         });
-        // // // Send to bot's notice channel
-        // newMember.client.channels.cache
-        //   .get("1045327770592497694")
-        //   .send({ embeds: [roleAddedEmbed] });
-        // Send to members guild notice channel
-        newMember.client.channels.cache
-          .get(newMember.guild.publicUpdatesChannelId)
-          .send({ embeds: [roleAddedEmbed] });
+        // Send to notification channel
+        const notifyChannel = getNotificationChannel(newMember.guild);
+        if (notifyChannel) {
+          notifyChannel.send({ embeds: [roleAddedEmbed] });
+        } else {
+          console.error("No suitable notification channel found for role added event.");
+        }
       }
     }
   },

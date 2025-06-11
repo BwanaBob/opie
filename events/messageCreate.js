@@ -30,6 +30,17 @@ function nextMilestone(currentCount) {
   return milestonesArray[milestonesArray.length - 1];
 }
 
+// Helper function to get the notification channel
+function getNotificationChannel(guild) {
+  // Try to find a channel named "notifications-opie"
+  const opieChannel = guild.channels.cache.find(
+    (ch) => ch.name === "notifications-opie" && ch.type === 0 // 0 = GuildText
+  );
+  if (opieChannel) return opieChannel;
+  // Fallback to publicUpdatesChannelId
+  return guild.channels.cache.get(guild.publicUpdatesChannelId);
+}
+
 module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
@@ -270,11 +281,17 @@ module.exports = {
           "announcements",
           "art",
           "bingo",
+          "firearms",
           "food",
           "fur-babies",
           "memes",
-          "notifications",
-          "off-topic",
+          "notifications-opie",
+          "notifications-automod",
+          "notifications-discord",
+          "notifications-github",
+          "other-topics",
+          "sports",
+          "technology",
         ].includes(message.channel.name)
       )) {
       const logDate = new Date(message.createdTimestamp).toLocaleString();
@@ -343,9 +360,12 @@ module.exports = {
               inline: true,
             });
 
-          message.client.channels.cache
-            .get(message.guild.publicUpdatesChannelId)
-            .send({ embeds: [timerViolatedEmbed], files: [timerViolatedImage] });
+          const notifyChannel = getNotificationChannel(message.guild);
+          if (notifyChannel) {
+            notifyChannel.send({ embeds: [timerViolatedEmbed], files: [timerViolatedImage] });
+          } else {
+            console.error("No suitable notification channel found for timer violation event.");
+          }
 
           //// also send everything to bot's notice channel
           // message.client.channels.cache

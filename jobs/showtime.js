@@ -15,7 +15,7 @@ module.exports = {
       client.channels.cache.get("1250585288942817381") ||
       client.channels.cache.get("392093299890061312"); // OPL #mod-business or OPie #General
 
-    // const noticeChannel = client.channels.cache.get("1043646191247826945") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
+    // const noticeChannel = client.channels.cache.get("1382210305463160934") || client.channels.cache.get("1045327770592497694"); // OPL or OPie #notifications
     const jobLoadedDate = new Date().toLocaleString();
     console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Showtime`);
     var jobShowtime = new CronJob(

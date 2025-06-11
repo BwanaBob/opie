@@ -139,7 +139,7 @@ module.exports = {
       client.channels.cache.get("1115429408614920303") ||
       client.channels.cache.get("392120898909634561"); // #Announcements or OPie #Bot-Test
     const notificationChannel =
-      client.channels.cache.get("1043646191247826945") ||
+      client.channels.cache.get("1382210305463160934") ||
       client.channels.cache.get("392120898909634561"); // OPL Notifications or OPie #Bot-Test
     let targetUsername = "ulladulla.bsky.social";
     let lineupRole = "1116032334303604746"; // OPie Role
