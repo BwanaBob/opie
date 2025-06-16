@@ -34,7 +34,7 @@ module.exports = {
         model: "dall-e-3",
       });
 
-      const imageUrl = response.data.data[0].url;
+      const imageUrl = response.data[0].url;
 
       const embed = new EmbedBuilder()
         .setImage(imageUrl)

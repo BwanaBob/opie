@@ -1,10 +1,7 @@
 const { PermissionsBitField } = require("discord.js");
 require("dotenv").config();
-const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-  apiKey: process.env.CHATGPT_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const { OpenAI } = require("openai"); // v5 compatible import
+const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // v5 compatible initialization
 
 async function replyIsToBot(message) {
   try {
@@ -260,15 +257,16 @@ module.exports = async function (message) {
     };
   }
 
-  const result = await openai
-    .createChatCompletion(apiPackage)
-    .catch((error) => {
-      console.log(`⛔ [Error] OPENAI: ${error}`);
-    });
-
-  if (typeof result !== "undefined") {
-    return result.data.choices[0].message.content;
-  } else {
+  try {
+    const result = await openai.chat.completions.create(apiPackage);
+    if (result && result.choices && result.choices[0] && result.choices[0].message && result.choices[0].message.content) {
+      return result.choices[0].message.content;
+    } else {
+      return "ERR";
+    }
+  } catch (error) {
+    const errorDetails = error.error || error.response?.data || error.message || error.toString();
+    console.log(`⛔ [Error] OPENAI:`, JSON.stringify(errorDetails, null, 2));
     return "ERR";
   }
 };

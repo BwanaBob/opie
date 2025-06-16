@@ -8,8 +8,8 @@ const {
   moderatorPrompt,
   boosterPrompt,
 } = options.modules.openaiChat;
-const { OpenAI } = require("openai"); // Correct import
-const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // Correct initialization
+const { OpenAI } = require("openai"); // v5 compatible import
+const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // v5 compatible initialization
 const { DateTime } = require("luxon"); // Import Luxon for timezone handling
 const fs = require("fs");
 const path = require("path");
@@ -273,9 +273,10 @@ module.exports = async function (message) {
   // console.log(apiPackage);
 
   try {
-    const result = await openai.chat.completions.create(apiPackage); // Correct method
-    if (result && result.choices && result.choices[0]) {
-      // Use stripBotNameAndEmoji to clean up the bot's reply before sending
+    // v5: openai.chat.completions.create is still correct
+    const result = await openai.chat.completions.create(apiPackage);
+    // v5: response structure is still { choices: [{ message: { content } }] }
+    if (result && result.choices && result.choices[0] && result.choices[0].message && result.choices[0].message.content) {
       const rawReply = result.choices[0].message.content;
       const cleanReply = stripBotNameAndEmoji(rawReply, botName);
       return cleanReply;
@@ -283,8 +284,8 @@ module.exports = async function (message) {
       return "ERR";
     }
   } catch (error) {
-    const errorDetails =
-      error.response?.data || error.message || error.toString();
+    // v5: error structure may include .error property
+    const errorDetails = error.error || error.response?.data || error.message || error.toString();
     console.error(`⛔ [Error] OPENAI:`, JSON.stringify(errorDetails, null, 2));
     return "ERR";
   }
