@@ -54,14 +54,14 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-06-06T21:00:00-05:00", "episode": "Season 3 Episode 85" },
-        { "showtime": "2025-06-07T21:00:00-05:00", "episode": "Season 3 Episode 86" },
         { "showtime": "2025-06-13T21:00:00-05:00", "episode": "Season 3 Episode 87" },
         { "showtime": "2025-06-14T21:00:00-05:00", "episode": "Season 3 Episode 88" },
         { "showtime": "2025-06-20T21:00:00-05:00", "episode": "Season 3 Episode 89" },
         { "showtime": "2025-06-21T21:00:00-05:00", "episode": "Season 3 Episode 90" },
         { "showtime": "2025-06-27T21:00:00-05:00", "episode": "Season 3 Episode 91" },
-        { "showtime": "2025-06-28T21:00:00-05:00", "episode": "Season 3 Episode 92" }
+        { "showtime": "2025-06-28T21:00:00-05:00", "episode": "Season 3 Episode 92" },
+        { "showtime": "2025-07-04T21:00:00-05:00", "episode": "A repeat: Season 3 Episode 27. No live show this weekend." },
+        { "showtime": "2025-07-05T21:00:00-05:00", "episode": "A repeat: Season 2 Episode 83. No live show this weekend." }
       ],
       "userPrompts": {
         "629681401918390312" : {"name": "Barre",     "prompt":"She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."},
