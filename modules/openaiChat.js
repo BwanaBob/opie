@@ -201,13 +201,13 @@ module.exports = async function (message) {
     const upcomingShows = liveShows
       .map(
         (show) =>
-          `${show.episode} on ${new Date(show.showtime).toLocaleString()}.`
+          `${show.episode} on ${new Date(show.showtime).toLocaleString()} is ${show.type}.`
       ) // Format each showtime
       .join(", ");
     if (upcomingShows) {
       filteredBotMessageHistory.unshift({
         role: "system",
-        content: `Upcoming and recent live shows: ${upcomingShows}`,
+        content: `Upcoming and recent episodes: ${upcomingShows}`,
       });
     }
   }
