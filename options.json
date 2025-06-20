@@ -65,8 +65,7 @@
       ],
       "userPrompts": {
         "629681401918390312" : {"name": "Barre",     "prompt":"She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."},
-        "348629137080057878" : {"name": "Bean" ,     "prompt":"He assumes the persona of an arctic wolf and/or viking. He is a moderator here and the resident I.T. nerd and the one who programmed you."},
-        "511074631239598080" : {"name": "OldFerret", "prompt":"She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check."},
+        "348629137080057878" : {"name": "Bean" ,     "prompt":"He is a moderator here and handles most of the technical needs like configuring the discord server and our subreddit, creating and maintaining the bots like you, and he created and hosts the OPL Bingo app. His online persona is an arctic wolf with some viking flair."},
         "1358747746395361280": {"name": "Ferret",    "prompt":"She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check."},
         "1250263798070247487": {"name": "Chibi",     "prompt":"She is a lovely small chibi. By day, she makes beautiful flower arrangements. By night, she's one of our beloved moderators."},
         "303930225945870336" : {"name": "KavZilla",  "prompt":"She assumes the persona of a bearded dragon and loves and keeps lizards, frogs, etc. She also works in I.T. and is one of our moderators here."},
@@ -92,7 +91,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Lots of updates tonight. We have two new departments from Missouri joining the lineup. McDonald County Sheriff's Office and the Christian County Sheriff's Office will be rolling with us. Returning to the studio to join Dan, Curtis and Tom is Detective Danielly De Andrade from the Hollywood FL PD."
         }
       ]
     },
@@ -111,7 +110,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Lots of updates tonight. We have two new departments from Missouri joining the lineup. McDonald County Sheriff's Office and the Christian County Sheriff's Office will be rolling with us. Returning to the studio to join Dan, Curtis and Tom is Detective Danielly De Andrade from the Hollywood FL PD."
         }
       ]
     },
