@@ -63,10 +63,10 @@ module.exports = {
     let isAIChatMessage = false;
 
     // AI reply test
-    if (message.reference) {
+    if (message.reference && message.type === 19) { // Only treat as reply, not pin/forward
       const repliedMessage = await message.fetchReference();
-      if
-       (repliedMessage.author.id == message.client.user.id &&
+      if (
+        repliedMessage.author.id == message.client.user.id &&
         message.client.params.get("chatGPTEnabled") === "true"
       ) {
         isAIChatMessage = true;
