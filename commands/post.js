@@ -215,7 +215,7 @@ Mod/Everyone/Booster | Name \n\
 ✅ ⛔ ⬛ | Create Invite \n\
 ✅ ✅ ⬛ | Change Nickname \n\
 ✅ ⛔ ⬛ | Manage Nicknames \n\
-✅ ⛔ ⬛ | Kick Members \n\
+✅ ⛔ ⬛ | Kick, Approve, and Reject Members \n\
 ✅ ⛔ ⬛ | Ban Members \n\
 ✅ ⛔ ⬛ | Timeout Members \n\
 ✅ ✅ ⬛ | Send Messages \n\
