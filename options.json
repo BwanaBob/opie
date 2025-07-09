@@ -60,8 +60,8 @@
         { "showtime": "2025-07-05T21:00:00-05:00", "episode": "Season 2 Episode 83", "type": "a rerun" },
         { "showtime": "2025-07-11T21:00:00-05:00", "episode": "Season 4 Episode 01", "type": "live season 4 premier" },
         { "showtime": "2025-07-12T21:00:00-05:00", "episode": "Season 4 Episode 02", "type": "live" },
-        { "showtime": "2025-07-18T21:00:00-05:00", "episode": "Season 4 Episode 01", "type": "live" },
-        { "showtime": "2025-07-19T21:00:00-05:00", "episode": "Season 4 Episode 02", "type": "live" }
+        { "showtime": "2025-07-18T21:00:00-05:00", "episode": "Season 4 Episode 03", "type": "live" },
+        { "showtime": "2025-07-19T21:00:00-05:00", "episode": "Season 4 Episode 04", "type": "live" }
       ],
       "userPrompts": {
         "629681401918390312" : {"name": "Barre",     "prompt":"She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."},
