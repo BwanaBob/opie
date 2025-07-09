@@ -91,7 +91,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. As we kick off this season 3 finale episode, we are joined again by Officer Sean 'Sticks' Larkin and Chief Bradley Taylor of the Hazen Police Department."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Tonight brings us the season 4 premiere episode, with new departments, and the return of the Hazen Police Department. Buckle up, tonight is set to be a wild ride!"
         }
       ]
     },
@@ -110,7 +110,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. As we kick off this season 3 finale episode, we are joined again by Officer Sean 'Sticks' Larkin and Chief Bradley Taylor of the Hazen Police Department."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Tonight brings us the season 4 premiere episode, with new departments, and the return of the Hazen Police Department. Buckle up, tonight is set to be a wild ride!"
         }
       ]
     },
@@ -163,7 +163,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol Live. Wish them safe and happy times until the next show. Don't forget, next weekend is not live, but the following weekend will kick off season 4!"
+          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol Live. Wish them safe and happy times until the next show."
         }
       ]
     },
@@ -182,7 +182,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief closing comment announcing the end of tonight's bingo game and the show. Thank our awesome bingo players for playing along and helping spot bingo terms during the show. Remind them to come back next episode for more live Bingo fun. Don't forget, next weekend is not live, but the following weekend will kick off season 4!"
+          "content": "Write a brief closing comment announcing the end of tonight's bingo game and the show. Thank our awesome bingo players for playing along and helping spot bingo terms during the show. Remind them to come back next episode for more live Bingo fun."
         }
       ]
     },
