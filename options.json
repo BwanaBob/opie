@@ -8,6 +8,7 @@
   "rollCallCron": "00 00 15 * * THU",
   "todoFriCron": "00 00 10 * * FRI",
   "todoSatCron": "00 00 12 * * SAT",
+  "lineupTwitterDanCron": "00 00 12 * * SAT",
   "defaults": {
     "attachmentDelay": "60",
     "chatGPTEnabled": "true",
@@ -187,10 +188,15 @@
       ]
     },
     "blueskyLineup": {
-      "schedule": "3,33 * 17-19 * * FRI,SAT",
+      "schedule": "*/2 17-19 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "scheduleParked": "0 0 12 1 1 *",
       "readBehind": 120
+    },
+     "lineupTwitterDan": {
+      "schedule": "*/2 17-19 * * FRI,SAT",
+      "scheduleTest": "*/15 * * * * *",
+      "scheduleParked": "0 0 12 1 1 *"
     }
   }
 }
