@@ -8,7 +8,6 @@
   "rollCallCron": "00 00 15 * * THU",
   "todoFriCron": "00 00 10 * * FRI",
   "todoSatCron": "00 00 12 * * SAT",
-  "lineupTwitterDanCron": "00 00 12 * * SAT",
   "defaults": {
     "attachmentDelay": "60",
     "chatGPTEnabled": "true",
@@ -92,7 +91,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. This weekend brings us the much anticipated in studio visit from Officers Serenity Smith and Scotty Sadler of the Monroe PD, who will be joining our hosts all weekend. Also, the Baton Rouge PD will be joining the lineup tonight."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Tonight officers Serenity Smith and Scotty Sadler of the Monroe PD are back in studio with Dan and Rizzo."
         }
       ]
     },
@@ -111,7 +110,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. This weekend brings us the much anticipated in studio visit from Officers Serenity Smith and Scotty Sadler of the Monroe PD, who will be joining our hosts all weekend. Also, the Baton Rouge PD will be joining the lineup tonight."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Tonight officers Serenity Smith and Scotty Sadler of the Monroe PD are back in studio with Dan and Rizzo."
         }
       ]
     },
