@@ -56,6 +56,7 @@ class RssWatcher {
       if (newItems.length > 0) {
          this._saveSeen();
       }
+    //   console.log(newItems);
       return newItems;
    }
 }
