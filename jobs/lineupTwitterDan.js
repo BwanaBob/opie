@@ -1,10 +1,10 @@
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, AttachmentBuilder } = require("discord.js");
 const axios = require("axios");
 const sharp = require("sharp");
 const CronJob = require("cron").CronJob;
 const RssWatcher = require("../modules/rss");
 const options = require("../options.json");
-const { schedule, scheduleTest, scheduleParked, feedURL } =
+const { schedule, scheduleTest, scheduleParked, feedURL, lineupRole } =
   options.jobs.lineupTwitterDan;
 
 async function getImageBuffer(imageURL) {
@@ -122,6 +122,17 @@ async function removeWhiteBands(imageBuffer) {
   }
 }
 
+function getOriginalTwitterImageUrl(url) {
+  if (url.includes("pbs.twimg.com/media/")) {
+    if (url.includes("?")) {
+      return url + "&name=orig";
+    } else {
+      return url + "?name=orig";
+    }
+  }
+  return url;
+}
+
 module.exports = {
   execute(client) {
     const lineupChannel =
@@ -131,8 +142,8 @@ module.exports = {
     console.log(
       `[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Lineup Twitter Dan`
     );
-    var jobLineuTwitterDan = new CronJob(
-      scheduleParked,
+    var jobLineupTwitterDan = new CronJob(
+      schedule,
       async () => {
         if (!module.exports._watcher) {
           module.exports._watcher = new RssWatcher({
@@ -149,10 +160,10 @@ module.exports = {
             if (item.content && item.content.length > 0) {
               const imgMatch = item.content.match(/<img[^>]+src="([^"]+)"/);
               if (imgMatch && imgMatch[1]) {
-                imageUrl = imgMatch[1];
+                imageUrl = getOriginalTwitterImageUrl(imgMatch[1]);
 
                 const thisImageBuffer = await getImageBuffer(imageUrl);
-                                if (!thisImageBuffer) {
+                if (!thisImageBuffer) {
                   console.log("Unable to retrieve image from post");
                   break;
                 }
@@ -164,18 +175,27 @@ module.exports = {
                   break;
                 }
 
-                const lineupEmbed = new EmbedBuilder()
-                  .setColor("#0099ff")
-                  .setTitle("Lineup Tweet")
-                  .setDescription(item.title)
-                  .setURL(item.link);
-                if (imageUrl) {
-                  lineupEmbed.setImage(imageUrl);
+
+
+                try {
+                  const croppedImageBuffer = await removeWhiteBands(
+                    thisImageBuffer
+                  );
+                  const discordAttachment = new AttachmentBuilder(
+                    croppedImageBuffer,
+                    { name: "cropped-lineup.jpg" }
+                  );
+                  await lineupChannel.send({
+                    content: `<@&${lineupRole}>\n${item.title}`,
+                    files: [discordAttachment],
+                  });
+                } catch (error) {
+                  console.error("Error sending image:", error.message);
+                  await notificationChannel.send(
+                    "Failed to process and send the lineup image."
+                  );
+                  break;
                 }
-                let message = { embeds: [lineupEmbed] };
-                lineupChannel.send(message).catch((err) => {
-                  console.log(`[ERROR] Sending message: `, err.message);
-                });
               }
             }
           }

@@ -4,3 +4,4 @@ bluesky-session.json
 test-*.js
 node_modules/
 debug/
+data/

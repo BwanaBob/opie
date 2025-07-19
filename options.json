@@ -196,7 +196,8 @@
       "schedule": "*/2 17-19 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "scheduleParked": "0 0 12 1 1 *",
-      "feedURL": "https://rss.xcancel.com/danabrams/rss"
+      "feedURL": "https://rss.xcancel.com/danabrams/rss",
+      "lineupRole": "1131662348617269479"
     }
   }
 }
