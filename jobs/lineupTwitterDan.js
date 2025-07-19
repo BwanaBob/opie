@@ -136,8 +136,8 @@ function getOriginalTwitterImageUrl(url) {
 module.exports = {
   execute(client) {
     const lineupChannel =
-      client.channels.cache.get("1253947812509519993") ||
-      client.channels.cache.get("1372986256757358745"); // OPL #jobs or OPie #jobs
+      client.channels.cache.get("1115429408614920303") ||
+      client.channels.cache.get("1372986256757358745"); // OPL #announcements or OPie #jobs
     const jobLoadedDate = new Date().toLocaleString();
     console.log(
       `[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Lineup Twitter Dan`
