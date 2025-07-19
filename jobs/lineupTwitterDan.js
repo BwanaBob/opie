@@ -152,10 +152,14 @@ module.exports = {
         }
         const watcher = module.exports._watcher;
         try {
-          console.log("📰 RSS  | Twitter Lineup | Checking");
+          const checkingDate = new Date().toLocaleString();
+          console.log(
+            `[${checkingDate}] 📰 RSS   | Twitter Lineup| Checking`
+          );
           const newItems = await watcher.checkAndNotify();
           for (const item of newItems) {
-            console.log(`📰 RSS | Twitter Lineup | Found  | ${item.link}`);
+            const tweetFoundDate = new Date().toLocaleString();
+            console.log(`[${tweetFoundDate}] 📰 RSS   | Twitter Lineup| Tweet Found  | ${item.link}`);
             let imageUrl = null;
             if (item.content && item.content.length > 0) {
               const imgMatch = item.content.match(/<img[^>]+src="([^"]+)"/);
@@ -175,7 +179,8 @@ module.exports = {
                   break;
                 }
 
-
+                const lineupTweetFoundDate = new Date().toLocaleString();
+                console.log(`[${lineupTweetFoundDate}] 📰 RSS   | Twitter Lineup| Lineup Found  | ${item.link}`);
 
                 try {
                   const croppedImageBuffer = await removeWhiteBands(
@@ -201,12 +206,12 @@ module.exports = {
           }
           //   return { status: "success", data: newItems };
         } catch (err) {
-          console.log("📰 RSS | Error", err.message);
+          console.log("📰 RSS  | Error", err.message);
         }
 
         const jobExecutedDate = new Date().toLocaleString();
         console.log(
-          `[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Lineup Twitter Dan`
+          `[${jobExecutedDate}] ⌛ CRON  | Job Executed  | Twitter Lineup`
         );
       },
       null,
