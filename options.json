@@ -187,13 +187,13 @@
       ]
     },
     "blueskyLineup": {
-      "schedule": "*/2 17-19 * * FRI,SAT",
+      "schedule": "*/2 16-18 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "scheduleParked": "0 0 12 1 1 *",
       "readBehind": 120
     },
      "lineupTwitterDan": {
-      "schedule": "*/2 17-19 * * FRI,SAT",
+      "schedule": "*/2 16-18 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "scheduleParked": "0 0 12 1 1 *",
       "feedURL": "https://rss.xcancel.com/danabrams/rss",
