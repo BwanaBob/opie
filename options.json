@@ -54,14 +54,14 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-07-11T21:00:00-05:00", "episode": "Season 4 Episode 01", "type": "live season 4 premier" },
-        { "showtime": "2025-07-12T21:00:00-05:00", "episode": "Season 4 Episode 02", "type": "live" },
         { "showtime": "2025-07-18T21:00:00-05:00", "episode": "Season 4 Episode 03", "type": "live" },
         { "showtime": "2025-07-19T21:00:00-05:00", "episode": "Season 4 Episode 04", "type": "live" },
         { "showtime": "2025-07-25T21:00:00-05:00", "episode": "Season 4 Episode 05", "type": "live" },
         { "showtime": "2025-07-26T21:00:00-05:00", "episode": "Season 4 Episode 06", "type": "live" },
         { "showtime": "2025-08-01T21:00:00-05:00", "episode": "Season 4 Episode 07", "type": "live" },
-        { "showtime": "2025-08-02T21:00:00-05:00", "episode": "Season 4 Episode 08", "type": "live" }
+        { "showtime": "2025-08-02T21:00:00-05:00", "episode": "Season 4 Episode 08", "type": "live" },
+        { "showtime": "2025-08-08T21:00:00-05:00", "episode": "Season 4 Episode 09", "type": "live" },
+        { "showtime": "2025-08-09T21:00:00-05:00", "episode": "Season 4 Episode 10", "type": "live" }
       ],
       "userPrompts": {
         "629681401918390312" : {"name": "Barre",     "prompt":"She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."},
@@ -91,7 +91,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Tonight officers Serenity Smith and Scotty Sadler of the Monroe PD are back in studio with Dan and Rizzo."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour."
         }
       ]
     },
@@ -110,7 +110,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Tonight officers Serenity Smith and Scotty Sadler of the Monroe PD are back in studio with Dan and Rizzo."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live."
         }
       ]
     },
