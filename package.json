@@ -12,7 +12,7 @@
     "@atproto/api": "^0.15.5",
     "cron": "^4.3.0",
     "discord.js": "^14.6.0",
-    "dotenv": "^16.0.3",
+    "dotenv": "^17.2.0",
     "jsonwebtoken": "^9.0.2",
     "openai": "^5.3.0",
     "rss-parser": "^3.13.0",
