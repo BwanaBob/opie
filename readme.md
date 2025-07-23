@@ -46,6 +46,7 @@ Responds with information about the current discord server
 ### Twitter Monitoring
 This has recently been revisited using an rss feed rather than the rediculous twitter api.
 The use of sharp for image processing means that the code should not be accessed via samba. use the locally pulled copy.
+RSS was retired also. updates on rss feeds are way to slow to be useful.
 ### Notices
 #### User Name Change
 #### Message Deleted
