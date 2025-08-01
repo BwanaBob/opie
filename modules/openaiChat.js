@@ -199,7 +199,7 @@ module.exports = async function (message) {
 
 
   // Add chroma prompts for RAG
-  if (message.content.toLowerCase().includes("🧠")) {
+  // if (message.content.toLowerCase().includes("🧠")) {
     try {
       const chromaResults = await chroma.queryOplChroma(message.content);
       if (chromaResults && chromaResults.length > 0) {
@@ -218,7 +218,7 @@ module.exports = async function (message) {
     } catch (err) {
       console.error("Error querying Chroma for RAG:", err);
     }
-  }
+  // }
   
   // Add prompts for live show information
   if (liveShows.length > 0) {
