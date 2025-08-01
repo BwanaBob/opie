@@ -13,6 +13,7 @@ const openai = new OpenAI({ apiKey: process.env.CHATGPT_API_KEY }); // v5 compat
 const { DateTime } = require("luxon"); // Import Luxon for timezone handling
 const fs = require("fs");
 const path = require("path");
+const chroma = require("./chromaClient.js");
 
 async function isMessageToOrFromBot(message, botId) {
   try {
@@ -196,6 +197,29 @@ module.exports = async function (message) {
     });
   }
 
+
+  // Add chroma prompts for RAG
+  if (message.content.toLowerCase().includes("🧠")) {
+    try {
+      const chromaResults = await chroma.queryOplChroma(message.content);
+      if (chromaResults && chromaResults.length > 0) {
+        for (let i = chromaResults.length - 1; i >= 0; i--) {
+          const meta = chromaResults[i].metadata || {};
+          let metaString = '';
+          if (meta.episode || meta.date || meta.location) {
+            metaString = ` (Episode: ${meta.episode || 'N/A'}, Date: ${meta.date || 'N/A'}, Location: ${meta.location || 'N/A'})`;
+          }
+          filteredBotMessageHistory.unshift({
+            role: "system",
+            content: `Relevant knowledge (${i + 1}):${metaString}\n${chromaResults[i].text}`
+          });
+        }
+      }
+    } catch (err) {
+      console.error("Error querying Chroma for RAG:", err);
+    }
+  }
+  
   // Add prompts for live show information
   if (liveShows.length > 0) {
     const upcomingShows = liveShows
@@ -212,8 +236,7 @@ module.exports = async function (message) {
     }
   }
 
-  // Add system prompts
-
+  
   // Get the current time in Eastern Time (EST)
   const currentTimeEST = DateTime.now()
     .setZone("America/New_York")
