@@ -52,11 +52,6 @@
   },
   "modules": {
     "chroma": {
-      "ChromaClient": {
-        "host": "10.0.10.22",
-        "port": 8712,
-        "ssl": false
-      },
       "collectionName": "opl-knowledge",
       "numResults": 3
     },
