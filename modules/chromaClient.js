@@ -38,6 +38,7 @@ async function queryOplChroma(queryText, topK = numResults, model = 'text-embedd
         collection: colName
       }));
     } catch (err) {
+      console.error(`[ERROR] Querying collection ${colName}:`, err.message);
       // If collection doesn't exist or query fails, return empty
       return [];
     }
