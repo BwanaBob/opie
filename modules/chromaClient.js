@@ -17,26 +17,37 @@ const relevanceThreshold = process.env.CHROMA_RELEVANCE_THRESHOLD ? Number(proce
 process.env.OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.CHATGPT_API_KEY;
 
 async function queryOplChroma(queryText, topK = numResults, model = 'text-embedding-ada-002') {
-  const client = new ChromaClient({
-    host: host,
-    port: port,
-    ssl: ssl,
-  });
-  const collection = await client.getCollection({ name: collectionName });
+  const client = new ChromaClient({ host, port, ssl });
+  const collectionsToQuery = ['opl-knowledge', 'knowledge'];
   const embeddings = new OpenAIEmbeddings({ model });
   const [queryEmbedding] = await embeddings.embedDocuments([queryText]);
-  const results = await collection.query({
-    queryEmbeddings: [queryEmbedding],
-    nResults: topK,
-    include: ['documents', 'metadatas', 'distances'],
-  });
-  // Return results as an array of { text, metadata, score }, filtered by relevance threshold
-  //   console.log(`Chroma query results for "${queryText}":`, results);
-  return results.documents[0].map((text, i) => ({
-    text,
-    metadata: results.metadatas[0][i],
-    score: results.distances[0][i],
-  })).filter(r => typeof r.score === 'number' && r.score <= relevanceThreshold);
+
+  // Query all collections in parallel
+  const allResults = await Promise.all(collectionsToQuery.map(async (colName) => {
+    try {
+      const collection = await client.getCollection({ name: colName });
+      const results = await collection.query({
+        queryEmbeddings: [queryEmbedding],
+        nResults: topK,
+        include: ['documents', 'metadatas', 'distances'],
+      });
+      return results.documents[0].map((text, i) => ({
+        text,
+        metadata: results.metadatas[0][i],
+        score: results.distances[0][i],
+        collection: colName
+      }));
+    } catch (err) {
+      // If collection doesn't exist or query fails, return empty
+      return [];
+    }
+  }));
+
+  // Flatten, filter by relevance, and sort by score (ascending)
+  const merged = allResults.flat().filter(r => typeof r.score === 'number' && r.score <= relevanceThreshold);
+  merged.sort((a, b) => a.score - b.score);
+  // Return only the topK most relevant results
+  return merged.slice(0, topK);
 }
 
 module.exports = {

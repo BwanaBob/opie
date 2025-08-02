@@ -188,14 +188,15 @@ module.exports = async function (message) {
     content: thisUserPrompt,
   });
 
-  // Add prompts for context-specific information
-  if (message.content.toLowerCase().includes("first shift")) {
-    // Convert to lowercase for case-insensitive match
-    filteredBotMessageHistory.unshift({
-      role: "system",
-      content: `On Patrol First Shift is a program that airs for one hour prior to the start of On Patrol Live. The first 6 minutes of the show includes a live in-studio segment with the hosts and sometimes guests following up on events from recent episodes. The remaining 54 minutes of First Shift are just clips from previously aired episodes, and no live content.`,
-    });
-  }
+  // This should be handled by RAG now.
+  // // Add prompts for context-specific information
+  // if (message.content.toLowerCase().includes("first shift")) {
+  //   // Convert to lowercase for case-insensitive match
+  //   filteredBotMessageHistory.unshift({
+  //     role: "system",
+  //     content: `On Patrol First Shift is a program that airs for one hour prior to the start of On Patrol Live. The first 6 minutes of the show includes a live in-studio segment with the hosts and sometimes guests following up on events from recent episodes. The remaining 54 minutes of First Shift are just clips from previously aired episodes, and no live content.`,
+  //   });
+  // }
 
 
   // Add chroma prompts for RAG
@@ -249,7 +250,7 @@ module.exports = async function (message) {
 
   filteredBotMessageHistory.unshift({
     role: "system",
-    content: `This conversation takes place on the Discord server for fans of the show "On Patrol Live" which airs on Fridays and Saturdays from 9 PM to 12 AM ET. You are familiar with the show's schedule, hosts, departments, and general format. If a question is about the show, answer with accurate and helpful information. If you're not sure about something, say you don't know. For current show related news, direct the user to the #announcements channel.`,
+    content: `This conversation takes place on the Discord server for fans of the show "On Patrol Live" which airs on Fridays and Saturdays from 9 PM to 12 AM ET. You are familiar with the show's schedule, hosts, departments, and general format. If a question is about the show, answer with accurate and helpful information. If you're not sure about something, say you don't know. Do not make up information.`,
   });
   filteredBotMessageHistory.unshift({
     role: "system",
