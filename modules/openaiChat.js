@@ -220,22 +220,23 @@ module.exports = async function (message) {
       console.error("Error querying Chroma for RAG:", err);
     }
   // }
-  
-  // Add prompts for live show information
-  if (liveShows.length > 0) {
-    const upcomingShows = liveShows
-      .map(
-        (show) =>
-          `${show.episode} on ${new Date(show.showtime).toLocaleString()} is ${show.type}.`
-      ) // Format each showtime
-      .join(", ");
-    if (upcomingShows) {
-      filteredBotMessageHistory.unshift({
-        role: "system",
-        content: `Upcoming and recent episodes: ${upcomingShows}`,
-      });
-    }
-  }
+
+  // This should also be handled by RAG now.
+  // // Add prompts for live show information
+  // if (liveShows.length > 0) {
+  //   const upcomingShows = liveShows
+  //     .map(
+  //       (show) =>
+  //         `${show.episode} on ${new Date(show.showtime).toLocaleString()} is ${show.type}.`
+  //     ) // Format each showtime
+  //     .join(", ");
+  //   if (upcomingShows) {
+  //     filteredBotMessageHistory.unshift({
+  //       role: "system",
+  //       content: `Upcoming and recent episodes: ${upcomingShows}`,
+  //     });
+  //   }
+  // }
 
   
   // Get the current time in Eastern Time (EST)
