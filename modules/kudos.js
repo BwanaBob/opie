@@ -91,10 +91,27 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
 
     const winners = topResults.filter(r => r.upvotes === upvotes);
     if (winners.length > 0) {
-      let value = winners.slice(0, 20).map(result =>
+      // Build winner lines
+      const winnerLines = winners.map(result =>
         `${result.message.member?.nickname || result.author.username} - [Jump to message](${result.message.url})`
-      ).join('\n');
-      fields.push({ name: placeLabel, value });
+      );
+      // Chunk winner lines so each field value <= 1024 chars
+      let chunk = [];
+      let chunkLen = 0;
+      let firstChunk = true;
+      for (const line of winnerLines) {
+        if (chunkLen + line.length + 1 > 1024) {
+          fields.push({ name: firstChunk ? placeLabel : '\u200b', value: chunk.join('\n') });
+          chunk = [];
+          chunkLen = 0;
+          firstChunk = false;
+        }
+        chunk.push(line);
+        chunkLen += line.length + 1;
+      }
+      if (chunk.length > 0) {
+        fields.push({ name: firstChunk ? placeLabel : '\u200b', value: chunk.join('\n') });
+      }
     }
   });
   if (fields.length > 20) {
