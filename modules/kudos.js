@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 
 // List of emojis that count as upvotes
-const UPVOTE_EMOJIS = ['👍', '❤️', '😂', '🔥', '👏', '😀','😃','😄','😁','😁','😀','😃','😄','😆','🥹','😅','😂','🤣','🙂','😍','🥰','😋','😎','😺','😸','😹','😻','🤟','🤘','⬆️','❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','❣️','💕','❤️‍🔥','100_bright', '200_iq', 'arcticfoxlaughing', 'black_heart_beating', 'blue_heart_beating', 'brown_heart_beating', 'green_heart_beating', 'grey_heart_beating', 'light_blue_heart_beating', 'orange_heart_beating', 'pink_heart_beating', 'purple_heart_beating', 'rainbow_heart', 'red_heart_beating', 'two_hearts_twist', 'two_hearts_beating', 'teal_heart', 'teal_heart_beating', 'thin_blue_line_heart', 'pink_heart', 'white_heart_beating', 'yellow_heart_beating', 'cowheart', 'thank_you', 'this', 'metal_horns', 'cat_heart_eyes', 'ferret_heart_eyes', 'fire_heart', 'smiling_heart_eyes', 'smiling_hearts', 'fire_animated', 'dabbydabbysticksdabby', 'cat_jump', 'drooling', 'grinning_cat', 'hyper', 'melting_face_animated', 'rolling_laughing', 'sausage_thumbs_up', 'sloth_dance', 'thumbs_up', 'yum_animated']; // Add/remove as needed
+const UPVOTE_EMOJIS = ['👍', '🔥', '👏', '😀','😃','😄','😁','😁','😀','😃','😄','😆','🥹','😅','😂','🤣','🙂','😍','🥰','😋','😎','😺','😸','😹','😻','🤟','🤘','⬆️','❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','❣️','💕','❤️‍🔥','100_bright', '200_iq', 'arcticfoxlaughing', 'black_heart_beating', 'blue_heart_beating', 'brown_heart_beating', 'green_heart_beating', 'grey_heart_beating', 'light_blue_heart_beating', 'orange_heart_beating', 'pink_heart_beating', 'purple_heart_beating', 'rainbow_heart', 'red_heart_beating', 'two_hearts_twist', 'two_hearts_beating', 'teal_heart', 'teal_heart_beating', 'thin_blue_line_heart', 'pink_heart', 'white_heart_beating', 'yellow_heart_beating', 'cowheart', 'thank_you', 'this', 'metal_horns', 'cat_heart_eyes', 'ferret_heart_eyes', 'fire_heart', 'smiling_heart_eyes', 'smiling_hearts', 'fire_animated', 'dabbydabbysticksdabby', 'cat_jump', 'clapping_hands', 'drooling', 'grinning_cat', 'hyper', 'melting_face_animated', 'rolling_laughing', 'sausage_thumbs_up', 'sloth_dance', 'thumbs_up', 'yum_animated']; // Add/remove as needed
 
 /**
  * Tallies upvotes for messages in a channel within a time window.
@@ -46,6 +46,7 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
       // console.log(`Checking reaction: ${reaction.emoji.name} on message ${msg.id}`);
       if (UPVOTE_EMOJIS.includes(reaction.emoji.name)) {
         for (const user of await reaction.users.fetch()) {
+          console.log(`Message ${msg.id} - User: ${user.id} (${user.username}) - Reaction: ${reaction.emoji.name}`);
           if (user.id !== msg.author.id) { // Don't count self-votes
             uniqueUsers.add(user.id);
           }
