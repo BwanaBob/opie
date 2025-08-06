@@ -81,10 +81,19 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
     .setColor('#FFD700');
 
   embed.addFields(
-    topResults.slice(0, 20).map((result, idx) => ({
-      name: `#${idx + 1} - ${result.message.member?.nickname || result.author.username}`,
-      value: `Upvotes: ${result.upvotes}\n[Jump to Message](${result.message.url})`
-    }))
+    (() => {
+      // Map upvote counts to place (1st, 2nd, 3rd)
+      const placeMap = {};
+      uniqueUpvotes.forEach((upvotes, i) => {
+        if (i === 0) placeMap[upvotes] = '1st';
+        else if (i === 1) placeMap[upvotes] = '2nd';
+        else if (i === 2) placeMap[upvotes] = '3rd';
+      });
+      return topResults.slice(0, 20).map((result) => ({
+        name: `${placeMap[result.upvotes] || result.upvotes + 'th'} Place - ${result.message.member?.nickname || result.author.username}`,
+        value: `Upvotes: ${result.upvotes}\n[Jump to Message](${result.message.url})`
+      }));
+    })()
   );
 
   if (topResults.length > 20) {
