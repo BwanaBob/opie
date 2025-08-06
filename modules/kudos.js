@@ -66,8 +66,10 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
 
   // Sort and allow ties
   results.sort((a, b) => b.upvotes - a.upvotes);
-  const topUpvotes = results.length > 0 ? results[0].upvotes : 0;
-  const topResults = results.filter(r => r.upvotes === topUpvotes);
+  // Get top 3 unique upvote counts
+  const uniqueUpvotes = [...new Set(results.map(r => r.upvotes))].slice(0, 3);
+  // Get all messages with upvotes in the top 3 places (including ties)
+  const topResults = results.filter(r => uniqueUpvotes.includes(r.upvotes));
 
   // Prepare embed for moderator channel
   const embed = new EmbedBuilder()
@@ -88,7 +90,7 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
   if (topResults.length > 20) {
     embed.addFields({
       name: 'Note',
-      value: `Only the first 20 tied winners are shown.`
+      value: `Only the first 20 winners are shown.`
     });
   }
 
