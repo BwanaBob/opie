@@ -45,7 +45,8 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
     for (const reaction of msg.reactions.cache.values()) {
       // console.log(`Checking reaction: ${reaction.emoji.name} on message ${msg.id}`);
       if (UPVOTE_EMOJIS.includes(reaction.emoji.name)) {
-        for (const user of await reaction.users.fetch()) {
+        const users = await reaction.users.fetch();
+        for (const user of users.values()) {
           console.log(`Message ${msg.id} - User: ${user.id} (${user.username}) - Reaction: ${reaction.emoji.name}`);
           if (user.id !== msg.author.id) { // Don't count self-votes
             uniqueUsers.add(user.id);
