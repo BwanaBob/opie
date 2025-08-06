@@ -77,16 +77,16 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
     .setColor('#FFD700');
 
   embed.addFields(
-    topResults.slice(0, 25).map((result, idx) => ({
+    topResults.slice(0, 20).map((result, idx) => ({
       name: `#${idx + 1} - ${result.message.member?.nickname || result.author.username}`,
       value: `Upvotes: ${result.upvotes}\n[Jump to Message](${result.message.url})`
     }))
   );
 
-  if (topResults.length > 25) {
+  if (topResults.length > 20) {
     embed.addFields({
       name: 'Note',
-      value: `Only the first 25 tied winners are shown.`
+      value: `Only the first 20 tied winners are shown.`
     });
   }
 
