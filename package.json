@@ -9,10 +9,13 @@
   "author": "Bwana",
   "license": "ISC",
   "dependencies": {
+    "@langchain/core": "^0.3.66",
+    "@langchain/openai": "^0.6.3",
+    "chromadb": "^3.0.10",
     "cron": "^4.3.0",
     "discord.js": "^14.6.0",
     "dotenv": "^17.2.0",
     "jsonwebtoken": "^9.0.2",
-    "openai": "^5.3.0"
+    "openai": "^5.11.0"
   }
 }
