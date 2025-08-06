@@ -80,21 +80,28 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
     )
     .setColor('#FFD700');
 
-  embed.addFields(
-    (() => {
-      // Map upvote counts to place (1st, 2nd, 3rd)
-      const placeMap = {};
-      uniqueUpvotes.forEach((upvotes, i) => {
-        if (i === 0) placeMap[upvotes] = '1st';
-        else if (i === 1) placeMap[upvotes] = '2nd';
-        else if (i === 2) placeMap[upvotes] = '3rd';
-      });
-      return topResults.slice(0, 20).map((result) => ({
-        name: `${placeMap[result.upvotes] || result.upvotes + 'th'} Place - ${result.message.member?.nickname || result.author.username}`,
-        value: `Upvotes: ${result.upvotes}\n[Jump to Message](${result.message.url})`
-      }));
-    })()
-  );
+  // Group messages by place
+  let fields = [];
+  uniqueUpvotes.forEach((upvotes, i) => {
+    let placeLabel = '';
+    if (i === 0) placeLabel = `1st place with ${upvotes} upvote${upvotes === 1 ? '' : 's'}:`;
+    else if (i === 1) placeLabel = `2nd place with ${upvotes} upvote${upvotes === 1 ? '' : 's'}:`;
+    else if (i === 2) placeLabel = `3rd place with ${upvotes} upvote${upvotes === 1 ? '' : 's'}:`;
+    else placeLabel = `${i + 1}th place with ${upvotes} upvotes:`;
+
+    const winners = topResults.filter(r => r.upvotes === upvotes);
+    if (winners.length > 0) {
+      let value = winners.slice(0, 20).map(result =>
+        `${result.message.member?.nickname || result.author.username} - [Jump to message](${result.message.url})`
+      ).join('\n');
+      fields.push({ name: placeLabel, value });
+    }
+  });
+  if (fields.length > 20) {
+    fields = fields.slice(0, 20);
+    fields.push({ name: 'Note', value: 'Only the first 20 places are shown.' });
+  }
+  embed.addFields(fields);
 
   if (topResults.length > 20) {
     embed.addFields({
