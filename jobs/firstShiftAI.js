@@ -14,7 +14,7 @@ module.exports = {
                 const aicommand = {
                     model,
                     messages,
-                    max_tokens: 512, // limit token usage (length of response)
+                    max_completion_tokens: 512, // limit token usage (length of response)
                 };
 
                 if (client.params.get("chatGPTAnnouncementsEnabled") == 'true') {

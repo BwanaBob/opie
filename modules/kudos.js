@@ -1,7 +1,9 @@
 const { EmbedBuilder } = require('discord.js');
 
 // List of emojis that count as upvotes
-const UPVOTE_EMOJIS = ['👍', '🔥', '👏', '😀','😃','😄','😁','😁','😀','😃','😄','😆','🥹','😅','😂','🤣','🙂','😍','🥰','😋','😎','😺','😸','😹','😻','🤟','🤘','⬆️','❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','❣️','💕','❤️‍🔥','100_bright', '200_iq', 'arcticfoxlaughing', 'black_heart_beating', 'blue_heart_beating', 'brown_heart_beating', 'green_heart_beating', 'grey_heart_beating', 'light_blue_heart_beating', 'orange_heart_beating', 'pink_heart_beating', 'purple_heart_beating', 'rainbow_heart', 'red_heart_beating', 'two_hearts_twist', 'two_hearts_beating', 'teal_heart', 'teal_heart_beating', 'thin_blue_line_heart', 'pink_heart', 'white_heart_beating', 'yellow_heart_beating', 'cowheart', 'thank_you', 'this', 'metal_horns', 'cat_heart_eyes', 'ferret_heart_eyes', 'fire_heart', 'smiling_heart_eyes', 'smiling_hearts', 'fire_animated', 'dabbydabbysticksdabby', 'cat_jump', 'clapping_hands', 'drooling', 'grinning_cat', 'hyper', 'melting_face_animated', 'rolling_laughing', 'sausage_thumbs_up', 'sloth_dance', 'thumbs_up', 'yum_animated']; // Add/remove as needed
+const UPVOTE_EMOJIS = [
+  '⭐', '👍', '🔥', '👏', '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '🙂', '😍', '🥰', '😋', '😎', '😺', '😸', '😹', '😻', '🤟', '🤘', '⬆️', '❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '❣️', '💕', '❤️‍🔥', '100_bright', '200_iq', 'arcticfoxlaughing', 'black_heart_beating', 'blue_heart_beating', 'brown_heart_beating', 'green_heart_beating', 'grey_heart_beating', 'light_blue_heart_beating', 'orange_heart_beating', 'pink_heart_beating', 'purple_heart_beating', 'rainbow_heart', 'red_heart_beating', 'two_hearts_twist', 'two_hearts_beating', 'teal_heart', 'teal_heart_beating', 'thin_blue_line_heart', 'pink_heart', 'white_heart_beating', 'yellow_heart_beating', 'cowheart', 'thank_you', 'this', 'metal_horns', 'cat_heart_eyes', 'ferret_heart_eyes', 'fire_heart', 'smiling_heart_eyes', 'smiling_hearts', 'fire_animated', 'dabbydabbysticksdabby', 'cat_jump', 'clapping_hands', 'drooling', 'grinning_cat', 'hyper', 'melting_face_animated', 'rolling_laughing', 'sausage_thumbs_up', 'sloth_dance', 'thumbs_up', 'yum_animated'
+]; // Add/remove as needed
 
 /**
  * Tallies upvotes for messages in a channel within a time window.
@@ -48,7 +50,8 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
         const users = await reaction.users.fetch();
         for (const user of users.values()) {
           console.log(`Message ${msg.id} - User: ${user.id} (${user.username}) - Reaction: ${reaction.emoji.name}`);
-          if (user.id !== msg.author.id) { // Don't count self-votes
+          // Don't count self-votes or bot reactions
+          if (user.id !== msg.author.id && !user.bot) {
             uniqueUsers.add(user.id);
           }
         }
@@ -75,7 +78,7 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
   const embed = new EmbedBuilder()
     .setTitle('Kudos Award Results')
     .setDescription(
-      `Top comments by upvotes:\n\n` +
+      `Top comments by reactions:\n\n` +
       `Eligible window: <t:${Math.floor(startTime.getTime()/1000)}:f> to <t:${Math.floor(endTime.getTime()/1000)}:f>`
     )
     .setColor('#FFD700');
@@ -84,16 +87,16 @@ async function tallyKudos(client, channelId, startTime, endTime, moderatorChanne
   let fields = [];
   uniqueUpvotes.forEach((upvotes, i) => {
     let placeLabel = '';
-    if (i === 0) placeLabel = `1st place with ${upvotes} upvote${upvotes === 1 ? '' : 's'}:`;
-    else if (i === 1) placeLabel = `2nd place with ${upvotes} upvote${upvotes === 1 ? '' : 's'}:`;
-    else if (i === 2) placeLabel = `3rd place with ${upvotes} upvote${upvotes === 1 ? '' : 's'}:`;
-    else placeLabel = `${i + 1}th place with ${upvotes} upvotes:`;
+    if (i === 0) placeLabel = `1st place with ${upvotes} kudo${upvotes === 1 ? '' : 's'}:`;
+    else if (i === 1) placeLabel = `2nd place with ${upvotes} kudo${upvotes === 1 ? '' : 's'}:`;
+    else if (i === 2) placeLabel = `3rd place with ${upvotes} kudo${upvotes === 1 ? '' : 's'}:`;
+    else placeLabel = `${i + 1}th place with ${upvotes} kudos:`;
 
     const winners = topResults.filter(r => r.upvotes === upvotes);
     if (winners.length > 0) {
       // Build winner lines
       const winnerLines = winners.map(result =>
-        `${result.message.member?.nickname || result.author.username} - [Jump to message](${result.message.url})`
+        `${result.message.member?.nickname || result.author.username} - [message](${result.message.url})`
       );
       // Chunk winner lines so each field value <= 1024 chars
       let chunk = [];

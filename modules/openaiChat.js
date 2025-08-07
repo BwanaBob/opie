@@ -285,13 +285,13 @@ module.exports = async function (message) {
     apiPackage = {
       model: OpenAIChatModel,
       messages: apiMessages,
-      max_tokens: 1024, // limit token usage (length of response)
+      max_completion_tokens: 1024, // limit token usage (length of response)
     };
   } else {
     apiPackage = {
       model: OpenAIChatModel,
       messages: apiMessages,
-      max_tokens: 256, // limit token usage (length of response)
+      max_completion_tokens: 256, // limit token usage (length of response)
     };
   }
 
