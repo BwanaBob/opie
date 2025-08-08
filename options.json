@@ -60,7 +60,7 @@
       "numResults": 3
     },
     "openaiChat": {
-      "OpenAIChatModel": "gpt-5-mini",
+      "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
         { "showtime": "2025-07-25T21:00:00-05:00", "episode": "Season 4 Episode 05", "type": "live" },
         { "showtime": "2025-07-26T21:00:00-05:00", "episode": "Season 4 Episode 06", "type": "live" },
@@ -85,7 +85,7 @@
   },
   "jobs": {
     "firstShiftAI": {
-      "model": "gpt-5-mini",
+      "model": "gpt-4.1-mini",
       "schedule": "00 00 19 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "messages": [
@@ -104,7 +104,7 @@
       ]
     },
     "showtimeAI": {
-      "model": "gpt-5-mini",
+      "model": "gpt-4.1-mini",
       "schedule": "00 00 20 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "messages": [
@@ -123,7 +123,7 @@
       ]
     },
     "showtimeAIBingo": {
-      "model": "gpt-5-mini",
+      "model": "gpt-4.1-mini",
       "schedule": "00 00 20 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "messages": [
@@ -146,7 +146,7 @@
       ]
     },
     "showEndAIFri": {
-      "model": "gpt-5-mini",
+      "model": "gpt-4.1-mini",
       "schedule": "00 00 23 * * FRI",
       "scheduleTest": "*/15 * * * * *",
       "messages": [
@@ -161,7 +161,7 @@
       ]
     },
     "showEndAISat": {
-      "model": "gpt-5-mini",
+      "model": "gpt-4.1-mini",
       "schedule": "00 00 23 * * SAT",
       "scheduleTest": "*/15 * * * * *",
       "messages": [
@@ -176,7 +176,7 @@
       ]
     },
     "showEndAIBingo": {
-      "model": "gpt-5-mini",
+      "model": "gpt-4.1-mini",
       "schedule": "00 00 23 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "messages": [
