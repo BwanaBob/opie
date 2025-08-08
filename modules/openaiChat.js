@@ -40,7 +40,7 @@ function formatMessageForLog(msg, botId, botName, asReply = false) {
 
   // Add embed info if present
   if (msg.embeds && msg.embeds.length > 0) {
-    msg.embeds.forEach(embed => {
+    msg.embeds.forEach((embed) => {
       if (embed.title) {
         thisMsgContent.push({
           type: "text",
@@ -67,7 +67,10 @@ function formatMessageForLog(msg, botId, botName, asReply = false) {
   // check for images in the message
   if (msg.attachments && msg.attachments.size > 0) {
     msg.attachments.forEach((attachment) => {
-      if (attachment.contentType && attachment.contentType.startsWith("image/")) {
+      if (
+        attachment.contentType &&
+        attachment.contentType.startsWith("image/")
+      ) {
         thisMsgContent.push({
           type: "image_url",
           image_url: {
@@ -97,8 +100,11 @@ function formatMessageForLog(msg, botId, botName, asReply = false) {
 // Example post-processing function
 function stripBotNameAndEmoji(text, botName) {
   // Regex: start of string, bot name, optional emoji, optional whitespace/newline
-  const regex = new RegExp(`^${botName}\\s*(?:[\\p{Emoji_Presentation}\\p{Emoji}\\u200d]+)?\\s*`, 'u');
-  return text.replace(regex, '');
+  const regex = new RegExp(
+    `^${botName}\\s*(?:[\\p{Emoji_Presentation}\\p{Emoji}\\u200d]+)?\\s*`,
+    "u"
+  );
+  return text.replace(regex, "");
 }
 
 module.exports = async function (message) {
@@ -145,21 +151,29 @@ module.exports = async function (message) {
         }
 
         // Prepare the referenced message and combine the note with its first text content
-        const replyEntry = formatMessageForLog(referencedMessage, botId, botName);
-        const firstText = replyEntry.content.find(c => c.type === "text");
+        const replyEntry = formatMessageForLog(
+          referencedMessage,
+          botId,
+          botName
+        );
+        const firstText = replyEntry.content.find((c) => c.type === "text");
         if (firstText) {
           firstText.text = `The user is replying to this message: ${firstText.text}`;
         } else {
           // If no text content, add the note as a new text block
           replyEntry.content.unshift({
             type: "text",
-            text: `The user is replying to this message:`
+            text: `The user is replying to this message:`,
           });
         }
 
         // Insert as second-to-last (just before the user's message)
         if (filteredBotMessageHistory.length > 0) {
-          filteredBotMessageHistory.splice(filteredBotMessageHistory.length - 1, 0, replyEntry);
+          filteredBotMessageHistory.splice(
+            filteredBotMessageHistory.length - 1,
+            0,
+            replyEntry
+          );
         } else {
           filteredBotMessageHistory.push(replyEntry);
         }
@@ -198,27 +212,30 @@ module.exports = async function (message) {
   //   });
   // }
 
-
   // Add chroma prompts for RAG
   // if (message.content.toLowerCase().includes("🧠")) {
-    try {
-      const chromaResults = await chroma.queryOplChroma(message.content);
-      if (chromaResults && chromaResults.length > 0) {
-        for (let i = chromaResults.length - 1; i >= 0; i--) {
-          const meta = chromaResults[i].metadata || {};
-          let metaString = '';
-          if (meta.episode || meta.date || meta.location) {
-            metaString = ` (Episode: ${meta.episode || 'N/A'}, Date: ${meta.date || 'N/A'}, Location: ${meta.location || 'N/A'})`;
-          }
-          filteredBotMessageHistory.unshift({
-            role: "system",
-            content: `Relevant knowledge (${i + 1}):${metaString}\n${chromaResults[i].text}`
-          });
+  try {
+    const chromaResults = await chroma.queryOplChroma(message.content);
+    if (chromaResults && chromaResults.length > 0) {
+      for (let i = chromaResults.length - 1; i >= 0; i--) {
+        const meta = chromaResults[i].metadata || {};
+        let metaString = "";
+        if (meta.episode || meta.date || meta.location) {
+          metaString = ` (Episode: ${meta.episode || "N/A"}, Date: ${
+            meta.date || "N/A"
+          }, Location: ${meta.location || "N/A"})`;
         }
+        filteredBotMessageHistory.unshift({
+          role: "system",
+          content: `Relevant knowledge (${i + 1}):${metaString}\n${
+            chromaResults[i].text
+          }`,
+        });
       }
-    } catch (err) {
-      console.error("Error querying Chroma for RAG:", err);
     }
+  } catch (err) {
+    console.error("Error querying Chroma for RAG:", err);
+  }
   // }
 
   // This should also be handled by RAG now.
@@ -238,13 +255,12 @@ module.exports = async function (message) {
   //   }
   // }
 
-  
   // Get the current time in Eastern Time (EST)
   const currentTimeEST = DateTime.now()
     .setZone("America/New_York")
     .toLocaleString(DateTime.DATETIME_FULL);
 
-    filteredBotMessageHistory.unshift({
+  filteredBotMessageHistory.unshift({
     role: "system",
     content: `Today is ${currentTimeEST}.`, // Dynamically include the current date and time in EST
   });
@@ -255,7 +271,7 @@ module.exports = async function (message) {
   });
   filteredBotMessageHistory.unshift({
     role: "system",
-    content: `Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness. Do not preface your responses with your own name or emoji; Discord already shows your name and avatar.`,
+    content: `Respond like an affable, charismatic Discord chatbot kitten named OPie that exudes charm, wit, and friendliness. Do not preface your responses with your own name or emoji; Discord already shows your name and avatar. Keep text responses under 4050 characters.`,
   });
 
   // Write the prompt to a debug file before sending to OpenAI
@@ -265,14 +281,20 @@ module.exports = async function (message) {
       fs.mkdirSync(debugDir);
     }
     const debugFile = path.join(debugDir, `openai_prompt_${Date.now()}.txt`);
-    fs.writeFileSync(debugFile, JSON.stringify(filteredBotMessageHistory, null, 2), "utf8");
+    fs.writeFileSync(
+      debugFile,
+      JSON.stringify(filteredBotMessageHistory, null, 2),
+      "utf8"
+    );
   } catch (err) {
     console.error("Error writing OpenAI prompt debug file:", err);
   }
 
   let apiPackage = {};
   // Remove messageId before sending to OpenAI
-  const apiMessages = filteredBotMessageHistory.map(({ messageId, ...rest }) => rest);
+  const apiMessages = filteredBotMessageHistory.map(
+    ({ messageId, ...rest }) => rest
+  );
 
   // if mod or tech channel don't restrict response size
   if (
@@ -284,14 +306,18 @@ module.exports = async function (message) {
   ) {
     apiPackage = {
       model: OpenAIChatModel,
+      reasoning_effort: "medium",
+      // verbosity: "low",
       messages: apiMessages,
-      max_completion_tokens: 1024, // limit token usage (length of response)
+      // max_completion_tokens: 512,
     };
   } else {
     apiPackage = {
       model: OpenAIChatModel,
+      reasoning_effort: "medium",
+      // verbosity: "low",
       messages: apiMessages,
-      max_completion_tokens: 256, // limit token usage (length of response)
+      // max_completion_tokens: 512,
     };
   }
 
@@ -301,7 +327,27 @@ module.exports = async function (message) {
     // v5: openai.chat.completions.create is still correct
     const result = await openai.chat.completions.create(apiPackage);
     // v5: response structure is still { choices: [{ message: { content } }] }
-    if (result && result.choices && result.choices[0] && result.choices[0].message && result.choices[0].message.content) {
+    // Write the response to a debug file after receiving from OpenAI
+    try {
+      const debugDir = path.join(__dirname, "../debug");
+      if (!fs.existsSync(debugDir)) {
+        fs.mkdirSync(debugDir);
+      }
+      const debugFile = path.join(
+        debugDir,
+        `openai_response_${Date.now()}.txt`
+      );
+      fs.writeFileSync(debugFile, JSON.stringify(result, null, 2), "utf8");
+    } catch (err) {
+      console.error("Error writing OpenAI response debug file:", err);
+    }
+    if (
+      result &&
+      result.choices &&
+      result.choices[0] &&
+      result.choices[0].message &&
+      result.choices[0].message.content
+    ) {
       const rawReply = result.choices[0].message.content;
       const cleanReply = stripBotNameAndEmoji(rawReply, botName);
       return cleanReply;
@@ -310,7 +356,8 @@ module.exports = async function (message) {
     }
   } catch (error) {
     // v5: error structure may include .error property
-    const errorDetails = error.error || error.response?.data || error.message || error.toString();
+    const errorDetails =
+      error.error || error.response?.data || error.message || error.toString();
     console.error(`⛔ [Error] OPENAI:`, JSON.stringify(errorDetails, null, 2));
     return "ERR";
   }

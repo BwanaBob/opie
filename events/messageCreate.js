@@ -90,9 +90,9 @@ module.exports = {
       const aiReply = await openai(message);
       if (!aiReply.undefined && aiReply !== 'ERR') {
         if (aiReply.length > 2000) {
-          aiEmbed = new EmbedBuilder()
+            aiEmbed = new EmbedBuilder()
             .setColor(options.embeds.aiResponse.color)
-            .setDescription(`${aiReply}`);
+            .setDescription(`${aiReply.slice(0, 4096)}`);
           message.reply({ embeds: [aiEmbed] })
             .catch(err => { console.error(`[ERROR] Relpying to message ${message.id} -`, err.message); });
         } else {
