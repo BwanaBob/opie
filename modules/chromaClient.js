@@ -7,7 +7,7 @@ require("dotenv").config();
 
 
 const numResults = process.env.CHROMA_NUM_RESULTS ? Number(process.env.CHROMA_NUM_RESULTS) : 3;
-const collectionName = process.env.CHROMA_COLLECTION_NAME || 'opl-knowledge';
+// const collectionName = process.env.CHROMA_COLLECTION_NAME || 'recaps';
 const host = process.env.CHROMA_HOST || 'localhost';
 const port = process.env.CHROMA_PORT ? Number(process.env.CHROMA_PORT) : 8712;
 const ssl = process.env.CHROMA_SSL === 'true';
@@ -18,7 +18,7 @@ process.env.OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.CHATGPT_A
 
 async function queryOplChroma(queryText, topK = numResults, model = 'text-embedding-ada-002') {
   const client = new ChromaClient({ host, port, ssl });
-  const collectionsToQuery = ['opl-knowledge', 'knowledge'];
+  const collectionsToQuery = ['recaps', 'faq'];
   const embeddings = new OpenAIEmbeddings({ model });
   const [queryEmbedding] = await embeddings.embedDocuments([queryText]);
 
