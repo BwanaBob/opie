@@ -306,18 +306,18 @@ module.exports = async function (message) {
   ) {
     apiPackage = {
       model: OpenAIChatModel,
-      reasoning_effort: "medium",
+      // reasoning_effort: "medium",
       // verbosity: "low",
       messages: apiMessages,
-      // max_completion_tokens: 512,
+      max_completion_tokens: 1024,
     };
   } else {
     apiPackage = {
       model: OpenAIChatModel,
-      reasoning_effort: "medium",
+      // reasoning_effort: "medium",
       // verbosity: "low",
       messages: apiMessages,
-      // max_completion_tokens: 512,
+      max_completion_tokens: 512,
     };
   }
 
