@@ -15,7 +15,7 @@ const deleteReactionsForEpisode = (episode) => {
 
 const Database = require('better-sqlite3');
 const path = require('path');
-const db = new Database(path.join(__dirname, '../kudos-leaderboard.db'));
+const db = new Database(path.join(__dirname, '../data/kudos-leaderboard.db'));
 
 const init = () => {
   db.prepare(`CREATE TABLE IF NOT EXISTS kudos_reactions (
