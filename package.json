@@ -11,6 +11,7 @@
   "dependencies": {
     "@langchain/core": "^0.3.66",
     "@langchain/openai": "^0.6.3",
+    "better-sqlite3": "^12.2.0",
     "chromadb": "^3.0.10",
     "cron": "^4.3.0",
     "discord.js": "^14.6.0",

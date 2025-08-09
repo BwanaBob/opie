@@ -1,16 +1,10 @@
-const {
-  SlashCommandBuilder,
-  InteractionContextType,
-  PermissionFlagsBits,
-  MessageFlags,
-} = require("discord.js");
-const { tallyKudos } = require("../modules/kudos");
+const { SlashCommandBuilder, InteractionContextType, PermissionFlagsBits, MessageFlags } = require("discord.js");
+const { tallyAndStoreReactions } = require("../modules/kudos");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("kudos")
-    .setDescription("Run Kudos tally for a channel and time window.")
-    // .setDMPermission(false)
+    .setName("kudos-tally")
+  .setDescription("Tally and store all upvote reactions for a channel, time window, and episode name.")
     .setContexts(InteractionContextType.Guild)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .addChannelOption(option =>
@@ -28,21 +22,21 @@ module.exports = {
         .setDescription("End date/time (YYYY-MM-DD HH:mm)")
         .setRequired(true)
     )
-    .addChannelOption(option =>
-      option.setName("moderator_channel")
-        .setDescription("Moderator channel for results")
+    .addStringOption(option =>
+      option.setName("episode")
+        .setDescription("Episode name (e.g. S1E1, Finale)")
         .setRequired(true)
     ),
   async execute(interaction) {
     await interaction.reply({
-      content: "Processing Kudos...",
+      content: "Processing Kudos tally...",
       flags: MessageFlags.Ephemeral
     });
 
     const channel = interaction.options.getChannel("channel");
-    const moderatorChannel = interaction.options.getChannel("moderator_channel");
     const start = interaction.options.getString("start");
     const end = interaction.options.getString("end");
+    const episode = interaction.options.getString("episode");
 
     // Validate date format: YYYY-MM-DD HH:mm
     const dateRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
@@ -73,17 +67,17 @@ module.exports = {
     }
 
     // Run tally
-    await tallyKudos(
+    const storedCount = await tallyAndStoreReactions(
       interaction.client,
       channel.id,
       startTime,
       endTime,
-      moderatorChannel.id
+      episode
     );
 
     await interaction.followUp({
-      content: "Kudos tally complete! Results sent to moderator channel.",
+      content: `Kudos tally complete! ${storedCount} reactions stored for channel <#${channel.id}> for episode '${episode}'.`,
       flags: MessageFlags.Ephemeral
     });
-  },
+  }
 };
