@@ -8,14 +8,15 @@ const UPVOTE_EMOJIS = [
 ];
 
 /**
- * Tally and store all upvote reactions for messages in a channel within a time window.
+ * Tally and store all upvote reactions for messages in a channel within a time window for a given episode.
  * @param {Client} client - Discord client
  * @param {string} channelId - Channel to process
  * @param {Date} startTime - Start of eligible window
  * @param {Date} endTime - End of eligible window
+ * @param {string} episode - Episode name (e.g. S1E1, Finale)
  * @returns {Promise<number>} Number of reactions stored
  */
-async function tallyAndStoreReactions(client, channelId, startTime, endTime) {
+async function tallyAndStoreReactions(client, channelId, startTime, endTime, episode) {
   const channel = await client.channels.fetch(channelId);
   let allMessages = [];
   let lastId = undefined;
@@ -52,7 +53,7 @@ async function tallyAndStoreReactions(client, channelId, startTime, endTime) {
               msg.id,
               user.id,
               msg.author.id,
-              msg.createdAt.toISOString().slice(0, 10) // YYYY-MM-DD
+              episode
             );
             storedCount++;
           }
@@ -64,13 +65,13 @@ async function tallyAndStoreReactions(client, channelId, startTime, endTime) {
 }
 
 /**
- * Get the leaderboard for the last N episodes (dates).
- * @param {string[]} episodeDates - Array of episode dates (YYYY-MM-DD)
+ * Get the leaderboard for the last N episodes (by name).
+ * @param {string[]} episodes - Array of episode names (e.g. S1E1, Finale)
  * @param {number} limit - Number of places to show (ties included)
  * @returns {Array<{author_id: string, total_points: number}>}
  */
-function getLeaderboard(episodeDates, limit = 10) {
-  return kudosDb.getLeaderboard(episodeDates, limit);
+function getLeaderboard(episodes, limit = 10) {
+  return kudosDb.getLeaderboard(episodes, limit);
 }
 
 /**
@@ -87,4 +88,6 @@ module.exports = {
   getLeaderboard,
   getVotersForMessage,
   UPVOTE_EMOJIS,
+  deleteReactionsForEpisode: kudosDb.deleteReactionsForEpisode,
+  getRecentEpisodes: kudosDb.getRecentEpisodes,
 };

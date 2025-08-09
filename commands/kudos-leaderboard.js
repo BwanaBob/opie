@@ -5,12 +5,12 @@ const { sendKudosLeaderboardText } = require("../modules/kudosEmbed");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("kudos-leaderboard")
-    .setDescription("Display the Kudos leaderboard for recent episodes.")
+  .setDescription("Display the Kudos leaderboard for recent episodes (by episode name).")
     .setContexts(InteractionContextType.Guild)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .addStringOption(option =>
       option.setName("episodes")
-        .setDescription("Comma-separated list of episode dates (YYYY-MM-DD)")
+        .setDescription("Comma-separated list of episodes, or a number for N most recent episodes (e.g. 5 or S01E01,S01E02)")
         .setRequired(true)
     )
     .addChannelOption(option =>
@@ -20,17 +20,24 @@ module.exports = {
     ),
   async execute(interaction) {
     const episodesRaw = interaction.options.getString("episodes");
-    const episodeDates = episodesRaw.split(",").map(s => s.trim()).filter(Boolean);
-    if (!episodeDates.length) {
+    let episodes;
+    if (/^\d+$/.test(episodesRaw.trim())) {
+      // If input is a number, get that many most recent episodes
+      const n = parseInt(episodesRaw.trim(), 10);
+      episodes = require("../modules/kudos").getRecentEpisodes(n);
+    } else {
+      episodes = episodesRaw.split(",").map(s => s.trim()).filter(Boolean);
+    }
+    if (!episodes.length) {
       await interaction.reply({
-        content: "You must provide at least one episode date (YYYY-MM-DD).",
+        content: "You must provide at least one episode name or a valid number.",
         flags: MessageFlags.Ephemeral
       });
       return;
     }
     const channel = interaction.options.getChannel("channel") || interaction.channel;
-    const leaderboard = getLeaderboard(episodeDates, 10);
-    await sendKudosLeaderboardText(channel, leaderboard, { title: `**Kudos Leaderboard**`, description: `_Top contributors for episodes: ${episodeDates.join(", ")}_` });
+    const leaderboard = getLeaderboard(episodes, 10);
+    await sendKudosLeaderboardText(channel, leaderboard, { title: `**Kudos Leaderboard**`, description: `_Top contributors for episodes: ${episodes.join(", ")}_` });
     await interaction.reply({
       content: `Leaderboard sent to <#${channel.id}>!`,
       flags: MessageFlags.Ephemeral

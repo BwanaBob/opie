@@ -13,8 +13,20 @@ async function sendKudosLeaderboardText(channel, leaderboard, options = {}) {
   if (!leaderboard.length) {
     content += '\n_No kudos data found for this period._';
   } else {
+    let rank = 1;
+    let prevPoints = null;
+    let skip = 0;
     leaderboard.forEach((entry, i) => {
-      content += `\n**#${i + 1}:** <@${entry.author_id}> — **${entry.total_points} point${entry.total_points === 1 ? '' : 's'}**`;
+      if (prevPoints !== null) {
+        if (entry.total_points === prevPoints) {
+          skip++;
+        } else {
+          rank += skip + 1;
+          skip = 0;
+        }
+      }
+      content += `\n**#${rank}:** <@${entry.author_id}> — **${entry.total_points} point${entry.total_points === 1 ? '' : 's'}**`;
+      prevPoints = entry.total_points;
     });
   }
 
