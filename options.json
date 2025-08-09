@@ -60,7 +60,7 @@
       "numResults": 3
     },
     "openaiChat": {
-      "OpenAIChatModel": "gpt-5-mini",
+      "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
         { "showtime": "2025-07-25T21:00:00-05:00", "episode": "Season 4 Episode 05", "type": "live" },
         { "showtime": "2025-07-26T21:00:00-05:00", "episode": "Season 4 Episode 06", "type": "live" },
