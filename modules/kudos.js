@@ -71,8 +71,10 @@ async function tallyAndStoreReactions(client, channelId, startTime, endTime, epi
  * @returns {Array<{author_id: string, total_points: number}>}
  */
 function getLeaderboard(episodes, limit = 10) {
+ 
   const options = require('../options.json');
-  const exclusions = Array.isArray(options.leaderboardExclusions) ? options.leaderboardExclusions : [];
+  const {leaderboardExclusions} = options.modules.kudos
+  const exclusions = Array.isArray(leaderboardExclusions) ? leaderboardExclusions : [];
   return kudosDb.getLeaderboard(episodes, limit, exclusions);
 }
 
