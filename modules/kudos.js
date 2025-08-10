@@ -65,13 +65,15 @@ async function tallyAndStoreReactions(client, channelId, startTime, endTime, epi
 }
 
 /**
- * Get the leaderboard for the last N episodes (by name).
+ * Get the leaderboard for the last N episodes (by name), excluding users in options.json leaderboardExclusions.
  * @param {string[]} episodes - Array of episode names (e.g. S1E1, Finale)
  * @param {number} limit - Number of places to show (ties included)
  * @returns {Array<{author_id: string, total_points: number}>}
  */
 function getLeaderboard(episodes, limit = 10) {
-  return kudosDb.getLeaderboard(episodes, limit);
+  const options = require('../options.json');
+  const exclusions = Array.isArray(options.leaderboardExclusions) ? options.leaderboardExclusions : [];
+  return kudosDb.getLeaderboard(episodes, limit, exclusions);
 }
 
 /**

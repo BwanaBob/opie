@@ -51,7 +51,18 @@
     }
   },
   "modules": {
-    "shiftStar":{
+    "kudos": {
+      "leaderboardExclusions": [
+        "348629137080057878",
+        "1358747746395361280",
+        "440328038337478657",
+        "368797989554356224",
+        "1250263798070247487",
+        "303930225945870336",
+        "629681401918390312"
+      ]
+    },
+    "shiftStar": {
       "ranksCounted": 3,
       "modsEligible": false
     },
@@ -62,22 +73,72 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-07-25T21:00:00-05:00", "episode": "Season 4 Episode 05", "type": "live" },
-        { "showtime": "2025-07-26T21:00:00-05:00", "episode": "Season 4 Episode 06", "type": "live" },
-        { "showtime": "2025-08-01T21:00:00-05:00", "episode": "Season 4 Episode 07", "type": "live" },
-        { "showtime": "2025-08-02T21:00:00-05:00", "episode": "Season 4 Episode 08", "type": "live" },
-        { "showtime": "2025-08-08T21:00:00-05:00", "episode": "Season 4 Episode 09", "type": "live" },
-        { "showtime": "2025-08-09T21:00:00-05:00", "episode": "Season 4 Episode 10", "type": "live" },
-        { "showtime": "2025-08-15T21:00:00-05:00", "episode": "Season 4 Episode 11", "type": "live" },
-        { "showtime": "2025-08-16T21:00:00-05:00", "episode": "Season 4 Episode 12", "type": "live" }
+        {
+          "showtime": "2025-07-25T21:00:00-05:00",
+          "episode": "Season 4 Episode 05",
+          "type": "live"
+        },
+        {
+          "showtime": "2025-07-26T21:00:00-05:00",
+          "episode": "Season 4 Episode 06",
+          "type": "live"
+        },
+        {
+          "showtime": "2025-08-01T21:00:00-05:00",
+          "episode": "Season 4 Episode 07",
+          "type": "live"
+        },
+        {
+          "showtime": "2025-08-02T21:00:00-05:00",
+          "episode": "Season 4 Episode 08",
+          "type": "live"
+        },
+        {
+          "showtime": "2025-08-08T21:00:00-05:00",
+          "episode": "Season 4 Episode 09",
+          "type": "live"
+        },
+        {
+          "showtime": "2025-08-09T21:00:00-05:00",
+          "episode": "Season 4 Episode 10",
+          "type": "live"
+        },
+        {
+          "showtime": "2025-08-15T21:00:00-05:00",
+          "episode": "Season 4 Episode 11",
+          "type": "live"
+        },
+        {
+          "showtime": "2025-08-16T21:00:00-05:00",
+          "episode": "Season 4 Episode 12",
+          "type": "live"
+        }
       ],
       "userPrompts": {
-        "629681401918390312" : {"name": "Barre",     "prompt":"She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."},
-        "348629137080057878" : {"name": "Bean" ,     "prompt":"He is a moderator here and handles most of the technical needs like configuring the discord server and our subreddit, creating and maintaining the bots like you, and he created and hosts the OPL Bingo app. His online persona is an arctic wolf with some viking flair."},
-        "1358747746395361280": {"name": "Ferret",    "prompt":"She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check."},
-        "1250263798070247487": {"name": "Chibi",     "prompt":"She is a lovely small chibi. By day, she makes beautiful flower arrangements. By night, she's one of our beloved moderators."},
-        "303930225945870336" : {"name": "KavZilla",  "prompt":"She assumes the persona of a bearded dragon and loves and keeps lizards, frogs, etc. She also works in I.T. and is one of our moderators here."},
-        "440328038337478657" : {"name": "Saucy",     "prompt":"He assumes the persona of a sausage and is a moderator here who also umpires baseball games and moderates our subreddit."}
+        "629681401918390312": {
+          "name": "Barre",
+          "prompt": "She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."
+        },
+        "348629137080057878": {
+          "name": "Bean",
+          "prompt": "He is a moderator here and handles most of the technical needs like configuring the discord server and our subreddit, creating and maintaining the bots like you, and he created and hosts the OPL Bingo app. His online persona is an arctic wolf with some viking flair."
+        },
+        "1358747746395361280": {
+          "name": "Ferret",
+          "prompt": "She is an adorable ferret that we all love and a valued moderator here. She has a playful and mischievous side, sometimes swiping small household items like socks, but she also enjoys interacting with the community in fun and engaging ways. Occasionally, she needs a bath to keep her in check."
+        },
+        "1250263798070247487": {
+          "name": "Chibi",
+          "prompt": "She is a lovely small chibi. By day, she makes beautiful flower arrangements. By night, she's one of our beloved moderators."
+        },
+        "303930225945870336": {
+          "name": "KavZilla",
+          "prompt": "She assumes the persona of a bearded dragon and loves and keeps lizards, frogs, etc. She also works in I.T. and is one of our moderators here."
+        },
+        "440328038337478657": {
+          "name": "Saucy",
+          "prompt": "He assumes the persona of a sausage and is a moderator here who also umpires baseball games and moderates our subreddit."
+        }
       },
       "moderatorPrompt": "They are a moderator of our Discord community.",
       "boosterPrompt": "They have boosted the server which means they have paid money to support our community and are a highly regarded community member."
@@ -200,7 +261,7 @@
       "scheduleParked": "0 0 12 1 1 *",
       "readBehind": 120
     },
-     "lineupTwitterDan": {
+    "lineupTwitterDan": {
       "schedule": "*/2 16-18 * * FRI,SAT",
       "scheduleTest": "*/15 * * * * *",
       "scheduleParked": "0 0 12 1 1 *",

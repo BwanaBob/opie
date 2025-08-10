@@ -58,14 +58,21 @@ function ensureEpisodes(episodes) {
 }
 
 // Get the leaderboard for the last N episodes (top N), including all ties at the cutoff
-const getLeaderboard = (episodes, limit = 10) => {
+const getLeaderboard = (episodes, limit = 10, exclusions = []) => {
   episodes = ensureEpisodes(episodes);
-  const placeholders = episodes.map(() => '?').join(',');
+  const episodePlaceholders = episodes.map(() => '?').join(',');
+  let exclusionClause = '';
+  let params = [...episodes];
+  if (exclusions && exclusions.length > 0) {
+    exclusionClause = `AND author_id NOT IN (${exclusions.map(() => '?').join(',')})`;
+    params = [...episodes, ...exclusions];
+  }
+  params.push(limit);
   const sql = `
     WITH user_message_votes AS (
       SELECT author_id, message_id, episode, COUNT(*) as votes
       FROM kudos_reactions
-      WHERE episode IN (${placeholders})
+      WHERE episode IN (${episodePlaceholders}) ${exclusionClause}
       GROUP BY author_id, message_id, episode
     ),
     user_top_message AS (
@@ -94,7 +101,7 @@ const getLeaderboard = (episodes, limit = 10) => {
     )
     ORDER BY total_points DESC
   `;
-  return db.prepare(sql).all(...episodes, limit);
+  return db.prepare(sql).all(...params);
 };
 
 // Get a user's rank for the last N episodes

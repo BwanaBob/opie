@@ -4,14 +4,27 @@
  * @param {Array<{author_id: string, total_points: number}>} leaderboard - Leaderboard data from kudosDb.getLeaderboard.
  * @param {Object} [options] - Optional settings (e.g., title, description)
  */
+const { EmbedBuilder } = require('discord.js');
 async function sendKudosLeaderboardText(channel, leaderboard, options = {}) {
-  const title = options.title || '**Kudos Leaderboard**';
-  const description = options.description || '_Top contributors for recent episodes!_';
+  const title = options.title || 'Kudos Leaderboard';
+  const description = options.description || 'Top contributors for recent episodes!';
 
-  let content = `${title}\n${description}\n`;
+  // Fetch usernames for all unique author_ids
+  const client = channel.client;
+  const userIds = [...new Set(leaderboard.map(entry => entry.author_id))];
+  const userMap = {};
+  for (const id of userIds) {
+    try {
+      const user = await client.users.fetch(id);
+      userMap[id] = user.username + (user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '');
+    } catch (e) {
+      userMap[id] = `UnknownUser(${id})`;
+    }
+  }
 
+  let leaderboardText = '';
   if (!leaderboard.length) {
-    content += '\n_No kudos data found for this period._';
+    leaderboardText = 'No kudos data found for this period.';
   } else {
     let rank = 1;
     let prevPoints = null;
@@ -25,14 +38,21 @@ async function sendKudosLeaderboardText(channel, leaderboard, options = {}) {
           skip = 0;
         }
       }
-      content += `\n**#${rank}:** <@${entry.author_id}> — **${entry.total_points} point${entry.total_points === 1 ? '' : 's'}**`;
+      const username = userMap[entry.author_id] || `UnknownUser(${entry.author_id})`;
+      leaderboardText += `\n**#${rank}:** ${username} — **${entry.total_points} point${entry.total_points === 1 ? '' : 's'}**`;
       prevPoints = entry.total_points;
     });
   }
 
+  const embed = new EmbedBuilder()
+    .setTitle(title)
+    .setDescription(description)
+    .addFields({ name: 'Leaderboard', value: leaderboardText })
+    .setColor(0x00bfff);
+
   await channel.send({
-    content,
-    allowedMentions: { parse: ['users'] }
+    embeds: [embed],
+    allowedMentions: { users: [] }
   });
 }
 
