@@ -227,7 +227,7 @@ module.exports = async function (message) {
         }
         filteredBotMessageHistory.unshift({
           role: "system",
-          content: `Relevant knowledge (${i + 1}):${metaString}\n${
+          content: `Relevant knowledge (${i + 1}, score: ${chromaResults[i].score.toFixed(3)})${metaString}\n${
             chromaResults[i].text
           }`,
         });
