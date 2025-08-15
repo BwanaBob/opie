@@ -15,19 +15,18 @@ module.exports = {
       async () => {
         // '*/25 * * * * *', async () => {
         let noticeRole = "391837678967980035"; // OPie Test Role
-        let reacts = ["🧵","🤖","🏅","📋","💬","⏺️","🔗","🚨","🧹",];
+        let reacts = ["🧵","🤖","📋","💬","⏺️","🔗","🚨","🧹",];
         const scheduleTime = Math.floor(new Date().setHours(17, 58, 0) / 1000);
         if (client.params.get("chatGPTAnnouncementsEnabled") == "true") {
           if (client.guilds.cache.get("325206992413130753")) {
             //bot is a member of OPL
             noticeRole = "325210261722234881"; // OPL Admin
-            reacts = ["🧵","🤖","🏅","📋","💬","⏺️","🔗","🚨","🧹",];
+            reacts = ["🧵","🤖","📋","💬","⏺️","🔗","🚨","🧹",];
           }
           let noticeContent =
             `<@&${noticeRole}>\n## Saturday Checklist\n### Pre-show\n` +
             `🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/wiki/moderation/live-thread/>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>\n` +
-            `🤖 [Bot prompts](<https://github.com/BwanaBob/opie/commits/main/>) (OPie & Jake)\n` +
-            `🏅 Last Week's Comment of the Night Awards\n` +
+            `🤖 [Bot prompts](<https://github.com/BwanaBob/opie/commits/main/>)\n` +
             `📋 [Lineup](<https://twitter.com/danabrams>)\n` +
             `💬 Opening comment\n` +
             `⏺️ [First Shift Recording](<https://www.reelznow.com/live>)\n` +
@@ -68,8 +67,6 @@ module.exports = {
               .then(() => noticeMessage.react(reacts[5]))
               .then(() => noticeMessage.react(reacts[6]))
               .then(() => noticeMessage.react(reacts[7]))
-              .then(() => noticeMessage.react(reacts[8]))
-              .then(() => noticeMessage.react(reacts[9]))
               .catch((err) => {
                 console.error(
                   `[ERROR] Reacting to message ${noticeMessage.id} -`,

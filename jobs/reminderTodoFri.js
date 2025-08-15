@@ -26,7 +26,7 @@ module.exports = {
           let noticeContent =
             `<@&${noticeRole}>\n## Friday Checklist\n### Pre-show\n` +
             `🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/wiki/moderation/live-thread/>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>\n` +
-            `🤖 [Bot prompts](<https://github.com/BwanaBob/opie/commits/main/>) (OPie & Jake)\n` +
+            `🤖 [Bot prompts](<https://github.com/BwanaBob/opie/commits/main/>)\n` +
             `📆 [Sidebar Schedule](<https://www.reelz.com/schedule/>)\n` +
             `🏅 Last Week's Comment of the Night Awards` +
             `📋 [Lineup](<https://twitter.com/danabrams>)\n` +
