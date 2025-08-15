@@ -33,7 +33,7 @@ module.exports = {
             `🔗 First Shift Summary Link in Opener\n` +
             `🚨 Set Community Status & highlights\n` +
             `### After\n` +
-            `🧹 Closing and !tidy\n` ;
+            `🧹 Closing and !tidy` ;
 
           // Unpin previous reminder messages before posting the new one
           const pinnedMessages = await noticeChannel.messages.fetchPinned();

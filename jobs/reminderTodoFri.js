@@ -28,14 +28,14 @@ module.exports = {
             `🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/wiki/moderation/live-thread/>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>\n` +
             `🤖 [Bot prompts](<https://github.com/BwanaBob/opie/commits/main/>)\n` +
             `📆 [Sidebar Schedule](<https://www.reelz.com/schedule/>)\n` +
-            `🏅 Last Week's Comment of the Night Awards` +
+            `🏅 Last Week's Comment of the Night Awards\n` +
             `📋 [Lineup](<https://twitter.com/danabrams>)\n` +
             `💬 Opening comment\n` +
             `⏺️ [First Shift Recording](<https://www.reelznow.com/live>)\n` +
             `🔗 First Shift Summary Link in Opener\n` +
             `🚨 Set Community Status & Highlights\n` +
             `### After\n` +
-            `🧹 Closing and !tidy\n`;
+            `🧹 Closing and !tidy`;
 
           // Unpin previous reminder messages before posting the new one
           const pinnedMessages = await noticeChannel.messages.fetchPinned();
