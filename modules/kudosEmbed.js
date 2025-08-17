@@ -9,14 +9,23 @@ async function sendKudosLeaderboardText(channel, leaderboard, options = {}) {
   const title = options.title || 'Kudos Leaderboard';
   const description = options.description || 'Top contributors for recent episodes!';
 
-  // Fetch usernames for all unique author_ids
+  // Fetch nicknames (aliases) for all unique author_ids, fallback to username
   const client = channel.client;
+  const guild = channel.guild;
   const userIds = [...new Set(leaderboard.map(entry => entry.author_id))];
   const userMap = {};
   for (const id of userIds) {
     try {
-      const user = await client.users.fetch(id);
-      userMap[id] = user.username + (user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '');
+      let displayName;
+      if (guild) {
+        const member = await guild.members.fetch(id);
+        console.log(`Fetched member ${member.nickname} - ${member.user.username} (${id})`);
+        displayName = member.nickname || member.user.username + (member.user.discriminator && member.user.discriminator !== '0' ? `#${member.user.discriminator}` : '');
+      } else {
+        const user = await client.users.fetch(id);
+        displayName = user.username + (user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '');
+      }
+      userMap[id] = displayName;
     } catch (e) {
       userMap[id] = `UnknownUser(${id})`;
     }
