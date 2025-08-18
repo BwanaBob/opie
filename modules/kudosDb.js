@@ -39,10 +39,6 @@ const removeReaction = (messageId, voterId) => {
     .run(messageId, voterId);
 };
 
-// Get all voters for a message
-const getVotersForMessage = (messageId) => {
-  return db.prepare(`SELECT voter_id FROM kudos_reactions WHERE message_id = ?`).all(messageId);
-};
 
 // Get all reactions by a user (for abuse detection)
 const getReactionsByUser = (voterId) => {
@@ -104,37 +100,19 @@ const getLeaderboard = (episodes, limit = 10, exclusions = []) => {
   return db.prepare(sql).all(...params);
 };
 
-// Get a user's rank for the last N episodes
-const getUserRank = (userId, episodes) => {
-  episodes = ensureEpisodes(episodes);
-  const leaderboard = getLeaderboard(episodes, 10000); // get all
-  const rank = leaderboard.findIndex(row => row.author_id === userId);
-  return rank === -1 ? null : rank + 1;
-};
 
 // Get all reactions for a user (for debugging)
 const getUserHistory = (userId) => {
   return db.prepare(`SELECT * FROM kudos_reactions WHERE author_id = ? ORDER BY episode DESC`).all(userId);
 };
 
-// Get total points for a user over the last N episodes (sum of their top message per episode)
-const getTotalPointsForUser = (userId, episodes) => {
-  episodes = ensureEpisodes(episodes);
-  const leaderboard = getLeaderboard(episodes, 10000);
-  const user = leaderboard.find(row => row.author_id === userId);
-  return user ? user.total_points : 0;
-};
-
 module.exports = {
   init,
   addReaction,
   removeReaction,
-  getVotersForMessage,
   getReactionsByUser,
   getLeaderboard,
-  getUserRank,
   getUserHistory,
-  getTotalPointsForUser,
   deleteReactionsForEpisode,
   getRecentEpisodes,
   db

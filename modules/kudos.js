@@ -77,19 +77,9 @@ function getLeaderboard(episodes, limit = 10) {
   return kudosDb.getLeaderboard(episodes, limit, exclusions);
 }
 
-/**
- * Get all voters for a message.
- * @param {string} messageId
- * @returns {Array<{voter_id: string}>}
- */
-function getVotersForMessage(messageId) {
-  return kudosDb.getVotersForMessage(messageId);
-}
-
 module.exports = {
   tallyAndStoreReactions,
   getLeaderboard,
-  getVotersForMessage,
   UPVOTE_EMOJIS,
   deleteReactionsForEpisode: kudosDb.deleteReactionsForEpisode,
   getRecentEpisodes: kudosDb.getRecentEpisodes,
