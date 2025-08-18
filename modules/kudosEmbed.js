@@ -6,7 +6,7 @@
  */
 const { EmbedBuilder } = require('discord.js');
 async function sendKudosLeaderboardText(channel, leaderboard, options = {}) {
-  const title = options.title || 'Kudos Leaderboard';
+  const title = options.title || 'All-Star Leaderboard';
   const description = options.description || 'Top contributors for recent episodes!';
 
   // Fetch nicknames (aliases) for all unique author_ids, fallback to username
@@ -33,7 +33,7 @@ async function sendKudosLeaderboardText(channel, leaderboard, options = {}) {
 
   let leaderboardText = '';
   if (!leaderboard.length) {
-    leaderboardText = 'No kudos data found for this period.';
+    leaderboardText = 'No data found for this period.';
   } else {
     let rank = 1;
     let prevPoints = null;

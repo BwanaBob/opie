@@ -11,7 +11,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("kudos-leaderboard")
     .setDescription(
-      "Display the Kudos leaderboard for recent episodes (by episode name)."
+      "Display the All-Star leaderboard for recent episodes (by episode name)."
     )
     .setContexts(InteractionContextType.Guild)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
@@ -62,7 +62,7 @@ module.exports = {
       desc = `_Top contributors for the last ${episodes.length} episodes_`;
     }
     await sendKudosLeaderboardText(channel, leaderboard, {
-      title: `**Kudos Leaderboard**`,
+      title: `**All-Star Leaderboard**`,
       description: desc,
     });
     await interaction.reply({

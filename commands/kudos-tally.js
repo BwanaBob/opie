@@ -29,7 +29,7 @@ module.exports = {
     ),
   async execute(interaction) {
     await interaction.reply({
-      content: "Processing Kudos tally...",
+      content: "Processing All-Star tally...",
       flags: MessageFlags.Ephemeral
     });
 
@@ -76,7 +76,7 @@ module.exports = {
     );
 
     await interaction.followUp({
-      content: `Kudos tally complete! ${storedCount} reactions stored for channel <#${channel.id}> for episode '${episode}'.`,
+      content: `All-Star tally complete! ${storedCount} reactions stored for channel <#${channel.id}> for episode '${episode}'.`,
       flags: MessageFlags.Ephemeral
     });
   }
