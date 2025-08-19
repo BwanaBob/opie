@@ -11,21 +11,20 @@ function buildUserHistoryEmbed(username, historyRows, options = {}) {
   const title = options.title || `${username}'s All-Star History`;
   const description = options.description || `Your top messages for recent episodes!`;
 
-  let historyText = '';
-  if (!historyRows.length) {
-    historyText = 'No top messages found for this period.';
-  } else {
-    for (const entry of historyRows) {
-      historyText += `\n• **${entry.episode}** — ${entry.votes} point${entry.votes === 1 ? '' : 's'}${entry.link ? ` ([link](${entry.link}))` : ''}`;
-    }
-  }
-
   const embed = new EmbedBuilder()
     .setTitle(title)
     .setDescription(description)
-    .addFields({ name: 'Top Messages', value: historyText })
     .setColor(0x00bfff);
 
+  if (!historyRows.length) {
+    embed.addFields({ name: 'Top Messages', value: 'No top messages found for this period.' });
+  } else {
+    for (const entry of historyRows) {
+      let value = `**${entry.episode}** — ${entry.votes} point${entry.votes === 1 ? '' : 's'}`;
+      if (entry.link) value += ` ([link](${entry.link}))`;
+      embed.addFields({ name: 'Message', value });
+    }
+  }
   return embed;
 }
 
