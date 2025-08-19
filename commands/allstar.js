@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, MessageFlags } = require("discord.js");
 const { getUserTopMessages } = require("../modules/kudos");
-const { buildUserHistoryEmbed } = require("../modules/userHistoryEmbed");
 const options = require("../options.json");
 const episodeCount = (options.modules && options.modules.kudos && options.modules.kudos.leaderboardEpisodes) ? options.modules.kudos.leaderboardEpisodes : 10;
 const episodeLabel = episodeCount === 1 ? 'Episode' : 'Episodes';
