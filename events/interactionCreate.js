@@ -16,13 +16,22 @@ module.exports = {
       }
 
       const logDate = new Date(interaction.createdTimestamp).toLocaleString();
+      let subcommand = '';
+      if (interaction.options && typeof interaction.options.getSubcommand === 'function') {
+        try {
+          subcommand = interaction.options.getSubcommand();
+        } catch (e) {
+          subcommand = '';
+        }
+      }
+      const subStr = subcommand ? `/${subcommand}` : '';
       if (!interaction.guild) {
         console.log(
-          `[${logDate}] 💻 COMAND| Private Message | ${interaction.user.tag} | ${interaction.commandName}`
+          `[${logDate}] 💻 COMAND| Private Message | ${interaction.user.tag} | ${interaction.commandName}${subStr}`
         );
       } else {
         console.log(
-          `[${logDate}] 💻 COMAND| ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}`
+          `[${logDate}] 💻 COMAND| ${interaction.guild.name} | ${interaction.channel.name} | ${interaction.member.displayName} (${interaction.user.tag}) | ${interaction.commandName}${subStr}`
         );
       }
 
