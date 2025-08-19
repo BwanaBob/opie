@@ -4,8 +4,8 @@ const { sendKudosLeaderboardText } = require("../modules/kudosEmbed");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("allstar-admin")
-    .setDescription("All-Star moderator/admin tools")
+    .setName("star")
+    .setDescription("All-Star moderator tools")
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .addSubcommand(sub =>
       sub.setName("tally")
@@ -56,7 +56,7 @@ module.exports = {
     )
     // Leaderboard blacklist management
     .addSubcommand(sub =>
-      sub.setName("leaderboard-blacklist-add")
+      sub.setName("board-blacklist-add")
         .setDescription("Add a user to the leaderboard blacklist.")
         .addUserOption(option =>
           option.setName("user")
@@ -70,7 +70,7 @@ module.exports = {
         )
     )
     .addSubcommand(sub =>
-      sub.setName("leaderboard-blacklist-remove")
+      sub.setName("board-blacklist-remove")
         .setDescription("Remove a user from the leaderboard blacklist.")
         .addUserOption(option =>
           option.setName("user")
@@ -79,12 +79,12 @@ module.exports = {
         )
     )
     .addSubcommand(sub =>
-      sub.setName("leaderboard-blacklist-view")
+      sub.setName("board-blacklist-view")
         .setDescription("View the leaderboard blacklist.")
     )
     // Voter blacklist management
     .addSubcommand(sub =>
-      sub.setName("blacklist-voter-add")
+      sub.setName("voter-blacklist-add")
         .setDescription("Add a user to the voter blacklist.")
         .addUserOption(option =>
           option.setName("user")
@@ -98,7 +98,7 @@ module.exports = {
         )
     )
     .addSubcommand(sub =>
-      sub.setName("blacklist-voter-remove")
+      sub.setName("voter-blacklist-remove")
         .setDescription("Remove a user from the voter blacklist.")
         .addUserOption(option =>
           option.setName("user")
@@ -107,7 +107,7 @@ module.exports = {
         )
     )
     .addSubcommand(sub =>
-      sub.setName("blacklist-voter-view")
+      sub.setName("voter-blacklist-view")
         .setDescription("View the voter blacklist.")
     ),
   async execute(interaction) {
@@ -197,7 +197,7 @@ module.exports = {
       });
     }
     // Leaderboard blacklist
-    else if (sub === "leaderboard-blacklist-add") {
+    else if (sub === "board-blacklist-add") {
       const user = interaction.options.getUser("user");
       const userId = user.id;
       const reason = interaction.options.getString("reason") || null;
@@ -208,7 +208,7 @@ module.exports = {
         flags: MessageFlags.Ephemeral
       });
     }
-    else if (sub === "leaderboard-blacklist-remove") {
+    else if (sub === "board-blacklist-remove") {
       const user = interaction.options.getUser("user");
       const userId = user.id;
       require("../modules/kudosDb").removeLeaderboardBlacklist(userId);
@@ -217,19 +217,19 @@ module.exports = {
         flags: MessageFlags.Ephemeral
       });
     }
-    else if (sub === "leaderboard-blacklist-view") {
+    else if (sub === "board-blacklist-view") {
       const rows = require("../modules/kudosDb").db.prepare("SELECT user_id, reason, added_by, added_at FROM allstar_leaderboard_blacklist").all();
       if (!rows.length) {
         await interaction.reply({ content: "Leaderboard blacklist is empty.", flags: MessageFlags.Ephemeral });
         return;
       }
       const msg = "**Leaderboard Blacklist:**\n" + rows.map(r => {
-        return `• <@${r.user_id}> (added by <@${r.added_by}> at <t:${r.added_at}:f>${r.reason ? ", reason: " + r.reason : ""})`;
+        return `• <@${r.user_id}> (added by <@${r.added_by}> on <t:${r.added_at}:f>${r.reason ? ", reason: " + r.reason : ""})`;
       }).join("\n");
       await interaction.reply({ content: msg, flags: MessageFlags.Ephemeral });
     }
     // Voter blacklist
-    else if (sub === "blacklist-voter-add") {
+    else if (sub === "voter-blacklist-add") {
       const user = interaction.options.getUser("user");
       const userId = user.id;
       const reason = interaction.options.getString("reason") || null;
@@ -240,7 +240,7 @@ module.exports = {
         flags: MessageFlags.Ephemeral
       });
     }
-    else if (sub === "blacklist-voter-remove") {
+    else if (sub === "voter-blacklist-remove") {
       const user = interaction.options.getUser("user");
       const userId = user.id;
       require("../modules/kudosDb").removeVoterBlacklist(userId);
@@ -249,14 +249,14 @@ module.exports = {
         flags: MessageFlags.Ephemeral
       });
     }
-    else if (sub === "blacklist-voter-view") {
+    else if (sub === "voter-blacklist-view") {
       const rows = require("../modules/kudosDb").db.prepare("SELECT user_id, reason, added_by, added_at FROM allstar_voter_blacklist").all();
       if (!rows.length) {
         await interaction.reply({ content: "Voter blacklist is empty.", flags: MessageFlags.Ephemeral });
         return;
       }
       const msg = "**Voter Blacklist:**\n" + rows.map(r => {
-        return `• <@${r.user_id}> (added by <@${r.added_by}> at <t:${r.added_at}:f>${r.reason ? ", reason: " + r.reason : ""})`;
+        return `• <@${r.user_id}> (added by <@${r.added_by}> on <t:${r.added_at}:f>${r.reason ? ", reason: " + r.reason : ""})`;
       }).join("\n");
       await interaction.reply({ content: msg, flags: MessageFlags.Ephemeral });
     }
