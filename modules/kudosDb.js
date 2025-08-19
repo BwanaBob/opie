@@ -25,6 +25,43 @@ const init = () => {
     episode TEXT NOT NULL,
     PRIMARY KEY (message_id, voter_id)
   )`).run();
+    db.prepare(`CREATE TABLE IF NOT EXISTS allstar_leaderboard_blacklist (
+      user_id TEXT PRIMARY KEY,
+      reason TEXT DEFAULT NULL,
+      added_by TEXT DEFAULT NULL,
+      added_at INTEGER DEFAULT (strftime('%s','now'))
+    )`).run();
+    db.prepare(`CREATE TABLE IF NOT EXISTS allstar_voter_blacklist (
+      user_id TEXT PRIMARY KEY,
+      reason TEXT DEFAULT NULL,
+      added_by TEXT DEFAULT NULL,
+      added_at INTEGER DEFAULT (strftime('%s','now'))
+    )`).run();
+};
+// Leaderboard blacklist
+const getLeaderboardBlacklist = () => {
+  return db.prepare(`SELECT user_id FROM allstar_leaderboard_blacklist`).all().map(r => r.user_id);
+};
+const addLeaderboardBlacklist = (userId, reason = null, addedBy = null) => {
+  const now = Math.floor(Date.now() / 1000);
+  db.prepare(`INSERT OR REPLACE INTO allstar_leaderboard_blacklist (user_id, reason, added_by, added_at) VALUES (?, ?, ?, ?)`)
+    .run(userId, reason, addedBy, now);
+};
+const removeLeaderboardBlacklist = (userId) => {
+  db.prepare(`DELETE FROM allstar_leaderboard_blacklist WHERE user_id = ?`).run(userId);
+};
+
+// Voter blacklist
+const getVoterBlacklist = () => {
+  return db.prepare(`SELECT user_id FROM allstar_voter_blacklist`).all().map(r => r.user_id);
+};
+const addVoterBlacklist = (userId, reason = null, addedBy = null) => {
+  const now = Math.floor(Date.now() / 1000);
+  db.prepare(`INSERT OR REPLACE INTO allstar_voter_blacklist (user_id, reason, added_by, added_at) VALUES (?, ?, ?, ?)`)
+    .run(userId, reason, addedBy, now);
+};
+const removeVoterBlacklist = (userId) => {
+  db.prepare(`DELETE FROM allstar_voter_blacklist WHERE user_id = ?`).run(userId);
 };
 
 // Add a reaction for a message
@@ -57,18 +94,26 @@ function ensureEpisodes(episodes) {
 const getLeaderboard = (episodes, limit = 10, exclusions = []) => {
   episodes = ensureEpisodes(episodes);
   const episodePlaceholders = episodes.map(() => '?').join(',');
+  // Get voter blacklist
+  const voterBlacklist = getVoterBlacklist();
   let exclusionClause = '';
   let params = [...episodes];
   if (exclusions && exclusions.length > 0) {
     exclusionClause = `AND author_id NOT IN (${exclusions.map(() => '?').join(',')})`;
     params = [...episodes, ...exclusions];
   }
+  // Add voter blacklist clause
+  let voterClause = '';
+  if (voterBlacklist.length > 0) {
+    voterClause = `AND voter_id NOT IN (${voterBlacklist.map(() => '?').join(',')})`;
+    params = [...params, ...voterBlacklist];
+  }
   params.push(limit);
   const sql = `
     WITH user_message_votes AS (
       SELECT author_id, message_id, episode, COUNT(*) as votes
       FROM kudos_reactions
-      WHERE episode IN (${episodePlaceholders}) ${exclusionClause}
+      WHERE episode IN (${episodePlaceholders}) ${exclusionClause} ${voterClause}
       GROUP BY author_id, message_id, episode
     ),
     user_top_message AS (
@@ -115,5 +160,12 @@ module.exports = {
   getUserHistory,
   deleteReactionsForEpisode,
   getRecentEpisodes,
+  // Blacklist management
+  getLeaderboardBlacklist,
+  addLeaderboardBlacklist,
+  removeLeaderboardBlacklist,
+  getVoterBlacklist,
+  addVoterBlacklist,
+  removeVoterBlacklist,
   db
 };
