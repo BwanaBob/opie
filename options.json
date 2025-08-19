@@ -52,6 +52,7 @@
   },
   "modules": {
     "kudos": {
+      "leaderboardEpisodes": 10,
       "upvoteEmojisOld": [
         "⭐", "👍", "🔥", "👏", "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🙂", "😍", "🥰", "😋", "😎", "😺", "😸", "😹", "😻", "🤟", "🤘", "⬆️", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "❣️", "💕", "❤️‍🔥", "100_bright", "200_iq", "arcticfoxlaughing", "black_heart_beating", "blue_heart_beating", "brown_heart_beating", "green_heart_beating", "grey_heart_beating", "light_blue_heart_beating", "orange_heart_beating", "pink_heart_beating", "purple_heart_beating", "rainbow_heart", "red_heart_beating", "two_hearts_twist", "two_hearts_beating", "teal_heart", "teal_heart_beating", "thin_blue_line_heart", "pink_heart", "white_heart_beating", "yellow_heart_beating", "cowheart", "thank_you", "this", "metal_horns", "cat_heart_eyes", "ferret_heart_eyes", "fire_heart", "smiling_heart_eyes", "smiling_hearts", "fire_animated", "dabbydabbysticksdabby", "cat_jump", "clapping_hands", "drooling", "grinning_cat", "hyper", "melting_face_animated", "rolling_laughing", "sausage_thumbs_up", "sloth_dance", "thumbs_up", "yum_animated"
       ],

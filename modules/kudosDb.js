@@ -1,3 +1,23 @@
+// Get a user's top messages for the last N episodes
+const getUserTopMessages = (userId, episodeCount = 10) => {
+  const episodes = getRecentEpisodes(episodeCount);
+  if (!episodes.length) return [];
+  const results = [];
+  for (const episode of episodes) {
+    const row = db.prepare(`
+      SELECT message_id, COUNT(*) as votes
+      FROM kudos_reactions
+      WHERE author_id = ? AND episode = ?
+      GROUP BY message_id
+      ORDER BY votes DESC, message_id ASC
+      LIMIT 1
+    `).get(userId, episode);
+    if (row) {
+      results.push({ episode, message_id: row.message_id, votes: row.votes });
+    }
+  }
+  return results;
+};
 // Get the N most recent (alphabetically greatest) episode names
 const getRecentEpisodes = (count = 1) => {
   const rows = db.prepare(`SELECT DISTINCT episode FROM kudos_reactions ORDER BY episode DESC LIMIT ?`).all(count);
@@ -158,6 +178,7 @@ module.exports = {
   getReactionsByUser,
   getLeaderboard,
   getUserHistory,
+  getUserTopMessages,
   deleteReactionsForEpisode,
   getRecentEpisodes,
   // Blacklist management

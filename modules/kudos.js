@@ -1,3 +1,4 @@
+// Get a user's top messages for the last N episodes
 const { EmbedBuilder } = require('discord.js');
 const kudosDb = require('./kudosDb');
 kudosDb.init();
@@ -82,4 +83,5 @@ module.exports = {
   UPVOTE_EMOJIS,
   deleteReactionsForEpisode: kudosDb.deleteReactionsForEpisode,
   getRecentEpisodes: kudosDb.getRecentEpisodes,
+  getUserTopMessages: kudosDb.getUserTopMessages,
 };
