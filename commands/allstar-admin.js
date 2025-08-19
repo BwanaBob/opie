@@ -224,7 +224,7 @@ module.exports = {
         return;
       }
       const msg = "**Leaderboard Blacklist:**\n" + rows.map(r => {
-        return `• <@${r.user_id}> (added by <@${r.added_by}> on <t:${r.added_at}:f>${r.reason ? ", reason: " + r.reason : ""})`;
+        return `• <@${r.user_id}> (added by <@${r.added_by}> on <t:${r.added_at}:d> <t:${r.added_at}:t>${r.reason ? ", reason: " + r.reason : ""})`;
       }).join("\n");
       await interaction.reply({ content: msg, flags: MessageFlags.Ephemeral });
     }
@@ -256,7 +256,7 @@ module.exports = {
         return;
       }
       const msg = "**Voter Blacklist:**\n" + rows.map(r => {
-        return `• <@${r.user_id}> (added by <@${r.added_by}> on <t:${r.added_at}:f>${r.reason ? ", reason: " + r.reason : ""})`;
+        return `• <@${r.user_id}> (added by <@${r.added_by}> on <t:${r.added_at}:d> <t:${r.added_at}:t>${r.reason ? ", reason: " + r.reason : ""})`;
       }).join("\n");
       await interaction.reply({ content: msg, flags: MessageFlags.Ephemeral });
     }
