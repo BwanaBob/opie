@@ -25,8 +25,8 @@ module.exports = {
         content: 'Fetching your All-Star history...',
         flags: MessageFlags.Ephemeral
       });
-      // Build links for each entry
-      const historyWithLinks = [];
+      // Build plain text output
+      let reply = `**Your Top Messages (Last ${episodeCount} ${episodeLabel}):**\n`;
       for (const entry of historyRows) {
         let link = "";
         if (interaction.guild) {
@@ -46,20 +46,10 @@ module.exports = {
             link = `https://discord.com/channels/${interaction.guild.id}/${foundChannel.id}/${entry.message_id}`;
           }
         }
-        historyWithLinks.push({ ...entry, link });
+        reply += `\n• **${entry.episode}** — ${entry.votes} point${entry.votes === 1 ? '' : 's'}${link ? ` ([link](${link}))` : ''}`;
       }
-      // Get display name
-      let username = interaction.user.username;
-      if (interaction.member && interaction.member.nickname) {
-        username = interaction.member.nickname;
-      }
-      const embed = buildUserHistoryEmbed(username, historyWithLinks, {
-        title: `${username}'s All-Star History`,
-        description: `Your top messages for the last ${episodeCount} ${episodeLabel}.`,
-      });
       await interaction.editReply({
-        content: '',
-        embeds: [embed],
+        content: reply,
         flags: MessageFlags.Ephemeral
       });
     }
