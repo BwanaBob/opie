@@ -1,23 +1,25 @@
-// Get a user's top messages for the last N episodes
+// Get a user's top messages for the last N episodes (single-query, faster)
 const getUserTopMessages = (userId, episodeCount = 10) => {
   const episodes = getRecentEpisodes(episodeCount);
   if (!episodes.length) return [];
-  const results = [];
-  for (const episode of episodes) {
-    const row = db.prepare(`
-      SELECT message_id, COUNT(*) as votes
+
+  const placeholders = episodes.map(() => '?').join(',');
+  // Use a window function to pick the top message per episode (tie-breaker: smallest message_id)
+  const sql = `
+    SELECT episode, message_id, votes FROM (
+      SELECT episode, message_id, COUNT(*) AS votes,
+        ROW_NUMBER() OVER (PARTITION BY episode ORDER BY COUNT(*) DESC, message_id ASC) AS rn
       FROM kudos_reactions
-      WHERE author_id = ? AND episode = ?
-      GROUP BY message_id
-      ORDER BY votes DESC, message_id ASC
-      LIMIT 1
-    `).get(userId, episode);
-    if (row) {
-      results.push({ episode, message_id: row.message_id, votes: row.votes });
-    }
-  }
-  return results;
+      WHERE author_id = ? AND episode IN (${placeholders})
+      GROUP BY episode, message_id
+    ) WHERE rn = 1
+  `;
+  const rows = db.prepare(sql).all(userId, ...episodes);
+  // Preserve ordering consistent with getRecentEpisodes (descending episode order)
+  const map = new Map(rows.map(r => [r.episode, { episode: r.episode, message_id: r.message_id, votes: r.votes }]));
+  return episodes.map(ep => map.get(ep)).filter(Boolean);
 };
+
 // Get the N most recent (alphabetically greatest) episode names
 const getRecentEpisodes = (count = 1) => {
   const rows = db.prepare(`SELECT DISTINCT episode FROM kudos_reactions ORDER BY episode DESC LIMIT ?`).all(count);
@@ -45,6 +47,9 @@ const init = () => {
     episode TEXT NOT NULL,
     PRIMARY KEY (message_id, voter_id)
   )`).run();
+  // Helpful indexes for read-heavy queries
+  db.prepare(`CREATE INDEX IF NOT EXISTS idx_kudos_author_episode_msg ON kudos_reactions (author_id, episode, message_id)`).run();
+  db.prepare(`CREATE INDEX IF NOT EXISTS idx_kudos_episode ON kudos_reactions (episode)`).run();
     db.prepare(`CREATE TABLE IF NOT EXISTS allstar_leaderboard_blacklist (
       user_id TEXT PRIMARY KEY,
       reason TEXT DEFAULT NULL,
