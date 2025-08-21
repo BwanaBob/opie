@@ -4,6 +4,7 @@ const options = require("../options.json");
 const {
   OpenAIChatModel,
   liveShows,
+  newsPrompts,
   userPrompts,
   moderatorPrompt,
   boosterPrompt,
@@ -235,22 +236,37 @@ module.exports = async function (message) {
     console.error("Error querying Chroma for RAG:", err);
   }
   
+
+  // Grab important news prompts from the options file and include them here.
+  // console.log("newsPrompts:", newsPrompts);
+  let newsPromptsPrompt = [];
+  if (newsPrompts && newsPrompts.length > 0) {
+    // Build the system prompt objects in the same order as newsPrompts
+    newsPromptsPrompt = newsPrompts.map((prompt) => ({
+      role: "system",
+      content: prompt,
+    }));
+    // Unshift the whole group at once so the original order is preserved
+    filteredBotMessageHistory.unshift(...newsPromptsPrompt);
+  }
+  
+
   // This should also be handled by RAG now.
-  // // Add prompts for live show information
-  // if (liveShows.length > 0) {
-  //   const upcomingShows = liveShows
-  //     .map(
-  //       (show) =>
-  //         `${show.episode} on ${new Date(show.showtime).toLocaleString()} is ${show.type}.`
-  //     ) // Format each showtime
-  //     .join(", ");
-  //   if (upcomingShows) {
-  //     filteredBotMessageHistory.unshift({
-  //       role: "system",
-  //       content: `Upcoming and recent episodes: ${upcomingShows}`,
-  //     });
-  //   }
-  // }
+  // Add prompts for live show information
+  if (liveShows.length > 0) {
+    const upcomingShows = liveShows
+      .map(
+        (show) =>
+          `${show.episode} on ${new Date(show.showtime).toLocaleString()} is ${show.type}.`
+      ) // Format each showtime
+      .join(", ");
+    if (upcomingShows) {
+      filteredBotMessageHistory.unshift({
+        role: "system",
+        content: `Upcoming and recent episodes: ${upcomingShows}`,
+      });
+    }
+  }
 
   // Get the current time in Eastern Time (EST)
   const currentTimeEST = DateTime.now()

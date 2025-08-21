@@ -61,46 +61,18 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        {
-          "showtime": "2025-07-25T21:00:00-05:00",
-          "episode": "Season 4 Episode 05",
-          "type": "live"
-        },
-        {
-          "showtime": "2025-07-26T21:00:00-05:00",
-          "episode": "Season 4 Episode 06",
-          "type": "live"
-        },
-        {
-          "showtime": "2025-08-01T21:00:00-05:00",
-          "episode": "Season 4 Episode 07",
-          "type": "live"
-        },
-        {
-          "showtime": "2025-08-02T21:00:00-05:00",
-          "episode": "Season 4 Episode 08",
-          "type": "live"
-        },
-        {
-          "showtime": "2025-08-08T21:00:00-05:00",
-          "episode": "Season 4 Episode 09",
-          "type": "live"
-        },
-        {
-          "showtime": "2025-08-09T21:00:00-05:00",
-          "episode": "Season 4 Episode 10",
-          "type": "live"
-        },
-        {
-          "showtime": "2025-08-15T21:00:00-05:00",
-          "episode": "Season 4 Episode 11",
-          "type": "live"
-        },
-        {
-          "showtime": "2025-08-16T21:00:00-05:00",
-          "episode": "Season 4 Episode 12",
-          "type": "live"
-        }
+        { "showtime": "2025-08-15T21:00:00-05:00", "episode": "Season 4 Episode 11", "type": "live" },
+        { "showtime": "2025-08-16T21:00:00-05:00", "episode": "Season 4 Episode 12", "type": "live" },
+        { "showtime": "2025-08-22T21:00:00-05:00", "episode": "Season 4 Episode 13", "type": "live" },
+        { "showtime": "2025-08-23T21:00:00-05:00", "episode": "Season 4 Episode 14", "type": "live" },
+        { "showtime": "2025-08-29T21:00:00-05:00", "episode": "Season 3 Episode 91", "type": "a rerun" },
+        { "showtime": "2025-08-30T21:00:00-05:00", "episode": "Season 3 Episode 49", "type": "a rerun" },
+        { "showtime": "2025-09-05T21:00:00-05:00", "episode": "Season 2 Episode 12", "type": "a rerun" },
+        { "showtime": "2025-09-06T21:00:00-05:00", "episode": "Season 1 Episode 54", "type": "a rerun" }
+      ],
+      "newsPrompts": [
+        "News for this weekend: Sean 'Sticks' Larkin is in the studio joining Dan, Curtis and Tom both Friday and Saturday night.",
+        "The show will not be live next weekend nor the following one, but should return on August 12."
       ],
       "userPrompts": {
         "629681401918390312": {
