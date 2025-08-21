@@ -189,12 +189,12 @@ module.exports = async function (message) {
   if (userPrompts[message.member.id]) {
     thisUserPrompt += ` ${userPrompts[message.member.id].prompt}`;
   } else if (
-    message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
+    message.member?.permissions?.has(PermissionsBitField.Flags.ManageMessages)
   ) {
     thisUserPrompt += ` ${moderatorPrompt}`;
   } else if (
     message.member.premiumSince &&
-    !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)
+    !message.member?.permissions?.has(PermissionsBitField.Flags.ManageMessages)
   ) {
     thisUserPrompt += ` ${boosterPrompt}`;
   }
@@ -311,7 +311,7 @@ module.exports = async function (message) {
 
   // if mod or tech channel don't restrict response size
   if (
-    message.member.permissions.has(PermissionsBitField.Flags.ManageMessages) ||
+    message.member?.permissions?.has(PermissionsBitField.Flags.ManageMessages) ||
     message.channel.id == "1250589626717175910" ||
     message.channel.id == "1119367030823473303" ||
     message.channel.id == "366531564693356554" ||

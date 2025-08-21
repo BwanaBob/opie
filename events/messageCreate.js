@@ -106,11 +106,13 @@ module.exports = {
       return;
     }
 
-    // Emoji Lock
+  // Emoji Lock
+  // NOTE: message.member can be null in DMs or certain gateway events; use optional chaining
+  // to avoid "Cannot read properties of null (reading 'permissions')" errors.
     // Temp holder for future command
     if (message.content.match(/(emojilock)/gi)) {
       if (
-        !message.member.permissions.has(
+        !message.member?.permissions?.has(
           PermissionsBitField.Flags.ManageGuildExpressions
         )
       ) {
@@ -148,7 +150,7 @@ module.exports = {
     // Temp holder for future command
     if (message.content.match(/(emojiunlock)/gi)) {
       if (
-        !message.member.permissions.has(
+        !message.member?.permissions?.has(
           PermissionsBitField.Flags.ManageGuildExpressions
         )
       ) {
@@ -183,7 +185,7 @@ module.exports = {
     }
 
     // Member Added Message Detection
-    if ((message.type == 7) || (message.content == "test milestone" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
+  if ((message.type == 7) || (message.content == "test milestone" && message.member?.permissions?.has(PermissionsBitField.Flags.ManageMessages))
     ) {
       const nextMilestoneUserCount = nextMilestone(message.guild.memberCount);
       if (nextMilestoneUserCount == message.guild.memberCount || message.content == "test milestone") {
@@ -228,7 +230,7 @@ module.exports = {
     // Server Boosted Message Detection
     const messageTypes = [8, 9, 10, 11]; // Server boosted message types
     if ((messageTypes.includes(message.type))
-      || (message.content == "test boosted" && message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
+      || (message.content == "test boosted" && message.member?.permissions?.has(PermissionsBitField.Flags.ManageMessages))
     ) {
       const serverBoostedImage = new AttachmentBuilder("./resources/thumb-boosted.png", { name: "thumb-boosted.png" });
       const serverBoostedEmbed = new EmbedBuilder()
@@ -274,7 +276,7 @@ module.exports = {
     if ((message.attachments.size !== 0 || message.embeds.length !== 0)
       && !(
         message.author.bot ||
-        message.member.permissions.has(
+        message.member?.permissions?.has(
           PermissionsBitField.Flags.ManageMessages
         ) ||
         [

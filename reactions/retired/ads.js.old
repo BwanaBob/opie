@@ -8,7 +8,7 @@ module.exports = {
     async execute(message) {
         if (
             message.author.bot ||
-            message.member.permissions.has(
+            message.member?.permissions?.has(
                 PermissionsBitField.Flags.ManageMessages
             ) ||
             message.channel.name == "notifications" ||

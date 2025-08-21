@@ -24,7 +24,7 @@ module.exports = {
     if (
       message.author.bot ||
       (message.member &&
-        message.member.permissions.has(
+        message.member?.permissions?.has(
           PermissionsBitField.Flags.ManageMessages
         )) ||
       message.channel.name == "notifications-opie" ||

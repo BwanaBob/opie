@@ -8,7 +8,7 @@ module.exports = {
         const imageDelay = 5400; // seconds 5400 = 1.5hr
         const lastImage = message.client.timers.get("image-caca-flores") ?? imageDelay + 100;
         const elapsed = Math.trunc((message.createdTimestamp - lastImage) / 1000);
-        if (elapsed > imageDelay || message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+    if (elapsed > imageDelay || message.member?.permissions?.has(PermissionsBitField.Flags.ManageMessages)) {
             message.client.timers.set("image-caca-flores", message.createdTimestamp);
             const replyImage = new AttachmentBuilder("./resources/reaction-caca-flores.gif", { name: "reaction-caca-flores.gif" });
             message.reply({ files: [replyImage] })
