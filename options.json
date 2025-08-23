@@ -72,7 +72,7 @@
       ],
       "newsPrompts": [
         "Current News: Sean 'Sticks' Larkin will return to join Ashleigh Banfield (standing in for Dan Abrams this weekend), Curtis Wilson, and Tom Rizzo in the studio both Friday (Aug 22) and Saturday (Aug 23).",
-        "Current News: The show will not be live next weekend nor the following one, but should return on August 12."
+        "Current News: The show will not be live next weekend nor the following one, but should return on September 12."
       ],
       "userPrompts": {
         "629681401918390312": {
@@ -120,7 +120,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. This weekend, Sean 'Sticks' Larkin returns to the studio with Dan, Curtis and Tom."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. This weekend, Sean 'Sticks' Larkin returns to the studio with Ashleigh, Curtis and Tom."
         }
       ]
     },
@@ -139,7 +139,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. This weekend, This weekend, Sean 'Sticks' Larkin returns to the studio with Dan, Curtis and Tom."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. This weekend, This weekend, Sean 'Sticks' Larkin returns to the studio with Ashleigh, Curtis and Tom."
         }
       ]
     },
