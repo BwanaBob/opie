@@ -61,17 +61,18 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-08-15T21:00:00-05:00", "episode": "Season 4 Episode 11", "type": "live" },
-        { "showtime": "2025-08-16T21:00:00-05:00", "episode": "Season 4 Episode 12", "type": "live" },
-        { "showtime": "2025-08-22T21:00:00-05:00", "episode": "Season 4 Episode 13", "type": "live" },
-        { "showtime": "2025-08-23T21:00:00-05:00", "episode": "Season 4 Episode 14", "type": "live" },
         { "showtime": "2025-08-29T21:00:00-05:00", "episode": "Season 3 Episode 91", "type": "a rerun" },
         { "showtime": "2025-08-30T21:00:00-05:00", "episode": "Season 3 Episode 49", "type": "a rerun" },
         { "showtime": "2025-09-05T21:00:00-05:00", "episode": "Season 2 Episode 12", "type": "a rerun" },
         { "showtime": "2025-09-06T21:00:00-05:00", "episode": "Season 1 Episode 54", "type": "a rerun" }
+        { "showtime": "2025-09-12T21:00:00-05:00", "episode": "Season 4 Episode 15", "type": "live" },
+        { "showtime": "2025-09-13T21:00:00-05:00", "episode": "Season 4 Episode 16", "type": "live" },
+        { "showtime": "2025-09-19T21:00:00-05:00", "episode": "Season 4 Episode 17", "type": "live" },
+        { "showtime": "2025-09-20T21:00:00-05:00", "episode": "Season 4 Episode 18", "type": "live" }
       ],
       "newsPrompts": [
-        "Current News: The show is not live this weekend nor next weekend, but will return on September 12."
+        "Current News: Live shows will return, after two weekends off, on September 12.",
+        "The Wheeling Police Department in West Virginia will be joining the OPL lineup on Sept. 12th (Season 4 episode 15)"
       ],
       "userPrompts": {
         "629681401918390312": {
@@ -119,7 +120,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Tonight we are excited to welcome the Wheeling Police Department in West Virginia to the lineup."
         }
       ]
     },
@@ -138,7 +139,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Tonight we are excited to welcome the Wheeling Police Department in West Virginia to the lineup."
         }
       ]
     },
