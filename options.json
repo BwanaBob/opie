@@ -64,7 +64,7 @@
         { "showtime": "2025-08-29T21:00:00-05:00", "episode": "Season 3 Episode 91", "type": "a rerun" },
         { "showtime": "2025-08-30T21:00:00-05:00", "episode": "Season 3 Episode 49", "type": "a rerun" },
         { "showtime": "2025-09-05T21:00:00-05:00", "episode": "Season 2 Episode 12", "type": "a rerun" },
-        { "showtime": "2025-09-06T21:00:00-05:00", "episode": "Season 1 Episode 54", "type": "a rerun" }
+        { "showtime": "2025-09-06T21:00:00-05:00", "episode": "Season 1 Episode 54", "type": "a rerun" },
         { "showtime": "2025-09-12T21:00:00-05:00", "episode": "Season 4 Episode 15", "type": "live" },
         { "showtime": "2025-09-13T21:00:00-05:00", "episode": "Season 4 Episode 16", "type": "live" },
         { "showtime": "2025-09-19T21:00:00-05:00", "episode": "Season 4 Episode 17", "type": "live" },
