@@ -5,8 +5,8 @@
   "showEndCron": "00 00 23 * * FRI,SAT",
   "showEndFriCron": "00 00 23 * * FRI",
   "showEndSatCron": "00 00 23 * * SAT",
-  "rollCallCron": "00 35 15 * * FRI",
-  "todoFriCron": "00 36 15 * * FRI",
+  "rollCallCron": "00 00 15 * * THU",
+  "todoFriCron": "00 00 10 * * FRI",
   "todoSatCron": "00 00 12 * * SAT",
   "defaults": {
     "attachmentDelay": "60",
@@ -71,8 +71,9 @@
         { "showtime": "2025-09-27T21:00:00-05:00", "episode": "Season 4 Episode 20", "type": "live" }
       ],
       "newsPrompts": [
-        "Current News: Live shows will return, after two weekends off, on September 12.",
-        "The Wheeling Police Department in West Virginia will be joining the OPL lineup on Sept. 12th (Season 4 episode 15)"
+        "Current News: Live shows are back tonight after two weekends off, on September 12.",
+        "The Wheeling Police Department in West Virginia will be joining the OPL lineup on Sept. 12th (Season 4 episode 15)",
+        "The Moore Police Department in Utah announced on Sept. 12th that they are stepping away from the show."
       ],
       "userPrompts": {
         "629681401918390312": {
