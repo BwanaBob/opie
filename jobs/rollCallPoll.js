@@ -84,7 +84,7 @@ module.exports = {
           }
 
           // Unpin previous roll call messages before posting the new one
-          const pinnedMessages = await modChannel.messages.fetchPinned();
+          const pinnedMessages = await modChannel.messages.fetchPins();
           const previousPolls = pinnedMessages.filter((msg) =>
             msg.content.includes("Roll Call Time")
           );

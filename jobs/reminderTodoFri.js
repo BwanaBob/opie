@@ -38,7 +38,7 @@ module.exports = {
             `🧹 Closing and !tidy`;
 
           // Unpin previous reminder messages before posting the new one
-          const pinnedMessages = await noticeChannel.messages.fetchPinned();
+          const pinnedMessages = await noticeChannel.messages.fetchPins();
           const previousReminders = pinnedMessages.filter(
             (msg) =>
               msg.content.includes("## Friday Checklist") ||
