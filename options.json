@@ -5,8 +5,8 @@
   "showEndCron": "00 00 23 * * FRI,SAT",
   "showEndFriCron": "00 00 23 * * FRI",
   "showEndSatCron": "00 00 23 * * SAT",
-  "rollCallCron": "00 00 15 * * THU",
-  "todoFriCron": "00 00 10 * * FRI",
+  "rollCallCron": "00 00 15 30 * FRI",
+  "todoFriCron": "00 00 15 31 * FRI",
   "todoSatCron": "00 00 12 * * SAT",
   "defaults": {
     "attachmentDelay": "60",
