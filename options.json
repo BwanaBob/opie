@@ -5,8 +5,8 @@
   "showEndCron": "00 00 23 * * FRI,SAT",
   "showEndFriCron": "00 00 23 * * FRI",
   "showEndSatCron": "00 00 23 * * SAT",
-  "rollCallCron": "00 00 15 30 * FRI",
-  "todoFriCron": "00 00 15 31 * FRI",
+  "rollCallCron": "00 00 15 * * THU",
+  "todoFriCron": "00 00 10 * * FRI",
   "todoSatCron": "00 00 12 * * SAT",
   "defaults": {
     "attachmentDelay": "60",
@@ -61,14 +61,14 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-08-29T21:00:00-05:00", "episode": "Season 3 Episode 91", "type": "a rerun" },
-        { "showtime": "2025-08-30T21:00:00-05:00", "episode": "Season 3 Episode 49", "type": "a rerun" },
         { "showtime": "2025-09-05T21:00:00-05:00", "episode": "Season 2 Episode 12", "type": "a rerun" },
         { "showtime": "2025-09-06T21:00:00-05:00", "episode": "Season 1 Episode 54", "type": "a rerun" },
         { "showtime": "2025-09-12T21:00:00-05:00", "episode": "Season 4 Episode 15", "type": "live" },
         { "showtime": "2025-09-13T21:00:00-05:00", "episode": "Season 4 Episode 16", "type": "live" },
         { "showtime": "2025-09-19T21:00:00-05:00", "episode": "Season 4 Episode 17", "type": "live" },
-        { "showtime": "2025-09-20T21:00:00-05:00", "episode": "Season 4 Episode 18", "type": "live" }
+        { "showtime": "2025-09-20T21:00:00-05:00", "episode": "Season 4 Episode 18", "type": "live" },
+        { "showtime": "2025-09-26T21:00:00-05:00", "episode": "Season 4 Episode 19", "type": "live" },
+        { "showtime": "2025-09-27T21:00:00-05:00", "episode": "Season 4 Episode 20", "type": "live" }
       ],
       "newsPrompts": [
         "Current News: Live shows will return, after two weekends off, on September 12.",
@@ -120,7 +120,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Tonight we are excited to welcome the Wheeling Police Department in West Virginia to the lineup."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Tonight we are excited to welcome the Wheeling Police Department in West Virginia to the lineup. Also announced today, the Moore Police Department in Oklahoma is taking a break from the show."
         }
       ]
     },
@@ -139,7 +139,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Tonight we are excited to welcome the Wheeling Police Department in West Virginia to the lineup."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Tonight we are excited to welcome the Wheeling Police Department in West Virginia to the lineup. Also announced today, the Moore Police Department in Oklahoma is taking a break from the show."
         }
       ]
     },
