@@ -61,24 +61,22 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-09-05T21:00:00-05:00", "episode": "Season 2 Episode 12", "type": "a rerun" },
-        { "showtime": "2025-09-06T21:00:00-05:00", "episode": "Season 1 Episode 54", "type": "a rerun" },
         { "showtime": "2025-09-12T21:00:00-05:00", "episode": "Season 4 Episode 15", "type": "live" },
         { "showtime": "2025-09-13T21:00:00-05:00", "episode": "Season 4 Episode 16", "type": "live" },
         { "showtime": "2025-09-19T21:00:00-05:00", "episode": "Season 4 Episode 17", "type": "live" },
         { "showtime": "2025-09-20T21:00:00-05:00", "episode": "Season 4 Episode 18", "type": "live" },
         { "showtime": "2025-09-26T21:00:00-05:00", "episode": "Season 4 Episode 19", "type": "live" },
-        { "showtime": "2025-09-27T21:00:00-05:00", "episode": "Season 4 Episode 20", "type": "live" }
+        { "showtime": "2025-09-27T21:00:00-05:00", "episode": "Season 4 Episode 20", "type": "live" },
+        { "showtime": "2025-10-03T21:00:00-05:00", "episode": "Season 4 Episode 21", "type": "live" },
+        { "showtime": "2025-10-04T21:00:00-05:00", "episode": "Season 4 Episode 22", "type": "live" }
       ],
       "newsPrompts": [
-        "Current News: Live shows are back tonight after two weekends off, on September 12.",
-        "The Wheeling Police Department in West Virginia will be joining the OPL lineup on Sept. 12th (Season 4 episode 15)",
-        "The Moore Police Department in Oklahoma announced on Sept. 12th that they are stepping away from the show."
+        "No current event news this weekend"
       ],
       "userPrompts": {
         "629681401918390312": {
           "name": "Barre",
-          "prompt": "She is the owner of this server and is held in the highest regard. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."
+          "prompt": "She is the owner of this server and is held in the highest regard. She is our regal three toed sloth, a firefighter, a mom, a teacher and a wise life mentor to us all. You sometimes refer to her as \"highness\", \"queen\", \"SWMBO\", etc."
         },
         "348629137080057878": {
           "name": "Bean",
@@ -121,7 +119,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Tonight we are excited to welcome the Wheeling Police Department in West Virginia to the lineup. Also announced today, the Moore Police Department in Oklahoma is taking a break from the show."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour."
         }
       ]
     },
@@ -140,7 +138,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Tonight we are excited to welcome the Wheeling Police Department in West Virginia to the lineup. Also announced today, the Moore Police Department in Oklahoma is taking a break from the show."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live."
         }
       ]
     },
