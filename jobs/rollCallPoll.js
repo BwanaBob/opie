@@ -1,6 +1,6 @@
 const CronJob = require("cron").CronJob;
 const { Poll } = require("discord.js");
-const { rollCallCron } = require("../options.json");
+const { rollCallCronTemp } = require("../options.json");
 
 module.exports = {
   execute(client) {
@@ -11,7 +11,7 @@ module.exports = {
     var noticeRole = "391837678967980035"; // OPie Test Role
     console.log(`[${jobLoadedDate}] ⌛ CRON  | Job Loaded    | Roll Call Poll`);
     var jobRollCallPoll = new CronJob(
-      rollCallCron,
+      rollCallCronTemp,
       async () => {
         // '*/15 * * * * *', async () => {
         var friPollContent = {
@@ -84,16 +84,27 @@ module.exports = {
           }
 
           // Unpin previous roll call messages before posting the new one
-          const pinnedMessages = await modChannel.messages.fetchPins();
-          const previousPolls = pinnedMessages.filter((msg) =>
-            msg.content.includes("Roll Call Time")
-          );
-          for (const msg of previousPolls.values()) {
-            await msg
-              .unpin()
-              .catch((err) =>
-                console.error(`[ERROR] Unpinning message: `, err.message)
-              );
+          try {
+            const pinnedMessages = await modChannel.messages.fetchPins();
+            
+            // Access the items array and extract messages
+            if (pinnedMessages.items && Array.isArray(pinnedMessages.items)) {
+              const previousPolls = pinnedMessages.items
+                .map(item => item.message)
+                .filter(msg => msg && msg.content && msg.content.includes("Roll Call Time"));
+              
+              for (const msg of previousPolls) {
+                // Create a message object from the raw data to call unpin on
+                const messageObj = modChannel.messages.cache.get(msg.id);
+                if (messageObj) {
+                  await messageObj.unpin().catch((err) =>
+                    console.error(`[ERROR] Unpinning message: `, err.message)
+                  );
+                }
+              }
+            }
+          } catch (err) {
+            console.error(`[ERROR] Fetching pinned messages: `, err.message);
           }
 
           const rollCallMessage = await modChannel

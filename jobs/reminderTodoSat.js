@@ -36,18 +36,30 @@ module.exports = {
             `🧹 Closing and !tidy` ;
 
           // Unpin previous reminder messages before posting the new one
-          const pinnedMessages = await noticeChannel.messages.fetchPins();
-          const previousReminders = pinnedMessages.filter(
-            (msg) =>
-              msg.content.includes("## Friday Checklist") ||
-              msg.content.includes("## Saturday Checklist")
-          );
-          for (const msg of previousReminders.values()) {
-            await msg
-              .unpin()
-              .catch((err) =>
-                console.error(`[ERROR] Unpinning message: `, err.message)
-              );
+          try {
+            const pinnedMessages = await noticeChannel.messages.fetchPins();
+            
+            // Access the items array and extract messages
+            if (pinnedMessages.items && Array.isArray(pinnedMessages.items)) {
+              const previousReminders = pinnedMessages.items
+                .map(item => item.message)
+                .filter(msg => msg && msg.content && (
+                  msg.content.includes("## Friday Checklist") ||
+                  msg.content.includes("## Saturday Checklist")
+                ));
+              
+              for (const msg of previousReminders) {
+                // Create a message object from the raw data to call unpin on
+                const messageObj = noticeChannel.messages.cache.get(msg.id);
+                if (messageObj) {
+                  await messageObj.unpin().catch((err) =>
+                    console.error(`[ERROR] Unpinning message: `, err.message)
+                  );
+                }
+              }
+            }
+          } catch (err) {
+            console.error(`[ERROR] Fetching pinned messages: `, err.message);
           }
           const noticeMessage = await noticeChannel
             .send({ content: noticeContent })
