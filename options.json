@@ -9,6 +9,7 @@
   "rollCallCronTemp": "00 05 23 * * THU",
   "todoFriCron": "00 00 10 * * FRI",
   "todoSatCron": "00 00 12 * * SAT",
+  "todoTestCron": "00 54 16 * * FRI",
   "defaults": {
     "attachmentDelay": "60",
     "chatGPTEnabled": "true",

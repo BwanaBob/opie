@@ -50,7 +50,7 @@ module.exports = {
 
       //const messageComponents = interaction.message.components
       const buttonName = interaction.customId;
-      const usedCommand = interaction.message.interaction.commandName;
+      const usedCommand = interaction.message.interaction?.commandName || null;
       // console.log(messageComponents);
       // console.log(buttonName);
       // console.log(usedCommand);
