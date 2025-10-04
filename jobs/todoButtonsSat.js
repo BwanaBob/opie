@@ -13,7 +13,7 @@ module.exports = {
     );
     
     var todoButtonsSaturdayJob = new CronJob(
-      todoTestCron,
+      todoSatCron,
       async () => {
         let noticeRole = "391837678967980035"; // OPie Test Role
         let reacts = ["🧵","🤖","📋","💬","⏺️","🔗","🚨","🧹",];
