@@ -70,7 +70,9 @@
         { "showtime": "2025-10-10T21:00:00-05:00", "episode": "Season 4 Episode 23", "type": "live" },
         { "showtime": "2025-10-11T21:00:00-05:00", "episode": "Season 4 Episode 24", "type": "live" },
         { "showtime": "2025-10-17T21:00:00-05:00", "episode": "Season 4 Episode 25", "type": "live" },
-        { "showtime": "2025-10-18T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "live" }
+        { "showtime": "2025-10-18T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "live" },
+        { "showtime": "2025-10-24T21:00:00-05:00", "episode": "Season 3 Episode 79", "type": "a rerun" },
+        { "showtime": "2025-10-25T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "a rerun" }
       ],
       "newsPrompts": [
         "Oklahoma County Sheriff Tommie Johnson III, is returning to the On Patrol Live studio this weekend. He will be joined by Dan Abrams and Tom Rizzo to discuss the latest updates from his department and share insights on law enforcement in Oklahoma County."
@@ -121,7 +123,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. This weekend, give a big Sooner welcome to Oklahoma County Sheriff Tommie Johnson III, returning to the On Patrol Live studio this weekend. He will be joined by Dan Abrams and Tom Rizzo to discuss the latest updates from his department and share insights on law enforcement in Oklahoma County."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour."
         }
       ]
     },
@@ -140,7 +142,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. This weekend, give a big Sooner welcome to Oklahoma County Sheriff Tommie Johnson III, returning to the On Patrol Live studio this weekend. He will be joined by Dan Abrams and Tom Rizzo to discuss the latest updates from his department and share insights on law enforcement in Oklahoma County."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live."
         }
       ]
     },

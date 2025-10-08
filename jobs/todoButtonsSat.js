@@ -27,14 +27,14 @@ module.exports = {
 
           // Define todo items with their initial state (🟩 = not complete, ✅ = complete)
           const todoItems = [
-            `🟩 - 🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/wiki/moderation/live-thread/>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>`,
-            `🟩 - 🤖 [Bot prompts](<https://github.com/BwanaBob/opie/commits/main/>)`,
-            `🟩 - 📋 [Lineup](<https://twitter.com/danabrams>)`,
-            `🟩 - 💬 Opening comment`,
-            `🟩 - ⏺️ [First Shift Recording](<https://www.reelznow.com/live>)`,
-            `🟩 - 🔗 First Shift Summary Link in Opener`,
-            `🟩 - 🚨 Set Community Status & highlights`,
-            `🟩 - 🧹 Closing and !tidy`
+            `🟩 🧵 [Thread](<https://www.reddit.com/r/OnPatrolLive/about/wiki/moderation/live-thread/>) scheduled at <t:${scheduleTime}:t> <t:${scheduleTime}:R>`,
+            `🟩 🤖 [Bot prompts](<https://github.com/BwanaBob/opie/commits/main/>)`,
+            `🟩 📋 [Lineup](<https://twitter.com/danabrams>)`,
+            `🟩 💬 Opening comment`,
+            `🟩 ⏺️ [First Shift Recording](<https://www.reelznow.com/live>)`,
+            `🟩 🔗 First Shift Summary Link in Opener`,
+            `🟩 🚨 Set Community Status & highlights`,
+            `🟩 🧹 Closing and !tidy`
           ];
 
           let noticeContent =
