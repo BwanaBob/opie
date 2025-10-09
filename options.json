@@ -63,8 +63,6 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-09-26T21:00:00-05:00", "episode": "Season 4 Episode 19", "type": "live" },
-        { "showtime": "2025-09-27T21:00:00-05:00", "episode": "Season 4 Episode 20", "type": "live" },
         { "showtime": "2025-10-03T21:00:00-05:00", "episode": "Season 4 Episode 21", "type": "live" },
         { "showtime": "2025-10-04T21:00:00-05:00", "episode": "Season 4 Episode 22", "type": "live" },
         { "showtime": "2025-10-10T21:00:00-05:00", "episode": "Season 4 Episode 23", "type": "live" },
