@@ -73,10 +73,10 @@
         { "showtime": "2025-10-25T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "a rerun" }
       ],
       "newsPrompts": [
-        "This weekend the show celebrates it's 300th episode (on Saturday).",
-        "Curtis Wilson is confirmed to be returning to the studio this weekend after having gone missing for the past couple of weeks.",
+        "Tonight, the show celebrates it's 300th episode.",
+        "Curtis Wilson is back in the studio this weekend after having gone missing for the past couple of weeks.",
         "On the weekend of Oct 24-25, the show will taking a break and airing reruns of Season 3 Episode 79 on Friday, followed by a rerun of Season 4 Episode 26 on Saturday.",
-        "On Wednesday, Chief Bradley Taylor of the Hazen Police Department in Arkansas announced that the department would be returning to the show this weekend."
+        "Chief Bradley Taylor continues to follow other officers around so he can appear on the show this weekend."
       ],
       "userPrompts": {
         "629681401918390312": {
@@ -124,7 +124,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Tonight is the 300th episode of On Patrol Live! The two weekend celebration continues now with First Shift!"
         }
       ]
     },
@@ -143,7 +143,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Tonight is the 300th episode of On Patrol Live! The two weekend celebration continues now! Also, don't forget to reward people with the best contributions to the chat by reacting to their messages with a star emoji ⭐. Learn how you could become an all-star [here](https://discord.com/channels/325206992413130753/1407777018493407332/1407777165759610991)."
         }
       ]
     },
