@@ -68,7 +68,9 @@
         { "showtime": "2025-10-17T21:00:00-05:00", "episode": "Season 4 Episode 25", "type": "live" },
         { "showtime": "2025-10-18T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "live" },
         { "showtime": "2025-10-24T21:00:00-05:00", "episode": "Season 3 Episode 79", "type": "a rerun" },
-        { "showtime": "2025-10-25T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "a rerun" }
+        { "showtime": "2025-10-25T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "a rerun" },
+        { "showtime": "2025-10-31T21:00:00-05:00", "episode": "Season 4 Episode 27", "type": "live" },
+        { "showtime": "2025-11-01T21:00:00-05:00", "episode": "Season 4 Episode 28", "type": "live" }
       ],
       "newsPrompts": [],
       "userPrompts": {
@@ -136,7 +138,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Also, don't forget to reward people with the best contributions to the chat by reacting to their messages with a star emoji ⭐. Learn how you could become an all-star [here](https://discord.com/channels/325206992413130753/1407777018493407332/1407777165759610991)."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Also, remind them to reward people with the best contributions to the chat by reacting to their messages with a star emoji ⭐. Learn how you could become an all-star [here](https://discord.com/channels/325206992413130753/1407777018493407332/1407777165759610991)."
         }
       ]
     },
