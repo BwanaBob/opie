@@ -63,8 +63,6 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-10-10T21:00:00-05:00", "episode": "Season 4 Episode 23", "type": "live" },
-        { "showtime": "2025-10-11T21:00:00-05:00", "episode": "Season 4 Episode 24", "type": "live" },
         { "showtime": "2025-10-17T21:00:00-05:00", "episode": "Season 4 Episode 25", "type": "live" },
         { "showtime": "2025-10-18T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "live" },
         { "showtime": "2025-10-24T21:00:00-05:00", "episode": "Season 3 Episode 79", "type": "a rerun" },
@@ -72,10 +70,7 @@
         { "showtime": "2025-10-31T21:00:00-05:00", "episode": "Season 4 Episode 27", "type": "live" },
         { "showtime": "2025-11-01T21:00:00-05:00", "episode": "Season 4 Episode 28", "type": "live" }
       ],
-      "newsPrompts": [
-        "Dan Abrams is in Daytona Beach this weekend, riding along with Lt. Richie Maher during the 33rd Annual Biketoberfest. He has not comited to wearing chaps, unfortunately.",
-        "Sean 'Sticks' Larkin is in the studio filling in for Dan Abrams on hosting duty."
-      ],
+      "newsPrompts": ["This upcoming weekend, the show is on a break and will return the following weekend on October 31st."],
       "userPrompts": {
         "629681401918390312": {
           "name": "Barre",
@@ -122,7 +117,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. This weekend Dan Abrams will be in Daytona Beach riding along with Lt. Richie Maher during the 33rd Annual Biketoberfest. Sean 'Sticks' Larkin is filling in for Dan Abrams on hosting duty in the studio this weekend along with Curtis Wilson and Tom Rizzo."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour."
         }
       ]
     },
@@ -141,7 +136,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. This weekend Dan Abrams will be in Daytona Beach riding along with Lt. Richie Maher during the 33rd Annual Biketoberfest. Sean 'Sticks' Larkin is filling in for Dan Abrams in the studio on hosting duty this weekend along with Curtis Wilson and Tom Rizzo. Also, our Discord server is 2 boosts away from level 3 perks, so if you have nitro and haven't used your 2 free boosts, please consider using them here. You'll get the special server booster role and other perks as a thank you! Also, remind them to reward people with the best contributions to the chat by reacting to their messages with a star emoji ⭐. Learn how you could become an all-star [here](https://discord.com/channels/325206992413130753/1407777018493407332/1407777165759610991)."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Also, our Discord server is 2 boosts away from level 3 perks, so if you have nitro and haven't used your 2 free boosts, please consider using them here. You'll get the special server booster role and other perks as a thank you! Also, remind them to reward people with the best contributions to the chat by reacting to their messages with a star emoji ⭐. Learn how you could become an all-star [here](https://discord.com/channels/325206992413130753/1407777018493407332/1407777165759610991)."
         }
       ]
     },
@@ -194,7 +189,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol Live. Wish them safe and happy times until the next show. Remind people that the show is taking a break next weekend, but will return the following weekend on October 31st. 🎃"
+          "content": "Write a brief closing comment thanking our wonderful discord users for their participation in a terrific live chat for the television show On Patrol Live. Wish them safe and happy times until the next show."
         }
       ]
     },
