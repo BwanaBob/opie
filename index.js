@@ -29,6 +29,28 @@ client.params.set("twitterStreamEnabled", options.defaults.twitterStreamEnabled 
 client.params.set("messageReactionsEnabled", options.defaults.messageReactionsEnabled ?? "false");
 client.params.set("statusRotationEnabled", options.defaults.statusRotationEnabled ?? "false");
 
+// Features Collection setup
+client.features = new Collection();
+const featuresPath = path.join(__dirname, "features");
+const featureFiles = fs
+  .readdirSync(featuresPath)
+  .filter((file) => file.endsWith(".js"));
+
+for (const file of featureFiles) {
+  const filePath = path.join(featuresPath, file);
+  const feature = require(filePath);
+  // Set a new item in the Collection with the key as the feature name and the value as the exported module
+  if ("name" in feature && "execute" in feature) {
+    client.features.set(feature.name, feature);
+    const fLoadedDate = new Date().toLocaleString();
+    console.log(`[${fLoadedDate}] 🎯 FEATURE| Feature Loaded| ${feature.name}`)
+  } else {
+    console.log(
+      `⛔ [WARNING] The feature at ${filePath} is missing a required "name" or "execute" property.`
+    );
+  }
+}
+
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, "commands");
