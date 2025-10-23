@@ -68,9 +68,11 @@
         { "showtime": "2025-10-24T21:00:00-05:00", "episode": "Season 3 Episode 79", "type": "a rerun" },
         { "showtime": "2025-10-25T21:00:00-05:00", "episode": "Season 4 Episode 26", "type": "a rerun" },
         { "showtime": "2025-10-31T21:00:00-05:00", "episode": "Season 4 Episode 27", "type": "live" },
-        { "showtime": "2025-11-01T21:00:00-05:00", "episode": "Season 4 Episode 28", "type": "live" }
+        { "showtime": "2025-11-01T21:00:00-05:00", "episode": "Season 4 Episode 28", "type": "live" },
+        { "showtime": "2025-11-07T21:00:00-05:00", "episode": "Season 4 Episode 29", "type": "live" },
+        { "showtime": "2025-11-08T21:00:00-05:00", "episode": "Season 4 Episode 30", "type": "live" }
       ],
-      "newsPrompts": ["This upcoming weekend, the show is on a break and will return the following weekend on October 31st."],
+      "newsPrompts": ["This weekend, the show is on a break and will return the following weekend on October 31st."],
       "userPrompts": {
         "629681401918390312": {
           "name": "Barre",
