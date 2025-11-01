@@ -72,10 +72,8 @@
         { "showtime": "2025-11-14T21:00:00-05:00", "episode": "Season 4 Episode 31", "type": "live" },
         { "showtime": "2025-11-15T21:00:00-05:00", "episode": "Season 4 Episode 32", "type": "live" }
       ],
-      "newsPrompts": ["🎃 Halloween weekend gets spooktacular with On Patrol: Live! New episodes hit this Friday and Saturday returning from last weekend's break.",
-        "Berkeley County Sheriff's Office returns to the lineup this weekend.",
-        "Special guests Detective Dany DeAndrade and Officer Dan Rengering are in studio this weekend for a few tricks, a few treats, and plenty of surprises. 🍬🚓",
-        "Don't forget to use your server boosts to help us reach level 3 perks!",
+      "newsPrompts": ["Berkeley County Sheriff's Office returned to the lineup this weekend.",
+        "Special guests Detective Dany DeAndrade and Officer Dan Rengering are in studio this weekend.",
         "Remember to react to the best messages in chat with a star emoji to give recognition to your fellow community members!",
         "If you're enjoying the chat, consider inviting your friends to join our Discord server!"
       ],
@@ -125,7 +123,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. 🎃 Halloween weekend gets spooktacular with Berkeley County Sheriff's Office returning to the lineup this weekend. Also, special guests Detective Dany DeAndrade and Officer Dan Rengering are in studio this weekend for a few tricks, a few treats, and plenty of surprises. 🍬🚓. Feel like Night of the living Dans."
+          "content": "Write a brief Discord comment letting our friends know that First Shift is starting now and welcoming them to enjoy the show as we get ready to watch On Patrol Live in one hour. Also, special guests Detective Dany DeAndrade and Officer Dan Rengering are in studio this weekend."
         }
       ]
     },
@@ -144,7 +142,7 @@
         },
         {
           "role": "user",
-          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Also, our Discord server is 2 boosts away from level 3 perks, so if you have nitro and haven't used your 2 free boosts, please consider using them here. You'll get the special server booster role and other perks as a thank you! Also, remind them to reward people with the best contributions to the chat by reacting to their messages with a star emoji ⭐. Learn how you could become an all-star [here](https://discord.com/channels/325206992413130753/1407777018493407332/1407777165759610991). 🎃 Halloween weekend gets spooktacular with Berkeley County Sheriff's Office returning to the lineup this weekend. Also, special guests Detective Dany DeAndrade and Officer Dan Rengering are in studio this weekend for a few tricks, a few treats, and plenty of surprises. 🍬🚓."
+          "content": "Write a brief opening comment welcoming our Discord users to this live chat for the television show On Patrol Live. Also, our Discord server is 1 boost away from level 3 perks, so if you have nitro and haven't used your 2 free boosts, please consider using them here. You'll get the special server booster role and other perks as a thank you! Also, remind them to reward people with the best contributions to the chat by reacting to their messages with a star emoji ⭐. Learn how you could become an all-star [here](https://discord.com/channels/325206992413130753/1407777018493407332/1407777165759610991). Also, special guests Detective Dany DeAndrade and Officer Dan Rengering are in studio this weekend."
         }
       ]
     },
