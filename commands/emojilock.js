@@ -85,8 +85,14 @@ module.exports = {
 
     } catch (error) {
       console.error('Error in emojilock command:', error);
+      
+      let errorMessage = "⛔ An error occurred while trying to lock the emoji.";
+      if (error.code === 50013) {
+        errorMessage = "❌ Missing permissions! The bot needs the **Manage Guild Expressions** permission to modify emoji role restrictions.";
+      }
+      
       await interaction.reply({ 
-        content: "⛔ An error occurred while trying to lock the emoji.", 
+        content: errorMessage, 
         flags: MessageFlags.Ephemeral 
       });
     }
