@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -33,7 +33,7 @@ module.exports = {
     if (!interaction.member?.permissions?.has(PermissionFlagsBits.ManageGuildExpressions)) {
       return await interaction.reply({ 
         content: "❌ You don't have permission to manage emojis.", 
-        ephemeral: true 
+        flags: MessageFlags.Ephemeral 
       });
     }
 
@@ -47,7 +47,7 @@ module.exports = {
       if (!emoji) {
         return await interaction.reply({ 
           content: `❌ Could not find emoji with name: \`${emojiName}\``, 
-          ephemeral: true 
+          flags: MessageFlags.Ephemeral 
         });
       }
 
@@ -60,14 +60,12 @@ module.exports = {
       if (rolesToAdd.length === 0) {
         return await interaction.reply({ 
           content: "❌ You must specify at least one role to lock the emoji to.", 
-          ephemeral: true 
+          flags: MessageFlags.Ephemeral 
         });
       }
 
-      // Add roles to emoji
-      for (const roleId of rolesToAdd) {
-        await emoji.roles.add(roleId);
-      }
+      // Set all roles at once (add() only works for one role, set() works for multiple)
+      await emoji.roles.set(rolesToAdd);
 
       const roleNames = rolesToAdd.map(roleId => {
         const role = interaction.guild.roles.cache.get(roleId);
@@ -76,7 +74,7 @@ module.exports = {
 
       await interaction.reply({ 
         content: `✅ Successfully locked emoji \`:${emojiName}:\` to roles: ${roleNames}`, 
-        ephemeral: true 
+        flags: MessageFlags.Ephemeral 
       });
 
       // Log the action
@@ -89,7 +87,7 @@ module.exports = {
       console.error('Error in emojilock command:', error);
       await interaction.reply({ 
         content: "⛔ An error occurred while trying to lock the emoji.", 
-        ephemeral: true 
+        flags: MessageFlags.Ephemeral 
       });
     }
   },

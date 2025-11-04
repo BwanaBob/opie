@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -18,7 +18,7 @@ module.exports = {
     if (!interaction.member?.permissions?.has(PermissionFlagsBits.ManageGuildExpressions)) {
       return await interaction.reply({ 
         content: "❌ You don't have permission to manage emojis.", 
-        ephemeral: true 
+        flags: MessageFlags.Ephemeral 
       });
     }
 
@@ -32,7 +32,7 @@ module.exports = {
       if (!emoji) {
         return await interaction.reply({ 
           content: `❌ Could not find emoji with name: \`${emojiName}\``, 
-          ephemeral: true 
+          flags: MessageFlags.Ephemeral 
         });
       }
 
@@ -41,7 +41,7 @@ module.exports = {
 
       await interaction.reply({ 
         content: `✅ Successfully unlocked emoji \`:${emojiName}:\` - removed all role restrictions`, 
-        ephemeral: true 
+        flags: MessageFlags.Ephemeral 
       });
 
       // Log the action
@@ -54,7 +54,7 @@ module.exports = {
       console.error('Error in emojiunlock command:', error);
       await interaction.reply({ 
         content: "⛔ An error occurred while trying to unlock the emoji.", 
-        ephemeral: true 
+        flags: MessageFlags.Ephemeral 
       });
     }
   },
