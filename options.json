@@ -63,14 +63,14 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-10-31T21:00:00-05:00", "episode": "Season 4 Episode 27", "type": "live" },
-        { "showtime": "2025-11-01T21:00:00-05:00", "episode": "Season 4 Episode 28", "type": "live" },
         { "showtime": "2025-11-07T21:00:00-05:00", "episode": "Season 4 Episode 29", "type": "live" },
         { "showtime": "2025-11-08T21:00:00-05:00", "episode": "Season 4 Episode 30", "type": "live" },
         { "showtime": "2025-11-14T21:00:00-05:00", "episode": "Season 4 Episode 31", "type": "live" },
         { "showtime": "2025-11-15T21:00:00-05:00", "episode": "Season 4 Episode 32", "type": "live" },
         { "showtime": "2025-11-21T21:00:00-05:00", "episode": "Season 4 Episode 33", "type": "live" },
-        { "showtime": "2025-11-22T21:00:00-05:00", "episode": "Season 4 Episode 34", "type": "live" }
+        { "showtime": "2025-11-22T21:00:00-05:00", "episode": "Season 4 Episode 34", "type": "live" },
+        { "showtime": "2025-11-21T28:00:00-05:00", "episode": "Season 4 Episode 35", "type": "live" },
+        { "showtime": "2025-11-22T29:00:00-05:00", "episode": "Season 4 Episode 36", "type": "live" }
       ],
       "newsPrompts": ["Berkeley County Sheriff's Office returned to the lineup this weekend.",
         "Special guests Detective Dany DeAndrade and Officer Dan Rengering are in studio this weekend.",
