@@ -72,11 +72,7 @@
         { "showtime": "2025-11-21T28:00:00-05:00", "episode": "Season 4 Episode 35", "type": "live" },
         { "showtime": "2025-11-22T29:00:00-05:00", "episode": "Season 4 Episode 36", "type": "live" }
       ],
-      "newsPrompts": ["Berkeley County Sheriff's Office returned to the lineup this weekend.",
-        "Special guests Detective Dany DeAndrade and Officer Dan Rengering are in studio this weekend.",
-        "Remember to react to the best messages in chat with a star emoji to give recognition to your fellow community members!",
-        "If you're enjoying the chat, consider inviting your friends to join our Discord server!"
-      ],
+      "newsPrompts": ["Sheriff Tommie Johnson III and Sgt. Sean “Sticks” Larkin are joining Dan Abrams and Tom Rizzo in the studio this weekend."],
       "userPrompts": {
         "629681401918390312": {
           "name": "Barre",
