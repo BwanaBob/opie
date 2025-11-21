@@ -72,7 +72,7 @@
         { "showtime": "2025-12-05T21:00:00-05:00", "episode": "Season 4 Episode 37", "type": "live" },
         { "showtime": "2025-12-06T21:00:00-05:00", "episode": "Season 4 Episode 38", "type": "live" }
       ],
-      "newsPrompts": [],
+      "newsPrompts": ["This weekend, Officer Dan Rengering joins Dan Abrams, Curtis Wilson, and Tom Rizzo, in studio for new episodes of On Patrol: Live."],
       "userPrompts": {
         "629681401918390312": {
           "name": "Barre",
