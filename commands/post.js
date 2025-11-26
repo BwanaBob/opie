@@ -229,6 +229,8 @@ Mod/Everyone/Booster | Name \n\
 ✅ ✅ ⬛ | Use External Stickers \n\
 ✅ ⛔ ⬛ | Mention @everyone, etc \n\
 ✅ ⛔ ⬛ | Manage Messages \n\
+✅ ⛔ ⬛ | Pin Messages \n\
+✅ ⛔ ⬛ | Bypass Slowmode \n\
 ✅ ⛔ ⬛ | Manage Threads \n\
 ✅ ✅ ⬛ | Read Message History \n\
 ✅ ⛔ ⬛ | Send TTS Messages \n\
