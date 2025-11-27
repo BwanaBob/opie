@@ -63,16 +63,16 @@
     "openaiChat": {
       "OpenAIChatModel": "gpt-4.1-mini",
       "liveShows": [
-        { "showtime": "2025-11-14T21:00:00-05:00", "episode": "Season 4 Episode 31", "type": "live" },
-        { "showtime": "2025-11-15T21:00:00-05:00", "episode": "Season 4 Episode 32", "type": "live" },
         { "showtime": "2025-11-21T21:00:00-05:00", "episode": "Season 4 Episode 33", "type": "live" },
         { "showtime": "2025-11-22T21:00:00-05:00", "episode": "Season 4 Episode 34", "type": "live" },
         { "showtime": "2025-11-28T21:00:00-05:00", "episode": "Season 4 Episode 35", "type": "live" },
         { "showtime": "2025-11-29T21:00:00-05:00", "episode": "Season 4 Episode 36", "type": "live" },
         { "showtime": "2025-12-05T21:00:00-05:00", "episode": "Season 4 Episode 37", "type": "live" },
         { "showtime": "2025-12-06T21:00:00-05:00", "episode": "Season 4 Episode 38", "type": "live" }
+        { "showtime": "2025-12-12T21:00:00-05:00", "episode": "Season 4 Episode 39", "type": "live" },
+        { "showtime": "2025-12-13T21:00:00-05:00", "episode": "Season 4 Episode 40", "type": "live" }
       ],
-      "newsPrompts": ["This weekend, Officer Dan Rengering joins Dan Abrams, Curtis Wilson, and Tom Rizzo, in studio for new episodes of On Patrol: Live."],
+      "newsPrompts": [],
       "userPrompts": {
         "629681401918390312": {
           "name": "Barre",
