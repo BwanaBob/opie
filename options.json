@@ -72,7 +72,7 @@
         { "showtime": "2025-12-12T21:00:00-05:00", "episode": "Season 4 Episode 39", "type": "live" },
         { "showtime": "2025-12-13T21:00:00-05:00", "episode": "Season 4 Episode 40", "type": "live" }
       ],
-      "newsPrompts": [],
+      "newsPrompts": ["This weekend Ashleigh Banfield is filling in for Dan Abrams, hosting the show.  Sean 'Sticks' Larkin will also join Curtis Wilson and Tom Rizzo as co-hosts."],
       "userPrompts": {
         "629681401918390312": {
           "name": "Barre",
